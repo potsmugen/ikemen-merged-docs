@@ -205,6 +205,28 @@ def rename_changed_sections(sections: Dict[str, str], suffix: str = "(changed)")
 
 
 # ----------------------------------------------------------------------
+# TOC GENERATION
+# ----------------------------------------------------------------------
+
+def generate_toc_from_sections(merged: Dict[str, Dict[str, Set[str]]], sections_to_skip: List[str] = None) -> str:
+    """
+    Generate a table of contents from section headings.
+    """
+    if sections_to_skip is None:
+        sections_to_skip = []
+
+    toc = []
+    for name in sorted(merged.keys(), key=lambda s: s.lower()):
+        if name in sections_to_skip:
+            continue
+        # Create slug: lowercase, spaces to hyphens, remove punctuation
+        slug = name.lower().replace(" ", "-")
+        slug = re.sub(r'[`()"\'\.]', '', slug)
+        toc.append(f"- [{name}](#{slug})")
+    return "\n".join(toc)
+
+
+# ----------------------------------------------------------------------
 # OUTPUT
 # ----------------------------------------------------------------------
 
@@ -221,7 +243,16 @@ def output_merged(
         "",
     ]
 
-    # FIX: Case-insensitive alphabetical sorting
+    # Generate TOC from remaining sections
+    toc = generate_toc_from_sections(merged, sections_to_skip)
+    if toc:
+        lines.append("## Table of Contents")
+        lines.append("")
+        lines.append(toc)
+        lines.append("")
+        lines.append("---")
+        lines.append("")
+
     for name in sorted(merged.keys(), key=lambda s: s.lower()):
         if name in sections_to_skip:
             continue

@@ -1,4 +1,4 @@
-name: Update Wiki Documentation
+name: Update Pages Documentation
 
 on:
   schedule:
@@ -29,37 +29,35 @@ jobs:
       - name: Generate triggers
         run: python merge_triggers.py
 
-      - name: Checkout wiki repo
-        run: |
-          git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.wiki.git wiki
+      - name: Create docs folder
+        run: mkdir -p docs
 
-      - name: Copy to wiki
+      - name: Copy generated files to docs
         run: |
-          cp sctrl_merged.md wiki/SCTRL.md
-          cp triggers_merged.md wiki/Triggers.md
+          cp sctrl_merged.md docs/SCTRL.md
+          cp triggers_merged.md docs/Triggers.md
 
-      - name: Create wiki Home page
+      - name: Create index page (Home)
         run: |
-          cat > wiki/Home.md << 'EOF'
+          cat > docs/index.md << 'EOF'
           # Ikemen + M.U.G.E.N Merged Documentation
 
-          This wiki contains automatically generated merged documentation from M.U.G.E.N 1.1 and Ikemen GO.
+          This page contains automatically generated merged documentation from M.U.G.E.N 1.1 and Ikemen GO.
 
           ## Pages
 
-          - **[State Controllers (SCTRL)](SCTRL)** – Complete merged reference of all state controllers
-          - **[Triggers](Triggers)** – Complete merged reference of all triggers
+          - [State Controllers (SCTRL)](SCTRL)
+          - [Triggers](Triggers)
 
           ---
 
           *Updated daily via GitHub Actions.*
           EOF
 
-      - name: Commit and push to wiki
+      - name: Commit and push changes
         run: |
-          cd wiki
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add Home.md SCTRL.md Triggers.md
-          git diff --staged --quiet || git commit -m "docs: auto-update wiki pages [skip ci]"
+          git add docs/
+          git diff --staged --quiet || git commit -m "docs: auto-update Pages [skip ci]"
           git push
