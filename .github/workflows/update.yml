@@ -1,0 +1,65 @@
+name: Update Wiki Documentation
+
+on:
+  schedule:
+    - cron: '0 0 * * *'   # Daily at midnight UTC
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout main repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests beautifulsoup4
+
+      - name: Generate state controllers
+        run: python merge_sctrl.py
+
+      - name: Generate triggers
+        run: python merge_triggers.py
+
+      - name: Checkout wiki repo
+        run: |
+          git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.wiki.git wiki
+
+      - name: Copy to wiki
+        run: |
+          cp sctrl_merged.md wiki/SCTRL.md
+          cp triggers_merged.md wiki/Triggers.md
+
+      - name: Create wiki Home page
+        run: |
+          cat > wiki/Home.md << 'EOF'
+          # Ikemen + M.U.G.E.N Merged Documentation
+
+          This wiki contains automatically generated merged documentation from M.U.G.E.N 1.1 and Ikemen GO.
+
+          ## Pages
+
+          - **[State Controllers (SCTRL)](SCTRL)** – Complete merged reference of all state controllers
+          - **[Triggers](Triggers)** – Complete merged reference of all triggers
+
+          ---
+
+          *Updated daily via GitHub Actions.*
+          EOF
+
+      - name: Commit and push to wiki
+        run: |
+          cd wiki
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add Home.md SCTRL.md Triggers.md
+          git diff --staged --quiet || git commit -m "docs: auto-update wiki pages [skip ci]"
+          git push
