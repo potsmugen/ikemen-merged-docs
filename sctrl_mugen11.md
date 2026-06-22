@@ -1,9 +1,3 @@
-# State Controller Reference  
-  
-M.U.G.E.N, (c) Elecbyte 1999-2013  
-Documentation for version 1.1 (2013)  
-Updated 09 June 2013  
-  
 # About Controllers  
   
 All state controllers have two optional parameters, `persistent` and `ignorehitpause`. These must be set to integer constants. Unless otherwise specified, any other numeric state controller parameter can be specified with an arithmetic expression.  

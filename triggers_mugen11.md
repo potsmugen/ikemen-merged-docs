@@ -1,9 +1,3 @@
-# Trigger Reference
- 
-M.U.G.E.N, (c) Elecbyte 1999-2013  
-Documentation for version 1.1 (2013)  
-Updated 09 June 2013  
-  
 # About Triggers  
 This is an alphabetical index of function-type triggers. For details on use of function-type triggers in expressions, see the expression documentation. Unless otherwise specified, we will use P1 to represent the player who is evaluating the trigger, and P2 to represent his opponent (usually the closest opponent when in team mode).  
 Some triggers are nonstandard and cannot take expressions as their arguments. These are marked with a (`*`) in the index.  

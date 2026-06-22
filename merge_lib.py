@@ -70,6 +70,7 @@ def hide_code_blocks(text: str) -> Tuple[str, Dict[str, str]]:
             continue
 
         # --- Indented code block (4 spaces or tab) ---
+        # Only consider it a code block if it's preceded by a blank line or start of file
         if (line.startswith('    ') or line.startswith('\t')):
             prev_line_is_blank = (not result) or (result[-1].strip() == '')
             if prev_line_is_blank:
@@ -220,8 +221,8 @@ def merge_sections(sections_list: List[Tuple[str, Dict[str, str]]]) -> Dict[str,
 
 
 def source_tag_str(sources: Set[str]) -> str:
-    """Format source tags as a pipe-separated string."""
-    return " | ".join(sorted(sources))
+    """Format source tags as a comma-separated string."""
+    return ", ".join(sorted(sources))
 
 
 # ----------------------------------------------------------------------
@@ -337,6 +338,7 @@ def output_merged(
         lines.append("")
 
     # --- Extract Universal section if present ---
+    # The Universal section comes from the "new" page and contains global features like RedirectID
     universal_key = None
     for key in merged.keys():
         if key in ("New state controller features", "Universal state controller features"):

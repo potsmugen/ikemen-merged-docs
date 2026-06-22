@@ -15,7 +15,18 @@ Automatically generated merged documentation for Ikemen GO.
 
 ---
 
+## Automatic Updates
+
+A GitHub Action runs daily, fetches the latest Ikemen GO wiki, merges it with a local static copy of the Mugen 1.1 documentation, and deploys to GitHub Pages.
+
+---
+
 ## Sources
 
-- M.U.G.E.N 1.1: https://www.elecbyte.com/mugendocs-11b1/sctrls.html
-- Ikemen GO: https://github.com/ikemen-engine/Ikemen-GO/wiki
+M.U.G.E.N 1.1 documentation:
+https://www.elecbyte.com/mugendocs-11b1/sctrls.html
+Copyright (c) 1999-2013 Elecbyte. All rights reserved.
+
+Ikemen GO documentation:
+https://github.com/ikemen-engine/Ikemen-GO/wiki
+Copyright (c) Ikemen GO contributors.
