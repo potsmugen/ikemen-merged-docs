@@ -1,4 +1,12 @@
-# Ikemen + M.U.G.E.N Merged Documentation
+<style>
+.markdown-body {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 40px !important;
+}
+</style>
+
+# Ikemen GO Merged Documentation
 
 This page contains automatically generated merged documentation from M.U.G.E.N 1.1 and Ikemen GO.
 

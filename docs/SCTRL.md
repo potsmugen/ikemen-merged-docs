@@ -1,204 +1,24 @@
+
+    <style>
+    .markdown-body {
+      max-width: 1200px !important;
+      margin: 0 auto !important;
+      padding: 0 40px !important;
+    }
+    </style>
+    
+
 # Merged State Controller Reference
 
 ## Table of Contents
 
-- [AfterImage](#afterimage)
-- [AfterImage (changed)](#afterimage-changed)
-- [AfterImageTime](#afterimagetime)
-- [AllPalFX](#allpalfx)
-- [AllPalFx (changed)](#allpalfx-changed)
-- [AngleAdd](#angleadd)
-- [AngleDraw](#angledraw)
-- [AngleDraw, AngleSet, AngleMul (changed)](#angledraw,-angleset,-anglemul-changed)
-- [AngleMul](#anglemul)
-- [AngleSet](#angleset)
-- [AppendToClipboard](#appendtoclipboard)
-- [AppendToClipboard, DisplayToClipboard](#appendtoclipboard,-displaytoclipboard)
-- [AssertAnalogVector (nightly build only)](#assertanalogvector-nightly-build-only)
-- [AssertCommand (nightly build only)](#assertcommand-nightly-build-only)
-- [AssertInput](#assertinput)
-- [AssertSpecial](#assertspecial)
-- [AssertSpecial (changed)](#assertspecial-changed)
-- [AttackDist](#attackdist)
-- [AttackDist (changed)](#attackdist-changed)
-- [AttackMulSet](#attackmulset)
-- [AttackMulSet (changed)](#attackmulset-changed)
-- [BGPalFX](#bgpalfx)
-- [BGPalFX (nightly build only)](#bgpalfx-nightly-build-only)
-- [BindToParent](#bindtoparent)
-- [BindToRoot](#bindtoroot)
-- [BindToTarget](#bindtotarget)
-- [BindToTarget (changed)](#bindtotarget-changed)
-- [Camera [EXPERIMENTAL]](#camera-[experimental])
-- [ChangeAnim](#changeanim)
-- [ChangeAnim (changed)](#changeanim-changed)
-- [ChangeAnim2](#changeanim2)
-- [ChangeAnim2 (changed) (nightly build only)](#changeanim2-changed-nightly-build-only)
-- [ChangeMovelist (nightly build only)](#changemovelist-nightly-build-only)
-- [ChangeState](#changestate)
-- [ChangeState (changed)](#changestate-changed)
-- [ClearClipboard](#clearclipboard)
-- [CtrlSet](#ctrlset)
-- [DefenceMulSet](#defencemulset)
-- [DefenceMulSet (changed)](#defencemulset-changed)
-- [Depth (nightly build only)](#depth-nightly-build-only)
-- [DestroySelf](#destroyself)
-- [Dialogue](#dialogue)
-- [DisplayToClipboard](#displaytoclipboard)
-- [DizzyPointsAdd](#dizzypointsadd)
-- [DizzyPointsSet](#dizzypointsset)
-- [DizzySet](#dizzyset)
-- [EnvColor](#envcolor)
-- [EnvShake](#envshake)
-- [EnvShake (changed)](#envshake-changed)
-- [Explod](#explod)
-- [Explod (changed)](#explod-changed)
-- [ExplodBindTime](#explodbindtime)
-- [FallEnvShake](#fallenvshake)
-- [fightfx actions](#fightfx-actions)
-- [ForceFeedback](#forcefeedback)
-- [Forcefeedback (changed)](#forcefeedback-changed)
-- [GameMakeAnim](#gamemakeanim)
-- [GetHitVarSet (nightly build only)](#gethitvarset-nightly-build-only)
-- [Gravity](#gravity)
-- [GroundLevelOffset (nightly build only)](#groundleveloffset-nightly-build-only)
-- [GuardBreakSet](#guardbreakset)
-- [GuardPointsAdd](#guardpointsadd)
-- [GuardPointsSet](#guardpointsset)
-- [Height (nightly build only)](#height-nightly-build-only)
-- [Helper](#helper)
-- [Helper (changed)](#helper-changed)
-- [HitAdd](#hitadd)
-- [HitBy](#hitby)
-- [HitBy (changed)](#hitby-changed)
-- [HitDef](#hitdef)
-- [HitDef (changed)](#hitdef-changed)
-- [HitFallDamage](#hitfalldamage)
-- [HitFallSet](#hitfallset)
-- [HitFallVel](#hitfallvel)
-- [HitOverride](#hitoverride)
-- [HitOverride (changed)](#hitoverride-changed)
-- [HitVelSet](#hitvelset)
-- [HitVelSet (changed)](#hitvelset-changed)
-- [LifeAdd](#lifeadd)
-- [LifebarAction](#lifebaraction)
-- [LifeSet](#lifeset)
-- [LoadFile](#loadfile)
-- [MakeDust](#makedust)
-- [MapAdd](#mapadd)
-- [MapReset (nightly build only)](#mapreset-nightly-build-only)
-- [MapSet](#mapset)
-- [MatchRestart](#matchrestart)
-- [ModifyBGCtrl](#modifybgctrl)
-- [ModifyBGCtrl3D (nightly build only)](#modifybgctrl3d-nightly-build-only)
-- [ModifyBgm (nightly build only)](#modifybgm-nightly-build-only)
-- [ModifyExplod](#modifyexplod)
-- [ModifyExplod (changed)](#modifyexplod-changed)
-- [ModifyHitDef (nightly build only)](#modifyhitdef-nightly-build-only)
-- [ModifyPlayer (nightly build only)](#modifyplayer-nightly-build-only)
-- [ModifyProjectile (nightly build only)](#modifyprojectile-nightly-build-only)
-- [ModifyReflection (nightly build only)](#modifyreflection-nightly-build-only)
-- [ModifyReversalDef (nightly build only)](#modifyreversaldef-nightly-build-only)
-- [ModifyShadow (nightly build only)](#modifyshadow-nightly-build-only)
-- [ModifySnd (nightly build only)](#modifysnd-nightly-build-only)
-- [ModifyStageBG (nightly build only)](#modifystagebg-nightly-build-only)
-- [ModifyStageVar](#modifystagevar)
-- [ModifyText (nighty build only)](#modifytext-nighty-build-only)
-- [MoveHitReset](#movehitreset)
-- [NotHitBy](#nothitby)
-- [NotHitBy (changed)](#nothitby-changed)
-- [Null](#null)
-- [Offset](#offset)
-- [OverrideClsn (nightly build only)](#overrideclsn-nightly-build-only)
-- [PalFX](#palfx)
-- [PalFx (changed)](#palfx-changed)
-- [ParentMapAdd](#parentmapadd)
-- [ParentMapSet](#parentmapset)
-- [ParentVarAdd](#parentvaradd)
-- [ParentVarSet](#parentvarset)
-- [Pause](#pause)
-- [PlayBgm](#playbgm)
-- [PlayerPush](#playerpush)
-- [PlayerPush (changed)](#playerpush-changed)
-- [PlaySnd](#playsnd)
-- [PlaySnd (changed)](#playsnd-changed)
-- [PosAdd](#posadd)
-- [PosFreeze](#posfreeze)
-- [PosSet](#posset)
-- [PowerAdd](#poweradd)
-- [PowerSet](#powerset)
-- [PrintToConsole](#printtoconsole)
-- [Projectile](#projectile)
-- [Projectile (changed)](#projectile-changed)
-- [RedirectID](#redirectid)
-- [RedLifeAdd](#redlifeadd)
-- [RedLifeSet](#redlifeset)
-- [RemapPal](#remappal)
-- [RemapSprite](#remapsprite)
-- [RemoveExplod](#removeexplod)
-- [RemoveText (nightly build only)](#removetext-nightly-build-only)
-- [ReversalDef](#reversaldef)
-- [ReversalDef (changed)](#reversaldef-changed)
-- [RootMapAdd](#rootmapadd)
-- [RootMapSet](#rootmapset)
-- [RootVarAdd](#rootvaradd)
-- [RootVarSet](#rootvarset)
-- [RoundTimeAdd](#roundtimeadd)
-- [RoundTimeSet](#roundtimeset)
-- [SaveFile](#savefile)
-- [ScoreAdd](#scoreadd)
-- [ScreenBound](#screenbound)
-- [ScreenBound (changed)](#screenbound-changed)
-- [SelfState](#selfstate)
-- [SelfState (changed)](#selfstate-changed)
-- [ShiftInput (nightly build only)](#shiftinput-nightly-build-only)
-- [SndPan](#sndpan)
-- [SprPriority](#sprpriority)
-- [SprPriority (changed)](#sprpriority-changed)
-- [StateTypeSet](#statetypeset)
-- [StopSnd](#stopsnd)
-- [StopSnd (changed)](#stopsnd-changed)
-- [SuperPause](#superpause)
-- [TagIn](#tagin)
-- [TagOut](#tagout)
-- [TargetAdd (nightly build only)](#targetadd-nightly-build-only)
-- [TargetBind](#targetbind)
-- [TargetBind (changed)](#targetbind-changed)
-- [TargetDizzyPointsAdd](#targetdizzypointsadd)
-- [TargetDrop](#targetdrop)
-- [TargetFacing](#targetfacing)
-- [TargetFacing (changed)](#targetfacing-changed)
-- [TargetGuardPointsAdd](#targetguardpointsadd)
-- [TargetLifeAdd](#targetlifeadd)
-- [TargetLifeAdd (changed)](#targetlifeadd-changed)
-- [TargetPowerAdd](#targetpoweradd)
-- [TargetPowerAdd (changed)](#targetpoweradd-changed)
-- [TargetRedLifeAdd](#targetredlifeadd)
-- [TargetScoreAdd](#targetscoreadd)
-- [TargetState](#targetstate)
-- [TargetState (changed)](#targetstate-changed)
-- [TargetVelAdd](#targetveladd)
-- [TargetVelAdd (changed)](#targetveladd-changed)
-- [TargetVelSet](#targetvelset)
-- [TargetVelSet (changed)](#targetvelset-changed)
-- [TeamMapAdd](#teammapadd)
-- [TeamMapSet](#teammapset)
-- [Text](#text)
-- [Trans](#trans)
-- [Trans (changed)](#trans-changed)
-- [TransformClsn (nightly build only)](#transformclsn-nightly-build-only)
-- [TransformSprite (nightly build only)](#transformsprite-nightly-build-only)
-- [Turn](#turn)
-- [VarAdd](#varadd)
-- [VarRandom](#varrandom)
-- [VarRangeSet](#varrangeset)
-- [VarSet](#varset)
-- [VelAdd](#veladd)
-- [VelMul](#velmul)
-- [VelSet](#velset)
-- [VictoryQuote](#victoryquote)
-- [Width](#width)
-- [Zoom (changed)](#zoom-changed)
+
+    <div style="column-count: 2; column-gap: 2em;">
+      <ul style="margin: 0; padding-left: 1.2em; list-style-type: disc;">
+        <li><a href="#afterimage">AfterImage</a></li><li><a href="#afterimage-changed">AfterImage (changed)</a></li><li><a href="#afterimagetime">AfterImageTime</a></li><li><a href="#allpalfx">AllPalFX</a></li><li><a href="#allpalfx-changed">AllPalFx (changed)</a></li><li><a href="#angleadd">AngleAdd</a></li><li><a href="#angledraw">AngleDraw</a></li><li><a href="#angledraw,-angleset,-anglemul-changed">AngleDraw, AngleSet, AngleMul (changed)</a></li><li><a href="#anglemul">AngleMul</a></li><li><a href="#angleset">AngleSet</a></li><li><a href="#appendtoclipboard">AppendToClipboard</a></li><li><a href="#appendtoclipboard,-displaytoclipboard">AppendToClipboard, DisplayToClipboard</a></li><li><a href="#assertanalogvector-nightly-build-only">AssertAnalogVector (nightly build only)</a></li><li><a href="#assertcommand-nightly-build-only">AssertCommand (nightly build only)</a></li><li><a href="#assertinput">AssertInput</a></li><li><a href="#assertspecial">AssertSpecial</a></li><li><a href="#assertspecial-changed">AssertSpecial (changed)</a></li><li><a href="#attackdist">AttackDist</a></li><li><a href="#attackdist-changed">AttackDist (changed)</a></li><li><a href="#attackmulset">AttackMulSet</a></li><li><a href="#attackmulset-changed">AttackMulSet (changed)</a></li><li><a href="#bgpalfx">BGPalFX</a></li><li><a href="#bgpalfx-nightly-build-only">BGPalFX (nightly build only)</a></li><li><a href="#bindtoparent">BindToParent</a></li><li><a href="#bindtoroot">BindToRoot</a></li><li><a href="#bindtotarget">BindToTarget</a></li><li><a href="#bindtotarget-changed">BindToTarget (changed)</a></li><li><a href="#camera-[experimental]">Camera [EXPERIMENTAL]</a></li><li><a href="#changeanim">ChangeAnim</a></li><li><a href="#changeanim-changed">ChangeAnim (changed)</a></li><li><a href="#changeanim2">ChangeAnim2</a></li><li><a href="#changeanim2-changed-nightly-build-only">ChangeAnim2 (changed) (nightly build only)</a></li><li><a href="#changemovelist-nightly-build-only">ChangeMovelist (nightly build only)</a></li><li><a href="#changestate">ChangeState</a></li><li><a href="#changestate-changed">ChangeState (changed)</a></li><li><a href="#clearclipboard">ClearClipboard</a></li><li><a href="#controller-reference">Controller Reference</a></li><li><a href="#ctrlset">CtrlSet</a></li><li><a href="#defencemulset">DefenceMulSet</a></li><li><a href="#defencemulset-changed">DefenceMulSet (changed)</a></li><li><a href="#depth-nightly-build-only">Depth (nightly build only)</a></li><li><a href="#destroyself">DestroySelf</a></li><li><a href="#dialogue">Dialogue</a></li><li><a href="#displaytoclipboard">DisplayToClipboard</a></li><li><a href="#dizzypointsadd">DizzyPointsAdd</a></li><li><a href="#dizzypointsset">DizzyPointsSet</a></li><li><a href="#dizzyset">DizzySet</a></li><li><a href="#envcolor">EnvColor</a></li><li><a href="#envshake">EnvShake</a></li><li><a href="#envshake-changed">EnvShake (changed)</a></li><li><a href="#explod">Explod</a></li><li><a href="#explod-changed">Explod (changed)</a></li><li><a href="#explodbindtime">ExplodBindTime</a></li><li><a href="#fallenvshake">FallEnvShake</a></li><li><a href="#forcefeedback">ForceFeedback</a></li><li><a href="#forcefeedback-changed">Forcefeedback (changed)</a></li><li><a href="#gamemakeanim">GameMakeAnim</a></li><li><a href="#gethitvarset-nightly-build-only">GetHitVarSet (nightly build only)</a></li><li><a href="#gravity">Gravity</a></li><li><a href="#groundleveloffset-nightly-build-only">GroundLevelOffset (nightly build only)</a></li><li><a href="#guardbreakset">GuardBreakSet</a></li><li><a href="#guardpointsadd">GuardPointsAdd</a></li><li><a href="#guardpointsset">GuardPointsSet</a></li><li><a href="#height-nightly-build-only">Height (nightly build only)</a></li><li><a href="#helper">Helper</a></li><li><a href="#helper-changed">Helper (changed)</a></li><li><a href="#hitadd">HitAdd</a></li><li><a href="#hitby">HitBy</a></li><li><a href="#hitby-changed">HitBy (changed)</a></li><li><a href="#hitdef">HitDef</a></li><li><a href="#hitdef-changed">HitDef (changed)</a></li><li><a href="#hitfalldamage">HitFallDamage</a></li><li><a href="#hitfallset">HitFallSet</a></li><li><a href="#hitfallvel">HitFallVel</a></li><li><a href="#hitoverride">HitOverride</a></li><li><a href="#hitoverride-changed">HitOverride (changed)</a></li><li><a href="#hitvelset">HitVelSet</a></li><li><a href="#hitvelset-changed">HitVelSet (changed)</a></li><li><a href="#lifeadd">LifeAdd</a></li><li><a href="#lifebaraction">LifebarAction</a></li><li><a href="#lifeset">LifeSet</a></li><li><a href="#loadfile">LoadFile</a></li><li><a href="#makedust">MakeDust</a></li><li><a href="#mapadd">MapAdd</a></li><li><a href="#mapreset-nightly-build-only">MapReset (nightly build only)</a></li><li><a href="#mapset">MapSet</a></li><li><a href="#matchrestart">MatchRestart</a></li><li><a href="#modifybgctrl">ModifyBGCtrl</a></li><li><a href="#modifybgctrl3d-nightly-build-only">ModifyBGCtrl3D (nightly build only)</a></li><li><a href="#modifybgm-nightly-build-only">ModifyBgm (nightly build only)</a></li><li><a href="#modifyexplod">ModifyExplod</a></li><li><a href="#modifyexplod-changed">ModifyExplod (changed)</a></li><li><a href="#modifyhitdef-nightly-build-only">ModifyHitDef (nightly build only)</a></li><li><a href="#modifyplayer-nightly-build-only">ModifyPlayer (nightly build only)</a></li><li><a href="#modifyprojectile-nightly-build-only">ModifyProjectile (nightly build only)</a></li><li><a href="#modifyreflection-nightly-build-only">ModifyReflection (nightly build only)</a></li><li><a href="#modifyreversaldef-nightly-build-only">ModifyReversalDef (nightly build only)</a></li><li><a href="#modifyshadow-nightly-build-only">ModifyShadow (nightly build only)</a></li><li><a href="#modifysnd-nightly-build-only">ModifySnd (nightly build only)</a></li><li><a href="#modifystagebg-nightly-build-only">ModifyStageBG (nightly build only)</a></li><li><a href="#modifystagevar">ModifyStageVar</a></li><li><a href="#modifytext-nighty-build-only">ModifyText (nighty build only)</a></li><li><a href="#movehitreset">MoveHitReset</a></li><li><a href="#nothitby">NotHitBy</a></li><li><a href="#nothitby-changed">NotHitBy (changed)</a></li><li><a href="#null">Null</a></li><li><a href="#offset">Offset</a></li><li><a href="#overrideclsn-nightly-build-only">OverrideClsn (nightly build only)</a></li><li><a href="#palfx">PalFX</a></li><li><a href="#palfx-changed">PalFx (changed)</a></li><li><a href="#parentmapadd">ParentMapAdd</a></li><li><a href="#parentmapset">ParentMapSet</a></li><li><a href="#parentvaradd">ParentVarAdd</a></li><li><a href="#parentvarset">ParentVarSet</a></li><li><a href="#pause">Pause</a></li><li><a href="#playbgm">PlayBgm</a></li><li><a href="#playerpush">PlayerPush</a></li><li><a href="#playerpush-changed">PlayerPush (changed)</a></li><li><a href="#playsnd">PlaySnd</a></li><li><a href="#playsnd-changed">PlaySnd (changed)</a></li><li><a href="#posadd">PosAdd</a></li><li><a href="#posfreeze">PosFreeze</a></li><li><a href="#posset">PosSet</a></li><li><a href="#poweradd">PowerAdd</a></li><li><a href="#powerset">PowerSet</a></li><li><a href="#printtoconsole">PrintToConsole</a></li><li><a href="#projectile">Projectile</a></li><li><a href="#projectile-changed">Projectile (changed)</a></li><li><a href="#redlifeadd">RedLifeAdd</a></li><li><a href="#redlifeset">RedLifeSet</a></li><li><a href="#remappal">RemapPal</a></li><li><a href="#remapsprite">RemapSprite</a></li><li><a href="#removeexplod">RemoveExplod</a></li><li><a href="#removetext-nightly-build-only">RemoveText (nightly build only)</a></li><li><a href="#reversaldef">ReversalDef</a></li><li><a href="#reversaldef-changed">ReversalDef (changed)</a></li><li><a href="#rootmapadd">RootMapAdd</a></li><li><a href="#rootmapset">RootMapSet</a></li><li><a href="#rootvaradd">RootVarAdd</a></li><li><a href="#rootvarset">RootVarSet</a></li><li><a href="#roundtimeadd">RoundTimeAdd</a></li><li><a href="#roundtimeset">RoundTimeSet</a></li><li><a href="#savefile">SaveFile</a></li><li><a href="#scoreadd">ScoreAdd</a></li><li><a href="#screenbound">ScreenBound</a></li><li><a href="#screenbound-changed">ScreenBound (changed)</a></li><li><a href="#selfstate">SelfState</a></li><li><a href="#selfstate-changed">SelfState (changed)</a></li><li><a href="#shiftinput-nightly-build-only">ShiftInput (nightly build only)</a></li><li><a href="#sndpan">SndPan</a></li><li><a href="#sprpriority">SprPriority</a></li><li><a href="#sprpriority-changed">SprPriority (changed)</a></li><li><a href="#state-controller-reference">State Controller Reference</a></li><li><a href="#statetypeset">StateTypeSet</a></li><li><a href="#stopsnd">StopSnd</a></li><li><a href="#stopsnd-changed">StopSnd (changed)</a></li><li><a href="#superpause">SuperPause</a></li><li><a href="#tagin">TagIn</a></li><li><a href="#tagout">TagOut</a></li><li><a href="#targetadd-nightly-build-only">TargetAdd (nightly build only)</a></li><li><a href="#targetbind">TargetBind</a></li><li><a href="#targetbind-changed">TargetBind (changed)</a></li><li><a href="#targetdizzypointsadd">TargetDizzyPointsAdd</a></li><li><a href="#targetdrop">TargetDrop</a></li><li><a href="#targetfacing">TargetFacing</a></li><li><a href="#targetfacing-changed">TargetFacing (changed)</a></li><li><a href="#targetguardpointsadd">TargetGuardPointsAdd</a></li><li><a href="#targetlifeadd">TargetLifeAdd</a></li><li><a href="#targetlifeadd-changed">TargetLifeAdd (changed)</a></li><li><a href="#targetpoweradd">TargetPowerAdd</a></li><li><a href="#targetpoweradd-changed">TargetPowerAdd (changed)</a></li><li><a href="#targetredlifeadd">TargetRedLifeAdd</a></li><li><a href="#targetscoreadd">TargetScoreAdd</a></li><li><a href="#targetstate">TargetState</a></li><li><a href="#targetstate-changed">TargetState (changed)</a></li><li><a href="#targetveladd">TargetVelAdd</a></li><li><a href="#targetveladd-changed">TargetVelAdd (changed)</a></li><li><a href="#targetvelset">TargetVelSet</a></li><li><a href="#targetvelset-changed">TargetVelSet (changed)</a></li><li><a href="#teammapadd">TeamMapAdd</a></li><li><a href="#teammapset">TeamMapSet</a></li><li><a href="#text">Text</a></li><li><a href="#trans">Trans</a></li><li><a href="#trans-changed">Trans (changed)</a></li><li><a href="#transformclsn-nightly-build-only">TransformClsn (nightly build only)</a></li><li><a href="#transformsprite-nightly-build-only">TransformSprite (nightly build only)</a></li><li><a href="#turn">Turn</a></li><li><a href="#varadd">VarAdd</a></li><li><a href="#varrandom">VarRandom</a></li><li><a href="#varrangeset">VarRangeSet</a></li><li><a href="#varset">VarSet</a></li><li><a href="#veladd">VelAdd</a></li><li><a href="#velmul">VelMul</a></li><li><a href="#velset">VelSet</a></li><li><a href="#victoryquote">VictoryQuote</a></li><li><a href="#width">Width</a></li><li><a href="#zoom-changed">Zoom (changed)</a></li>
+      </ul>
+    </div>
+    
 
 ---
 
@@ -1593,6 +1413,12 @@ none
 
 ---
 
+# Controller Reference
+
+*Source: M.U.G.E.N 1.1*
+
+---
+
 ## CtrlSet  
 
 *Source: M.U.G.E.N 1.1*
@@ -2714,20 +2540,6 @@ none
 **Example:**  
   
 See common1.cns.
-
----
-
-## fightfx actions
-
-*Source: Ikemen GO (new)*
-
-
-All the remaining CNS parameters used to assign character actions that didn't support the `F` prefix (*[Statedef]*, *ChangeState*, *SelfState*, *ChangeAnim*, *ChangeAnim2*, *Projectile*) have access to loading animations from `fightfx.air`. The implementation is the same as in the *Explod* anim parameter.  
-
-```ini
-[Statedef 1000]
-anim = F 300
-```
 
 ---
 
@@ -6528,45 +6340,6 @@ Specifies the amount of horizontal shearing to apply to the projectile. Defaults
 
 ---
 
-## RedirectID
-
-*Source: Ikemen GO (new)*
-
-
-This feature can be utilized with all state controllers, including legacy ones. It is an optional parameter that sends the execution of the state controller to the player with the designated PlayerID. Unlike custom states, this parameter allows interfering with a player's behavior without putting them in another player's states.
-
-For state controllers that normally stop state execution (ChangeState and SelfState), redirecting to an ID different from the owner will not stop the execution of the current state code.
-
-Example of a poison effect that reduces life, applied without touching the opponent:
-
-```ini
-[State -2, Poison]
-type = LifeAdd
-trigger1 = <Is the enemy posioned? trigger>
-value = -1
-kill = 0
-RedirectID = <Enemy id here>
-```
-
-Example of increasing a team leader's map, regardless of who is running it, if leader's map is < 10.
-
-```ini
-[State Test]
-type = MapAdd
-trigger1 = Player(TeamLeader), Map(SomeLeaderMap) < 10
-Map = "SomeLeaderMap"
-value = 1
-RedirectID = Player(TeamLeader), ID
-```
-
-Due to limitations in how some logic must be handled, certain state controllers may not work with RedirectID. Usually because of the order the players are processed in.  
-TODO: list of sctrls that can't be redirected.
-
-
-# New state controllers
-
----
-
 ## RedLifeAdd
 
 *Source: Ikemen GO (new)*
@@ -7125,6 +6898,17 @@ trigger1 = Time = 0
 value = 5
 layerno = -1
 ```
+
+---
+
+# State Controller Reference  
+
+*Source: M.U.G.E.N 1.1*
+
+  
+M.U.G.E.N, (c) Elecbyte 1999-2013  
+Documentation for version 1.1 (2013)  
+Updated 09 June 2013
 
 ---
 
