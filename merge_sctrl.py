@@ -36,13 +36,16 @@ def main():
     changed = parse_sections(changed_text)
     new = parse_sections(new_text)
 
+    # The Universal section comes from the "new" page.
+    # We remove the duplicate from the changed page.
+    changed.pop("New state controller features", None)
+
     # Rename changed sections
     changed = rename_changed_sections(changed, suffix="(changed)")
 
     # Skip feature sections
     skip = {"New state controller features", "New state controllers"}
     mugen.pop("About Controllers", None)
-    changed.pop("New state controller features", None)
 
     # Merge
     merged = merge_sections([

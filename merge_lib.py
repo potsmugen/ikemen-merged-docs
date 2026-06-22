@@ -120,6 +120,7 @@ def restore_code_blocks(text: str, placeholders: Dict[str, str]) -> str:
 def parse_sections(text: str) -> Dict[str, str]:
     """
     Parse sections by ## headings. Code blocks are hidden during parsing.
+    Special case: 'New state controller features' section keeps all content as one block.
     """
     processed, placeholders = hide_code_blocks(text)
 
@@ -127,19 +128,40 @@ def parse_sections(text: str) -> Dict[str, str]:
     lines = processed.splitlines()
     current_heading = None
     current_content = []
+    in_special_section = False
 
     for line in lines:
-        match = re.match(r'^(#{2})\s+(.*)$', line)
-        if match:
+        # Check for # headings (level 1)
+        match_h1 = re.match(r'^(#{1})\s+(.*)$', line)
+        if match_h1:
+            # Save previous section
             if current_heading is not None:
                 sections[current_heading] = '\n'.join(current_content).strip()
-            raw_heading = match.group(2).strip()
+
+            raw_heading = match_h1.group(2).strip()
             heading = re.sub(r'<[^>]+>', '', raw_heading).strip()
             current_heading = heading
             current_content = [line]
-        else:
-            if current_heading is not None:
-                current_content.append(line)
+            # Check if this is a special section (should keep all content)
+            in_special_section = (heading == "New state controller features" or 
+                                   heading == "Universal state controller features")
+            continue
+
+        # Check for ## headings (level 2) – but NOT if we're in a special section
+        if not in_special_section:
+            match_h2 = re.match(r'^(#{2})\s+(.*)$', line)
+            if match_h2:
+                if current_heading is not None:
+                    sections[current_heading] = '\n'.join(current_content).strip()
+                raw_heading = match_h2.group(2).strip()
+                heading = re.sub(r'<[^>]+>', '', raw_heading).strip()
+                current_heading = heading
+                current_content = [line]
+                continue
+
+        # All other lines: add to current content
+        if current_heading is not None:
+            current_content.append(line)
 
     if current_heading is not None:
         sections[current_heading] = '\n'.join(current_content).strip()
@@ -205,25 +227,36 @@ def rename_changed_sections(sections: Dict[str, str], suffix: str = "(changed)")
 
 
 # ----------------------------------------------------------------------
-# TOC GENERATION
+# TOC GENERATION (Multi‑column)
 # ----------------------------------------------------------------------
 
 def generate_toc_from_sections(merged: Dict[str, Dict[str, Set[str]]], sections_to_skip: List[str] = None) -> str:
     """
-    Generate a table of contents from section headings.
+    Generate a multi‑column table of contents from section headings.
     """
     if sections_to_skip is None:
         sections_to_skip = []
 
-    toc = []
+    items = []
     for name in sorted(merged.keys(), key=lambda s: s.lower()):
         if name in sections_to_skip:
             continue
         # Create slug: lowercase, spaces to hyphens, remove punctuation
         slug = name.lower().replace(" ", "-")
         slug = re.sub(r'[`()"\'\.]', '', slug)
-        toc.append(f"- [{name}](#{slug})")
-    return "\n".join(toc)
+        items.append(f'<li><a href="#{slug}">{name}</a></li>')
+
+    if not items:
+        return ""
+
+    toc_html = f"""
+    <div style="column-count: 2; column-gap: 2em;">
+      <ul style="margin: 0; padding-left: 1.2em; list-style-type: disc;">
+        {''.join(items)}
+      </ul>
+    </div>
+    """
+    return toc_html
 
 
 # ----------------------------------------------------------------------
@@ -238,7 +271,20 @@ def output_merged(
     if sections_to_skip is None:
         sections_to_skip = []
 
+    # Wide layout style
+    style = """
+    <style>
+    .markdown-body {
+      max-width: 1200px !important;
+      margin: 0 auto !important;
+      padding: 0 40px !important;
+    }
+    </style>
+    """
+
     lines = [
+        style,
+        "",
         f"# {title}",
         "",
     ]
