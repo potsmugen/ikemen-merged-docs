@@ -1,13 +1,3 @@
-
-    <style>
-    .markdown-body {
-      max-width: 1200px !important;
-      margin: 0 auto !important;
-      padding: 0 40px !important;
-    }
-    </style>
-    
-
 # Merged State Controller Reference
 
 ## Table of Contents
