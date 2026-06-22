@@ -312,20 +312,13 @@ Returns bottom if the specified element number is invalid for this
 action (e.g., it's too large or too small).  
   
 **Details:**  
-<p class="first">Trigger in Format 1 is true if the player's animation is  
-at the start of the element number specified by value1.  
-In other words, if value1 is equal to n, it is true on the  
-first game-tick of the nth element of the animation.  
-<p class="last">Trigger in Format 2 compares the player's animation-time  
-to t+value2, where t is time of the start of the element  
-number specified by value1.  
+Trigger in Format 1 is true if the player's animation is at the start of the element number specified by value1.  
+In other words, if value1 is equal to n, it is true on the first game-tick of the nth element of the animation.  
+Trigger in Format 2 compares the player's animation-time to `t+value2`, where `t` is time of the start of the element number specified by `value1`.  
   
 **Notes:**  
-AnimElem will not trigger on the first game-tick of the second or  
-later loop of an animation with a finite looptime. For example,  
-"AnimElem = 1" will trigger the first tick a player changes to an  
-animation, but will not trigger on the tick that it loops. You may  
-get it to trigger each time using "AnimElem = 1 || AnimTime = 0".  
+AnimElem will not trigger on the first game-tick of the second or later loop of an animation with a finite looptime.  
+For example, "AnimElem = 1" will trigger the first tick a player changes to an animation, but will not trigger on the tick that it loops. You may get it to trigger each time using `AnimElem = 1 || AnimTime = 0`.  
   
 Examples:  
 ```  
@@ -682,10 +675,10 @@ float
 **Error conditions:**  
 none  
 **Details:**  
-<p class="first">The home position of the camera is 0, 0.  
+The home position of the camera is 0, 0.  
 The value of "CameraPos X" increases as the camera moves to the right.  
 The value of "CameraPos Y" decreases as the camera moves upwards.  
-<p class="last">The units of the position returned is in the coordspace of the player.  
+The units of the position returned is in the coordspace of the player.  
     
   
 Example:  
@@ -943,7 +936,7 @@ Error conditions:
 none  
   
 **Details:**  
-<p class="first">The following values of param_name return values specified in the  
+The following values of param_name return values specified in the  
 [Data] group in the player's constants.  
   
 - data.life: Returns value of the "life" parameter. (int)  
@@ -1426,10 +1419,10 @@ float
 **Error conditions:**  
 none  
 **Notes:**  
-<p class="first">GameWidth and GameHeight scale inversely with the zoom factor of the camera.  
+GameWidth and GameHeight scale inversely with the zoom factor of the camera.  
 For example, if the camera zoom factor is 0.5, the values returned by GameWidth  
 and GameHeight will be double that of at zoom factor 1.  
-<p class="last">ScreenWidth and ScreenHeight are the equivalent triggers that are not  
+ScreenWidth and ScreenHeight are the equivalent triggers that are not  
 affected by the camera zoom factor.  
     
   
@@ -1484,10 +1477,10 @@ float
 **Error conditions:**  
 none  
 **Notes:**  
-<p class="first">GameWidth and GameHeight scale inversely with the zoom factor of the camera.  
+GameWidth and GameHeight scale inversely with the zoom factor of the camera.  
 For example, if the camera zoom factor is 0.5, the values returned by GameWidth  
 and GameHeight will be double that of at zoom factor 1.  
-<p class="last">ScreenWidth and ScreenHeight are the equivalent triggers that are not  
+ScreenWidth and ScreenHeight are the equivalent triggers that are not  
 affected by the camera zoom factor.  
     
   
@@ -1731,7 +1724,6 @@ Depends on specified hit parameter. See Details.
 **Error conditions:**  
 none  
 **Details:**  
-<ul class="first last simple">
 - xveladd: Returns the additional x-velocity that is added to the  
 player's own when he is KOed. (float)  
 - yveladd: Returns the additional y-velocity that is added to the  
@@ -1844,8 +1836,7 @@ trigger1 = HitCount > 8
 Checks the attribute parameter of the player's currently-active HitDef.  
 If the player is not currently attacking, then no parameters will match.  
 Can be used for simple move-interrupts from weaker to stronger attacks in the CMD file.  
-Note: <tt class="docutils literal">HitDefAttr != value1, value2</tt> is logically equivalent to  
-<tt class="docutils literal">!(HitDefAttr = value1, value2)</tt>.  
+Note: `HitDefAttr != value1, value2` is logically equivalent to `!(HitDefAttr = value1, value2)`.  
   
 **Format:**  
 HitDefAttr [oper] value1, value2  
@@ -1859,21 +1850,15 @@ and "A" for standing, crouching and aerial attacks
 respectively. For example, "SA" is for standing and  
 aerial attacks.  
 **value2**  
-<p class="first">A set of 2-character strings, separated by commas.  
+A set of 2-character strings, separated by commas.  
 Each 2-character string must be of the form described:  
 The first character is either "N" for "normal", "S" for  
 "special", or "H" for "hyper". The second character must  
 be either "A" for "attack" (a normal hit attack) or "T"  
 for "throw". For example, "NA, ST" is for normal attacks  
 and special throws.  
-Assuming the attribute of the player's HitDef is in the  
-form:  
-<tt class="docutils literal">arg1, arg2</tt>  
-then the trigger condition is determined to be true only  
-if arg1 is a subset of value1, AND arg2 is a subset of  
-value2.  
-<p class="last">See the "attr" parameter of the HitDef controller in  
-Appendix B for details.  
+Assuming the attribute of the player's HitDef is in the form `arg1, arg2`, then the trigger condition is determined to be true only if arg1 is a subset of value1, AND arg2 is a subset of value2.  
+See the "attr" parameter of the HitDef controller in Appendix B for details.  
   
 **Return type:**  
 boolean int (1 or 0)  
@@ -2388,9 +2373,9 @@ int
 **Error conditions:**  
 none  
 **Details:**  
-<p class="first">On attack contact, MoveContact returns 1. After contact, MoveContact's return value will increase by 1 for each game tick that P1 is not paused (P1 gets paused on contact; see pausetime parameter in HitDef controller). The values of MoveGuarded, MoveHit and MoveReversed increment in the same fashion.  
+On attack contact, MoveContact returns 1. After contact, MoveContact's return value will increase by 1 for each game tick that P1 is not paused (P1 gets paused on contact; see pausetime parameter in HitDef controller). The values of MoveGuarded, MoveHit and MoveReversed increment in the same fashion.  
 Note 1: the values of MoveContact, MoveGuarded, MoveHit and MoveReversed are set simultaneously. For example, if one HitDef in a move hits successfully, MoveHit will return non-zero. If a following HitDef in the same move is guarded, MoveGuarded will return non-zero, and the other three triggers will return 0.  
-<p class="last">Note 2: the values of the four Move* triggers reset to 0 and stop incrementing after a state transition. See "movehitpersist" parameter for StateDefs (CNS docs) for how to override this behavior.  
+Note 2: the values of the four Move* triggers reset to 0 and stop incrementing after a state transition. See "movehitpersist" parameter for StateDefs (CNS docs) for how to override this behavior.  
     
   
 Examples:  
@@ -2764,7 +2749,7 @@ float
 **Error conditions:**  
 none  
 **Details:**  
-<p class="first">For comparing the Y-distance, P2BodyDist gives the difference in the  
+For comparing the Y-distance, P2BodyDist gives the difference in the  
 heights of the players' Y-axes. A negative value means that P2 is  
 above P1.  
 For comparing the X-distance, P2BodyDist gives the  
@@ -2773,7 +2758,7 @@ players are standing right next to each other, then
 P2BodyDist is 0. Remember that you can set the width of  
 the player in "front.width", etc. under [Size] in the  
 player variables.  
-<p class="last">See also P2Dist.  
+See also P2Dist.  
     
   
 Example:  
@@ -2817,10 +2802,10 @@ float
 **Error conditions:**  
 none  
 **Details:**  
-<p class="first">For comparing the Y-distance, P2Dist gives the difference in the  
+For comparing the Y-distance, P2Dist gives the difference in the  
 heights of the players' Y-axes. A negative value means that P2 is  
 above P1.  
-<p class="last">For comparing the X-distance, P2Dist gives the X-distance  
+For comparing the X-distance, P2Dist gives the X-distance  
 of P2's axis from P1's axis. A positive value indicates P2  
 is in front of P1.  
 See also P2BodyDist.  
@@ -2928,8 +2913,8 @@ none
 
 The palette ordering is specified in the character's def file.
 If omitted, the default ordering is:
-<tt class="docutils literal">A  B  C  X  Y  Z A2 B2 C2 X2 Y2 Z2</tt>
-<tt class="docutils literal">1  2  3  4  5  6  7  8  9 10 11 12</tt>
+`A  B  C  X  Y  Z A2 B2 C2 X2 Y2 Z2`
+`1  2  3  4  5  6  7  8  9 10 11 12`
 
   
   
@@ -3047,13 +3032,13 @@ float
 **Error conditions:**  
 none  
 **Details:**  
-<p class="first">For "Pos X", the value is relative to the center of the  
+For "Pos X", the value is relative to the center of the  
 screen (value 0). Negative is left, positive is right.  
 Due to historical reasons, "Pos X" does not return absolute  
 position of the player (i.e. relative to the center of the stage),  
 which may be the more intuitive behavior.  
 To get the absolute position of the player, use "Pos X + CameraPos X".  
-<p class="last">For "Pos Y", the value is relative to the floor. Negative  
+For "Pos Y", the value is relative to the floor. Negative  
 is higher up, positive is below the floor.  
     
   
@@ -3192,14 +3177,14 @@ boolean int
 **Error conditions:**  
 none  
 **Details:**  
-<p class="first">ProjContact will trigger once for each hit of the projectile, so a  
+ProjContact will trigger once for each hit of the projectile, so a  
 multi-hit projectile can trigger multiple times.  
 The first form of ProjContact shown above is only valid for one tick  
 after contact, unlike MoveContact.  
 For the second form, ProjContact returns true if the projectile made  
 contact n ticks ago, where n is a nonnegative number satisfying the  
 relation "n [oper] value2".  
-<p class="last">Specifying an ID number of 0 gives the same behavior as if the ID  
+Specifying an ID number of 0 gives the same behavior as if the ID  
 number is omitted (check all projectiles).  
     
   
@@ -3272,14 +3257,14 @@ boolean int (1 or 0)
 **Error conditions:**  
 none  
 **Details:**  
-<p class="first">ProjGuarded will trigger once for each hit of the projectile, so a  
+ProjGuarded will trigger once for each hit of the projectile, so a  
 multi-hit projectile can trigger multiple times.  
 The first form of ProjGuarded shown above is only valid for one tick  
 after hit, unlike MoveGuarded.  
 For the second form, ProjGuarded returns true if the projectile was  
 guarded n ticks ago, where n is a nonnegative number satisfying the  
 relation "n [oper] value2".  
-<p class="last">Specifying an ID number of 0 gives the same behavior as if the ID  
+Specifying an ID number of 0 gives the same behavior as if the ID  
 number is omitted (check all projectiles).  
     
   
@@ -3351,14 +3336,14 @@ boolean int
 **Error conditions:**  
 none  
 **Details:**  
-<p class="first">ProjHit will trigger once for each hit of the projectile, so a  
+ProjHit will trigger once for each hit of the projectile, so a  
 multi-hit projectile can trigger multiple times.  
 The first form of ProjHit shown above is only valid for one tick  
 after hit, unlike MoveHit.  
 For the second form, ProjHit returns true if the projectile hit  
 n ticks ago, where n is a nonnegative number satisfying the relation  
 "n [oper] value2".  
-<p class="last">Specifying an ID number of 0 gives the same behavior as if the ID  
+Specifying an ID number of 0 gives the same behavior as if the ID  
 number is omitted (check all projectiles).  
     
   
@@ -3474,10 +3459,10 @@ float
 **Error conditions:**  
 Returns bottom if the player has no root.  
 **Details:**  
-<p class="first">For comparing the Y-distance, RootDist gives the difference in the  
+For comparing the Y-distance, RootDist gives the difference in the  
 heights of the players' Y-axes. A negative value means that the  
 root is above its descendant.  
-<p class="last">For comparing the X-distance, ParentDist gives the X-distance  
+For comparing the X-distance, ParentDist gives the X-distance  
 of the root's axis from the descendant's axis. A positive value  
 indicates the root is in front of its descendant.  
     
@@ -3637,9 +3622,9 @@ float
 **Error conditions:**  
 none  
 **Details:**  
-<p class="first">For "ScreenPos X", the value is relative to the left of the  
+For "ScreenPos X", the value is relative to the left of the  
 screen (value 0). Negative is left, positive is right.  
-<p class="last">For "ScreenPos Y", the value is relative to the top of the screen.  
+For "ScreenPos Y", the value is relative to the top of the screen.  
 Negative is above the screen, positive is downward.  
     
   
@@ -3753,7 +3738,6 @@ boolean int (1 or 0)
 **Error conditions:**  
 none  
 **Details:**  
-<ul class="first last simple">
 - info.author: Compares the value of the "author" parameter  
 in the [Info] group. (boolean)  
 - info.displayname: Compares the value of the "displayname" parameter  
