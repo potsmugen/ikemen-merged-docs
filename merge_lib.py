@@ -105,7 +105,6 @@ def hide_code_blocks(text: str) -> Tuple[str, Dict[str, str]]:
 
 
 def restore_code_blocks(text: str, placeholders: Dict[str, str]) -> str:
-    """Restore code blocks from placeholders."""
     if not placeholders:
         return text
     pattern = re.compile(r'__CODE_BLOCK_\d+__')
@@ -183,6 +182,39 @@ def parse_sections(text: str) -> Dict[str, str]:
 
 
 # ----------------------------------------------------------------------
+# PARSE SUB-SECTIONS
+# ----------------------------------------------------------------------
+
+def parse_sub_sections(text: str) -> Dict[str, str]:
+    """
+    Parse a block of text into sub-sections by ## headings.
+    Used for extracting individual triggers from the "New triggers" block.
+    """
+    sections = {}
+    lines = text.splitlines()
+    current_heading = None
+    current_content = []
+
+    for line in lines:
+        match = re.match(r'^(#{2})\s+(.*)$', line)
+        if match:
+            if current_heading is not None:
+                sections[current_heading] = '\n'.join(current_content).strip()
+            raw_heading = match.group(2).strip()
+            heading = clean_heading(raw_heading)
+            current_heading = heading
+            current_content = [line]
+        else:
+            if current_heading is not None:
+                current_content.append(line)
+
+    if current_heading is not None:
+        sections[current_heading] = '\n'.join(current_content).strip()
+
+    return sections
+
+
+# ----------------------------------------------------------------------
 # MERGE WITH SOURCE TAGGING
 # ----------------------------------------------------------------------
 
@@ -209,7 +241,6 @@ def merge_sections(sections_list: List[Tuple[str, Dict[str, str]]]) -> Dict[str,
             if heading in merged:
                 merged[heading]['content'] += '\n\n' + body
                 merged[heading]['sources'].add(source_name)
-                # Use the minimum heading level (highest priority)
                 merged[heading]['level'] = min(merged[heading]['level'], heading_level)
             else:
                 merged[heading] = {
@@ -313,21 +344,24 @@ def generate_toc_from_sections(merged: Dict[str, Dict[str, Set[str]]], sections_
 def output_merged(
     merged: Dict[str, Dict[str, Set[str]]],
     title: str,
-    sections_to_skip: List[str] = None
+    sections_to_skip: List[str] = None,
+    top_sections: List[str] = None
 ) -> str:
     """
     Output the merged documentation with:
     - Table of contents (first)
-    - Universal section
+    - Top sections (list) moved after TOC (content only, no heading)
+    - Universal section (if present)
     - Alphabetical listing with source tags
     """
     if sections_to_skip is None:
         sections_to_skip = []
+    if top_sections is None:
+        top_sections = []
 
-    # No inline style – handled by _config.yml and assets/css/
     lines = [f"# {title}", ""]
 
-    # --- Generate TOC from ALL sections (including universal) ---
+    # Generate TOC from ALL sections
     toc = generate_toc_from_sections(merged, sections_to_skip)
     if toc:
         lines.append("## Table of Contents")
@@ -337,8 +371,33 @@ def output_merged(
         lines.append("---")
         lines.append("")
 
-    # --- Extract Universal section if present ---
-    # The Universal section comes from the "new" page and contains global features like RedirectID
+    # Move top_sections to the top (after TOC) – content only
+    for top_key in top_sections:
+        if top_key in merged:
+            top_data = merged.pop(top_key)
+            top_content = top_data['content']
+            sources = source_tag_str(top_data['sources'])
+
+            # Remove the top-level heading from the content
+            content_lines = top_content.splitlines()
+            if content_lines and re.match(r'^#{1,6}\s+', content_lines[0]):
+                content_lines = content_lines[1:]
+            body = '\n'.join(content_lines).strip()
+
+            # Clean HTML tags
+            body = re.sub(r'<a[^>]+>', '', body)
+            body = re.sub(r'</a>', '', body)
+
+            if body.strip():
+                lines.append(body)
+                lines.append("")
+                if not body.strip().startswith('*Source:'):
+                    lines.append(f"*Source: {sources}*")
+                    lines.append("")
+            lines.append("---")
+            lines.append("")
+
+    # Extract Universal section if present (from state controllers)
     universal_key = None
     for key in merged.keys():
         if key in ("New state controller features", "Universal state controller features"):
@@ -349,11 +408,8 @@ def output_merged(
         universal_data = merged.pop(universal_key)
         universal_content = universal_data['content']
         universal_level = universal_data.get('level', 1)
-
-        # Clean tags but preserve line breaks
         universal_content = re.sub(r'<a[^>]+>', '', universal_content)
         universal_content = re.sub(r'</a>', '', universal_content)
-
         clean_universal = clean_heading(universal_key)
         lines.append(f"{'#' * universal_level} {clean_universal}")
         lines.append("")
@@ -363,7 +419,7 @@ def output_merged(
         lines.append("---")
         lines.append("")
 
-    # --- Output remaining sections alphabetically ---
+    # Output remaining sections alphabetically
     for name in sorted(merged.keys(), key=lambda s: s.lower()):
         if name in sections_to_skip:
             continue
@@ -375,7 +431,6 @@ def output_merged(
         sources = source_tag_str(data['sources'])
         level = data.get('level', 2)
 
-        # Only strip HTML tags, NOT newlines
         content = re.sub(r'<a[^>]+>', '', content)
         content = re.sub(r'</a>', '', content)
 

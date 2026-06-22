@@ -2,6 +2,10 @@
 # -*- coding: utf-8 -*-
 """
 Merge M.U.G.E.N 1.1 + Ikemen GO Triggers.
+
+The "new" page has two parts:
+- "New trigger redirections" → moved to the top as a dedicated section (content only)
+- "New triggers" → individual triggers merged alphabetically with the rest
 """
 
 import sys
@@ -34,33 +38,50 @@ def main():
     # Parse sections
     mugen = parse_sections(mugen_text)
     changed = parse_sections(changed_text)
-    new = parse_sections(new_text)
 
-    # Rename changed sections (e.g., "Triggers (changed)" sections)
+    # Parse the new page differently – we want to keep the redirections section intact,
+    # but extract individual triggers from the "New triggers" block
+    new_sections = parse_sections(new_text)
+
+    # Separate "New trigger redirections"
+    new_redirections = {}
+    if "New trigger redirections" in new_sections:
+        new_redirections["New trigger redirections"] = new_sections.pop("New trigger redirections")
+
+    # Extract individual triggers from "New triggers"
+    new_individual = {}
+    if "New triggers" in new_sections:
+        triggers_block = new_sections.pop("New triggers")
+        # The content of "New triggers" contains individual triggers with ## headings
+        # Extract them using parse_sub_sections
+        new_individual = parse_sub_sections(triggers_block)
+
+    # Rename changed sections
     changed = rename_changed_sections(changed, suffix="(changed)")
 
-    # Skip feature sections
-    skip = {"New trigger redirections", "New triggers"}
-
-    # Remove the new page's intro section from the merged result
-    new.pop("New trigger redirections", None)
-    new.pop("New triggers", None)
-
-    # Merge
+    # Merge all individual triggers
     merged = merge_sections([
         ("M.U.G.E.N 1.1", mugen),
         ("Ikemen GO (changed)", changed),
-        ("Ikemen GO (new)", new),
+        ("Ikemen GO (new)", new_individual),
     ])
 
     print(f"Merged {len(merged)} sections.", file=sys.stderr)
 
-    output = output_merged(merged, "Merged Trigger Reference", skip)
+    # Output
+    # top_sections: "New trigger redirections" at the top (content only)
+    output = output_merged(
+        merged,
+        "Merged Trigger Reference",
+        sections_to_skip=[],
+        top_sections=["New trigger redirections"]
+    )
 
-    output_file = Path("triggers_merged.md")
+    output_file = Path("triggers.md")
     output_file.write_text(output, encoding="utf-8")
     print(f"\nDone. Output saved to: {output_file}", file=sys.stderr)
     print(f"  {len(merged)} sections merged.", file=sys.stderr)
+    print(f"  Redirections section moved to top.", file=sys.stderr)
 
 
 if __name__ == "__main__":
