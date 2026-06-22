@@ -1,18 +1,21 @@
-# Ikemen GO Merged Documentation
+# Ikemen + M.U.G.E.N Merged Documentation
+
+Work in progress.
 
 Automatically merged documentation for Ikemen GO.
 
+**[View on GitHub Pages](https://potsmugen.github.io/ikemen-merged-docs/)**
+
+---
+
+## Pages
+
+- [State Controllers](https://potsmugen.github.io/ikemen-merged-docs/SCTRL)
+- [Triggers](https://potsmugen.github.io/ikemen-merged-docs/Triggers)
+
+---
+
 ## Sources
 
-- **M.U.G.E.N 1.1** – [Official Documentation](https://www.elecbyte.com/mugendocs-11b1/sctrls.html)
-- **Ikemen GO (changed)** – [State Controllers](https://github.com/ikemen-engine/Ikemen-GO/wiki/State-controllers-(changed)) | [Triggers](https://github.com/ikemen-engine/Ikemen-GO/wiki/Triggers-(changed))
-- **Ikemen GO (new)** – [State Controllers](https://github.com/ikemen-engine/Ikemen-GO/wiki/State-controllers-(new)) | [Triggers](https://github.com/ikemen-engine/Ikemen-GO/wiki/Triggers-(new))
-
-## Wiki Pages
-
-- **[State Controllers (SCTRL)](https://github.com/potsmugen/ikemen-merged-docs/wiki/SCTRL)**
-- **[Triggers](https://github.com/potsmugen/ikemen-merged-docs/wiki/Triggers)**
-
-## GitHub Actions
-
-This repository uses GitHub Actions to automatically fetch the latest documentation from the Ikemen GO wiki and regenerate the merged Markdown files daily.
+- M.U.G.E.N 1.1: https://www.elecbyte.com/mugendocs-11b1/sctrls.html
+- Ikemen GO: https://github.com/ikemen-engine/Ikemen-GO/wiki
