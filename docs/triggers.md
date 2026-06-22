@@ -141,7 +141,6 @@
 - [Time](#time)
 - [TimeMod(`*,**,***`)](#timemod)
 - [TopEdge](#topedge)
-- [Trigger Reference](#trigger-reference)
 - [UniqHitCount](#uniqhitcount)
 - [Var](#var)
 - [Vel](#vel)
@@ -1403,7 +1402,7 @@ trigger1 = FVar(5) = -1.23
 
 ## GameHeight
 
-*Source: Ikemen GO (changed) | M.U.G.E.N 1.1*
+*Source: Ikemen GO (changed), M.U.G.E.N 1.1*
 
 Returns the current height of the game space in the player's local coordinate space.  
 The game space is defined as the currently-visible area of the stage in which players interact.  
@@ -1461,7 +1460,7 @@ trigger1 = (GameTime % 27) = 0
 
 ## GameWidth
 
-*Source: Ikemen GO (changed) | M.U.G.E.N 1.1*
+*Source: Ikemen GO (changed), M.U.G.E.N 1.1*
 
 Returns the current width of the game space in the player's local coordinate space.  
 The game space is defined as the currently-visible area of the stage in which players interact.  
@@ -4087,16 +4086,6 @@ Example:
 trigger1 = Pos Y > TopEdge  
 ; Triggers if the player is below the top edge of the screen.  
 ```
-
----
-
-# Trigger Reference
-
-*Source: M.U.G.E.N 1.1*
-
-M.U.G.E.N, (c) Elecbyte 1999-2013  
-Documentation for version 1.1 (2013)  
-Updated 09 June 2013
 
 ---
 

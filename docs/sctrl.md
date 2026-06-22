@@ -156,7 +156,6 @@
 - [SndPan](#sndpan)
 - [SprPriority](#sprpriority)
 - [SprPriority (changed)](#sprpriority-changed)
-- [State Controller Reference](#state-controller-reference)
 - [StateTypeSet](#statetypeset)
 - [StopSnd](#stopsnd)
 - [StopSnd (changed)](#stopsnd-changed)
@@ -6978,16 +6977,6 @@ layerno = -1
 
 ---
 
-# State Controller Reference
-
-*Source: M.U.G.E.N 1.1*
-
-M.U.G.E.N, (c) Elecbyte 1999-2013  
-Documentation for version 1.1 (2013)  
-Updated 09 June 2013
-
----
-
 ## StateTypeSet
 
 *Source: M.U.G.E.N 1.1*
@@ -7056,7 +7045,7 @@ Mugen allowed stopping all sounds for all players with `channel = -1`, but had n
 
 ## SuperPause
 
-*Source: Ikemen GO (changed) | M.U.G.E.N 1.1*
+*Source: Ikemen GO (changed), M.U.G.E.N 1.1*
 
 Freezes the gameplay and darkens the screen. While each player is frozen, no time passes for them. Use for a dramatic pause during the start of hyper attacks.  
   
