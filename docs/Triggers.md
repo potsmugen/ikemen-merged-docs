@@ -1,285 +1,38 @@
+
+    <style>
+    .markdown-body {
+      max-width: 1200px !important;
+      margin: 0 auto !important;
+      padding: 0 40px !important;
+    }
+    </style>
+    
+
 # Merged Trigger Reference
 
 ## Table of Contents
 
-- [Abs (math)](#abs-math)
-- [Acos (math)](#acos-math)
-- [AILevel](#ailevel)
-- [AiLevelF](#ailevelf)
-- [AirJumpCount](#airjumpcount)
-- [Alive](#alive)
-- [Alpha (nightly build only)](#alpha-nightly-build-only)
-- [Analog (nightly build only)](#analog-nightly-build-only)
-- [Angle (nightly build only)](#angle-nightly-build-only)
-- [Anim](#anim)
-- [AnimElem(`*,***`)](#animelem*,***)
-- [AnimElemNo](#animelemno)
-- [AnimElemTime](#animelemtime)
-- [AnimElemVar (nightly build only)](#animelemvar-nightly-build-only)
-- [AnimExist](#animexist)
-- [AnimLength](#animlength)
-- [AnimPlayerNo (nightly build only)](#animplayerno-nightly-build-only)
-- [AnimTime](#animtime)
-- [Asin (math)](#asin-math)
-- [Atan (math)](#atan-math)
-- [Atan2 (Math) (nightly build only)](#atan2-math-nightly-build-only)
-- [Attack](#attack)
-- [AttackMul (nightly build only)](#attackmul-nightly-build-only)
-- [AuthorName(`*,***`)](#authorname*,***)
-- [BackEdge](#backedge)
-- [BackEdgeBodyDist](#backedgebodydist)
-- [BackEdgeDist](#backedgedist)
-- [BgmVar (nightly build only)](#bgmvar-nightly-build-only)
-- [BotBoundBodyDist (nightly build only)](#botboundbodydist-nightly-build-only)
-- [BotBoundDist (nightly build only)](#botbounddist-nightly-build-only)
-- [BottomEdge](#bottomedge)
-- [CameraPos](#camerapos)
-- [CameraZoom](#camerazoom)
-- [CanRecover](#canrecover)
-- [Ceil (math)](#ceil-math)
-- [Clamp (Math) (nightly build only)](#clamp-math-nightly-build-only)
-- [ClsnOverlap (nightly build only)](#clsnoverlap-nightly-build-only)
-- [ClsnVar (nightly build only)](#clsnvar-nightly-build-only)
-- [ComboCount](#combocount)
-- [Command](#command)
-- [Command (`*,***`)](#command-*,***)
-- [Cond (math)](#cond-math)
-- [ConsecutiveWins](#consecutivewins)
-- [Const](#const)
-- [Const (`*`)](#const-*)
-- [Const1080p (nightly build only)](#const1080p-nightly-build-only)
-- [Const240p](#const240p)
-- [Const480p](#const480p)
-- [Const720p](#const720p)
-- [Cos (math)](#cos-math)
-- [Ctrl](#ctrl)
-- [DebugMode (nightly build only)](#debugmode-nightly-build-only)
-- [DecisiveRound (nightly build only)](#decisiveround-nightly-build-only)
-- [Defence](#defence)
-- [DefenceMul (nightly build only)](#defencemul-nightly-build-only)
-- [Deg (Math) (nightly build only)](#deg-math-nightly-build-only)
-- [DisplayName (nightly build only)](#displayname-nightly-build-only)
-- [Dizzy](#dizzy)
-- [DizzyPoints](#dizzypoints)
-- [DizzyPointsMax](#dizzypointsmax)
-- [DrawGame](#drawgame)
-- [DrawPal (nightly build only)](#drawpal-nightly-build-only)
-- [E (math)](#e-math)
-- [EnvShakeVar](#envshakevar)
-- [Exp (math)](#exp-math)
-- [ExplodVar (nightly build only)](#explodvar-nightly-build-only)
-- [Facing](#facing)
-- [FightScreenState (nightly build only)](#fightscreenstate-nightly-build-only)
-- [FightScreenVar (nightly build only)](#fightscreenvar-nightly-build-only)
-- [FightTime](#fighttime)
-- [FirstAttack](#firstattack)
-- [Float (math)](#float-math)
-- [Floor (math)](#floor-math)
-- [FrontEdge](#frontedge)
-- [FrontEdgeBodyDist](#frontedgebodydist)
-- [FrontEdgeDist](#frontedgedist)
-- [FVar](#fvar)
-- [GameHeight](#gameheight)
-- [GameMode](#gamemode)
-- [GameOption (nightly build only)](#gameoption-nightly-build-only)
-- [GameTime](#gametime)
-- [GameVar (nightly build only)](#gamevar-nightly-build-only)
-- [GameWidth](#gamewidth)
-- [GetHitVar](#gethitvar)
-- [GetHitVar(`*`)](#gethitvar*)
-- [GroundAngle](#groundangle)
-- [GroundLevel (nightly build only)](#groundlevel-nightly-build-only)
-- [GuardBreak](#guardbreak)
-- [GuardCount](#guardcount)
-- [GuardPoints](#guardpoints)
-- [GuardPointsMax](#guardpointsmax)
-- [Helper (nightly build only)](#helper-nightly-build-only)
-- [HelperIndex(n)](#helperindexn)
-- [HelperIndexExist(n) (nightly build only)](#helperindexexistn-nightly-build-only)
-- [HelperName](#helpername)
-- [HelperVar (nightly build only)](#helpervar-nightly-build-only)
-- [HitByAttr (nightly build only)](#hitbyattr-nightly-build-only)
-- [HitCount](#hitcount)
-- [HitDefAttr(`*,***`)](#hitdefattr*,***)
-- [HitDefVar (nightly build only)](#hitdefvar-nightly-build-only)
-- [HitFall](#hitfall)
-- [HitOver](#hitover)
-- [HitOverridden](#hitoverridden)
-- [HitPauseTime](#hitpausetime)
-- [HitShakeOver](#hitshakeover)
-- [HitVel](#hitvel)
-- [ID](#id)
-- [IfElse (math)](#ifelse-math)
-- [IkemenVersion (nightly build only)](#ikemenversion-nightly-build-only)
-- [InCustomAnim (nightly build only)](#incustomanim-nightly-build-only)
-- [InCustomState](#incustomstate)
-- [Index (nightly build only)](#index-nightly-build-only)
-- [InDialogue](#indialogue)
-- [InGuardDist](#inguarddist)
-- [InputTime (nightly build only)](#inputtime-nightly-build-only)
-- [IntroState (nightly build only)](#introstate-nightly-build-only)
-- [IsAsserted](#isasserted)
-- [IsClsnProxy (nightly build only)](#isclsnproxy-nightly-build-only)
-- [IsHelper](#ishelper)
-- [IsHelper (nightly build only)](#ishelper-nightly-build-only)
-- [IsHomeTeam](#ishometeam)
-- [IsHost](#ishost)
-- [JugglePoints (nightly build only)](#jugglepoints-nightly-build-only)
-- [LastPlayerID (nightly build only)](#lastplayerid-nightly-build-only)
-- [LayerNo (nightly build only)](#layerno-nightly-build-only)
-- [LeftEdge](#leftedge)
-- [Lerp (Math) (nightly build only)](#lerp-math-nightly-build-only)
-- [Life](#life)
-- [LifeMax](#lifemax)
-- [Ln (math)](#ln-math)
-- [LocalCoord (nightly build only)](#localcoord-nightly-build-only)
-- [Log (math)](#log-math)
-- [Lose](#lose)
-- [Map](#map)
-- [MatchNo](#matchno)
-- [MatchOver](#matchover)
-- [Max (math)](#max-math)
-- [MemberNo](#memberno)
-- [Min (math)](#min-math)
-- [MotifState (nightly build only)](#motifstate-nightly-build-only)
-- [MotifVar (nightly build only)](#motifvar-nightly-build-only)
-- [MoveContact](#movecontact)
-- [MoveCountered](#movecountered)
-- [MoveGuarded](#moveguarded)
-- [MoveHit](#movehit)
-- [MoveHitVar (nightly build only)](#movehitvar-nightly-build-only)
-- [MoveReversed](#movereversed)
-- [MoveType(`*,***`)](#movetype*,***)
-- [MugenVersion (nightly build only)](#mugenversion-nightly-build-only)
-- [Name(`*,***`)](#name*,***)
-- [NumEnemy](#numenemy)
-- [NumExplod](#numexplod)
-- [NumHelper](#numhelper)
-- [NumPartner](#numpartner)
-- [NumPlayer (nightly build only)](#numplayer-nightly-build-only)
-- [NumProj](#numproj)
-- [NumProjID](#numprojid)
-- [NumStageBG (nightly build only)](#numstagebg-nightly-build-only)
-- [NumTarget](#numtarget)
-- [NumText (nightly build only)](#numtext-nightly-build-only)
-- [Offset (nightly build only)](#offset-nightly-build-only)
-- [OutroState (nightly build only)](#outrostate-nightly-build-only)
-- [P1Name(`*,***`)](#p1name*,***)
-- [P2](#p2)
-- [P2BodyDist](#p2bodydist)
-- [P2BodyDist (nightly build only)](#p2bodydist-nightly-build-only)
-- [P2Dist](#p2dist)
-- [P2Dist Z (nightly build only)](#p2dist-z-nightly-build-only)
-- [P2Life](#p2life)
-- [P2MoveType](#p2movetype)
-- [P2Name(`*,***`)](#p2name*,***)
-- [P2StateNo](#p2stateno)
-- [P2StateType](#p2statetype)
-- [P3Name(`*,***`)](#p3name*,***)
-- [P4Name(`*,***`)](#p4name*,***)
-- [P5Name, P6Name, P7Name, P8Name](#p5name,-p6name,-p7name,-p8name)
-- [PalFXVar (nightly build only)](#palfxvar-nightly-build-only)
-- [PalNo](#palno)
-- [ParentDist](#parentdist)
-- [ParentDist Z (nightly build only)](#parentdist-z-nightly-build-only)
-- [ParentExist (nightly build only)](#parentexist-nightly-build-only)
-- [PauseTime](#pausetime)
-- [Physics](#physics)
-- [Pi (math)](#pi-math)
-- [Player(n)](#playern)
-- [PlayerIDExist](#playeridexist)
-- [PlayerIndex(n) (nightly build only)](#playerindexn-nightly-build-only)
-- [PlayerIndexExist(n) (nightly build only)](#playerindexexistn-nightly-build-only)
-- [PlayerNo](#playerno)
-- [PlayerNoExist (nightly build only)](#playernoexist-nightly-build-only)
-- [Pos](#pos)
-- [Power](#power)
-- [PowerMax](#powermax)
-- [PrevAnim](#prevanim)
-- [PrevMoveType](#prevmovetype)
-- [PrevStateNo](#prevstateno)
-- [PrevStateType (nightly build only)](#prevstatetype-nightly-build-only)
-- [ProjCancelTime](#projcanceltime)
-- [ProjClsnOverlap (nightly build only)](#projclsnoverlap-nightly-build-only)
-- [ProjContact(`*,***`)](#projcontact*,***)
-- [ProjContactTime](#projcontacttime)
-- [ProjGuarded(`*,***`)](#projguarded*,***)
-- [ProjGuardedTime](#projguardedtime)
-- [ProjHit(`*,***`)](#projhit*,***)
-- [ProjHitTime](#projhittime)
-- [ProjVar (nightly build only)](#projvar-nightly-build-only)
-- [Rad (Math) (nightly build only)](#rad-math-nightly-build-only)
-- [Random](#random)
-- [RandomRange(math)](#randomrangemath)
-- [ReceivedDamage](#receiveddamage)
-- [ReceivedHits](#receivedhits)
-- [RedLife](#redlife)
-- [ReversalDefAttr](#reversaldefattr)
-- [RightEdge](#rightedge)
-- [RootDist](#rootdist)
-- [RootDist Z (nightly build only)](#rootdist-z-nightly-build-only)
-- [Round (math)](#round-math)
-- [RoundNo](#roundno)
-- [RoundsExisted](#roundsexisted)
-- [RoundState](#roundstate)
-- [RoundState (nightly build only)](#roundstate-nightly-build-only)
-- [RoundsWon (nightly build only)](#roundswon-nightly-build-only)
-- [RoundTime (nightly build only)](#roundtime-nightly-build-only)
-- [RunOrder (nightly build only)](#runorder-nightly-build-only)
-- [Scale (nightly build only)](#scale-nightly-build-only)
-- [Score](#score)
-- [ScoreTotal](#scoretotal)
-- [ScreenHeight](#screenheight)
-- [ScreenPos](#screenpos)
-- [ScreenWidth](#screenwidth)
-- [SelfAnimExist](#selfanimexist)
-- [SelfCommand (nightly build only)](#selfcommand-nightly-build-only)
-- [SelfStatenoExist](#selfstatenoexist)
-- [Sign (Math) (nightly build only)](#sign-math-nightly-build-only)
-- [Sin (math)](#sin-math)
-- [SoundVar (nightly build only)](#soundvar-nightly-build-only)
-- [SpriteVar (nightly build only)](#spritevar-nightly-build-only)
-- [SprPriority](#sprpriority)
-- [StageBackEdgeDist](#stagebackedgedist)
-- [StageBGVar (nightly build only)](#stagebgvar-nightly-build-only)
-- [StageConst](#stageconst)
-- [StageFrontEdgeDist](#stagefrontedgedist)
-- [StageTime](#stagetime)
-- [StageVar](#stagevar)
-- [StageVar(`*,***`)](#stagevar*,***)
-- [Standby](#standby)
-- [StateNo](#stateno)
-- [StateOwner](#stateowner)
-- [StateType](#statetype)
-- [SysFVar](#sysfvar)
-- [SysVar](#sysvar)
-- [Tan (math)](#tan-math)
-- [Target (nightly build only)](#target-nightly-build-only)
-- [TeamLeader](#teamleader)
-- [TeamMode = Tag](#teammode-=-tag)
-- [TeamMode(`*,***`)](#teammode*,***)
-- [TeamSide](#teamside)
-- [TeamSize](#teamsize)
-- [TicksPerSecond](#tickspersecond)
-- [Time](#time)
-- [TimeElapsed](#timeelapsed)
-- [TimeMod(`*,**,***`)](#timemod*,**,***)
-- [TimeRemaining](#timeremaining)
-- [TimeTotal](#timetotal)
-- [TopBoundBodyDist (nightly build only)](#topboundbodydist-nightly-build-only)
-- [TopBoundDist (nightly build only)](#topbounddist-nightly-build-only)
-- [TopEdge](#topedge)
-- [UniqHitCount](#uniqhitcount)
-- [Var](#var)
-- [Vel](#vel)
-- [Win](#win)
-- [WinClutch](#winclutch)
-- [WinHyper](#winhyper)
-- [WinSpecial](#winspecial)
-- [XAngle (nightly build only)](#xangle-nightly-build-only)
-- [Xshear (nightly build only)](#xshear-nightly-build-only)
-- [YAngle (nightly build only)](#yangle-nightly-build-only)
-- [ZoomVar (nightly build only)](#zoomvar-nightly-build-only)
+
+    <div style="column-count: 2; column-gap: 2em;">
+      <ul style="margin: 0; padding-left: 1.2em; list-style-type: disc;">
+        <li><a href="#about-triggers">About Triggers</a></li><li><a href="#abs-math">Abs (math)</a></li><li><a href="#acos-math">Acos (math)</a></li><li><a href="#ailevel">AILevel</a></li><li><a href="#ailevelf">AiLevelF</a></li><li><a href="#airjumpcount">AirJumpCount</a></li><li><a href="#alive">Alive</a></li><li><a href="#alpha-nightly-build-only">Alpha (nightly build only)</a></li><li><a href="#analog-nightly-build-only">Analog (nightly build only)</a></li><li><a href="#angle-nightly-build-only">Angle (nightly build only)</a></li><li><a href="#anim">Anim</a></li><li><a href="#animelem*,***">AnimElem(`*,***`)</a></li><li><a href="#animelemno">AnimElemNo</a></li><li><a href="#animelemtime">AnimElemTime</a></li><li><a href="#animelemvar-nightly-build-only">AnimElemVar (nightly build only)</a></li><li><a href="#animexist">AnimExist</a></li><li><a href="#animlength">AnimLength</a></li><li><a href="#animplayerno-nightly-build-only">AnimPlayerNo (nightly build only)</a></li><li><a href="#animtime">AnimTime</a></li><li><a href="#asin-math">Asin (math)</a></li><li><a href="#atan-math">Atan (math)</a></li><li><a href="#atan2-math-nightly-build-only">Atan2 (Math) (nightly build only)</a></li><li><a href="#attack">Attack</a></li><li><a href="#attackmul-nightly-build-only">AttackMul (nightly build only)</a></li><li><a href="#authorname*,***">AuthorName(`*,***`)</a></li><li><a href="#backedge">BackEdge</a></li><li><a href="#backedgebodydist">BackEdgeBodyDist</a></li><li><a href="#backedgedist">BackEdgeDist</a></li><li><a href="#bgmvar-nightly-build-only">BgmVar (nightly build only)</a></li><li><a href="#botboundbodydist-nightly-build-only">BotBoundBodyDist (nightly build only)</a></li><li><a href="#botbounddist-nightly-build-only">BotBoundDist (nightly build only)</a></li><li><a href="#bottomedge">BottomEdge</a></li><li><a href="#camerapos">CameraPos</a></li><li><a href="#camerazoom">CameraZoom</a></li><li><a href="#canrecover">CanRecover</a></li><li><a href="#ceil-math">Ceil (math)</a></li><li><a href="#changed-changed">Changed (changed)</a></li><li><a href="#changed-trigger-redirections">Changed trigger redirections</a></li><li><a href="#clamp-math-nightly-build-only">Clamp (Math) (nightly build only)</a></li><li><a href="#clsnoverlap-nightly-build-only">ClsnOverlap (nightly build only)</a></li><li><a href="#clsnvar-nightly-build-only">ClsnVar (nightly build only)</a></li><li><a href="#combocount">ComboCount</a></li><li><a href="#command">Command</a></li><li><a href="#command-*,***">Command (`*,***`)</a></li><li><a href="#cond-math">Cond (math)</a></li><li><a href="#consecutivewins">ConsecutiveWins</a></li><li><a href="#const">Const</a></li><li><a href="#const-*">Const (`*`)</a></li><li><a href="#const1080p-nightly-build-only">Const1080p (nightly build only)</a></li><li><a href="#const240p">Const240p</a></li><li><a href="#const480p">Const480p</a></li><li><a href="#const720p">Const720p</a></li><li><a href="#cos-math">Cos (math)</a></li><li><a href="#ctrl">Ctrl</a></li><li><a href="#debugmode-nightly-build-only">DebugMode (nightly build only)</a></li><li><a href="#decisiveround-nightly-build-only">DecisiveRound (nightly build only)</a></li><li><a href="#defence">Defence</a></li><li><a href="#defencemul-nightly-build-only">DefenceMul (nightly build only)</a></li><li><a href="#deg-math-nightly-build-only">Deg (Math) (nightly build only)</a></li><li><a href="#displayname-nightly-build-only">DisplayName (nightly build only)</a></li><li><a href="#dizzy">Dizzy</a></li><li><a href="#dizzypoints">DizzyPoints</a></li><li><a href="#dizzypointsmax">DizzyPointsMax</a></li><li><a href="#drawgame">DrawGame</a></li><li><a href="#drawpal-nightly-build-only">DrawPal (nightly build only)</a></li><li><a href="#e-math">E (math)</a></li><li><a href="#envshakevar">EnvShakeVar</a></li><li><a href="#exp-math">Exp (math)</a></li><li><a href="#explodvar-nightly-build-only">ExplodVar (nightly build only)</a></li><li><a href="#facing">Facing</a></li><li><a href="#fightscreenstate-nightly-build-only">FightScreenState (nightly build only)</a></li><li><a href="#fightscreenvar-nightly-build-only">FightScreenVar (nightly build only)</a></li><li><a href="#fighttime">FightTime</a></li><li><a href="#firstattack">FirstAttack</a></li><li><a href="#float-math">Float (math)</a></li><li><a href="#floor-math">Floor (math)</a></li><li><a href="#frontedge">FrontEdge</a></li><li><a href="#frontedgebodydist">FrontEdgeBodyDist</a></li><li><a href="#frontedgedist">FrontEdgeDist</a></li><li><a href="#fvar">FVar</a></li><li><a href="#gameheight">GameHeight</a></li><li><a href="#gamemode">GameMode</a></li><li><a href="#gameoption-nightly-build-only">GameOption (nightly build only)</a></li><li><a href="#gametime">GameTime</a></li><li><a href="#gamevar-nightly-build-only">GameVar (nightly build only)</a></li><li><a href="#gamewidth">GameWidth</a></li><li><a href="#gethitvar">GetHitVar</a></li><li><a href="#gethitvar*">GetHitVar(`*`)</a></li><li><a href="#groundangle">GroundAngle</a></li><li><a href="#groundlevel-nightly-build-only">GroundLevel (nightly build only)</a></li><li><a href="#guardbreak">GuardBreak</a></li><li><a href="#guardcount">GuardCount</a></li><li><a href="#guardpoints">GuardPoints</a></li><li><a href="#guardpointsmax">GuardPointsMax</a></li><li><a href="#helper-nightly-build-only">Helper (nightly build only)</a></li><li><a href="#helperindexn">HelperIndex(n)</a></li><li><a href="#helperindexexistn-nightly-build-only">HelperIndexExist(n) (nightly build only)</a></li><li><a href="#helpername">HelperName</a></li><li><a href="#helpervar-nightly-build-only">HelperVar (nightly build only)</a></li><li><a href="#hitbyattr-nightly-build-only">HitByAttr (nightly build only)</a></li><li><a href="#hitcount">HitCount</a></li><li><a href="#hitdefattr*,***">HitDefAttr(`*,***`)</a></li><li><a href="#hitdefvar-nightly-build-only">HitDefVar (nightly build only)</a></li><li><a href="#hitfall">HitFall</a></li><li><a href="#hitover">HitOver</a></li><li><a href="#hitoverridden">HitOverridden</a></li><li><a href="#hitpausetime">HitPauseTime</a></li><li><a href="#hitshakeover">HitShakeOver</a></li><li><a href="#hitvel">HitVel</a></li><li><a href="#id">ID</a></li><li><a href="#ifelse-math">IfElse (math)</a></li><li><a href="#ikemenversion-nightly-build-only">IkemenVersion (nightly build only)</a></li><li><a href="#incustomanim-nightly-build-only">InCustomAnim (nightly build only)</a></li><li><a href="#incustomstate">InCustomState</a></li><li><a href="#index-nightly-build-only">Index (nightly build only)</a></li><li><a href="#indialogue">InDialogue</a></li><li><a href="#inguarddist">InGuardDist</a></li><li><a href="#inputtime-nightly-build-only">InputTime (nightly build only)</a></li><li><a href="#introstate-nightly-build-only">IntroState (nightly build only)</a></li><li><a href="#isasserted">IsAsserted</a></li><li><a href="#isclsnproxy-nightly-build-only">IsClsnProxy (nightly build only)</a></li><li><a href="#ishelper">IsHelper</a></li><li><a href="#ishelper-nightly-build-only">IsHelper (nightly build only)</a></li><li><a href="#ishometeam">IsHomeTeam</a></li><li><a href="#ishost">IsHost</a></li><li><a href="#jugglepoints-nightly-build-only">JugglePoints (nightly build only)</a></li><li><a href="#lastplayerid-nightly-build-only">LastPlayerID (nightly build only)</a></li><li><a href="#layerno-nightly-build-only">LayerNo (nightly build only)</a></li><li><a href="#leftedge">LeftEdge</a></li><li><a href="#lerp-math-nightly-build-only">Lerp (Math) (nightly build only)</a></li><li><a href="#life">Life</a></li><li><a href="#lifemax">LifeMax</a></li><li><a href="#ln-math">Ln (math)</a></li><li><a href="#localcoord-nightly-build-only">LocalCoord (nightly build only)</a></li><li><a href="#log-math">Log (math)</a></li><li><a href="#lose">Lose</a></li><li><a href="#map">Map</a></li><li><a href="#matchno">MatchNo</a></li><li><a href="#matchover">MatchOver</a></li><li><a href="#max-math">Max (math)</a></li><li><a href="#memberno">MemberNo</a></li><li><a href="#min-math">Min (math)</a></li><li><a href="#motifstate-nightly-build-only">MotifState (nightly build only)</a></li><li><a href="#motifvar-nightly-build-only">MotifVar (nightly build only)</a></li><li><a href="#movecontact">MoveContact</a></li><li><a href="#movecountered">MoveCountered</a></li><li><a href="#moveguarded">MoveGuarded</a></li><li><a href="#movehit">MoveHit</a></li><li><a href="#movehitvar-nightly-build-only">MoveHitVar (nightly build only)</a></li><li><a href="#movereversed">MoveReversed</a></li><li><a href="#movetype*,***">MoveType(`*,***`)</a></li><li><a href="#mugenversion-nightly-build-only">MugenVersion (nightly build only)</a></li><li><a href="#name*,***">Name(`*,***`)</a></li><li><a href="#numenemy">NumEnemy</a></li><li><a href="#numexplod">NumExplod</a></li><li><a href="#numhelper">NumHelper</a></li><li><a href="#numpartner">NumPartner</a></li><li><a href="#numplayer-nightly-build-only">NumPlayer (nightly build only)</a></li><li><a href="#numproj">NumProj</a></li><li><a href="#numprojid">NumProjID</a></li><li><a href="#numstagebg-nightly-build-only">NumStageBG (nightly build only)</a></li><li><a href="#numtarget">NumTarget</a></li><li><a href="#numtext-nightly-build-only">NumText (nightly build only)</a></li><li><a href="#offset-nightly-build-only">Offset (nightly build only)</a></li><li><a href="#outrostate-nightly-build-only">OutroState (nightly build only)</a></li><li><a href="#p1name*,***">P1Name(`*,***`)</a></li><li><a href="#p2">P2</a></li><li><a href="#p2bodydist">P2BodyDist</a></li><li><a href="#p2bodydist-nightly-build-only">P2BodyDist (nightly build only)</a></li><li><a href="#p2dist">P2Dist</a></li><li><a href="#p2dist-z-nightly-build-only">P2Dist Z (nightly build only)</a></li><li><a href="#p2life">P2Life</a></li><li><a href="#p2movetype">P2MoveType</a></li><li><a href="#p2name*,***">P2Name(`*,***`)</a></li><li><a href="#p2stateno">P2StateNo</a></li><li><a href="#p2statetype">P2StateType</a></li><li><a href="#p3name*,***">P3Name(`*,***`)</a></li><li><a href="#p4name*,***">P4Name(`*,***`)</a></li><li><a href="#p5name,-p6name,-p7name,-p8name">P5Name, P6Name, P7Name, P8Name</a></li><li><a href="#palfxvar-nightly-build-only">PalFXVar (nightly build only)</a></li><li><a href="#palno">PalNo</a></li><li><a href="#parentdist">ParentDist</a></li><li><a href="#parentdist-z-nightly-build-only">ParentDist Z (nightly build only)</a></li><li><a href="#parentexist-nightly-build-only">ParentExist (nightly build only)</a></li><li><a href="#pausetime">PauseTime</a></li><li><a href="#physics">Physics</a></li><li><a href="#pi-math">Pi (math)</a></li><li><a href="#playern">Player(n)</a></li><li><a href="#playeridexist">PlayerIDExist</a></li><li><a href="#playerindexn-nightly-build-only">PlayerIndex(n) (nightly build only)</a></li><li><a href="#playerindexexistn-nightly-build-only">PlayerIndexExist(n) (nightly build only)</a></li><li><a href="#playerno">PlayerNo</a></li><li><a href="#playernoexist-nightly-build-only">PlayerNoExist (nightly build only)</a></li><li><a href="#pos">Pos</a></li><li><a href="#power">Power</a></li><li><a href="#powermax">PowerMax</a></li><li><a href="#prevanim">PrevAnim</a></li><li><a href="#prevmovetype">PrevMoveType</a></li><li><a href="#prevstateno">PrevStateNo</a></li><li><a href="#prevstatetype-nightly-build-only">PrevStateType (nightly build only)</a></li><li><a href="#projcanceltime">ProjCancelTime</a></li><li><a href="#projclsnoverlap-nightly-build-only">ProjClsnOverlap (nightly build only)</a></li><li><a href="#projcontact*,***">ProjContact(`*,***`)</a></li><li><a href="#projcontacttime">ProjContactTime</a></li><li><a href="#projguarded*,***">ProjGuarded(`*,***`)</a></li><li><a href="#projguardedtime">ProjGuardedTime</a></li><li><a href="#projhit*,***">ProjHit(`*,***`)</a></li><li><a href="#projhittime">ProjHitTime</a></li><li><a href="#projvar-nightly-build-only">ProjVar (nightly build only)</a></li><li><a href="#rad-math-nightly-build-only">Rad (Math) (nightly build only)</a></li><li><a href="#random">Random</a></li><li><a href="#randomrangemath">RandomRange(math)</a></li><li><a href="#receiveddamage">ReceivedDamage</a></li><li><a href="#receivedhits">ReceivedHits</a></li><li><a href="#redlife">RedLife</a></li><li><a href="#reversaldefattr">ReversalDefAttr</a></li><li><a href="#rightedge">RightEdge</a></li><li><a href="#rootdist">RootDist</a></li><li><a href="#rootdist-z-nightly-build-only">RootDist Z (nightly build only)</a></li><li><a href="#round-math">Round (math)</a></li><li><a href="#roundno">RoundNo</a></li><li><a href="#roundsexisted">RoundsExisted</a></li><li><a href="#roundstate">RoundState</a></li><li><a href="#roundstate-nightly-build-only">RoundState (nightly build only)</a></li><li><a href="#roundswon-nightly-build-only">RoundsWon (nightly build only)</a></li><li><a href="#roundtime-nightly-build-only">RoundTime (nightly build only)</a></li><li><a href="#runorder-nightly-build-only">RunOrder (nightly build only)</a></li><li><a href="#scale-nightly-build-only">Scale (nightly build only)</a></li><li><a href="#score">Score</a></li><li><a href="#scoretotal">ScoreTotal</a></li><li><a href="#screenheight">ScreenHeight</a></li><li><a href="#screenpos">ScreenPos</a></li><li><a href="#screenwidth">ScreenWidth</a></li><li><a href="#selfanimexist">SelfAnimExist</a></li><li><a href="#selfcommand-nightly-build-only">SelfCommand (nightly build only)</a></li><li><a href="#selfstatenoexist">SelfStatenoExist</a></li><li><a href="#sign-math-nightly-build-only">Sign (Math) (nightly build only)</a></li><li><a href="#sin-math">Sin (math)</a></li><li><a href="#soundvar-nightly-build-only">SoundVar (nightly build only)</a></li><li><a href="#spritevar-nightly-build-only">SpriteVar (nightly build only)</a></li><li><a href="#sprpriority">SprPriority</a></li><li><a href="#stagebackedgedist">StageBackEdgeDist</a></li><li><a href="#stagebgvar-nightly-build-only">StageBGVar (nightly build only)</a></li><li><a href="#stageconst">StageConst</a></li><li><a href="#stagefrontedgedist">StageFrontEdgeDist</a></li><li><a href="#stagetime">StageTime</a></li><li><a href="#stagevar">StageVar</a></li><li><a href="#stagevar*,***">StageVar(`*,***`)</a></li><li><a href="#standby">Standby</a></li><li><a href="#stateno">StateNo</a></li><li><a href="#stateowner">StateOwner</a></li><li><a href="#statetype">StateType</a></li><li><a href="#sysfvar">SysFVar</a></li><li><a href="#sysvar">SysVar</a></li><li><a href="#tan-math">Tan (math)</a></li><li><a href="#target-nightly-build-only">Target (nightly build only)</a></li><li><a href="#teamleader">TeamLeader</a></li><li><a href="#teammode-=-tag">TeamMode = Tag</a></li><li><a href="#teammode*,***">TeamMode(`*,***`)</a></li><li><a href="#teamside">TeamSide</a></li><li><a href="#teamsize">TeamSize</a></li><li><a href="#tickspersecond">TicksPerSecond</a></li><li><a href="#time">Time</a></li><li><a href="#timeelapsed">TimeElapsed</a></li><li><a href="#timemod*,**,***">TimeMod(`*,**,***`)</a></li><li><a href="#timeremaining">TimeRemaining</a></li><li><a href="#timetotal">TimeTotal</a></li><li><a href="#topboundbodydist-nightly-build-only">TopBoundBodyDist (nightly build only)</a></li><li><a href="#topbounddist-nightly-build-only">TopBoundDist (nightly build only)</a></li><li><a href="#topedge">TopEdge</a></li><li><a href="#trigger-reference">Trigger Reference</a></li><li><a href="#uniqhitcount">UniqHitCount</a></li><li><a href="#var">Var</a></li><li><a href="#vel">Vel</a></li><li><a href="#win">Win</a></li><li><a href="#winclutch">WinClutch</a></li><li><a href="#winhyper">WinHyper</a></li><li><a href="#winspecial">WinSpecial</a></li><li><a href="#xangle-nightly-build-only">XAngle (nightly build only)</a></li><li><a href="#xshear-nightly-build-only">Xshear (nightly build only)</a></li><li><a href="#yangle-nightly-build-only">YAngle (nightly build only)</a></li><li><a href="#zoomvar-nightly-build-only">ZoomVar (nightly build only)</a></li>
+      </ul>
+    </div>
+    
+
+---
+
+# About Triggers  
+
+*Source: M.U.G.E.N 1.1*
+
+This is an alphabetical index of function-type triggers. For details on use of function-type triggers in expressions, see the expression documentation. Unless otherwise specified, we will use P1 to represent the player who is evaluating the trigger, and P2 to represent his opponent (usually the closest opponent when in team mode).  
+Some triggers are nonstandard and cannot take expressions as their arguments. These are marked with a (`*`) in the index.  
+Some triggers are deprecated; these are marked with a (`**`). Use of these triggers is not encouraged, as support for them may be removed in future versions of the engine.  
+Old-style triggers, marked (`***`), appear only in clauses of the form (trigger) (relational operator) (value). See section 8 of exp.doc for more details.  
+Triggers used for math are marked with (math).  
+For all triggers, bottom will be returned if the trigger is redirected to a nonexistent destination, or if the ID number for the redirection evaluates to bottom.  
+This is not listed in the error conditions for each trigger.
 
 ---
 
@@ -1194,6 +947,18 @@ value = ceil(5.5)
 value = ceil(-2)  
 ; Sets value to -2.  
 ```  
+
+---
+
+# Changed triggers
+
+*Source: Ikemen GO (changed)*
+
+---
+
+# Changed trigger redirections
+
+*Source: Ikemen GO (changed)*
 
 ---
 
@@ -6950,8 +6715,6 @@ Note: states are owned by the root.
 trigger1 = StateOwner,AILevel
 ```
 
-# New triggers
-
 ---
 
 ## StateType
@@ -7087,9 +6850,6 @@ Example:
 trigger1 = NumTarget >= 2
 trigger1 = Target(-1, 1), Alive; The second target with any ID
 ```
-
-
-# Changed triggers
 
 ---
 
@@ -7408,6 +7168,17 @@ Example:
 trigger1 = Pos Y > TopEdge  
 ; Triggers if the player is below the top edge of the screen.  
 ```  
+
+---
+
+# Trigger Reference
+
+*Source: M.U.G.E.N 1.1*
+
+ 
+M.U.G.E.N, (c) Elecbyte 1999-2013  
+Documentation for version 1.1 (2013)  
+Updated 09 June 2013
 
 ---
 
