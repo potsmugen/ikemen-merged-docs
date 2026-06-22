@@ -3,21 +3,44 @@
 
 @import "{{ site.theme }}";
 
+/* Just slightly wider content */
 .markdown-body {
   max-width: 1200px !important;
   margin: 0 auto !important;
-  padding: 0 40px !important;
+  padding: 0 20px !important;
 }
 
-.page-header {
-  padding: 2rem 6rem;
+/* Multi-column TOC */
+.markdown-body h2:has(+ ul),
+.markdown-body h2:has(+ p + ul) {
+  margin-bottom: 0;
 }
 
-@media (max-width: 768px) {
-  .markdown-body {
-    padding: 0 20px !important;
+.markdown-body ul:has(li a[href^="#"]) {
+  column-count: 3;
+  column-gap: 2em;
+  column-rule: 1px solid #e1e4e8;
+  padding-left: 20px !important;
+  margin-top: 10px;
+}
+
+.markdown-body ul:has(li a[href^="#"]) li {
+  break-inside: avoid;
+  padding: 2px 0;
+  font-size: 0.9em;
+  line-height: 1.6;
+}
+
+/* Responsive: fewer columns on smaller screens */
+@media (max-width: 900px) {
+  .markdown-body ul:has(li a[href^="#"]) {
+    column-count: 2;
   }
-  .page-header {
-    padding: 1rem 2rem;
+}
+
+@media (max-width: 600px) {
+  .markdown-body ul:has(li a[href^="#"]) {
+    column-count: 1;
+    column-rule: none;
   }
 }

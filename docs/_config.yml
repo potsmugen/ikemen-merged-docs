@@ -1,18 +1,4 @@
-# GitHub Pages configuration
+# GitHub Pages configuration – minimal theme
 title: Ikemen GO Merged Documentation
-description: Automatically merged documentation for Ikemen GO
-theme: jekyll-theme-cayman
-
-# Enable markdown features
-markdown: kramdown
-kramdown:
-  input: GFM
-  auto_ids: true
-  toc_levels: 1..6
-
-# Optional: Add custom CSS
-defaults:
-  - scope:
-      path: ""
-    values:
-      layout: default
+description: Automatically generated merged documentation for M.U.G.E.N 1.1 and Ikemen GO
+theme: jekyll-theme-primer

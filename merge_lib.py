@@ -323,7 +323,7 @@ def output_merged(
     if sections_to_skip is None:
         sections_to_skip = []
 
-    # NO inline style – use _config.yml for GitHub Pages
+    # No inline style – handled by _config.yml and assets/css/
     lines = [f"# {title}", ""]
 
     # --- Generate TOC from ALL sections (including universal) ---
@@ -348,7 +348,7 @@ def output_merged(
         universal_content = universal_data['content']
         universal_level = universal_data.get('level', 1)
 
-        # Clean tags
+        # Clean tags but preserve line breaks
         universal_content = re.sub(r'<a[^>]+>', '', universal_content)
         universal_content = re.sub(r'</a>', '', universal_content)
 
@@ -373,9 +373,11 @@ def output_merged(
         sources = source_tag_str(data['sources'])
         level = data.get('level', 2)
 
-        clean_name = clean_heading(name)
+        # Only strip HTML tags, NOT newlines
         content = re.sub(r'<a[^>]+>', '', content)
         content = re.sub(r'</a>', '', content)
+
+        clean_name = clean_heading(name)
 
         lines.append(f"{'#' * level} {clean_name}")
         lines.append("")
