@@ -36,7 +36,7 @@ def main():
     changed = parse_sections(changed_text)
     new = parse_sections(new_text)
 
-    # Rename changed sections
+    # Rename changed sections (e.g., "Triggers (changed)" sections)
     changed = rename_changed_sections(changed, suffix="(changed)")
 
     # Skip feature sections

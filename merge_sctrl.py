@@ -14,7 +14,6 @@ def main():
     print("MERGED STATE CONTROLLERS", file=sys.stderr)
     print("=" * 60, file=sys.stderr)
 
-    # Sources
     mugen_file = Path("sctrl_mugen11.md")
     if not mugen_file.exists():
         print(f"ERROR: {mugen_file} not found", file=sys.stderr)
@@ -31,23 +30,18 @@ def main():
     print("Fetching Ikemen GO (new)...", file=sys.stderr)
     new_text = fetch_raw_markdown(new_url)
 
-    # Parse sections
     mugen = parse_sections(mugen_text)
     changed = parse_sections(changed_text)
     new = parse_sections(new_text)
 
-    # The Universal section comes from the "new" page.
-    # We remove the duplicate from the changed page.
-    changed.pop("New state controller features", None)
-
-    # Rename changed sections
+    # The Universal section comes only from the new page.
+    # Rename changed sections (e.g., "AfterImage parameters" → "AfterImage (changed)")
     changed = rename_changed_sections(changed, suffix="(changed)")
 
-    # Skip feature sections
-    skip = {"New state controller features", "New state controllers"}
-    mugen.pop("About Controllers", None)
+    # Skip the "New state controllers" title section (it's just a header, not a controller)
+    skip = {"New state controllers"}
 
-    # Merge
+    # Merge all sections with source tagging
     merged = merge_sections([
         ("M.U.G.E.N 1.1", mugen),
         ("Ikemen GO (changed)", changed),
