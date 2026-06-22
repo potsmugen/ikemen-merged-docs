@@ -70,7 +70,6 @@ def hide_code_blocks(text: str) -> Tuple[str, Dict[str, str]]:
             continue
 
         # --- Indented code block (4 spaces or tab) ---
-        # Only consider it a code block if it's preceded by a blank line or start of file
         if (line.startswith('    ') or line.startswith('\t')):
             prev_line_is_blank = (not result) or (result[-1].strip() == '')
             if prev_line_is_blank:
@@ -271,17 +270,11 @@ def slugify(text: str) -> str:
     Converts to lowercase, replaces spaces with hyphens,
     removes non-alphanumeric characters (except hyphens).
     """
-    # Lowercase
     slug = text.lower()
-    # Replace spaces with hyphens
     slug = slug.replace(' ', '-')
-    # Remove any character that is not alphanumeric or hyphen
     slug = re.sub(r'[^a-z0-9-]', '', slug)
-    # Collapse multiple hyphens
     slug = re.sub(r'-+', '-', slug)
-    # Strip leading/trailing hyphens
     slug = slug.strip('-')
-    # If empty, use a fallback
     if not slug:
         slug = f"section-{hash(text) % 1000000}"
     return slug
@@ -303,15 +296,10 @@ def generate_toc_from_sections(merged: Dict[str, Dict[str, Set[str]]], sections_
     for name in sorted(merged.keys(), key=lambda s: s.lower()):
         if name in sections_to_skip:
             continue
-
-        # Clean the name (remove any HTML tags)
         clean_name = clean_heading(name)
         if not clean_name:
             continue
-
-        # Generate slug
         slug = slugify(clean_name)
-
         items.append(f"- [{clean_name}](#{slug})")
 
     return "\n".join(items) if items else ""
@@ -335,18 +323,8 @@ def output_merged(
     if sections_to_skip is None:
         sections_to_skip = []
 
-    # Wide layout style
-    style = """
-    <style>
-    .markdown-body {
-      max-width: 1200px !important;
-      margin: 0 auto !important;
-      padding: 0 40px !important;
-    }
-    </style>
-    """
-
-    lines = [style, "", f"# {title}", ""]
+    # NO inline style – use _config.yml for GitHub Pages
+    lines = [f"# {title}", ""]
 
     # --- Generate TOC from ALL sections (including universal) ---
     toc = generate_toc_from_sections(merged, sections_to_skip)
@@ -359,7 +337,6 @@ def output_merged(
         lines.append("")
 
     # --- Extract Universal section if present ---
-    # The Universal section comes from the "new" page and contains global features like RedirectID
     universal_key = None
     for key in merged.keys():
         if key in ("New state controller features", "Universal state controller features"):
@@ -375,7 +352,6 @@ def output_merged(
         universal_content = re.sub(r'<a[^>]+>', '', universal_content)
         universal_content = re.sub(r'</a>', '', universal_content)
 
-        # Ensure the heading is correct
         clean_universal = clean_heading(universal_key)
         lines.append(f"{'#' * universal_level} {clean_universal}")
         lines.append("")
@@ -397,7 +373,6 @@ def output_merged(
         sources = source_tag_str(data['sources'])
         level = data.get('level', 2)
 
-        # Clean the name and content
         clean_name = clean_heading(name)
         content = re.sub(r'<a[^>]+>', '', content)
         content = re.sub(r'</a>', '', content)

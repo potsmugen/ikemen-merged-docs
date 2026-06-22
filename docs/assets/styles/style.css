@@ -1,0 +1,23 @@
+---
+---
+
+@import "{{ site.theme }}";
+
+.markdown-body {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 40px !important;
+}
+
+.page-header {
+  padding: 2rem 6rem;
+}
+
+@media (max-width: 768px) {
+  .markdown-body {
+    padding: 0 20px !important;
+  }
+  .page-header {
+    padding: 1rem 2rem;
+  }
+}

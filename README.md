@@ -1,28 +1,17 @@
 # Ikemen GO Merged Documentation
 
-Work in progress.
+WORK IN PROGRESS
 
-Automatically generated merged documentation for M.U.G.E.N 1.1 and Ikemen GO.
-
-**[View on GitHub Pages](https://potsmugen.github.io/ikemen-merged-docs/)**
+Automatically generated merged documentation for Ikemen GO.
 
 ---
 
 ## Pages
 
-- [State Controllers](https://potsmugen.github.io/ikemen-merged-docs/SCTRL)
-- [Triggers](https://potsmugen.github.io/ikemen-merged-docs/Triggers)
-
----
+- [State Controllers](https://potsmugen.github.io/ikemen-merged-docs/sctrl)
+- [Triggers](https://potsmugen.github.io/ikemen-merged-docs/triggers)
 
 **[View on GitHub Pages](https://potsmugen.github.io/ikemen-merged-docs/)**
-
----
-
-## Pages
-
-- [State Controllers](https://potsmugen.github.io/ikemen-merged-docs/SCTRL)
-- [Triggers](https://potsmugen.github.io/ikemen-merged-docs/Triggers)
 
 ---
 
