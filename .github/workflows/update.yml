@@ -33,12 +33,12 @@ jobs:
       - name: Generate redirections
         run: python merge_redirections.py
 
-      - name: Create index page (Home)
+      - name: Recreate index page (Home)
         run: |
           cat > docs/index.md << 'EOF'
           # Ikemen GO Merged Documentation
 
-          This page contains automatically generated merged documentation from M.U.G.E.N 1.1 and Ikemen GO.
+          The documentation in this page is obtained from automatically merging the Ikemen GO wiki with the Mugn 1.1 documentation.
 
           ## Pages
 
@@ -50,6 +50,9 @@ jobs:
 
           *Updated daily via GitHub Actions.*
           EOF
+          
+          # Append the current UTC timestamp to the bottom of the file
+          echo "*Last updated: $(date -u +'%Y-%m-%d %H:%M:%S UTC')*" >> docs/index.md
 
       - name: Commit and push changes
         run: |
