@@ -79,7 +79,7 @@ def main():
 
     mugen_entries = split_redirections(
         mugen_content,
-        source_label="M.U.G.E.N"
+        source_label="old"       # <-- changed from "M.U.G.E.N" to "old"
     )
 
     # ------------------------------------------------------------------
@@ -92,20 +92,16 @@ def main():
 
     changed_text = fetch_raw_markdown(changed_url)
 
-    # Parse the entire changed page into sections (special case prevents H2 splitting)
     changed_sections = parse_sections(changed_text)
 
-    # Extract the "Changed trigger redirections" block (case‑insensitive)
     changed_redir_block = extract_section(
         changed_sections,
         "Changed trigger redirections"
     )
 
     if changed_redir_block:
-        # Split the block into individual entries (handles ##, ###, bold, etc.)
         changed_entries = split_redirections(changed_redir_block)
-
-        # Add source label
+        # Add explicit (changed) suffix for consistency
         changed_entries = {
             f"{name} (changed)": content
             for name, content in changed_entries.items()
@@ -138,7 +134,7 @@ def main():
     if new_redir_block:
         new_entries = split_redirections(
             new_redir_block,
-            source_label="new"
+            source_label="new"   # automatically appends "(new)"
         )
     else:
         new_entries = {}

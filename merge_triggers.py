@@ -35,7 +35,7 @@ def main():
     changed = parse_sections(changed_text)
     new = parse_sections(new_text)
 
-    # --- REMOVE REDIRECTION SECTIONS (they go to the redirections page) ---
+    # --- REMOVE REDIRECTION SECTIONS (they go to redirections page) ---
 
     # Remove any sections that contain "redirection" in their name (M.U.G.E.N)
     for key in list(mugen.keys()):
@@ -52,14 +52,19 @@ def main():
     # Remove "New trigger redirections" from new page
     new.pop("New trigger redirections", None)
 
+    # --- ADD EXTRA SKIP FOR "Changed triggers" (top-level heading, not a trigger) ---
+    changed.pop("Changed triggers", None)          # <-- NEW
+
     # --- EXTRACT INDIVIDUAL TRIGGERS FROM "New triggers" ---
     new_individual = {}
     if "New triggers" in new:
         triggers_block = new.pop("New triggers")
         new_individual = parse_sub_sections(triggers_block)
 
-    # --- RENAME CHANGED SECTIONS ---
+    # --- TAG SOURCES ---
+    mugen = tag_old_sections(mugen, suffix="(old)")
     changed = rename_changed_sections(changed, suffix="(changed)")
+    new_individual = tag_new_sections(new_individual, suffix="(new)")
 
     # --- MERGE ---
     merged = merge_sections([
@@ -70,11 +75,11 @@ def main():
 
     print(f"Merged {len(merged)} trigger sections.", file=sys.stderr)
 
-    # --- OUTPUT ---
+    # --- OUTPUT (no extra skips needed) ---
     output = output_merged(
         merged,
         "Merged Trigger Reference",
-        sections_to_skip=[],
+        sections_to_skip=[],   # we've already removed unwanted sections
         top_sections=[]
     )
 

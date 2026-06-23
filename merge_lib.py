@@ -155,7 +155,7 @@ def parse_sections(text: str) -> Dict[str, str]:
             in_special_section = (heading == "New state controller features" or
                                   heading == "New triggers" or
                                   heading == "New trigger redirections" or
-                                  heading == "Changed trigger redirections")   # <--- ADDED
+                                  heading == "Changed trigger redirections")
             continue
 
         if not in_special_section:
@@ -269,9 +269,14 @@ def rename_changed_sections(sections: Dict[str, str], suffix: str = "(changed)")
     Also updates the heading line inside the content.
     """
     renamed = {}
+    tag_word = suffix.strip('()')  # "changed"
     for name, content in sections.items():
-        # Skip special sections that should not be renamed
         if name in ("New state controller features", "New trigger redirections", "Changed trigger redirections"):
+            renamed[name] = content
+            continue
+
+        # If name already contains the tag word, keep it as-is
+        if re.search(rf'\b{re.escape(tag_word)}\b', name, re.IGNORECASE):
             renamed[name] = content
             continue
 
@@ -300,6 +305,71 @@ def rename_changed_sections(sections: Dict[str, str], suffix: str = "(changed)")
 
 
 # ----------------------------------------------------------------------
+# TAG OLD AND NEW SECTIONS
+# ----------------------------------------------------------------------
+
+def tag_old_sections(sections: Dict[str, str], suffix: str = "(old)") -> Dict[str, str]:
+    """
+    Tag M.U.G.E.N sections with (old) suffix.
+    Skips special sections and "About controllers" to keep them untagged.
+    """
+    tagged = {}
+    for name, content in sections.items():
+        # Skip sections we want to keep untagged
+        if name in ("New state controller features", "New trigger redirections",
+                    "Changed trigger redirections", "New triggers", "About controllers"):
+            tagged[name] = content
+            continue
+
+        if re.search(r'\((old|changed|new)\)$', name):
+            tagged[name] = content
+            continue
+
+        new_name = f"{name} {suffix}"
+        tagged[new_name] = content
+
+        # Also update the heading line inside the content
+        content_lines = content.splitlines()
+        if content_lines and re.match(r'^#{1,6}\s+', content_lines[0]):
+            heading_text = re.sub(r'^#{1,6}\s+', '', content_lines[0])
+            new_heading_text = f"{heading_text} {suffix}"
+            content_lines[0] = f"## {new_heading_text}"
+            tagged[new_name] = '\n'.join(content_lines)
+
+    return tagged
+
+
+def tag_new_sections(sections: Dict[str, str], suffix: str = "(new)") -> Dict[str, str]:
+    """
+    Tag Ikemen GO new sections with (new) suffix.
+    Skips redirection sections (they go to redirections page).
+    """
+    tagged = {}
+    for name, content in sections.items():
+        # Only skip redirection sections
+        if name in ("New trigger redirections", "Changed trigger redirections"):
+            tagged[name] = content
+            continue
+
+        if re.search(r'\((old|changed|new)\)$', name):
+            tagged[name] = content
+            continue
+
+        new_name = f"{name} {suffix}"
+        tagged[new_name] = content
+
+        # Update heading line inside content
+        content_lines = content.splitlines()
+        if content_lines and re.match(r'^#{1,6}\s+', content_lines[0]):
+            heading_text = re.sub(r'^#{1,6}\s+', '', content_lines[0])
+            new_heading_text = f"{heading_text} {suffix}"
+            content_lines[0] = f"## {new_heading_text}"
+            tagged[new_name] = '\n'.join(content_lines)
+
+    return tagged
+
+
+# ----------------------------------------------------------------------
 # SLUG GENERATION (GitHub-compatible)
 # ----------------------------------------------------------------------
 
@@ -320,6 +390,27 @@ def slugify(text: str) -> str:
 
 
 # ----------------------------------------------------------------------
+# SORT KEY HELPERS
+# ----------------------------------------------------------------------
+
+def get_sort_key(name: str) -> tuple:
+    """
+    Sort key for sections: primary = base name (without tag),
+    secondary = tag priority (old=0, changed=1, new=2).
+    Sections without a tag come after all tagged ones.
+    """
+    tag_match = re.search(r'\((old|changed|new)\)$', name)
+    if tag_match:
+        tag = tag_match.group(1)
+        base_name = re.sub(r'\s*\((old|changed|new)\)$', '', name).strip()
+        tag_priority = {'old': 0, 'changed': 1, 'new': 2}.get(tag, 99)
+    else:
+        base_name = name
+        tag_priority = 99
+    return (base_name.lower(), tag_priority)
+
+
+# ----------------------------------------------------------------------
 # TOC GENERATION (Simple Markdown List)
 # ----------------------------------------------------------------------
 
@@ -327,12 +418,13 @@ def generate_toc_from_sections(merged: Dict[str, Dict[str, Set[str]]], sections_
     """
     Generate a table of contents from section headings.
     Uses slugify for robust anchor links.
+    Sorted by base name, then tag priority.
     """
     if sections_to_skip is None:
         sections_to_skip = []
 
     items = []
-    for name in sorted(merged.keys(), key=lambda s: s.lower()):
+    for name in sorted(merged.keys(), key=get_sort_key):
         if name in sections_to_skip:
             continue
         clean_name = clean_heading(name)
@@ -358,7 +450,7 @@ def output_merged(
     Output the merged documentation with:
     - Table of contents (first)
     - Top sections (moved after TOC, headings kept)
-    - Alphabetical listing with source tags
+    - Alphabetical listing with source tags in headings
     """
     if sections_to_skip is None:
         sections_to_skip = []
@@ -399,28 +491,25 @@ def output_merged(
             top_data = merged.pop(actual_key)
             top_content = top_data['content']
             top_level = top_data.get('level', 2)
-            sources = source_tag_str(top_data['sources'])
 
             # Clean HTML tags from body
             top_content = re.sub(r'<a[^>]+>', '', top_content)
             top_content = re.sub(r'</a>', '', top_content)
             clean_top = clean_heading(actual_key)
 
-            # Reconstruct the heading
+            # Reconstruct the heading (no source line)
             lines.append(f"{'#' * top_level} {clean_top}")
             lines.append("")
             if top_content.strip():
                 lines.append(top_content)
                 lines.append("")
-            lines.append(f"*Source: {sources}*")
-            lines.append("")
             lines.append("---")
             lines.append("")
 
     # ---------------------------------------------------------
-    # 4. Output remaining sections alphabetically
+    # 4. Output remaining sections sorted by base name, then tag
     # ---------------------------------------------------------
-    for name in sorted(merged.keys(), key=lambda s: s.lower()):
+    for name in sorted(merged.keys(), key=get_sort_key):
         if name in sections_to_skip:
             continue
         if not merged[name]['content'].strip():
@@ -428,7 +517,6 @@ def output_merged(
 
         data = merged[name]
         content = data['content']
-        sources = source_tag_str(data['sources'])
         level = data.get('level', 2)
 
         content = re.sub(r'<a[^>]+>', '', content)
@@ -437,8 +525,6 @@ def output_merged(
         clean_name = clean_heading(name)
 
         lines.append(f"{'#' * level} {clean_name}")
-        lines.append("")
-        lines.append(f"*Source: {sources}*")
         lines.append("")
         if content.strip():
             lines.append(content)

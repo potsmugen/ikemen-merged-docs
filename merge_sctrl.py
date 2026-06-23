@@ -30,17 +30,20 @@ def main():
     print("Fetching Ikemen GO (new)...", file=sys.stderr)
     new_text = fetch_raw_markdown(new_url)
 
+    # Parse all documents
     mugen = parse_sections(mugen_text)
     changed = parse_sections(changed_text)
     new = parse_sections(new_text)
 
-    # Rename changed sections (e.g., "AfterImage parameters" → "AfterImage (changed)")
+    # Tag sources
+    mugen = tag_old_sections(mugen, suffix="(old)")
     changed = rename_changed_sections(changed, suffix="(changed)")
+    new = tag_new_sections(new, suffix="(new)")
 
-    # Skip the "New state controllers" title section (it's just a header, not a controller)
+    # Skip the "New state controllers" title section
     skip = {"New state controllers"}
 
-    # Merge all sections with source tagging
+    # Merge all sections
     merged = merge_sections([
         ("M.U.G.E.N 1.1", mugen),
         ("Ikemen GO (changed)", changed),
@@ -57,10 +60,8 @@ def main():
         top_sections=["About controllers", "New state controller features"]
     )
 
-    # Write directly to the docs folder
     output_file = Path("docs/sctrl.md")
     output_file.parent.mkdir(parents=True, exist_ok=True)
-    
     output_file.write_text(output, encoding="utf-8")
     print(f"\nDone. Output saved to: {output_file}", file=sys.stderr)
     print(f"  {len(merged)} sections merged.", file=sys.stderr)
