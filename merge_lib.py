@@ -120,8 +120,10 @@ def restore_code_blocks(text: str, placeholders: Dict[str, str]) -> str:
 # ----------------------------------------------------------------------
 
 def clean_heading(text: str) -> str:
-    """Remove HTML tags from heading text."""
-    return re.sub(r'<[^>]+>', '', text).strip()
+    """Remove HTML tags and suffixes like (nightly build only) from heading text."""
+    text = re.sub(r'<[^>]+>', '', text)
+    text = re.sub(r'\s*\(nightly build only\)\s*', '', text, flags=re.IGNORECASE)
+    return text.strip()
 
 
 # ----------------------------------------------------------------------
@@ -293,6 +295,7 @@ def rename_changed_sections(sections: Dict[str, str], suffix: str = "(changed)")
         content_lines = content.splitlines()
         if content_lines and re.match(r'^#{1,6}\s+', content_lines[0]):
             heading_text = re.sub(r'^#{1,6}\s+', '', content_lines[0])
+            heading_text = clean_heading(heading_text)  # strip nightly suffix too
             if re.search(r'(?i)\b(parameters|triggers)\b', heading_text):
                 new_heading_text = re.sub(r'(?i)\s*(parameters|triggers)\s*', f' {suffix} ', heading_text).strip()
                 new_heading_text = re.sub(r'\s+', ' ', new_heading_text).strip()
@@ -332,6 +335,7 @@ def tag_old_sections(sections: Dict[str, str], suffix: str = "(old)") -> Dict[st
         content_lines = content.splitlines()
         if content_lines and re.match(r'^#{1,6}\s+', content_lines[0]):
             heading_text = re.sub(r'^#{1,6}\s+', '', content_lines[0])
+            heading_text = clean_heading(heading_text)  # strip nightly suffix
             new_heading_text = f"{heading_text} {suffix}"
             content_lines[0] = f"## {new_heading_text}"
             tagged[new_name] = '\n'.join(content_lines)
@@ -362,6 +366,7 @@ def tag_new_sections(sections: Dict[str, str], suffix: str = "(new)") -> Dict[st
         content_lines = content.splitlines()
         if content_lines and re.match(r'^#{1,6}\s+', content_lines[0]):
             heading_text = re.sub(r'^#{1,6}\s+', '', content_lines[0])
+            heading_text = clean_heading(heading_text)  # strip nightly suffix
             new_heading_text = f"{heading_text} {suffix}"
             content_lines[0] = f"## {new_heading_text}"
             tagged[new_name] = '\n'.join(content_lines)
