@@ -30,17 +30,17 @@ def main():
     print("Fetching Ikemen GO (new)...", file=sys.stderr)
     new_text = fetch_raw_markdown(new_url)
 
-    # Parse all documents
-    mugen = parse_sections(mugen_text)
-    changed = parse_sections(changed_text)
-    new = parse_sections(new_text)
+    # Parse – keep "New state controller features" as one block
+    mugen = parse_sections(mugen_text, keep_blocks=[])
+    changed = parse_sections(changed_text, keep_blocks=[])
+    new = parse_sections(new_text, keep_blocks=["New state controller features"])
 
     # Tag sources
-    mugen = tag_old_sections(mugen, suffix="(old)")
-    changed = rename_changed_sections(changed, suffix="(changed)")
-    new = tag_new_sections(new, suffix="(new)")
+    mugen = tag_sections(mugen, "(old)", skip_names=["About controllers"])
+    changed = tag_sections(changed, "(changed)", replace_words=["parameters", "triggers"])
+    new = tag_sections(new, "(new)")
 
-    # Skip the "New state controllers" title section
+    # Skip the "New state controllers" title section (it's just a header)
     skip = {"New state controllers"}
 
     # Merge all sections

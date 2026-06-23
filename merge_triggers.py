@@ -30,41 +30,37 @@ def main():
     print("Fetching Ikemen GO (new)...", file=sys.stderr)
     new_text = fetch_raw_markdown(new_url)
 
-    # Parse all documents
-    mugen = parse_sections(mugen_text)
-    changed = parse_sections(changed_text)
-    new = parse_sections(new_text)
+    # Parse – keep special blocks intact
+    mugen = parse_sections(mugen_text, keep_blocks=[])
+    changed = parse_sections(changed_text, keep_blocks=["Changed trigger redirections"])
+    new = parse_sections(new_text, keep_blocks=["New triggers", "New trigger redirections"])
 
     # --- REMOVE REDIRECTION SECTIONS (they go to redirections page) ---
-
-    # Remove any sections that contain "redirection" in their name (M.U.G.E.N)
     for key in list(mugen.keys()):
         if "redirection" in key.lower():
             mugen.pop(key, None)
 
-    # Remove the entire "Changed trigger redirections" block (stored as one key)
     changed.pop("Changed trigger redirections", None)
-    # Also remove any other stray redirection sections (just in case)
     for key in list(changed.keys()):
         if "redirection" in key.lower():
             changed.pop(key, None)
 
-    # Remove "New trigger redirections" from new page
     new.pop("New trigger redirections", None)
-
-    # --- ADD EXTRA SKIP FOR "Changed triggers" (top-level heading, not a trigger) ---
-    changed.pop("Changed triggers", None)          # <-- NEW
 
     # --- EXTRACT INDIVIDUAL TRIGGERS FROM "New triggers" ---
     new_individual = {}
     if "New triggers" in new:
         triggers_block = new.pop("New triggers")
-        new_individual = parse_sub_sections(triggers_block)
+        # Split the block by ## headings to get individual triggers
+        new_individual = parse_sections(triggers_block)   # <-- changed from parse_sub_sections
+
+    # Remove any stray "Changed triggers" heading
+    changed.pop("Changed triggers", None)
 
     # --- TAG SOURCES ---
-    mugen = tag_old_sections(mugen, suffix="(old)")
-    changed = rename_changed_sections(changed, suffix="(changed)")
-    new_individual = tag_new_sections(new_individual, suffix="(new)")
+    mugen = tag_sections(mugen, "(old)", skip_names=[])
+    changed = tag_sections(changed, "(changed)", replace_words=["triggers"])
+    new_individual = tag_sections(new_individual, "(new)")
 
     # --- MERGE ---
     merged = merge_sections([
@@ -75,11 +71,11 @@ def main():
 
     print(f"Merged {len(merged)} trigger sections.", file=sys.stderr)
 
-    # --- OUTPUT (no extra skips needed) ---
+    # --- OUTPUT ---
     output = output_merged(
         merged,
         "Merged Trigger Reference",
-        sections_to_skip=[],   # we've already removed unwanted sections
+        sections_to_skip=[],
         top_sections=[]
     )
 

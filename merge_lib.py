@@ -34,29 +34,23 @@ def load_file(filepath: Path) -> str:
 
 
 # ----------------------------------------------------------------------
-# CODE BLOCK HIDING (ROBUST)
+# CODE BLOCK HIDING (unchanged)
 # ----------------------------------------------------------------------
 
 def hide_code_blocks(text: str) -> Tuple[str, Dict[str, str]]:
-    """
-    Replace every code block (fenced or indented) with a placeholder.
-    Returns: (processed_text, {placeholder: original_block_content})
-    """
+    """Replace fenced/indented code blocks with placeholders."""
     lines = text.splitlines()
     result = []
     placeholders = {}
-    placeholder_count = 0
+    count = 0
     i = 0
-
     while i < len(lines):
         line = lines[i]
         stripped = line.lstrip()
-
-        # --- Fenced code block (``` or ~~~) ---
         if stripped.startswith('```') or stripped.startswith('~~~'):
             fence = '```' if stripped.startswith('```') else '~~~'
-            placeholder = f"__CODE_BLOCK_{placeholder_count}__"
-            placeholder_count += 1
+            placeholder = f"__CODE_BLOCK_{count}__"
+            count += 1
             block_lines = [line]
             i += 1
             while i < len(lines):
@@ -68,39 +62,21 @@ def hide_code_blocks(text: str) -> Tuple[str, Dict[str, str]]:
             placeholders[placeholder] = '\n'.join(block_lines)
             result.append(placeholder)
             continue
-
-        # --- Indented code block (4 spaces or tab) ---
-        # Only consider it a code block if it's preceded by a blank line or start of file
-        if (line.startswith('    ') or line.startswith('\t')):
-            prev_line_is_blank = (not result) or (result[-1].strip() == '')
-            if prev_line_is_blank:
-                placeholder = f"__CODE_BLOCK_{placeholder_count}__"
-                placeholder_count += 1
+        if line.startswith(('    ', '\t')):
+            prev_blank = (not result) or (result[-1].strip() == '')
+            if prev_blank:
+                placeholder = f"__CODE_BLOCK_{count}__"
+                count += 1
                 block_lines = [line]
                 i += 1
-                while i < len(lines):
-                    if lines[i].startswith('    ') or lines[i].startswith('\t') or lines[i].strip() == '':
-                        if lines[i].strip() == '':
-                            j = i + 1
-                            while j < len(lines) and lines[j].strip() == '':
-                                j += 1
-                            if j < len(lines) and (lines[j].startswith('    ') or lines[j].startswith('\t')):
-                                block_lines.append(lines[i])
-                                i += 1
-                                continue
-                            else:
-                                break
-                        block_lines.append(lines[i])
-                        i += 1
-                    else:
-                        break
+                while i < len(lines) and (lines[i].startswith(('    ', '\t')) or lines[i].strip() == ''):
+                    block_lines.append(lines[i])
+                    i += 1
                 placeholders[placeholder] = '\n'.join(block_lines)
                 result.append(placeholder)
                 continue
-
         result.append(line)
         i += 1
-
     return '\n'.join(result), placeholders
 
 
@@ -108,11 +84,7 @@ def restore_code_blocks(text: str, placeholders: Dict[str, str]) -> str:
     if not placeholders:
         return text
     pattern = re.compile(r'__CODE_BLOCK_\d+__')
-
-    def replacer(match):
-        return placeholders.get(match.group(0), match.group(0))
-
-    return pattern.sub(replacer, text)
+    return pattern.sub(lambda m: placeholders.get(m.group(0), m.group(0)), text)
 
 
 # ----------------------------------------------------------------------
@@ -120,53 +92,52 @@ def restore_code_blocks(text: str, placeholders: Dict[str, str]) -> str:
 # ----------------------------------------------------------------------
 
 def clean_heading(text: str) -> str:
-    """Remove HTML tags and suffixes like (nightly build only) from heading text."""
+    """Remove HTML tags and (nightly build only) from heading."""
     text = re.sub(r'<[^>]+>', '', text)
     text = re.sub(r'\s*\(nightly build only\)\s*', '', text, flags=re.IGNORECASE)
     return text.strip()
 
 
 # ----------------------------------------------------------------------
-# PARSE SECTIONS
+# PARSE SECTIONS (unified)
 # ----------------------------------------------------------------------
 
-def parse_sections(text: str) -> Dict[str, str]:
+def parse_sections(text: str, split_level: int = 2, keep_blocks: List[str] = None) -> Dict[str, str]:
     """
-    Parse sections by ## headings. Code blocks are hidden during parsing.
-    Special case: certain H1 sections keep all content as one block to avoid splitting.
+    Split document into sections by headings of the given level (default ##).
+    If keep_blocks is provided, those H1 sections are NOT split (they remain as one block).
+    Code blocks are hidden during parsing.
     """
+    if keep_blocks is None:
+        keep_blocks = []
     processed, placeholders = hide_code_blocks(text)
-
     sections = {}
     lines = processed.splitlines()
     current_heading = None
     current_content = []
-    in_special_section = False
+    in_keep_block = False
 
     for line in lines:
-        match_h1 = re.match(r'^(#{1})\s+(.*)$', line)
-        if match_h1:
+        # Detect H1
+        m_h1 = re.match(r'^(#{1})\s+(.*)$', line)
+        if m_h1:
             if current_heading is not None:
                 sections[current_heading] = '\n'.join(current_content).strip()
-            raw_heading = match_h1.group(2).strip()
-            heading = clean_heading(raw_heading)
+            raw = m_h1.group(2).strip()
+            heading = clean_heading(raw)
             current_heading = heading
             current_content = [line]
-
-            # These sections should be treated as a single block and not split by H2
-            in_special_section = (heading == "New state controller features" or
-                                  heading == "New triggers" or
-                                  heading == "New trigger redirections" or
-                                  heading == "Changed trigger redirections")
+            in_keep_block = heading in keep_blocks
             continue
 
-        if not in_special_section:
-            match_h2 = re.match(r'^(#{2})\s+(.*)$', line)
-            if match_h2:
+        # If not in a keep-block, split on the specified level
+        if not in_keep_block:
+            m = re.match(r'^(#{' + str(split_level) + r'})\s+(.*)$', line)
+            if m:
                 if current_heading is not None:
                     sections[current_heading] = '\n'.join(current_content).strip()
-                raw_heading = match_h2.group(2).strip()
-                heading = clean_heading(raw_heading)
+                raw = m.group(2).strip()
+                heading = clean_heading(raw)
                 current_heading = heading
                 current_content = [line]
                 continue
@@ -177,69 +148,28 @@ def parse_sections(text: str) -> Dict[str, str]:
     if current_heading is not None:
         sections[current_heading] = '\n'.join(current_content).strip()
 
-    for heading, content in sections.items():
-        sections[heading] = restore_code_blocks(content, placeholders)
-
+    # Restore code blocks
+    for k, v in sections.items():
+        sections[k] = restore_code_blocks(v, placeholders)
     return sections
 
 
 # ----------------------------------------------------------------------
-# PARSE SUB-SECTIONS
-# ----------------------------------------------------------------------
-
-def parse_sub_sections(text: str) -> Dict[str, str]:
-    """
-    Parse a block of text into sub-sections by ## headings.
-    Used for extracting individual triggers from the "New triggers" block.
-    """
-    sections = {}
-    lines = text.splitlines()
-    current_heading = None
-    current_content = []
-
-    for line in lines:
-        match = re.match(r'^(#{2})\s+(.*)$', line)
-        if match:
-            if current_heading is not None:
-                sections[current_heading] = '\n'.join(current_content).strip()
-            raw_heading = match.group(2).strip()
-            heading = clean_heading(raw_heading)
-            current_heading = heading
-            current_content = [line]
-        else:
-            if current_heading is not None:
-                current_content.append(line)
-
-    if current_heading is not None:
-        sections[current_heading] = '\n'.join(current_content).strip()
-
-    return sections
-
-
-# ----------------------------------------------------------------------
-# MERGE WITH SOURCE TAGGING
+# MERGE
 # ----------------------------------------------------------------------
 
 def merge_sections(sections_list: List[Tuple[str, Dict[str, str]]]) -> Dict[str, Dict[str, Set[str]]]:
-    """
-    Merge sections from multiple sources with source tracking.
-    When merging, separate the heading from the body to prevent tag bleeding.
-    """
     merged = {}
     for source_name, sections in sections_list:
         for heading, content in sections.items():
-            # Separate the heading from the body
             lines = content.splitlines()
-            heading_level = 2  # default
+            heading_level = 2
             body_lines = lines
-
             if lines and re.match(r'^#{1,6}\s+', lines[0]):
                 match = re.match(r'^(#{1,6})\s+', lines[0])
                 heading_level = len(match.group(1))
                 body_lines = lines[1:]
-
             body = '\n'.join(body_lines).strip()
-
             if heading in merged:
                 merged[heading]['content'] += '\n\n' + body
                 merged[heading]['sources'].add(source_name)
@@ -253,125 +183,65 @@ def merge_sections(sections_list: List[Tuple[str, Dict[str, str]]]) -> Dict[str,
     return merged
 
 
-def source_tag_str(sources: Set[str]) -> str:
-    """Format source tags as a comma-separated string."""
-    return ", ".join(sorted(sources))
-
-
 # ----------------------------------------------------------------------
-# HELPER TO TAG THE FIRST HEADING ONLY
+# TAG SECTIONS (generic)
 # ----------------------------------------------------------------------
 
 def tag_first_heading(content: str, suffix: str) -> str:
-    """
-    Tag only the first heading in the content (any level: H1-H6).
-    Leaves all other headings untouched.
-    """
+    """Tag only the first heading in the content block."""
     lines = content.splitlines()
-    if not lines:
-        return content
-
-    # Find the first line that contains a heading
     for i, line in enumerate(lines):
         m = re.match(r'^(#{1,6})\s+(.+)$', line)
         if m:
-            level = m.group(1)
-            heading_text = m.group(2).strip()
-            heading_text = clean_heading(heading_text)
-            if not re.search(rf'{re.escape(suffix)}$', heading_text):
-                heading_text = f"{heading_text} {suffix}"
-            lines[i] = f"{level} {heading_text}"
+            level, text = m.group(1), m.group(2).strip()
+            text = clean_heading(text)
+            if not re.search(rf'{re.escape(suffix)}$', text):
+                text = f"{text} {suffix}"
+            lines[i] = f"{level} {text}"
             break
-
     return '\n'.join(lines)
 
 
-# ----------------------------------------------------------------------
-# RENAME CHANGED SECTIONS
-# ----------------------------------------------------------------------
+def tag_sections(
+    sections: Dict[str, str],
+    suffix: str,
+    skip_names: List[str] = None,
+    replace_words: List[str] = None
+) -> Dict[str, str]:
+    """
+    Generic tagging:
+    - If heading contains a word from replace_words, replace it with suffix.
+    - Otherwise, append suffix.
+    - Tags only the first heading in the content.
+    - skip_names: headings to leave unchanged.
+    """
+    if skip_names is None:
+        skip_names = []
+    if replace_words is None:
+        replace_words = ["parameters", "triggers"]
 
-def rename_changed_sections(sections: Dict[str, str], suffix: str = "(changed)") -> Dict[str, str]:
-    """
-    Rename sections from the changed page:
-    - For any section, tag the first heading (block header) and the dict key.
-    - Leaves all other headings inside the block untouched.
-    """
-    renamed = {}
-    tag_word = suffix.strip('()')  # "changed"
+    tagged = {}
     for name, content in sections.items():
-        # If name already contains the tag word, keep it as-is
-        if re.search(rf'\b{re.escape(tag_word)}\b', name, re.IGNORECASE):
-            renamed[name] = content
+        # Skip if in skip list or already tagged
+        if name in skip_names or re.search(r'\((old|changed|new)\)$', name):
+            tagged[name] = content
             continue
 
-        # Determine new heading name
-        if re.search(r'(?i)\b(parameters|triggers)\b', name):
-            new_name = re.sub(r'(?i)\s*(parameters|triggers)\s*', f' {suffix} ', name).strip()
-            new_name = re.sub(r'\s+', ' ', new_name).strip()
+        # Determine new name
+        new_name = name
+        if any(re.search(rf'\b{re.escape(w)}\b', name, re.IGNORECASE) for w in replace_words):
+            # Replace the first matched word with suffix
+            for w in replace_words:
+                if re.search(rf'\b{re.escape(w)}\b', name, re.IGNORECASE):
+                    new_name = re.sub(rf'(?i)\b{re.escape(w)}\b', suffix, name)
+                    break
         else:
             new_name = f"{name} {suffix}"
 
-        # Tag only the first heading inside the content
-        content = tag_first_heading(content, suffix)
+        # Clean up spacing
+        new_name = re.sub(r'\s+', ' ', new_name).strip()
 
-        renamed[new_name] = content
-
-    return renamed
-
-
-# ----------------------------------------------------------------------
-# TAG OLD AND NEW SECTIONS
-# ----------------------------------------------------------------------
-
-def tag_old_sections(sections: Dict[str, str], suffix: str = "(old)") -> Dict[str, str]:
-    """
-    Tag M.U.G.E.N sections with (old) suffix.
-    Tags the first heading (block header) and the dict key.
-    Leaves all other headings inside the block untouched.
-    Skips "About controllers" to keep it untagged.
-    """
-    tagged = {}
-    for name, content in sections.items():
-        # Skip "About controllers" and other special sections that we want to keep as-is
-        if name in ("About controllers", "New trigger redirections", "Changed trigger redirections", "New triggers"):
-            tagged[name] = content
-            continue
-
-        # If already has a suffix, keep
-        if re.search(r'\((old|changed|new)\)$', name):
-            tagged[name] = content
-            continue
-
-        new_name = f"{name} {suffix}"
-        # Tag only the first heading inside the content
-        content = tag_first_heading(content, suffix)
-
-        tagged[new_name] = content
-
-    return tagged
-
-
-def tag_new_sections(sections: Dict[str, str], suffix: str = "(new)") -> Dict[str, str]:
-    """
-    Tag Ikemen GO new sections with (new) suffix.
-    Tags the first heading (block header) and the dict key.
-    Leaves all other headings inside the block untouched.
-    Skips redirection sections.
-    """
-    tagged = {}
-    for name, content in sections.items():
-        # Skip redirection sections entirely
-        if name in ("New trigger redirections", "Changed trigger redirections"):
-            tagged[name] = content
-            continue
-
-        # If already has a suffix, keep
-        if re.search(r'\((old|changed|new)\)$', name):
-            tagged[name] = content
-            continue
-
-        new_name = f"{name} {suffix}"
-        # Tag only the first heading inside the content
+        # Tag the first heading in content
         content = tag_first_heading(content, suffix)
 
         tagged[new_name] = content
@@ -380,78 +250,41 @@ def tag_new_sections(sections: Dict[str, str], suffix: str = "(new)") -> Dict[st
 
 
 # ----------------------------------------------------------------------
-# SLUG GENERATION (GitHub-compatible)
+# SLUG / SORT / TOC
 # ----------------------------------------------------------------------
 
 def slugify(text: str) -> str:
-    """
-    Generate a GitHub-style anchor slug from a heading.
-    Converts to lowercase, replaces spaces with hyphens,
-    removes non-alphanumeric characters (except hyphens).
-    """
-    slug = text.lower()
-    slug = slug.replace(' ', '-')
+    slug = text.lower().replace(' ', '-')
     slug = re.sub(r'[^a-z0-9-]', '', slug)
-    slug = re.sub(r'-+', '-', slug)
-    slug = slug.strip('-')
-    if not slug:
-        slug = f"section-{hash(text) % 1000000}"
-    return slug
+    slug = re.sub(r'-+', '-', slug).strip('-')
+    return slug or f"section-{hash(text) % 1000000}"
 
-
-# ----------------------------------------------------------------------
-# SORT KEY HELPERS
-# ----------------------------------------------------------------------
 
 def get_sort_key(name: str) -> tuple:
-    """
-    Sort key for sections: primary = base name (without tag),
-    secondary = tag priority (old=0, changed=1, new=2).
-    Sections without a tag come after all tagged ones.
-    """
     tag_match = re.search(r'\((old|changed|new)\)$', name)
     if tag_match:
         tag = tag_match.group(1)
-        base_name = re.sub(r'\s*\((old|changed|new)\)$', '', name).strip()
-        tag_priority = {'old': 0, 'changed': 1, 'new': 2}.get(tag, 99)
+        base = re.sub(r'\s*\((old|changed|new)\)$', '', name).strip()
+        priority = {'old': 0, 'changed': 1, 'new': 2}.get(tag, 99)
     else:
-        base_name = name
-        tag_priority = 99
-    return (base_name.lower(), tag_priority)
+        base, priority = name, 99
+    return (base.lower(), priority)
 
-
-# ----------------------------------------------------------------------
-# TOC GENERATION (Simple Markdown List)
-# ----------------------------------------------------------------------
 
 def generate_toc_from_sections(merged: Dict[str, Dict[str, Set[str]]], sections_to_skip: List[str] = None) -> str:
-    """
-    Generate a table of contents from section headings.
-    Uses slugify for robust anchor links.
-    Sorted by base name, then tag priority.
-    """
     if sections_to_skip is None:
         sections_to_skip = []
-
     items = []
     for name in sorted(merged.keys(), key=get_sort_key):
         if name in sections_to_skip:
             continue
-        clean_name = clean_heading(name)
-        if not clean_name:
-            continue
-        slug = slugify(clean_name)
-        items.append(f"- [{clean_name}](#{slug})")
+        clean = clean_heading(name)
+        if clean:
+            items.append(f"- [{clean}](#{slugify(clean)})")
+    return "\n".join(items)
 
-    return "\n".join(items) if items else ""
-
-
-# ----------------------------------------------------------------------
-# OUTPUT
-# ----------------------------------------------------------------------
 
 def strip_source_tag(name: str) -> str:
-    """Remove any trailing (old), (changed), or (new) suffix."""
     return re.sub(r'\s*\((old|changed|new)\)$', '', name).strip()
 
 
@@ -461,12 +294,6 @@ def output_merged(
     sections_to_skip: List[str] = None,
     top_sections: List[str] = None
 ) -> str:
-    """
-    Output the merged documentation with:
-    - Table of contents (first)
-    - Top sections (moved after TOC, headings kept)
-    - A "# State Controller Reference" heading before the alphabetical list
-    """
     if sections_to_skip is None:
         sections_to_skip = []
     if top_sections is None:
@@ -474,74 +301,53 @@ def output_merged(
 
     lines = [f"# {title}", ""]
 
-    # Helper to strip tag for matching
-    def strip_source_tag(name: str) -> str:
-        return re.sub(r'\s*\((old|changed|new)\)$', '', name).strip()
-
-    # Identify top sections
-    top_keys_to_move = {}
-    for top_key in top_sections:
+    # Find top sections (tag‑insensitive)
+    top_keys = {}
+    for top in top_sections:
         for k in merged.keys():
-            if strip_source_tag(k).lower() == top_key.lower():
-                top_keys_to_move[top_key] = k
+            if strip_source_tag(k).lower() == top.lower():
+                top_keys[top] = k
                 break
 
-    # Generate TOC
-    skip_for_toc = list(set(sections_to_skip) | set(top_keys_to_move.values()))
-    toc = generate_toc_from_sections(merged, skip_for_toc)
+    # TOC (skip top sections)
+    toc_skip = list(set(sections_to_skip) | set(top_keys.values()))
+    toc = generate_toc_from_sections(merged, toc_skip)
     if toc:
-        lines.append("## Table of Contents")
-        lines.append("")
-        lines.append(toc)
-        lines.append("")
-        lines.append("---")
-        lines.append("")
+        lines.extend(["## Table of Contents", "", toc, "", "---", ""])
 
-    # Output top sections
-    for top_key in top_sections:
-        actual_key = top_keys_to_move.get(top_key)
-        if actual_key and actual_key in merged:
-            top_data = merged.pop(actual_key)
-            top_content = top_data['content']
-            top_level = top_data.get('level', 2)
-
-            top_content = re.sub(r'<a[^>]+>', '', top_content)
-            top_content = re.sub(r'</a>', '', top_content)
-            clean_top = clean_heading(actual_key)
-
-            lines.append(f"{'#' * top_level} {clean_top}")
+    # Output top sections in requested order
+    for top in top_sections:
+        key = top_keys.get(top)
+        if key and key in merged:
+            data = merged.pop(key)
+            content = data['content']
+            level = data.get('level', 2)
+            content = re.sub(r'<a[^>]+>', '', content)
+            content = re.sub(r'</a>', '', content)
+            clean = clean_heading(key)
+            lines.append(f"{'#' * level} {clean}")
             lines.append("")
-            if top_content.strip():
-                lines.append(top_content)
+            if content.strip():
+                lines.append(content)
                 lines.append("")
             lines.append("---")
             lines.append("")
 
-    # ---------------------------------------------------------
-    # 4. Output remaining sections sorted by base name, then tag
-    #    with a "# State Controller Reference" heading before the list
-    # ---------------------------------------------------------
-    remaining = [name for name in merged.keys() if name not in sections_to_skip and merged[name]['content'].strip()]
+    # Remaining sections with heading before list
+    remaining = [n for n in merged.keys() if n not in sections_to_skip and merged[n]['content'].strip()]
     if remaining:
         lines.append("# State Controller Reference")
         lines.append("")
 
     for name in sorted(merged.keys(), key=get_sort_key):
-        if name in sections_to_skip:
+        if name in sections_to_skip or not merged[name]['content'].strip():
             continue
-        if not merged[name]['content'].strip():
-            continue
-
         data = merged[name]
-        content = data['content']
-        level = data.get('level', 2)
-
-        content = re.sub(r'<a[^>]+>', '', content)
+        content = re.sub(r'<a[^>]+>', '', data['content'])
         content = re.sub(r'</a>', '', content)
-
-        clean_name = clean_heading(name)
-
-        lines.append(f"{'#' * level} {clean_name}")
+        level = data.get('level', 2)
+        clean = clean_heading(name)
+        lines.append(f"{'#' * level} {clean}")
         lines.append("")
         if content.strip():
             lines.append(content)
