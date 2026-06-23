@@ -2,7 +2,6 @@
 
 ## Table of Contents
 
-- [About Controllers (old)](#about-controllers-old)
 - [AfterImage (old)](#afterimage-old)
 - [AfterImage (changed)](#afterimage-changed)
 - [AfterImageTime (old)](#afterimagetime-old)
@@ -106,7 +105,6 @@
 - [ModifyStageVar (new)](#modifystagevar-new)
 - [ModifyText (nighty build only) (new)](#modifytext-nighty-build-only-new)
 - [MoveHitReset (old)](#movehitreset-old)
-- [New state controller features (new)](#new-state-controller-features-new)
 - [New state controllers (new)](#new-state-controllers-new)
 - [NotHitBy (old)](#nothitby-old)
 - [NotHitBy (changed)](#nothitby-changed)
@@ -205,13 +203,63 @@
 
 ---
 
-## About Controllers (old)
+# About Controllers (old)
 
 All state controllers have two optional parameters, `persistent` and `ignorehitpause`. These must be set to integer constants.  
 Unless otherwise specified, any other numeric state controller parameter can be specified with an arithmetic expression.  
 In all cases, if setting a parameter with an expression, you should be careful that the expression does not evaluate to bottom, as in this case the parameter will be set to `0`.
 
 ---
+
+# New state controller features (new)
+
+Both new and old state controllers can now take advantage of some global new features.
+
+
+## fightfx actions
+
+All the remaining CNS parameters used to assign character actions that didn't support the `F` prefix (*[Statedef]*, *ChangeState*, *SelfState*, *ChangeAnim*, *ChangeAnim2*, *Projectile*) have access to loading animations from `fightfx.air`. The implementation is the same as in the *Explod* anim parameter.  
+
+```ini
+[Statedef 1000]
+anim = F 300
+```
+
+
+## RedirectID
+
+This feature can be utilized with all state controllers, including legacy ones. It is an optional parameter that sends the execution of the state controller to the player with the designated PlayerID. Unlike custom states, this parameter allows interfering with a player's behavior without putting them in another player's states.
+
+For state controllers that normally stop state execution (ChangeState and SelfState), redirecting to an ID different from the owner will not stop the execution of the current state code.
+
+Example of a poison effect that reduces life, applied without touching the opponent:
+
+```ini
+[State -2, Poison]
+type = LifeAdd
+trigger1 = <Is the enemy posioned? trigger>
+value = -1
+kill = 0
+RedirectID = <Enemy id here>
+```
+
+Example of increasing a team leader's map, regardless of who is running it, if leader's map is < 10.
+
+```ini
+[State Test]
+type = MapAdd
+trigger1 = Player(TeamLeader), Map(SomeLeaderMap) < 10
+Map = "SomeLeaderMap"
+value = 1
+RedirectID = Player(TeamLeader), ID
+```
+
+Due to limitations in how some logic must be handled, certain state controllers may not work with RedirectID. Usually because of the order the players are processed in.  
+TODO: list of sctrls that can't be redirected.
+
+---
+
+# State Controller Reference
 
 ## AfterImage (old)
 
@@ -5063,54 +5111,6 @@ none
 **Example:**  
   
 none
-
----
-
-## New state controller features (new)
-
-Both new and old state controllers can now take advantage of some global new features.
-
-
-## fightfx actions
-
-All the remaining CNS parameters used to assign character actions that didn't support the `F` prefix (*[Statedef]*, *ChangeState*, *SelfState*, *ChangeAnim*, *ChangeAnim2*, *Projectile*) have access to loading animations from `fightfx.air`. The implementation is the same as in the *Explod* anim parameter.  
-
-```ini
-[Statedef 1000]
-anim = F 300
-```
-
-
-## RedirectID
-
-This feature can be utilized with all state controllers, including legacy ones. It is an optional parameter that sends the execution of the state controller to the player with the designated PlayerID. Unlike custom states, this parameter allows interfering with a player's behavior without putting them in another player's states.
-
-For state controllers that normally stop state execution (ChangeState and SelfState), redirecting to an ID different from the owner will not stop the execution of the current state code.
-
-Example of a poison effect that reduces life, applied without touching the opponent:
-
-```ini
-[State -2, Poison]
-type = LifeAdd
-trigger1 = <Is the enemy posioned? trigger>
-value = -1
-kill = 0
-RedirectID = <Enemy id here>
-```
-
-Example of increasing a team leader's map, regardless of who is running it, if leader's map is < 10.
-
-```ini
-[State Test]
-type = MapAdd
-trigger1 = Player(TeamLeader), Map(SomeLeaderMap) < 10
-Map = "SomeLeaderMap"
-value = 1
-RedirectID = Player(TeamLeader), ID
-```
-
-Due to limitations in how some logic must be handled, certain state controllers may not work with RedirectID. Usually because of the order the players are processed in.  
-TODO: list of sctrls that can't be redirected.
 
 ---
 

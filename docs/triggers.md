@@ -152,6 +152,7 @@
 - [MoveType (old)](#movetype-old)
 - [MugenVersion (new)](#mugenversion-new)
 - [Name (old)](#name-old)
+- [New (new)](#new-new)
 - [NumEnemy (old)](#numenemy-old)
 - [NumExplod (old)](#numexplod-old)
 - [NumHelper (old)](#numhelper-old)
@@ -277,6 +278,8 @@
 - [ZoomVar (new)](#zoomvar-new)
 
 ---
+
+# State Controller Reference
 
 ## Abs (math) (old)
 
