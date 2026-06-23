@@ -38,7 +38,7 @@ jobs:
           cat > docs/index.md << 'EOF'
           # Ikemen GO Merged Documentation
 
-          The documentation in this page is obtained by automatically merging the Ikemen GO wiki with the Mugn 1.1 documentation.
+          The documentation in this page is obtained by automatically merging the Ikemen GO wiki with the Mugen 1.1 documentation.
 
           ## Pages
 
@@ -48,10 +48,10 @@ jobs:
 
           ---
 
-          *Updated daily via GitHub Actions.*  # Note spaces
+          *Updated daily via GitHub Actions.*  
           EOF
           
-          # Append the current UTC timestamp to the bottom of the file
+          # Append the current GMT timestamp to the bottom of the file
           echo "*Last updated: $(date -u +'%Y-%m-%d %H:%M:%S GMT')*" >> docs/index.md
 
       - name: Commit and push changes
