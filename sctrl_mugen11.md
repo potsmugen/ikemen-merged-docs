@@ -1,7 +1,8 @@
 # About Controllers  
   
-All state controllers have two optional parameters, `persistent` and `ignorehitpause`. These must be set to integer constants. Unless otherwise specified, any other numeric state controller parameter can be specified with an arithmetic expression.  
-In all cases, if setting a parameter with an expression, you should be careful that the expression does not evaluate to bottom, as in this case the parameter will be set to 0.  
+All state controllers have two optional parameters, `persistent` and `ignorehitpause`. These must be set to integer constants.  
+Unless otherwise specified, any other numeric state controller parameter can be specified with an arithmetic expression.  
+In all cases, if setting a parameter with an expression, you should be careful that the expression does not evaluate to bottom, as in this case the parameter will be set to `0`.  
   
 # Controller Reference  
   
