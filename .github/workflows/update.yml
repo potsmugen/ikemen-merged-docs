@@ -44,15 +44,15 @@ jobs:
 
           - [State Controllers (SCTRL)](sctrl)
           - [Triggers](triggers)
-          - [Trigger Redirections](redirections)
+          - [Redirections](redirections)
 
           ---
 
           *Updated daily via GitHub Actions.*  
           EOF
           
-          # Append the current GMT timestamp to the bottom of the file
-          echo "*Last updated: $(date -u +'%Y-%m-%d %H:%M:%S GMT')*" >> docs/index.md
+          # Append the current UTC timestamp to the bottom of the file
+          echo "*Last updated: $(date -u +'%Y-%m-%d %H:%M:%S UTC')*" >> docs/index.md
 
       - name: Commit and push changes
         run: |
