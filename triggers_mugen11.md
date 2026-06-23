@@ -1,12 +1,3 @@
-# About Triggers  
-This is an alphabetical index of function-type triggers. For details on use of function-type triggers in expressions, see the expression documentation. Unless otherwise specified, we will use P1 to represent the player who is evaluating the trigger, and P2 to represent his opponent (usually the closest opponent when in team mode).  
-Some triggers are nonstandard and cannot take expressions as their arguments. These are marked with a (`*`) in the index.  
-Some triggers are deprecated; these are marked with a (`**`). Use of these triggers is not encouraged, as support for them may be removed in future versions of the engine.  
-Old-style triggers, marked (`***`), appear only in clauses of the form (trigger) (relational operator) (value). See section 8 of exp.doc for more details.  
-Triggers used for math are marked with (math).  
-For all triggers, bottom will be returned if the trigger is redirected to a nonexistent destination, or if the ID number for the redirection evaluates to bottom.  
-This is not listed in the error conditions for each trigger.  
-
 ## Abs (math)
 Computes the absolute value of its argument.  
   
@@ -107,7 +98,7 @@ trigger1 = Anim = 200
 ```  
 
   
-## AnimElem(`*,***`)
+## AnimElem
 Gets the animation-time elapsed since the start of a specified element of the current animation action. Useful for synchronizing events to elements of an animation action.  
 (reminder: first element of an action is element 1, not 0)  
 AnimElemTime has similar functionality to AnimElem, but can take expressions as its argument.  
@@ -328,7 +319,7 @@ value = atan(1)
 ```  
 
   
-## AuthorName(`*,***`)
+## AuthorName
 Returns the player's author's name (specified in the .DEF file). This may also be useful for telling apart characters with the same name but different authors.  
   
 **Format:**  
@@ -520,7 +511,7 @@ value = ceil(-2)
 ```  
 
   
-## Command (`*,***`)
+## Command 
 Triggers if the user has input the specified command.  
   
 **Format:**  
@@ -576,7 +567,7 @@ value = Cond(var(3),1,2)
 ```  
 
   
-## Const (`*`)
+## Const
 Returns the value of one of the player's constants.  
   
 **Format:**  
@@ -1078,7 +1069,7 @@ trigger1 = ScreenPos X >= GameWidth / 2
 ```  
 
   
-## GetHitVar(`*`)
+## GetHitVar
 When the player is in a gethit state, returns the value of the specified hit parameter.  
   
 **Format:**  
@@ -1185,7 +1176,7 @@ trigger1 = HitCount > 8
 ```  
 
   
-## HitDefAttr(`*,***`)
+## HitDefAttr
 Checks the attribute parameter of the player's currently-active HitDef.  
 If the player is not currently attacking, then no parameters will match.  
 Can be used for simple move-interrupts from weaker to stronger attacks in the CMD file.  
@@ -1697,7 +1688,7 @@ trigger1 = MoveHit
 ```  
 
   
-## MoveType(`*,***`)
+## MoveType
 MoveType gives the player's move-type. Refer to the section  
 on StateDef in the CNS documentation for more details on MoveType.  
 Useful for "move interrupts" in the CMD file.  
@@ -1748,7 +1739,7 @@ trigger1 = MoveReversed
 ```  
 
   
-## Name(`*,***`)
+## Name
 Returns the player's name (the internal name specified in the .DEF file, which may not be the same as the displayed name).  
   
 **Format:**  
@@ -1937,7 +1928,7 @@ Examples:
 ```  
 
   
-## P1Name(`*,***`)
+## P1Name
 This is an alias for the Name trigger. See "Name".  
 
   
@@ -2015,7 +2006,7 @@ Same as Life, except that this returns the opponent's life.
 Same as MoveType, except that this returns the opponent's movetype.  
 
   
-## P2Name(`*,***`)
+## P2Name
 Same as P1Name, except that this returns the name of the primary opponent (the opponent in versus mode, or the first opponent in team mode).  
 If there is no primary opponent, then p2name = "name" returns 0 no  
 matter what name is specified. Similarly, p2name != "name" will return 1 no matter what name is specified.  
@@ -2037,12 +2028,12 @@ Returns bottom if p2 does not exist. (For instance, if the round
 has been won.)
 
   
-## P3Name(`*,***`)
+## P3Name
 Same as P1Name, except that this returns the name of the player's teammate, if present.  
 If there is no teammate, then p3name = "name" returns 0 no matter what name is specified. Similarly, p3name != "name" will return 1 no matter what name is specified.  
 
   
-## P4Name(`*,***`)
+## P4Name
 Same as P1Name, except that this returns the name of the secondary opponent, if present.  
 If there is no secondary opponent, then p4name = "name" returns 0 no matter what name is specified. Similarly, p4name != "name" will return 1 no matter what name is specified.  
 
@@ -2259,7 +2250,7 @@ Examples:
 ```  
 
   
-## ProjContact(`*,***`)
+## ProjContact
 This trigger takes an optional ID number as a suffix. If the ID number is omitted, ProjContact returns true if any of the player's projectiles either successfully hit the opponent or were guarded by the opponent. When the ID number is specified, ProjContact returns true only if any of the player's projectiles with the specified ID number either successfully hit the opponent or was guarded.  
   
 **Format:**  
@@ -2331,7 +2322,7 @@ Examples:
 ```  
 
   
-## ProjGuarded(`*,***`)
+## ProjGuarded
 This trigger takes an optional ID number as a suffix. If the ID number is omitted, ProjGuarded returns true if any of the player's projectiles were guarded by the opponent. When the ID number is specified, ProjGuarded returns true only if one of the player's projectiles with the specified ID number was guarded by the opponent.  
   
 **Format:**  
@@ -2402,7 +2393,7 @@ Examples:
 ```  
 
   
-## ProjHit(`*,***`)
+## ProjHit
 This trigger takes an optional positive ID number as a suffix. If the ID number is omitted, ProjHit returns true if any of the player's projectiles successfully hit the opponent. When the ID number is specified, ProjHit returns true only if one of the player's projectiles with the specified ID number successfully hit the opponent.  
   
 **Format:**  
@@ -2771,7 +2762,7 @@ trigger1 = StateType != A
 ```  
 
   
-## StageVar(`*,***`)
+## StageVar
 Returns information about the stage.  
 A limited number of parameters are supported.  
   
@@ -2887,7 +2878,7 @@ value = tan(pi/4)
 ```  
 
   
-## TeamMode(`*,***`)
+## TeamMode
 TeamMode gives the current mode of play for the player's team.  
   
 **Format:**  
@@ -2975,7 +2966,7 @@ trigger1 = Time = 2
 ```  
 
   
-## TimeMod(`*,**,***`)
+## TimeMod
 Returns the remainder when the state-time of the player is divided by the specified value.  
 The % operator subsumes the functionality of TimeMod, so it is recommended that you use % instead.  
   
