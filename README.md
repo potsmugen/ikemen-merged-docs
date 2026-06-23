@@ -8,11 +8,10 @@ Automatically generated merged documentation for Ikemen GO.
 
 ## Pages
 
+- [Home](https://potsmugen.github.io/ikemen-merged-docs/)
 - [State Controllers](https://potsmugen.github.io/ikemen-merged-docs/sctrl)
 - [Triggers](https://potsmugen.github.io/ikemen-merged-docs/triggers)
-- [Trigger Redirections](https://potsmugen.github.io/ikemen-merged-docs/redirections)
-
-**[View on GitHub Pages](https://potsmugen.github.io/ikemen-merged-docs/)**
+- [Redirections](https://potsmugen.github.io/ikemen-merged-docs/redirections)
 
 ---
 
@@ -24,10 +23,10 @@ A GitHub Action runs daily, fetches the latest Ikemen GO wiki, merges it with a 
 
 ## Sources
 
-M.U.G.E.N 1.1 documentation:
-https://www.elecbyte.com/mugendocs-11b1/sctrls.html
-Copyright (c) 1999-2013 Elecbyte. All rights reserved.
-
-Ikemen GO documentation:
-https://github.com/ikemen-engine/Ikemen-GO/wiki
-Copyright (c) Ikemen GO contributors.
+M.U.G.E.N 1.1 documentation:  
+https://www.elecbyte.com/mugendocs-11b1/sctrls.html  
+Copyright (c) 1999-2013 Elecbyte. All rights reserved.  
+  
+Ikemen GO documentation:  
+https://github.com/ikemen-engine/Ikemen-GO/wiki  
+Copyright (c) Ikemen GO contributors.  
