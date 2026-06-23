@@ -43,12 +43,12 @@
 - [ClsnOverlap (nightly build only)](#clsnoverlap-nightly-build-only)
 - [ClsnVar (nightly build only)](#clsnvar-nightly-build-only)
 - [ComboCount](#combocount)
-- [Command](#command)
 - [Command (`*,***`)](#command)
+- [Command (changed)](#command-changed)
 - [Cond (math)](#cond-math)
 - [ConsecutiveWins](#consecutivewins)
-- [Const](#const)
 - [Const (`*`)](#const)
+- [Const (changed)](#const-changed)
 - [Const1080p (nightly build only)](#const1080p-nightly-build-only)
 - [Const240p](#const240p)
 - [Const480p](#const480p)
@@ -82,12 +82,14 @@
 - [FrontEdgeDist](#frontedgedist)
 - [FVar](#fvar)
 - [GameHeight](#gameheight)
+- [GameHeight (changed)](#gameheight-changed)
 - [GameMode](#gamemode)
 - [GameOption (nightly build only)](#gameoption-nightly-build-only)
 - [GameTime](#gametime)
 - [GameVar (nightly build only)](#gamevar-nightly-build-only)
 - [GameWidth](#gamewidth)
-- [GetHitVar](#gethitvar)
+- [GameWidth (changed)](#gamewidth-changed)
+- [GetHitVar (changed)](#gethitvar-changed)
 - [GetHitVar(`*`)](#gethitvar)
 - [GroundAngle](#groundangle)
 - [GroundLevel (nightly build only)](#groundlevel-nightly-build-only)
@@ -95,7 +97,6 @@
 - [GuardCount](#guardcount)
 - [GuardPoints](#guardpoints)
 - [GuardPointsMax](#guardpointsmax)
-- [Helper (nightly build only)](#helper-nightly-build-only)
 - [HelperIndexExist(n) (nightly build only)](#helperindexexistn-nightly-build-only)
 - [HelperName](#helpername)
 - [HelperVar (nightly build only)](#helpervar-nightly-build-only)
@@ -122,7 +123,7 @@
 - [IsAsserted](#isasserted)
 - [IsClsnProxy (nightly build only)](#isclsnproxy-nightly-build-only)
 - [IsHelper](#ishelper)
-- [IsHelper (nightly build only)](#ishelper-nightly-build-only)
+- [IsHelper (nightly build only) (changed)](#ishelper-nightly-build-only-changed)
 - [IsHomeTeam](#ishometeam)
 - [IsHost](#ishost)
 - [JugglePoints (nightly build only)](#jugglepoints-nightly-build-only)
@@ -167,9 +168,9 @@
 - [OutroState (nightly build only)](#outrostate-nightly-build-only)
 - [P1Name(`*,***`)](#p1name)
 - [P2BodyDist](#p2bodydist)
-- [P2BodyDist (nightly build only)](#p2bodydist-nightly-build-only)
+- [P2BodyDist (nightly build only) (changed)](#p2bodydist-nightly-build-only-changed)
 - [P2Dist](#p2dist)
-- [P2Dist Z (nightly build only)](#p2dist-z-nightly-build-only)
+- [P2Dist Z (nightly build only) (changed)](#p2dist-z-nightly-build-only-changed)
 - [P2Life](#p2life)
 - [P2MoveType](#p2movetype)
 - [P2Name(`*,***`)](#p2name)
@@ -181,7 +182,7 @@
 - [PalFXVar (nightly build only)](#palfxvar-nightly-build-only)
 - [PalNo](#palno)
 - [ParentDist](#parentdist)
-- [ParentDist Z (nightly build only)](#parentdist-z-nightly-build-only)
+- [ParentDist Z (nightly build only) (changed)](#parentdist-z-nightly-build-only-changed)
 - [ParentExist (nightly build only)](#parentexist-nightly-build-only)
 - [PauseTime](#pausetime)
 - [Physics](#physics)
@@ -215,12 +216,12 @@
 - [ReversalDefAttr](#reversaldefattr)
 - [RightEdge](#rightedge)
 - [RootDist](#rootdist)
-- [RootDist Z (nightly build only)](#rootdist-z-nightly-build-only)
+- [RootDist Z (nightly build only) (changed)](#rootdist-z-nightly-build-only-changed)
 - [Round (math)](#round-math)
 - [RoundNo](#roundno)
 - [RoundsExisted](#roundsexisted)
 - [RoundState](#roundstate)
-- [RoundState (nightly build only)](#roundstate-nightly-build-only)
+- [RoundState (nightly build only) (changed)](#roundstate-nightly-build-only-changed)
 - [RoundsWon (nightly build only)](#roundswon-nightly-build-only)
 - [RoundTime (nightly build only)](#roundtime-nightly-build-only)
 - [RunOrder (nightly build only)](#runorder-nightly-build-only)
@@ -243,7 +244,7 @@
 - [StageConst](#stageconst)
 - [StageFrontEdgeDist](#stagefrontedgedist)
 - [StageTime](#stagetime)
-- [StageVar](#stagevar)
+- [StageVar (changed)](#stagevar-changed)
 - [StageVar(`*,***`)](#stagevar)
 - [Standby](#standby)
 - [StateNo](#stateno)
@@ -251,9 +252,8 @@
 - [SysFVar](#sysfvar)
 - [SysVar](#sysvar)
 - [Tan (math)](#tan-math)
-- [Target (nightly build only)](#target-nightly-build-only)
 - [TeamLeader](#teamleader)
-- [TeamMode = Tag](#teammode-tag)
+- [TeamMode = Tag (changed)](#teammode-tag-changed)
 - [TeamMode(`*,***`)](#teammode)
 - [TeamSide](#teamside)
 - [TeamSize](#teamsize)
@@ -1291,14 +1291,6 @@ trigger1 = ComboCount > 8
 
 ---
 
-## Command
-
-*Source: Ikemen GO (changed)*
-
-If a character has `ikemenversion`, when the `Command` trigger is redirected to another player, the engine will first check if the other player is performing its own command with the same name. If not, it'll check if it's performing the command from our own command list. Otherwise it will work like Mugen.
-
----
-
 ## Command (`*,***`)
 
 *Source: M.U.G.E.N 1.1*
@@ -1328,6 +1320,14 @@ Example:
 trigger1 = Command = "fireball motion"  
 ; True if the user inputs the command corresponding to the command name "fireball motion".  
 ```
+
+---
+
+## Command (changed)
+
+*Source: Ikemen GO (changed)*
+
+If a character has `ikemenversion`, when the `Command` trigger is redirected to another player, the engine will first check if the other player is performing its own command with the same name. If not, it'll check if it's performing the command from our own command list. Otherwise it will work like Mugen.
 
 ---
 
@@ -1382,89 +1382,6 @@ Returns number of matches won consecutively by this team side. The counter incre
 ```ini
 trigger1 = ConsecutiveWins > 0
 ```
-
----
-
-## Const
-
-*Source: Ikemen GO (changed)*
-
-The Const trigger can now also read Ikemen GO's [new constants](../Character-features/#cns_constants).
-
-### Const(constants)
-
-Returns the value of one of the player's constants from the [[Constants]](Character-features/#cns_constants) section.
-
-```ini
-[Constants]
-FireballState = 1000
-
-[State -1, Fireball]
-triggerall = NumHelper(Const(FireballState)) = 0
-```
-
-
-### data.dizzypoints
-
-Returns the value of the player's [Data] [dizzypoints](Character-features/#cns_data_dizzypoints) constant.
-
-### data.fall.defence_up
-
-Returns the value of the player's [Data] fall.defence_up constant.
-
-### data.guardpoints
-
-Returns the value of the player's [Data] [guardpoints](Character-features/#cns_data_guardpoints) constant.
-
-### data.guardsound.channel
-
-Returns the value of the player's [Data] [guardsound.channel](Character-features/#cns_data_guardsoundchannel) constant.
-
-### data.hitsound.channel
-
-Returns the value of the player's [Data] [hitsound.channel](Character-features/#cns_data_hitsoundchannel) constant.
-
-### size.height.crouch
-
-Returns the value of the player's [Size] [height.crouch](Character-features/#cns_size_height_crouch) constant.
-
-### size.height.air.top
-
-Returns the first value of the player's [Size] [height.air](Character-features/#cns_size_height_air) constant.
-
-### size.height.air.bottom
-
-Returns the second value of the player's [Size] [height.air](Character-features/#cns_size_height_air) constant.
-
-### size.height.down
-
-Returns the value of the player's [Size] [height.down](Character-features/#cns_size_height_down) constant.
-
-### velocity.air.gethit.ko.add
-
-Returns the value of the player's [Velocity] [air.gethit.ko.add](Character-features/#cns_velocity_airgethitkoadd) constant.
-* `velocity.air.gethit.ko.add.x`
-* `velocity.air.gethit.ko.add.y`
-* `velocity.air.gethit.ko.add.z`
-
-### velocity.air.gethit.ko.ymin
-
-Returns the value of the player's [Velocity] [air.gethit.ko.ymin](Character-features/#cns_velocity_airgethitkoymin) constant.
-
-### velocity.ground.gethit.ko.xmul
-
-Returns the value of the player's [Velocity] [ground.gethit.ko.xmul](Character-features/#cns_velocity_groundgethitkoxmul) constant.
-
-### velocity.ground.gethit.ko.add
-
-Returns the value of the player's [Velocity] [ground.gethit.ko.add](Character-features/#cns_velocity_groundgethitkoadd) constant.
-* `velocity.ground.gethit.ko.add.x`
-* `velocity.ground.gethit.ko.add.y`
-* `velocity.ground.gethit.ko.add.z`
-
-### velocity.ground.gethit.ko.ymin
-
-Returns the value of the player's [Velocity] [ground.gethit.ko.ymin](Character-features/#cns_velocity_groundgethitkoymin) constant.
 
 ---
 
@@ -1581,6 +1498,89 @@ Example:
 trigger1 = Const(velocity.walk.fwd.x) > 4  
 ; Triggers if the forward walking velocity is greater than 4.  
 ```
+
+---
+
+## Const (changed)
+
+*Source: Ikemen GO (changed)*
+
+The Const trigger can now also read Ikemen GO's [new constants](../Character-features/#cns_constants).
+
+### Const(constants)
+
+Returns the value of one of the player's constants from the [[Constants]](Character-features/#cns_constants) section.
+
+```ini
+[Constants]
+FireballState = 1000
+
+[State -1, Fireball]
+triggerall = NumHelper(Const(FireballState)) = 0
+```
+
+
+### data.dizzypoints
+
+Returns the value of the player's [Data] [dizzypoints](Character-features/#cns_data_dizzypoints) constant.
+
+### data.fall.defence_up
+
+Returns the value of the player's [Data] fall.defence_up constant.
+
+### data.guardpoints
+
+Returns the value of the player's [Data] [guardpoints](Character-features/#cns_data_guardpoints) constant.
+
+### data.guardsound.channel
+
+Returns the value of the player's [Data] [guardsound.channel](Character-features/#cns_data_guardsoundchannel) constant.
+
+### data.hitsound.channel
+
+Returns the value of the player's [Data] [hitsound.channel](Character-features/#cns_data_hitsoundchannel) constant.
+
+### size.height.crouch
+
+Returns the value of the player's [Size] [height.crouch](Character-features/#cns_size_height_crouch) constant.
+
+### size.height.air.top
+
+Returns the first value of the player's [Size] [height.air](Character-features/#cns_size_height_air) constant.
+
+### size.height.air.bottom
+
+Returns the second value of the player's [Size] [height.air](Character-features/#cns_size_height_air) constant.
+
+### size.height.down
+
+Returns the value of the player's [Size] [height.down](Character-features/#cns_size_height_down) constant.
+
+### velocity.air.gethit.ko.add
+
+Returns the value of the player's [Velocity] [air.gethit.ko.add](Character-features/#cns_velocity_airgethitkoadd) constant.
+* `velocity.air.gethit.ko.add.x`
+* `velocity.air.gethit.ko.add.y`
+* `velocity.air.gethit.ko.add.z`
+
+### velocity.air.gethit.ko.ymin
+
+Returns the value of the player's [Velocity] [air.gethit.ko.ymin](Character-features/#cns_velocity_airgethitkoymin) constant.
+
+### velocity.ground.gethit.ko.xmul
+
+Returns the value of the player's [Velocity] [ground.gethit.ko.xmul](Character-features/#cns_velocity_groundgethitkoxmul) constant.
+
+### velocity.ground.gethit.ko.add
+
+Returns the value of the player's [Velocity] [ground.gethit.ko.add](Character-features/#cns_velocity_groundgethitkoadd) constant.
+* `velocity.ground.gethit.ko.add.x`
+* `velocity.ground.gethit.ko.add.y`
+* `velocity.ground.gethit.ko.add.z`
+
+### velocity.ground.gethit.ko.ymin
+
+Returns the value of the player's [Velocity] [ground.gethit.ko.ymin](Character-features/#cns_velocity_groundgethitkoymin) constant.
 
 ---
 
@@ -2362,7 +2362,7 @@ trigger1 = FVar(5) = -1.23
 
 ## GameHeight
 
-*Source: Ikemen GO (changed), M.U.G.E.N 1.1*
+*Source: M.U.G.E.N 1.1*
 
 Returns the current height of the game space in the player's local coordinate space.  
 The game space is defined as the currently-visible area of the stage in which players interact.  
@@ -2390,6 +2390,12 @@ Example:
 trigger1 = ScreenPos Y < GameHeight / 2  
 ; Triggers if the player is above the center of the screen.  
 ```
+
+---
+
+## GameHeight (changed)
+
+*Source: Ikemen GO (changed)*
 
 If mugenVersion is specified as 1.0 in character's [[Info]](Character-features/#def_info) section, GameHeight returns the same value as ScreenHeight.
 
@@ -2522,7 +2528,7 @@ trigger2 = GameVar(introtime) = FightScreenVar(round.ctrl.time)
 
 ## GameWidth
 
-*Source: Ikemen GO (changed), M.U.G.E.N 1.1*
+*Source: M.U.G.E.N 1.1*
 
 Returns the current width of the game space in the player's local coordinate space.  
 The game space is defined as the currently-visible area of the stage in which players interact.  
@@ -2551,11 +2557,17 @@ trigger1 = ScreenPos X >= GameWidth / 2
 ; Triggers if the player is to the right of the center of the screen.  
 ```
 
+---
+
+## GameWidth (changed)
+
+*Source: Ikemen GO (changed)*
+
 If mugenVersion is specified as 1.0 in character's [[Info]](Character-features/#def_info) section, GameWidth returns the same value as ScreenWidth.
 
 ---
 
-## GetHitVar
+## GetHitVar (changed)
 
 *Source: Ikemen GO (changed)*
 
@@ -2969,21 +2981,6 @@ Returns the maximum amount of [guard points](Character-features/#guardpoints) th
 
 ```ini
 trigger1 = GuardPoints < GuardPointsMax / 2
-```
-
----
-
-## Helper (nightly build only)
-
-*Source: Ikemen GO (changed)*
-
-The `Helper` redirection now also accepts an optional index argument, through the new format `Helper(ID, index)`. Defaults to 0 (first one).  
-The old formats still work exactly the same.  
-
-Example:
-```ini
-trigger1 = NumHelper(1005) >= 2
-trigger1 = Helper(1005, 1), MoveType = A; The second helper with ID 1005
 ```
 
 ---
@@ -3692,7 +3689,7 @@ Examples:
 
 ---
 
-## IsHelper (nightly build only)
+## IsHelper (nightly build only) (changed)
 
 *Source: Ikemen GO (changed)*
 
@@ -4824,7 +4821,7 @@ trigger1 = P2BodyDist X < 30
 
 ---
 
-## P2BodyDist (nightly build only)
+## P2BodyDist (nightly build only) (changed)
 
 *Source: Ikemen GO (changed)*
 
@@ -4873,7 +4870,7 @@ trigger1 = P2Dist Y <= -12
 
 ---
 
-## P2Dist Z (nightly build only)
+## P2Dist Z (nightly build only) (changed)
 
 *Source: Ikemen GO (changed)*
 
@@ -5067,7 +5064,7 @@ trigger1 = ParentDist X != 0
 
 ---
 
-## ParentDist Z (nightly build only)
+## ParentDist Z (nightly build only) (changed)
 
 *Source: Ikemen GO (changed)*
 
@@ -6004,7 +6001,7 @@ trigger1 = RootDist X != 0
 
 ---
 
-## RootDist Z (nightly build only)
+## RootDist Z (nightly build only) (changed)
 
 *Source: Ikemen GO (changed)*
 
@@ -6122,7 +6119,7 @@ trigger1 = RoundState = 2
 
 ---
 
-## RoundState (nightly build only)
+## RoundState (nightly build only) (changed)
 
 *Source: Ikemen GO (changed)*
 
@@ -6611,7 +6608,7 @@ trigger1 = StageTime > 600
 
 ---
 
-## StageVar
+## StageVar (changed)
 
 *Source: Ikemen GO (changed)*
 
@@ -6834,21 +6831,6 @@ value = tan(pi/4)
 
 ---
 
-## Target (nightly build only)
-
-*Source: Ikemen GO (changed)*
-
-The `Target` redirection now also accepts an optional index argument, through the new format `Target(ID, index)`. Defaults to 0 (first one).  
-The old format still works exactly the same.  
-
-Example:
-```ini
-trigger1 = NumTarget >= 2
-trigger1 = Target(-1, 1), Alive; The second target with any ID
-```
-
----
-
 ## TeamLeader
 
 *Source: Ikemen GO (new)*
@@ -6872,7 +6854,7 @@ trigger1 = TeamLeader = PlayerNo
 
 ---
 
-## TeamMode = Tag
+## TeamMode = Tag (changed)
 
 *Source: Ikemen GO (changed)*
 

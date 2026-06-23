@@ -7,6 +7,7 @@
 - [enemyNear (M.U.G.E.N)](#enemynear-mugen)
 - [enemyNear(n) (M.U.G.E.N)](#enemynearn-mugen)
 - [helper (M.U.G.E.N)](#helper-mugen)
+- [Helper (nightly build only) (changed)](#helper-nightly-build-only-changed)
 - [helper(ID) (M.U.G.E.N)](#helperid-mugen)
 - [HelperIndex(n) (new)](#helperindexn-new)
 - [P2 (new)](#p2-new)
@@ -19,6 +20,7 @@
 - [root (M.U.G.E.N)](#root-mugen)
 - [StateOwner (new)](#stateowner-new)
 - [target (M.U.G.E.N)](#target-mugen)
+- [Target (nightly build only) (changed)](#target-nightly-build-only-changed)
 - [target(ID) (M.U.G.E.N)](#targetid-mugen)
 
 ---
@@ -65,6 +67,21 @@ The trigger is redirected to the n'th-nearest opponent.
 
 Redirects the trigger to the first helper found. See the related  
 trigger `NumHelper` in the trigger documentation.
+
+---
+
+## Helper (nightly build only) (changed)
+
+*Source: Ikemen GO (changed)*
+
+The `Helper` redirection now also accepts an optional index argument, through the new format `Helper(ID, index)`. Defaults to 0 (first one).  
+The old formats still work exactly the same.  
+
+Example:
+```ini
+trigger1 = NumHelper(1005) >= 2
+trigger1 = Helper(1005, 1), MoveType = A; The second helper with ID 1005
+```
 
 ---
 
@@ -217,6 +234,21 @@ trigger1 = StateOwner,AILevel
 *Source: M.U.G.E.N 1.1*
 
 Redirects the trigger to the first target found.
+
+---
+
+## Target (nightly build only) (changed)
+
+*Source: Ikemen GO (changed)*
+
+The `Target` redirection now also accepts an optional index argument, through the new format `Target(ID, index)`. Defaults to 0 (first one).  
+The old format still works exactly the same.  
+
+Example:
+```ini
+trigger1 = NumTarget >= 2
+trigger1 = Target(-1, 1), Alive; The second target with any ID
+```
 
 ---
 
