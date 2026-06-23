@@ -153,9 +153,9 @@ def parse_sections(text: str) -> Dict[str, str]:
 
             # These sections should be treated as a single block and not split by H2
             in_special_section = (heading == "New state controller features" or
-                                  heading == "Universal state controller features" or
                                   heading == "New triggers" or
-                                  heading == "New trigger redirections")
+                                  heading == "New trigger redirections" or
+                                  heading == "Changed trigger redirections")   # <--- ADDED
             continue
 
         if not in_special_section:
@@ -262,32 +262,39 @@ def source_tag_str(sources: Set[str]) -> str:
 
 def rename_changed_sections(sections: Dict[str, str], suffix: str = "(changed)") -> Dict[str, str]:
     """
-    Replace 'parameters' or 'triggers' with suffix in headings from the changed page.
+    Rename sections from the changed page:
+    - If heading contains 'parameters' or 'triggers', replace those words with the suffix
+      (e.g., 'Anim triggers' → 'Anim (changed)').
+    - Otherwise, append the suffix directly (e.g., 'command' → 'command (changed)').
     Also updates the heading line inside the content.
     """
     renamed = {}
     for name, content in sections.items():
-        # Skip special sections
-        if name in ("New state controller features", "New trigger redirections"):
+        # Skip special sections that should not be renamed
+        if name in ("New state controller features", "New trigger redirections", "Changed trigger redirections"):
             renamed[name] = content
             continue
 
-        # Check for both parameters and triggers
-        if "parameters" in name.lower() or "triggers" in name.lower():
+        # Determine new heading name
+        if re.search(r'(?i)\b(parameters|triggers)\b', name):
             new_name = re.sub(r'(?i)\s*(parameters|triggers)\s*', f' {suffix} ', name).strip()
             new_name = re.sub(r'\s+', ' ', new_name).strip()
-            renamed[new_name] = content
+        else:
+            new_name = f"{name} {suffix}"
 
-            # Also update the heading inside the content
-            content_lines = content.splitlines()
-            if content_lines and re.match(r'^#{1,6}\s+', content_lines[0]):
-                heading_text = re.sub(r'^#{1,6}\s+', '', content_lines[0])
+        renamed[new_name] = content
+
+        # Also update the heading line inside the content
+        content_lines = content.splitlines()
+        if content_lines and re.match(r'^#{1,6}\s+', content_lines[0]):
+            heading_text = re.sub(r'^#{1,6}\s+', '', content_lines[0])
+            if re.search(r'(?i)\b(parameters|triggers)\b', heading_text):
                 new_heading_text = re.sub(r'(?i)\s*(parameters|triggers)\s*', f' {suffix} ', heading_text).strip()
                 new_heading_text = re.sub(r'\s+', ' ', new_heading_text).strip()
-                content_lines[0] = f"## {new_heading_text}"
-                renamed[new_name] = '\n'.join(content_lines)
-        else:
-            renamed[name] = content
+            else:
+                new_heading_text = f"{heading_text} {suffix}"
+            content_lines[0] = f"## {new_heading_text}"
+            renamed[new_name] = '\n'.join(content_lines)
 
     return renamed
 
@@ -398,7 +405,7 @@ def output_merged(
             top_content = re.sub(r'<a[^>]+>', '', top_content)
             top_content = re.sub(r'</a>', '', top_content)
             clean_top = clean_heading(actual_key)
-            
+
             # Reconstruct the heading
             lines.append(f"{'#' * top_level} {clean_top}")
             lines.append("")

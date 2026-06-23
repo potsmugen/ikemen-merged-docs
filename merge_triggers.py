@@ -30,37 +30,38 @@ def main():
     print("Fetching Ikemen GO (new)...", file=sys.stderr)
     new_text = fetch_raw_markdown(new_url)
 
-    # Parse all documents (parse_sections automatically handles HTML in headings)
+    # Parse all documents
     mugen = parse_sections(mugen_text)
     changed = parse_sections(changed_text)
     new = parse_sections(new_text)
 
-    # --- FILTER OUT REDIRECTIONS ---
-    # Remove redirection sections from M.U.G.E.N (they go to the redirections page)
+    # --- REMOVE REDIRECTION SECTIONS (they go to the redirections page) ---
+
+    # Remove any sections that contain "redirection" in their name (M.U.G.E.N)
     for key in list(mugen.keys()):
         if "redirection" in key.lower():
             mugen.pop(key, None)
 
-    # Remove redirection sections from changed (if any)
+    # Remove the entire "Changed trigger redirections" block (stored as one key)
+    changed.pop("Changed trigger redirections", None)
+    # Also remove any other stray redirection sections (just in case)
     for key in list(changed.keys()):
         if "redirection" in key.lower():
             changed.pop(key, None)
 
-    # Extract ONLY the individual triggers from the "New triggers" block
+    # Remove "New trigger redirections" from new page
+    new.pop("New trigger redirections", None)
+
+    # --- EXTRACT INDIVIDUAL TRIGGERS FROM "New triggers" ---
     new_individual = {}
     if "New triggers" in new:
         triggers_block = new.pop("New triggers")
         new_individual = parse_sub_sections(triggers_block)
 
-    # Discard "New trigger redirections" from the new page if it exists
-    new.pop("New trigger redirections", None)
-
     # --- RENAME CHANGED SECTIONS ---
-    # e.g., "Anim triggers" becomes "Anim (changed)"
     changed = rename_changed_sections(changed, suffix="(changed)")
 
     # --- MERGE ---
-    # Merge only pure triggers (redirections are handled by merge_redirections.py)
     merged = merge_sections([
         ("M.U.G.E.N 1.1", mugen),
         ("Ikemen GO (changed)", changed),
