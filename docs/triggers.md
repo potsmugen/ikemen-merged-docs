@@ -287,13 +287,16 @@ Computes the absolute value of its argument.
   
 **Format:**  
 abs(exprn)  
+  
 **Arguments:**  
 
 **exprn**  
 Expression to compute the absolute value of.
   
+  
 **Return type:**  
 Same as the type of exprn.  
+  
 **Error conditions:**  
 Returns bottom if exprn evaluates to bottom.
 
@@ -305,16 +308,19 @@ Computes the arccosine (in radians) of the specified argument.
   
 **Format:**  
 acos(exprn)  
+  
 **Arguments:**  
 
 **exprn**  
 Expression to compute the arccosine of (float).
   
+  
 **Return type:**  
 float  
+  
 **Error conditions:**  
 Returns bottom if exprn evaluates to bottom, or if exprn is not in  
-the domain of arccosine (which is [-1.0,1.0]).  
+the domain of arccosine (which is `[-1.0,1.0]`).  
   
 Example:  
 ```  
@@ -331,12 +337,16 @@ Returns the difficulty level of the player's AI.
   
 **Format:**  
 AILevel  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 none  
+  
 **Details:**  
 If AI is enabled on the player, the value ranges from 1 (easiest) to 8 (most difficult).  
 If AI is not enabled on the player, the return value is 0.  
@@ -389,10 +399,13 @@ Returns 1 if the player is still able to fight, 0 if the player has been KOed.
   
 **Format:**  
 alive  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 boolean int (1 or 0)  
+  
 **Error conditions:**  
 none  
   
@@ -469,10 +482,13 @@ Returns the current animation action number of the player.
   
 **Format:**  
 Anim  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 none  
   
@@ -503,6 +519,7 @@ Element number to check.
 *value2 (int)*  
 Value of animation-time to compare with.
   
+  
 **Return type:**  
 boolean int (1 or 0)  
   
@@ -514,6 +531,7 @@ action (e.g., it's too large or too small).
 Trigger in Format 1 is true if the player's animation is at the start of the element number specified by value1.  
 In other words, if value1 is equal to n, it is true on the first game-tick of the nth element of the animation.  
 Trigger in Format 2 compares the player's animation-time to `t+value2`, where `t` is time of the start of the element number specified by `value1`.  
+  
   
 **Notes:**  
 AnimElem will not trigger on the first game-tick of the second or later loop of an animation with a finite looptime.  
@@ -543,16 +561,20 @@ that would be displayed at the specified time. The argument to AnimElemNo repres
   
 **Format:**  
 AnimElemNo(exprn)  
+  
 **Arguments:**  
 
 **exprn**  
 Expression that evaluates to the time offset (int).
   
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 Returns bottom if you try to check a time that would fall before the  
 start of the current action.  
+  
 **Notes:**  
 If the action is currently within its looping portion, then it is  
 assumed to have been looping forever. That is, no matter how far into  
@@ -583,16 +605,20 @@ Gets the animation-time elapsed since the start of a specified element of the cu
   
 **Format:**  
 AnimElemTime(exprn)  
+  
 **Arguments:**  
 
 **exprn**  
 Expression that evaluates to the element number to check (int).
   
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 Returns bottom if exprn evaluates to bottom, or if exprn evaluates  
 to an element number that is not valid for the current action.  
+  
 **Notes:**  
 AnimElemTime will not trigger on the first game-tick of the second or later loop of an animation with a finite looptime. For example, "AnimElemTime(1) = 0" will trigger the first tick a player changes to an animation, but will not trigger on the tick that it loops. You may get it to trigger each time using "AnimElemTime(1) = 0 || AnimTime = 0".  
   
@@ -646,13 +672,16 @@ The result of this trigger is undefined if the player has been placed in a custo
   
 **Format:**  
 AnimExist(exprn)  
+  
 **Arguments:**  
 
 **exprn**  
 An expression evaluating to an animation number (int).
   
+  
 **Return type:**  
 boolean int (1 or 0)  
+  
 **Error conditions:**  
 Returns bottom if exprn evaluates to bottom.  
   
@@ -711,10 +740,13 @@ The name may be confusing. Try to think of it as "time from the end of the anima
   
 **Format:**  
 AnimTime  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 none  
   
@@ -734,16 +766,19 @@ Computes the arcsine (in radians) of the specified argument.
   
 **Format:**  
 asin(exprn)  
+  
 **Arguments:**  
 
 **exprn**  
 Expression to compute the arcsine of (float).
   
+  
 **Return type:**  
 float  
+  
 **Error conditions:**  
 Returns bottom if exprn evaluates to bottom, or if exprn is not in  
-the domain of arcsine (which is [-1.0,1.0]).  
+the domain of arcsine (which is `[-1.0,1.0]`).  
   
 Example:  
 ```  
@@ -760,13 +795,16 @@ Computes the arctangent (in radians) of the specified argument.
   
 **Format:**  
 atan(exprn)  
+  
 **Arguments:**  
 
 **exprn**  
 Expression to compute the arctangent of (float).
   
+  
 **Return type:**  
 float  
+  
 **Error conditions:**  
 Returns bottom if exprn evaluates to bottom.  
   
@@ -846,6 +884,7 @@ Returns the player's author's name (specified in the .DEF file). This may also b
   
 **Format:**  
 AuthorName [oper] "name"  
+  
 **Arguments:**  
 
 **[oper]**  
@@ -853,8 +892,10 @@ AuthorName [oper] "name"
 **"name" (string)**  
 Name to compare against. Must be in double quotes.
   
+  
 **Return type:**  
 boolean int (1 or 0)  
+  
 **Error conditions:**  
 none  
   
@@ -872,12 +913,16 @@ BackEdge returns the x position of the edge of the screen that is behind the pla
   
 **Format:**  
 BackEdge  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 float  
+  
 **Error conditions:**  
 none  
+  
 **Notes:**  
 This trigger is equivalent to the expression "ifelse(facing = 1, LeftEdge, RightEdge)".  
   
@@ -895,10 +940,13 @@ BackEdgeBodyDist gives the distance from the back of the player, as determined b
   
 **Format:**  
 BackEdgeBodyDist  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 float  
+  
 **Error conditions:**  
 none  
   
@@ -917,10 +965,13 @@ BackEdgeDist gives the distance between the x-axis of the player and the edge of
   
 **Format:**  
 BackEdgeDist  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 float  
+  
 **Error conditions:**  
 none  
   
@@ -992,12 +1043,16 @@ BottomEdge returns the y position of the bottom edge of the screen, in absolute 
   
 **Format:**  
 BottomEdge  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 float  
+  
 **Error conditions:**  
 none  
+  
 **Notes:**  
 This trigger is equivalent to the expression "Pos Y - ScreenPos Y + GameHeight".  
   
@@ -1015,21 +1070,25 @@ Gets the value of the camera's position relative to the stage.
   
 **Format:**  
 CameraPos [component]  
+  
 **Arguments:**  
 
 **[component]**  
 X, Y
   
+  
 **Return type:**  
 float  
+  
 **Error conditions:**  
 none  
+  
 **Details:**  
 The home position of the camera is 0, 0.  
 The value of "CameraPos X" increases as the camera moves to the right.  
 The value of "CameraPos Y" decreases as the camera moves upwards.  
 The units of the position returned is in the coordspace of the player.  
-    
+  
   
 Example:  
 ```  
@@ -1044,12 +1103,16 @@ Gets the value of the camera's zoom factor.
   
 **Format:**  
 CameraZoom  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 float  
+  
 **Error conditions:**  
 none  
+  
 **Details:**  
 The zoom factor de  
   
@@ -1068,10 +1131,13 @@ If the player is currently in a falling state, returns 1 if he is currently able
   
 **Format:**  
 CanRecover  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 boolean int (1 or 0)  
+  
 **Error conditions:**  
 none
 
@@ -1083,13 +1149,16 @@ Implements the "ceiling" function. Returns the least integer which is greater th
   
 **Format:**  
 ceil(exprn)  
+  
 **Arguments:**  
 
 **exprn**  
 Expression to compute the ceil of.
   
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 Returns bottom if exprn evaluates to bottom.  
   
@@ -1206,6 +1275,7 @@ Triggers if the user has input the specified command.
   
 **Format:**  
 Command [oper] "command_name"  
+  
 **Arguments:**  
 
 **[oper]**  
@@ -1217,8 +1287,10 @@ If the CMD has multiple commands with the same name,
 then any one of those commands will work. Command names  
 must appear within double quotes.
   
+  
 **Return type:**  
 boolean int (1 or 0)  
+  
 **Error conditions:**  
 none  
   
@@ -1244,6 +1316,7 @@ In all cases, any unused argument(s) are not evaluated. Therefore, Cond can be u
   
 **Format:**  
 Cond(exp_cond,exp_true,exp_false)  
+  
 **Arguments:**  
 
 **exp_cond**  
@@ -1253,8 +1326,10 @@ Expression specifying value to return if exp_cond is nonzero.
 **exp_false**  
 Expression specifying value to return if exp_cond is zero.
   
+  
 **Return type:**  
 Type of exp_true or exp_false, whichever is returned.  
+  
 **Error conditions:**  
 Returns bottom if exp_cond evaluates to bottom, or if exp_true or exp_false  
 (whichever is actually used) evaluates to bottom.  
@@ -1292,20 +1367,20 @@ Returns the value of one of the player's constants.
   
 **Format:**  
 Const(param_name)  
+  
 **Arguments:**  
 
 **param_name**  
-The name of the constant to check. Valid values are:
+The name of the constant to check. Valid values are listed under Details.  
   
 **Return type:**  
 Depends on specified hit parameter. See Details.  
   
-Error conditions:  
+**Error conditions:**  
 none  
   
 **Details:**  
-The following values of param_name return values specified in the  
-[Data] group in the player's constants.  
+The following values of param_name return values specified in the `[Data]` group in the player's constants.  
   
 - data.life: Returns value of the "life" parameter. (int)  
 - data.power: Returns value of the "power" parameter. (int)  
@@ -1320,7 +1395,7 @@ The following values of param_name return values specified in the
 - data.IntPersistIndex: Returns value of the "IntPersistIndex" parameter. (int)  
 - data.FloatPersistIndex: Returns value of the "FloatPersistIndex" parameter. (int)  
   
-The following values of param_name return values specified in the [Size] group in the player's constants.  
+The following values of param_name return values specified in the `[Size]` group in the player's constants.  
   
 - size.xscale: Returns value of the "xscale" parameter. (float)  
 - size.yscale: Returns value of the "yscale" parameter. (float)  
@@ -1340,7 +1415,7 @@ The following values of param_name return values specified in the [Size] group i
 - size.draw.offset.x: Returns x-component of the "draw.offset" parameter. (int)  
 - size.draw.offset.y: Returns y-component of the "draw.offset" parameter. (int)  
   
-The following values of param_name return values specified in the [Velocity] group in the player's constants.  
+The following values of param_name return values specified in the `[Velocity]` group in the player's constants.  
   
 - velocity.walk.fwd.x: Returns value of the "walk.fwd" parameter. (float)  
 - velocity.walk.back.x: Returns value of the "walk.back" parameter. (float)  
@@ -1348,8 +1423,7 @@ The following values of param_name return values specified in the [Velocity] gro
 - velocity.run.fwd.y: Returns y-component of the "run.fwd" parameter. (float)  
 - velocity.run.back.x: Returns x-component of the "run.back" parameter. (float)  
 - velocity.run.back.y: Returns y-component of the "run.back" parameter. (float)  
-- velocity.jump.y: Returns y-component of the "jump.neu" parameter.  
-Note: this is NOT "velocity.jump.neu.y". Only the "neu" parameters take a y-component value. (float)  
+- velocity.jump.y: Returns y-component of the "jump.neu" parameter. Note: this is NOT "velocity.jump.neu.y". Only the "neu" parameters take a y-component value. (float)  
 - velocity.jump.neu.x: Returns x-component of the "jump.neu" parameter. (float)  
 - velocity.jump.back.x: Returns value of the "jump.back" parameter. (float)  
 - velocity.jump.fwd.x: Returns value of the "jump.fwd" parameter. (float)  
@@ -1370,7 +1444,7 @@ Note: this is NOT "velocity.jump.neu.y". Only the "neu" parameters take a y-comp
 - velocity.air.gethit.airrecover.up: Returns value of the "air.gethit.airrecover.up" parameter. (float)  
 - velocity.air.gethit.airrecover.down: Returns value of the "air.gethit.airrecover.down" parameter. (float)  
   
-The following values of param_name return values specified in the [Movement] group in the player's constants.  
+The following values of param_name return values specified in the `[Movement]` group in the player's constants.  
   
 - movement.airjump.num: Returns value of the "airjump.num" parameter. (int)  
 - movement.airjump.height: Returns value of the "airjump.height" parameter. (int)  
@@ -1512,18 +1586,20 @@ The conversion ratio between coordinate spaces is the ratio of their widths.
   
 **Format:**  
 Const240p(exprn)  
+  
 **Arguments:**  
-
-**exprn**  
+*exprn*  
 Expression containing the value to convert. (float)
   
 **Return type:**  
 float  
+  
 **Error conditions:**  
 Returns bottom if exprn evaluates to bottom.  
+  
 **Notes:**  
 Non-zero position and velocity offset values in common1.cns should use one of  
-the Const triggers to maintain consistency with characters from a different  
+the `Const` triggers to maintain consistency with characters from a different  
 coordinate space.  
   
 Example:  
@@ -1543,18 +1619,21 @@ The conversion ratio between coordinate spaces is the ratio of their widths.
   
 **Format:**  
 Const480p(exprn)  
+  
 **Arguments:**  
 
 **exprn**  
 Expression containing the value to convert. (float)
   
+  
 **Return type:**  
 float  
+  
 **Error conditions:**  
 Returns bottom if exprn evaluates to bottom.  
+  
 **Notes:**  
-Non-zero position and velocity offset values in common1.cns should use one of  
-the Const triggers to maintain consistency with characters from a different  
+Non-zero position and velocity offset values in common1.cns should use one of the `Const` triggers to maintain consistency with characters from a different  
 coordinate space.  
   
 Example:  
@@ -1574,19 +1653,21 @@ The conversion ratio between coordinate spaces is the ratio of their widths.
   
 **Format:**  
 Const720p(exprn)  
+  
 **Arguments:**  
 
 **exprn**  
 Expression containing the value to convert. (float)
   
+  
 **Return type:**  
 float  
+  
 **Error conditions:**  
 Returns bottom if exprn evaluates to bottom.  
+  
 **Notes:**  
-Non-zero position and velocity offset values in common1.cns should use one of  
-the Const triggers to maintain consistency with characters from a different  
-coordinate space.  
+Non-zero position and velocity offset values in common1.cns should use one of the `Const` triggers to maintain consistency with characters from a different coordinate space.  
   
 Example:  
 ```  
@@ -1604,21 +1685,23 @@ Computes the cosine of the specified argument (in radians.)
   
 **Format:**  
 cos(exprn)  
+  
 **Arguments:**  
 
 **exprn**  
 Expression to compute the cosine of. (float)
   
+  
 **Return type:**  
 float  
+  
 **Error conditions:**  
 Returns bottom if exprn evaluates to bottom.  
   
 Example:  
 ```  
 value = cos(0)  
-  Sets value to the cosine of 0, which is approximately 1.0  
-  (possibly with some rounding error.)  
+; Sets value to the cosine of 0, which is approximately 1.0 (possibly with some rounding error.)  
 ```
 
 ---
@@ -1629,10 +1712,13 @@ Returns the control flag of p1.
   
 **Format:**  
 Ctrl  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 boolean int (1 or 0)  
+  
 **Error conditions:**  
 none  
   
@@ -1826,10 +1912,13 @@ Returns 1 if the player (or the player's team, in team mode) has ended the round
   
 **Format:**  
 Draw  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 boolean int (1 or 0)  
+  
 **Error conditions:**  
 none  
   
@@ -1869,10 +1958,13 @@ Returns the value of e (2.718281828...)
   
 **Format:**  
 e  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 float  
+  
 **Error conditions:**  
 none
 
@@ -1902,19 +1994,20 @@ trigger3 = EnvShakeVar(ampl) = -4
 
 ## Exp (math) (old)
 
-Computes the exponential of the argument (e raised to the power of  
-the argument.) This produces slightly more accurate results than the  
-equivalent expression e**(argument).  
+Computes the exponential of the argument (e raised to the power of the argument.) This produces slightly more accurate results than the equivalent expression e**(argument).  
   
 **Format:**  
 exp(exprn)  
+  
 **Arguments:**  
 
 **exprn**  
 Expression to compute the exponential of (float).
   
+  
 **Return type:**  
 float  
+  
 **Error conditions:**  
 Returns bottom if exprn evaluates to bottom.  
   
@@ -1954,10 +2047,13 @@ Returns 1 if the player is facing to the right, and -1 if the player is facing t
   
 **Format:**  
 Facing  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 none  
   
@@ -2080,22 +2176,26 @@ Implements the floor function. Returns the greatest integer less than or equal t
   
 **Format:**  
 floor(exprn)  
+  
 **Arguments:**  
 
 **exprn**  
 Expression to compute the floor of.
   
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 Returns bottom if exprn evaluates to bottom.  
   
 Examples:  
 ```  
-1. value=floor(5.5)  
-  Sets value to 5.  
-2. value=floor(-2)  
-  Sets value to -2.  
+value=floor(5.5)  
+; Sets value to 5.  
+
+value=floor(-2)  
+; Sets value to -2.  
 ```
 
 ---
@@ -2106,12 +2206,16 @@ FrontEdge returns the x position of the edge of the screen that is in front the 
   
 **Format:**  
 FrontEdge  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 float  
+  
 **Error conditions:**  
 none  
+  
 **Notes:**  
 This trigger is equivalent to the expression "ifelse(facing = 1, RightEdge, LeftEdge)".  
   
@@ -2129,10 +2233,13 @@ FrontEdgeBodyDist gives the distance between the front of the player (as determi
   
 **Format:**  
 FrontEdgeBodyDist  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 float  
+  
 **Error conditions:**  
 none  
   
@@ -2151,10 +2258,13 @@ FrontEdgeDist gives the distance between the x-axis of the player and the edge o
   
 **Format:**  
 FrontEdgeDist  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 float  
+  
 **Error conditions:**  
 none  
   
@@ -2173,14 +2283,17 @@ This trigger takes a mandatory variable number as an argument. It returns the va
   
 **Format:**  
 FVar(exprn)  
+  
 **Arguments:**  
 
 **exprn**  
 An expression evaluating to a variable number. Valid numbers  
 at this time are 0-39.
   
+  
 **Return type:**  
 float  
+  
 **Error conditions:**  
 Returns bottom if exprn evaluates to bottom, or if exprn evaluates  
 to an invalid variable index.  
@@ -2202,19 +2315,21 @@ GameWidth and GameHeight parameters in mugen.cfg.
   
 **Format:**  
 GameHeight  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 float  
+  
 **Error conditions:**  
 none  
+  
 **Notes:**  
 GameWidth and GameHeight scale inversely with the zoom factor of the camera.  
-For example, if the camera zoom factor is 0.5, the values returned by GameWidth  
-and GameHeight will be double that of at zoom factor 1.  
-ScreenWidth and ScreenHeight are the equivalent triggers that are not  
-affected by the camera zoom factor.  
-    
+For example, if the camera zoom factor is 0.5, the values returned by GameWidth and GameHeight will be double that of at zoom factor 1.  
+ScreenWidth and ScreenHeight are the equivalent triggers that are not affected by the camera zoom factor.  
+  
   
 Example:  
 ```  
@@ -2302,10 +2417,13 @@ Returns the total number of ticks that have elapsed in the game so far.
   
 **Format:**  
 GameTime  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 none  
   
@@ -2351,24 +2469,24 @@ trigger2 = GameVar(introtime) = FightScreenVar(round.ctrl.time)
 
 Returns the current width of the game space in the player's local coordinate space.  
 The game space is defined as the currently-visible area of the stage in which players interact.  
-The dimensions of the game space at a zoom factor of 1.0 is specified by the  
-GameWidth and GameHeight parameters in mugen.cfg.  
+The dimensions of the game space at a zoom factor of 1.0 is specified by the GameWidth and GameHeight parameters in `mugen.cfg`.  
   
 **Format:**  
 GameHeight  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 float  
+  
 **Error conditions:**  
 none  
+  
 **Notes:**  
 GameWidth and GameHeight scale inversely with the zoom factor of the camera.  
-For example, if the camera zoom factor is 0.5, the values returned by GameWidth  
-and GameHeight will be double that of at zoom factor 1.  
-ScreenWidth and ScreenHeight are the equivalent triggers that are not  
-affected by the camera zoom factor.  
-    
+For example, if the camera zoom factor is 0.5, the values returned by GameWidth and GameHeight will be double that of at zoom factor 1.  
+ScreenWidth and ScreenHeight are the equivalent triggers that are not affected by the camera zoom factor.  
   
 Example:  
 ```  
@@ -2390,6 +2508,7 @@ When the player is in a gethit state, returns the value of the specified hit par
   
 **Format:**  
 GetHitVar(param_name)  
+  
 **Arguments:**  
 
 **param_name**  
@@ -2404,42 +2523,26 @@ fall.recover, fall.time, fall.recovertime.
   
 **Return type:**  
 Depends on specified hit parameter. See Details.  
+  
 **Error conditions:**  
 none  
+  
 **Details:**  
-- xveladd: Returns the additional x-velocity that is added to the  
-player's own when he is KOed. (float)  
-- yveladd: Returns the additional y-velocity that is added to the  
-player's own when he is KOed. (float)  
-- type: Returns the type of the hit: 0 for none, 1 for high, 2 for  
-low, 3 for trip (ground only).  
-- animtype: Returns the animation type of the hit. (0 for light, 1 for  
-medium, 2 for hard, 3 for back, 4 for up, 5 for diag-up)  
+- xveladd: Returns the additional x-velocity that is added to the player's own when he is KOed. (float)  
+- yveladd: Returns the additional y-velocity that is added to the player's own when he is KOed. (float)  
+- type: Returns the type of the hit: 0 for none, 1 for high, 2 for low, 3 for trip (ground only).  
+- animtype: Returns the animation type of the hit. (0 for light, 1 for medium, 2 for hard, 3 for back, 4 for up, 5 for diag-up)  
 - airtype: Returns the type specified in the HitDef for an air hit.  
-- groundtype: Returns the type specified in the HitDef for a ground  
-hit.  
+- groundtype: Returns the type specified in the HitDef for a ground hit.  
 - damage: Returns the damage given by the hit. (int)  
-- hitcount: Returns the number of hits taken by the player in current  
-combo. (int)  
-- fallcount: Returns the number of times player has hit the ground in  
-the current combo. (int)  
-- hitshaketime: Returns time player is "frozen" during the hit. This  
-number counts down by 1 for each game tick, and stops  
-when it reaches zero. (int)  
-- hittime: Returns time before player regains control and returns to  
-an idle state after being hit.  
-This counts down by 1 per game tick, as long as hitshaketime  
-(see above) is greater than 0. It stops counting down when  
-the value reaches -1. (int)  
-"GetHitVar(hittime) < 0" is equivalent to the HitOver  
-trigger.  
-- slidetime: Returns time that player slides backwards (on the ground)  
-after the hit. (int)  
-- ctrltime: Returns time before player regains control after guarding  
-the hit. (int)  
-- recovertime: Returns time before player gets up from liedown state  
-This number counts down to 0 for each game tick, and  
-will count down faster if buttons are hit. (int)  
+- hitcount: Returns the number of hits taken by the player in current combo. (int)  
+- fallcount: Returns the number of times player has hit the ground in the current combo. (int)  
+- hitshaketime: Returns time player is "frozen" during the hit. This number counts down by 1 for each game tick, and stops when it reaches zero. (int)  
+- hittime: Returns time before player regains control and returns to an idle state after being hit.  
+This counts down by 1 per game tick, as long as hitshaketime (see above) is greater than 0. It stops counting down when the value reaches -1. (int) `GetHitVar(hittime) < 0` is equivalent to the `HitOver` trigger.  
+- slidetime: Returns time that player slides backwards (on the ground) after the hit. (int)  
+- ctrltime: Returns time before player regains control after guarding the hit. (int)  
+- recovertime: Returns time before player gets up from liedown state. This number counts down to 0 for each game tick, and will count down faster if buttons are hit. (int)  
 - xoff: "Snap" x offset when hit (deprecated)  
 - yoff: "Snap" y offset when hit (deprecated)  
 - xvel: Fixed x-velocity imparted by hit. (float)  
@@ -2447,9 +2550,7 @@ will count down faster if buttons are hit. (int)
 - yaccel: y acceleration set by the hit. (float)  
 - chainid: Player-assigned chainID for last hit taken. (int)  
 - guarded: True if the last hit was guarded, false otherwise.  
-- isbound: True if the player is the subject of an attacker's  
-TargetBind controller. Useful to prevent being stuck in  
-thrown states. (int)  
+- isbound: True if the player is the subject of an attacker's TargetBind controller. Useful to prevent being stuck in thrown states. (int)  
 - fall: True if falling, false otherwise (int)  
 - fall.damage: Damage taken upon fall (int)  
 - fall.xvel: x velocity after bouncing off ground (float)  
@@ -2460,10 +2561,7 @@ thrown states. (int)
 - fall.envshake.time: See below. (int)  
 - fall.envshake.freq: See below. (float)  
 - fall.envshake.ampl: See below. (int)  
-- fall.envshake.phase: Returns values set by the fall.envshake.*  
-parameters in an attacker's hitdef. (float)  
-
-  
+- fall.envshake.phase: Returns values set by the fall.envshake.\* parameters in an attacker's hitdef. (float)  
   
 Example:  
 ```  
@@ -2883,10 +2981,13 @@ Returns the number times the player's current attack move has hit one or more op
   
 **Format:**  
 HitCount  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 none  
   
@@ -2908,6 +3009,7 @@ Note: `HitDefAttr != value1, value2` is logically equivalent to `!(HitDefAttr = 
   
 **Format:**  
 HitDefAttr [oper] value1, value2  
+  
 **Arguments:**  
 
 **[oper]**  
@@ -2930,22 +3032,19 @@ See the "attr" parameter of the HitDef controller in Appendix B for details.
   
 **Return type:**  
 boolean int (1 or 0)  
+  
 **Error conditions:**  
 none  
   
 Example:  
 ```  
 trigger1 = HitDefAttr = A, HA  
-; Triggers when the player is in an attack state, where  
-  the current HitDef has the following attributes:  
-  1. is an aerial attack  
-  and 2. is a hyper (super) attack  
+; Triggers when the player is in an attack state, where the current HitDef has the following attributes:  
+; 1. is an aerial attack and 2. is a hyper (super) attack  
   
 trigger1 = HitDefAttr = SC, NA, SA  
-; Triggers when the player is in an attack state, where  
-  the current HitDef has the following attributes:  
-  1. is either a standing or a crouching attack  
-  and 2. is either a normal attack or a special attack  
+; Triggers when the player is in an attack state, where the current HitDef has the following attributes:  
+; 1. is either a standing or a crouching attack and 2. is either a normal attack or a special attack  
 ```
 
 ---
@@ -3039,10 +3138,13 @@ If the player is currently in a gethit state, returns the fall flag of the hit. 
   
 **Format:**  
 HitFall  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 boolean int (1 or 0)  
+  
 **Error conditions:**  
 none  
   
@@ -3060,10 +3162,13 @@ If the player is in a gethit state, returns 1 when the hittime has expired, and 
   
 **Format:**  
 HitOver  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 boolean int (1 or 0)  
+  
 **Error conditions:**  
 none  
   
@@ -3096,14 +3201,20 @@ trigger1 = HitOverridden
 
 ## HitPauseTime (old)
 
-Returns the time until the player's hitpause expires. The player enters a hitpause when his attack comes in contact with an opponent. The initial hitpause time is equal to the first value of the pausetime parameter in the player's HitDef. If ignorehitpause is not set, this will always return 0.  
+Returns the time until the player's hitpause expires.  
+The player enters a hitpause when his attack comes in contact with an opponent.  
+The initial hitpause time is equal to the first value of the pausetime parameter in the player's HitDef.  
+If `ignorehitpause` is not set, this will always return 0.  
   
 **Format:**  
 HitPauseTime  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 none  
   
@@ -3121,10 +3232,13 @@ If the player is in a gethit state, returns 1 if the hit shake (the period when 
   
 **Format:**  
 HitShakeOver  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 boolean int (1 or 0)  
+  
 **Error conditions:**  
 none  
   
@@ -3139,25 +3253,27 @@ trigger1 = HitShakeOver = 0
 ## HitVel (old)
 
 Gets the value of the velocity imparted to the player by a hit.  
-You must specify the component that you want to check, eg.  
-"HitVel Y" to check the vertical velocity component.  
+You must specify the component that you want to check, eg. `HitVel Y` to check the vertical velocity component.  
   
 **Format:**  
 HitVel [component]  
+  
 **Arguments:**  
 
 **[component]**  
 X, Y
   
+  
 **Return type:**  
 float  
+  
 **Error conditions:**  
 none  
+  
 **Details:**  
-A positive HitVel Y means that the player is moving upward on the  
-screen. A positive HitVel X means that the player is moving  
-backward. Note that the HitVel X trigger behaves in the opposite  
-manner to the Vel X trigger.  
+A positive HitVel Y means that the player is moving upward on the screen.  
+A positive HitVel X means that the player is moving backward.  
+Note that the HitVel X trigger behaves in the opposite manner to the Vel X trigger.  
   
 Example:  
 ```  
@@ -3170,14 +3286,20 @@ trigger1 = HitVel X > 0.5
 
 ## ID (old)
 
-Returns the ID number of the player. The ID number is unique for every player throughout the course of a match. Any helper that is created during this time will also receive its own unique ID number. This trigger may be useful for getting opponents' ID numbers, to be later used with the "playerID" redirection keyword (see exp docs). Do not confuse playerID with targetID.  
+Returns the ID number of the player.  
+The ID number is unique for every player throughout the course of a match.  
+Any helper that is created during this time will also receive its own unique ID number.  
+This trigger may be useful for getting opponents' ID numbers, to be later used with the "playerID" redirection keyword (see exp docs). Do not confuse playerID with targetID.  
   
 **Format:**  
 ID  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 none  
   
@@ -3193,34 +3315,33 @@ value = EnemyNear, ID
 
 ## IfElse (math) (old)
 
-This trigger takes three arguments. If the first is nonzero, IfElse returns the  
-value of the second argument. Else, it returns the value of the third argument.  
-All arguments are evaluated prior to execution of IfElse. In particular, any  
-side effects caused by evaluation of the arguments (such as variable  
-assignment, or performing a computation that generates a warning) will occur.  
-If you wish to avoid these side effects, then use Cond.  
+This trigger takes three arguments. If the first is nonzero, `IfElse` returns the value of the second argument. Else, it returns the value of the third argument.  
+All arguments are evaluated prior to execution of IfElse. In particular, any side effects caused by evaluation of the arguments (such as variable assignment, or performing a computation that generates a warning) will occur.  
+If you wish to avoid these side effects, then use `Cond`.  
   
 **Format:**  
 IfElse(exp_cond,exp_true,exp_false)  
+  
 **Arguments:**  
 
-**exp_cond**  
+*exp_cond*  
 Expression to test.  
-**exp_true**  
+*exp_true*  
 Expression specifying value to return if exp_cond is nonzero.  
-**exp_false**  
+*exp_false*  
 Expression specifying value to return if exp_cond is zero.
+  
   
 **Return type:**  
 Type of exp_true or exp_false, whichever is returned.  
+  
 **Error conditions:**  
 Returns bottom if exp_cond evaluates to bottom, or if exp_true or exp_false (whichever is returned) evaluates to bottom.  
   
 Example:  
 ```  
 value = ifelse(var(3),1,2)  
-  Sets value to 1 if var(3) is not zero, and sets value to 2 if  
-  var(3) is 0.  
+; Sets value to 1 if var(3) is not zero, and sets value to 2 if var(3) is 0.  
 ```
 
 ---
@@ -3314,10 +3435,13 @@ Returns 1 if the player is within guarding distance of an opponent's physical or
   
 **Format:**  
 InGuardDist  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 boolean int (1 or 0)  
+  
 **Error conditions:**  
 none  
 **Example:**  
@@ -3415,7 +3539,9 @@ trigger1 = IsClsnProxy
 
 ## IsHelper (old)
 
-This trigger takes an optional ID number as an argument. If the ID number is omitted, IsHelper returns 1 if the player is a helper character, and 0 otherwise. If the ID number is included, then IsHelper returns 1 if the player is a helper character with the specified ID number, and 0 otherwise.  
+This trigger takes an optional ID number as an argument.  
+If the ID number is omitted, IsHelper returns 1 if the player is a helper character, and 0 otherwise.  
+If the ID number is included, then IsHelper returns 1 if the player is a helper character with the specified ID number, and 0 otherwise.  
   
 **Format:**  
 - IsHelper  
@@ -3423,8 +3549,10 @@ This trigger takes an optional ID number as an argument. If the ID number is omi
   
 **Arguments:**  
 none  
+  
 **Return type:**  
 boolean int (1 or 0)  
+  
 **Error conditions:**  
 Returns bottom if exprn evaluates to bottom.  
   
@@ -3452,14 +3580,19 @@ trigger1 = IsHelper(123, 2); Is the third helper with ID 123
 
 ## IsHomeTeam (old)
 
-Returns 1 if the player's team is considered the "home team". In arcade modes, the computer is always considered the home team. In versus modes, P1's side (left) is the home team.  
+Returns 1 if the player's team is considered the "home team".  
+In arcade modes, the computer is always considered the home team.  
+In versus modes, P1's side (left) is the home team.  
   
 **Format:**  
 IsHomeTeam  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 boolean int (1 or 0)  
+  
 **Error conditions:**  
 none  
 **Example:**  
@@ -3550,14 +3683,18 @@ LeftEdge returns the x position of the left edge of the screen, in absolute stag
   
 **Format:**  
 LeftEdge  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 float  
+  
 **Error conditions:**  
 none  
+  
 **Notes:**  
-This trigger is equivalent to the expression "CameraPos X - GameWidth / 2".  
+This trigger is equivalent to the expression `CameraPos X - GameWidth / 2`.  
   
 Example:  
 ```  
@@ -3599,10 +3736,13 @@ Returns the player's life.
   
 **Format:**  
 Life  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 none  
   
@@ -3616,14 +3756,17 @@ trigger1 = life <= 10
 
 ## LifeMax (old)
 
-Returns the maximum amount of life the player can have. This is normally the value of the "life" parameter in the [Data] group of the player variables, but may be different in situations such as team modes.  
+Returns the maximum amount of life the player can have. This is normally the value of the `life` parameter in the [Data] group of the player variables, but may be different in situations such as team modes.  
   
 **Format:**  
 LifeMax  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 none  
   
@@ -3641,13 +3784,16 @@ Returns the natural logarithm of its argument. This produces slightly more accur
   
 **Format:**  
 ln(exprn)  
+  
 **Arguments:**  
 
 **exprn**  
 Expression to compute the natural logarithm of (float).
   
+  
 **Return type:**  
 float  
+  
 **Error conditions:**  
 Returns bottom if exprn evaluates to bottom, or if exprn is not  
 positive.  
@@ -3686,6 +3832,7 @@ Takes two arguments a and b, and returns the base-a logarithm of b.
   
 **Format:**  
 Log(exp1,exp2)  
+  
 **Arguments:**  
 
 **exp1**  
@@ -3694,8 +3841,10 @@ Expression giving the base of the logarithm. Must be positive.
 Expression giving the value to take the logarithm of. Must be  
 positive.
   
+  
 **Return type:**  
 float  
+  
 **Error conditions:**  
 Returns bottom if either of exp1 or exp2 evaluates to bottom, or if  
 either of exp1 or exp2 is not positive.  
@@ -3719,8 +3868,10 @@ Returns 1 if the player (or the player's team, in team mode) has lost the round,
   
 **Arguments:**  
 none  
+  
 **Return type:**  
 boolean int (1 or 0)  
+  
 **Error conditions:**  
 none  
   
@@ -3764,10 +3915,13 @@ Returns the current match number.
   
 **Format:**  
 MatchNo  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 int  
+  
 **Details:**  
 The current match number is always 1 in versus-type modes. In Arcade and Team Arcade modes, the match number starts at 1 and increments every time a new match starts (does not increment on continue). If you finish the arcade mode and start a new game, the match number reverts to 1.  
 **Example:**  
@@ -3781,16 +3935,18 @@ Returns 1 if the match has ended. (For example, in the case of a best-of-three m
   
 **Format:**  
 MatchOver  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 boolean int (1 or 0)  
+  
 **Error conditions:**  
 none  
+  
 **Details:**  
-Currently, MatchOver does not return true until the players start  
-their win poses (state 180). This behavior may be subject to change  
-in future releases.  
+Currently, MatchOver does not return true until the players start their win poses (state 180). This behavior may be subject to change in future releases.  
   
 Example:  
 ```  
@@ -3909,21 +4065,27 @@ trigger1 = MotifVar(info.mugenversion) >= 1
 
 This trigger is valid only when the player is in an attack state.  
 MoveContact gives a non-zero value if P2 has either been hit, or has guarded P1's attack. It gives 0 otherwise. P1 is the player, and P2 is his opponent.  
-Typically used with the "StateNo" and "Command" triggers for detecting move-interrupts in the CMD file.  
+Typically used with the `StateNo` and `Command` triggers for detecting move-interrupts in the CMD file.  
   
 **Format:**  
 MoveContact  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 none  
+  
 **Details:**  
-On attack contact, MoveContact returns 1. After contact, MoveContact's return value will increase by 1 for each game tick that P1 is not paused (P1 gets paused on contact; see pausetime parameter in HitDef controller). The values of MoveGuarded, MoveHit and MoveReversed increment in the same fashion.  
+On attack contact, MoveContact returns 1.  
+After contact, MoveContact's return value will increase by 1 for each game tick that P1 is not paused (P1 gets paused on contact; see pausetime parameter in HitDef controller).  
+The values of MoveGuarded, MoveHit and MoveReversed increment in the same fashion.  
 Note 1: the values of MoveContact, MoveGuarded, MoveHit and MoveReversed are set simultaneously. For example, if one HitDef in a move hits successfully, MoveHit will return non-zero. If a following HitDef in the same move is guarded, MoveGuarded will return non-zero, and the other three triggers will return 0.  
-Note 2: the values of the four Move* triggers reset to 0 and stop incrementing after a state transition. See "movehitpersist" parameter for StateDefs (CNS docs) for how to override this behavior.  
-    
+Note 2: the values of the four Move\* triggers reset to 0 and stop incrementing after a state transition. See `movehitpersist` parameter for StateDefs (CNS docs) for how to override this behavior.  
+  
   
 Examples:  
 ```  
@@ -3959,16 +4121,20 @@ trigger1 = MoveCountered = 1
 
 This trigger is valid only when the player is in an attack state.  
 MoveGuarded gives a non-zero value if P2 is guarding, or has guarded, P1's attack. It gives 0 otherwise. P1 is the player, and P2 is his opponent.  
-Typically used with the "StateNo" and "Command" triggers for detecting move-interrupts in the CMD file.  
+Typically used with the `StateNo` and `Command` triggers for detecting move-interrupts in the CMD file.  
   
 **Format:**  
 MoveGuarded  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 none  
+  
 **Details:**  
 See Details section for MoveContact trigger.  
   
@@ -3984,16 +4150,20 @@ trigger1 = MoveGuarded
 
 This trigger is valid only when the player is in an attack state.  
 MoveHit gives a non-zero value if P2 has been hit by P1's attack. It gives 0 otherwise.  
-Typically used with the "StateNo" and "Command" triggers for detecting move-interrupts in the CMD file.  
+Typically used with the `StateNo` and `Command` triggers for detecting move-interrupts in the CMD file.  
   
 **Format:**  
 MoveHit  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 none  
+  
 **Details:**  
 See Details section for MoveContact trigger.  
   
@@ -4054,12 +4224,16 @@ MoveReversed gives a non-zero value if P1's attack has been reversed by P2. It g
   
 **Format:**  
 MoveReversed  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 none  
+  
 **Details:**  
 See Details section for MoveContact trigger.  
   
@@ -4073,12 +4247,12 @@ trigger1 = MoveReversed
 
 ## MoveType (old)
 
-MoveType gives the player's move-type. Refer to the section  
-on StateDef in the CNS documentation for more details on MoveType.  
+MoveType gives the player's move-type. Refer to the section on StateDef in the CNS documentation for more details on MoveType.  
 Useful for "move interrupts" in the CMD file.  
   
 **Format:**  
 MoveType [oper] move_type  
+  
 **Arguments:**  
 
 **[oper]**  
@@ -4091,6 +4265,7 @@ Attack, Idle and GetHit move-types respectively.
   
 **Return type:**  
 boolean int (1 or 0)  
+  
 **Error conditions:**  
 none  
   
@@ -4131,6 +4306,7 @@ Returns the player's name (the internal name specified in the .DEF file, which m
   
 **Format:**  
 Name [oper] "name"  
+  
 **Arguments:**  
 
 **[oper]**  
@@ -4138,8 +4314,10 @@ Name [oper] "name"
 **"name" (string)**  
 Name to compare against. Must be in double quotes.
   
+  
 **Return type:**  
 boolean int (1 or 0)  
+  
 **Error conditions:**  
 none  
   
@@ -4157,10 +4335,13 @@ NumEnemy returns the number of opponents that exist. Neutral players and normal 
   
 **Format:**  
 NumEnemy  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 none  
   
@@ -4168,15 +4349,17 @@ Examples:
 ```  
 trigger1 = NumEnemy = 2  
 trigger1 = enemynear(1), name = "Squash"  
-; Triggers if there are 2 opponents, and the second-closest one is  
-  named Squash.  
+; Triggers if there are 2 opponents, and the second-closest one is named Squash.  
 ```
 
 ---
 
 ## NumExplod (old)
 
-This trigger takes an ID number as an optional argument. If the ID number is omitted, NumExplod returns the number of explods owned by the player. If the ID number is included, then NumExplod returns the number of explods with that ID number that are owned by the player. The ID number must be greater than -1. An ID number of -1 or less will give the same behavior as if the ID number is omitted.  
+This trigger takes an ID number as an optional argument.  
+If the ID number is omitted, NumExplod returns the number of explods owned by the player.  
+If the ID number is included, then NumExplod returns the number of explods with that ID number that are owned by the player.  
+The ID number must be greater than -1. An ID number of -1 or less will give the same behavior as if the ID number is omitted.  
   
 **Format:**  
 - NumExplod  
@@ -4187,8 +4370,10 @@ This trigger takes an ID number as an optional argument. If the ID number is omi
 **exprn**  
 Expression evaluating to an ID number (int).
   
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 Returns bottom if exprn evaluates to bottom.  
   
@@ -4205,8 +4390,10 @@ Examples:
 
 ## NumHelper (old)
 
-This trigger takes an ID number as an optional argument. If the ID number is omitted, then NumHelper returns the total number of helpers currently owned by the player. If the ID number is included, then NumHelper returns the total number of helpers with that ID number owned by the player. The ID number must be greater than 0. If the ID  
-number is 0 or less, then all helpers are counted.  
+This trigger takes an ID number as an optional argument.  
+If the ID number is omitted, then NumHelper returns the total number of helpers currently owned by the player.  
+If the ID number is included, then NumHelper returns the total number of helpers with that ID number owned by the player.  
+The ID number must be greater than 0. If the ID number is 0 or less, then all helpers are counted.  
   
 **Format:**  
 - NumHelper  
@@ -4217,8 +4404,10 @@ number is 0 or less, then all helpers are counted.
 **exprn**  
 Expression evaluating to an ID number (int).
   
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 Returns bottom if exprn evaluates to bottom.  
   
@@ -4238,10 +4427,13 @@ NumPartner returns the number of partners that exist. Neutral players and normal
   
 **Format:**  
 NumPartner  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 none  
   
@@ -4270,10 +4462,13 @@ Returns the total number of projectiles currently owned by the player.
   
 **Format:**  
 NumProj  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 none  
   
@@ -4291,13 +4486,16 @@ This trigger takes an ID number as a required argument. It returns the number of
   
 **Format:**  
 NumProjID(exprn)  
+  
 **Arguments:**  
 
 **exprn**  
 Expression evaluating to an ID number.
   
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 If a negative ID is specified, then the ID defaults to 0. Returns  
 bottom if exprn evaluates to bottom.  
@@ -4355,8 +4553,10 @@ This trigger takes an ID number as an optional argument. If the ID number is omi
 **exprn**  
 Expression evaluating to an ID number (int).
   
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 Returns bottom if exprn evaluates to bottom.  
   
@@ -4449,15 +4649,19 @@ Returns the distance of P2 from P1, where P1 is the player, and P2 is his oppone
   
 **Format:**  
 P2BodyDist [component]  
+  
 **Arguments:**  
 
 **[component]**  
 X, Y
   
+  
 **Return type:**  
 float  
+  
 **Error conditions:**  
 none  
+  
 **Details:**  
 For comparing the Y-distance, P2BodyDist gives the difference in the  
 heights of the players' Y-axes. A negative value means that P2 is  
@@ -4469,7 +4673,6 @@ P2BodyDist is 0. Remember that you can set the width of
 the player in "front.width", etc. under [Size] in the  
 player variables.  
 See also P2Dist.  
-    
   
 Example:  
 ```  
@@ -4498,6 +4701,7 @@ Returns the distance of P2 from P1, where P1 is the player, and P2 is his oppone
   
 **Format:**  
 P2Dist [component]  
+  
 **Arguments:**  
 
 **[component]**  
@@ -4505,8 +4709,10 @@ X, Y
   
 **Return type:**  
 float  
+  
 **Error conditions:**  
 none  
+  
 **Details:**  
 For comparing the Y-distance, P2Dist gives the difference in the  
 heights of the players' Y-axes. A negative value means that P2 is  
@@ -4515,7 +4721,6 @@ For comparing the X-distance, P2Dist gives the X-distance
 of P2's axis from P1's axis. A positive value indicates P2  
 is in front of P1.  
 See also P2BodyDist.  
-    
   
 Example:  
 ```  
@@ -4638,20 +4843,21 @@ Returns the palette number of the player (i.e., the color scheme chosen for the 
   
 **Format:**  
 PalNo  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 none  
+  
 **Details:**  
-
 The palette ordering is specified in the character's def file.
 If omitted, the default ordering is:
 `A  B  C  X  Y  Z A2 B2 C2 X2 Y2 Z2`
 `1  2  3  4  5  6  7  8  9 10 11 12`
-
-  
   
 Example:  
 ```  
@@ -4668,23 +4874,23 @@ ParentDist returns the distance from the helper to its parent. It works similarl
   
 **Format:**  
 ParentDist [component]  
+  
 **Arguments:**  
 
 **[component]**  
 X, Y
   
+  
 **Return type:**  
 float  
+  
 **Error conditions:**  
 Returns bottom if the player does not have a parent (e.g., if the  
 parent was destroyed or KO'd).  
+  
 **Details:**  
-For comparing the Y-distance, ParentDist gives the difference in the  
-heights of the players' Y-axes. A negative value means that the  
-parent is above its child.  
-For comparing the X-distance, ParentDist gives the X-distance  
-of the parent's axis from the child's axis. A positive value  
-indicates the parent is in front of the child.  
+For comparing the Y-distance, ParentDist gives the difference in the heights of the players' Y-axes. A negative value means that the parent is above its child.  
+For comparing the X-distance, ParentDist gives the X-distance of the parent's axis from the child's axis. A positive value indicates the parent is in front of the child.  
   
 Example:  
 ```  
@@ -4764,10 +4970,13 @@ This trigger returns the numeric value of pi (3.141593...)
   
 **Format:**  
 pi  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 float  
+  
 **Error conditions:**  
 none
 
@@ -4779,13 +4988,16 @@ Returns 1 if a player with the specified ID number exists, 0 otherwise. This ID 
   
 **Format:**  
 PlayerIDExist(ID_number)  
+  
 **Arguments:**  
 
 **ID_number**  
 An expression that evaluates to the ID number to check for (int)
   
+  
 **Return type:**  
 boolean int (1 or 0)  
+  
 **Error conditions:**  
 Returns bottom if exprn evaluates to bottom.  
   
@@ -4852,29 +5064,29 @@ trigger1 = Player(3), Alive
 
 ## Pos (old)
 
-Gets the value of the player's position. You must specify the component that you want to check, eg. "Pos Y" to check the Y-position.  
+Gets the value of the player's position.  
+You must specify the component that you want to check, eg. "Pos Y" to check the Y-position.  
   
 **Format:**  
 Pos [component]  
+  
 **Arguments:**  
 
 **[component]**  
 X, Y
   
+  
 **Return type:**  
 float  
+  
 **Error conditions:**  
 none  
+  
 **Details:**  
-For "Pos X", the value is relative to the center of the  
-screen (value 0). Negative is left, positive is right.  
-Due to historical reasons, "Pos X" does not return absolute  
-position of the player (i.e. relative to the center of the stage),  
-which may be the more intuitive behavior.  
-To get the absolute position of the player, use "Pos X + CameraPos X".  
-For "Pos Y", the value is relative to the floor. Negative  
-is higher up, positive is below the floor.  
-    
+For "Pos X", the value is relative to the center of the screen (value 0). Negative is left, positive is right.  
+Due to historical reasons, "Pos X" does not return absolute position of the player (i.e. relative to the center of the stage), which may be the more intuitive behavior.  
+To get the absolute position of the player, use `Pos X + CameraPos X`.  
+For "Pos Y", the value is relative to the floor. Negative is higher up, positive is below the floor.  
   
 Example:  
 ```  
@@ -4890,10 +5102,13 @@ Returns the amount of power the player has.
   
 **Format:**  
 Power  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 none  
   
@@ -4911,10 +5126,13 @@ Returns the maximum amount of power the player can have. This is normally 3000 (
   
 **Format:**  
 PowerMax  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 none  
   
@@ -4974,14 +5192,18 @@ trigger1 = PrevMoveType = H
 
 ## PrevStateNo (old)
 
-Returns the number of the state that the player was last in. The results of this trigger are not guaranteed to be accurate.  
+Returns the number of the state that the player was last in.  
+The results of this trigger are not guaranteed to be accurate.  
   
 **Format:**  
 StateNo  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 none  
   
@@ -5021,17 +5243,23 @@ trigger1 = PrevStateType = C
 
 ## ProjCancelTime (old)
 
-This trigger takes an required nonnegative ID number as an argument.  If the player's last projectile to make any kind of contact was cancelled by an opponent's projectile and had the specified ID number, then ProjCancelTime returns the number of ticks since that contact occurred. If the specified ID number is 0, then the projectile ID is not checked. If no projectile meets all the above conditions, then ProjCancelTime returns -1.  
+This trigger takes an required nonnegative ID number as an argument.  
+If the player's last projectile to make any kind of contact was cancelled by an opponent's projectile and had the specified ID number, then ProjCancelTime returns the number of ticks since that contact occurred.  
+If the specified ID number is 0, then the projectile ID is not checked.  
+If no projectile meets all the above conditions, then ProjCancelTime returns -1.  
   
 **Format:**  
 ProjCancelTime(exprn)  
+  
 **Arguments:**  
 
 **exprn**  
 Expression evaluating to a nonnegative ID number (int).
   
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 Returns bottom if exprn evaluates to bottom. If a negative ID is  
 specified, then the ID defaults to zero.  
@@ -5079,7 +5307,9 @@ trigger1 = ProjClsnOverlap(var(3), p2,ID, clsn2)
 
 ## ProjContact (old)
 
-This trigger takes an optional ID number as a suffix. If the ID number is omitted, ProjContact returns true if any of the player's projectiles either successfully hit the opponent or were guarded by the opponent. When the ID number is specified, ProjContact returns true only if any of the player's projectiles with the specified ID number either successfully hit the opponent or was guarded.  
+This trigger takes an optional ID number as a suffix.  
+If the ID number is omitted, ProjContact returns true if any of the player's projectiles either successfully hit the opponent or were guarded by the opponent.  
+When the ID number is specified, ProjContact returns true only if any of the player's projectiles with the specified ID number either successfully hit the opponent or was guarded.  
   
 **Format:**  
 - ProjContact[ID] = value  
@@ -5096,21 +5326,19 @@ Value to compare against. 0 for false, 1 for true.
 **value2**  
 Time value to compare against.
   
+  
 **Return type:**  
 boolean int  
+  
 **Error conditions:**  
 none  
+  
 **Details:**  
-ProjContact will trigger once for each hit of the projectile, so a  
-multi-hit projectile can trigger multiple times.  
-The first form of ProjContact shown above is only valid for one tick  
-after contact, unlike MoveContact.  
-For the second form, ProjContact returns true if the projectile made  
-contact n ticks ago, where n is a nonnegative number satisfying the  
-relation "n [oper] value2".  
-Specifying an ID number of 0 gives the same behavior as if the ID  
-number is omitted (check all projectiles).  
-    
+ProjContact will trigger once for each hit of the projectile, so a multi-hit projectile can trigger multiple times.  
+The first form of ProjContact shown above is only valid for one tick after contact, unlike MoveContact.  
+For the second form, ProjContact returns true if the projectile made contact n ticks ago, where n is a nonnegative number satisfying the relation "n [oper] value2".  
+Specifying an ID number of 0 gives the same behavior as if the ID number is omitted (check all projectiles).  
+  
   
 Examples:  
 ```  
@@ -5126,20 +5354,26 @@ Examples:
 
 ## ProjContactTime (old)
 
-This trigger takes an required nonnegative ID number as an argument.  If the player's last projectile to make any kind of contact, made contact with the opponent and had the specified ID number, then ProjContactTime returns the number of ticks since that contact occurred. If the specified ID number is 0, then the projectile ID is not checked. If no projectile meets all the above conditions, then ProjContactTime returns -1.  
+This trigger takes an required nonnegative ID number as an argument.  
+If the player's last projectile to make any kind of contact, made contact with the opponent and had the specified ID number, then ProjContactTime returns the number of ticks since that contact occurred.  
+If the specified ID number is 0, then the projectile ID is not checked.  
+If no projectile meets all the above conditions, then ProjContactTime returns -1.  
   
 **Format:**  
 ProjContactTime(exprn)  
+  
 **Arguments:**  
 
 **exprn**  
 Expression evaluating to a nonnegative ID number (int).
   
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
-Returns bottom if exprn evaluates to bottom. If a negative ID is  
-specified, then the ID defaults to zero.  
+Returns bottom if exprn evaluates to bottom.  
+If a negative ID is specified, then the ID defaults to zero.  
   
 Examples:  
 ```  
@@ -5155,7 +5389,9 @@ Examples:
 
 ## ProjGuarded (old)
 
-This trigger takes an optional ID number as a suffix. If the ID number is omitted, ProjGuarded returns true if any of the player's projectiles were guarded by the opponent. When the ID number is specified, ProjGuarded returns true only if one of the player's projectiles with the specified ID number was guarded by the opponent.  
+This trigger takes an optional ID number as a suffix.  
+If the ID number is omitted, ProjGuarded returns true if any of the player's projectiles were guarded by the opponent.  
+When the ID number is specified, ProjGuarded returns true only if one of the player's projectiles with the specified ID number was guarded by the opponent.  
   
 **Format:**  
 - ProjGuarded[ID] = value  
@@ -5172,21 +5408,18 @@ Value to compare against. 0 for false, 1 for true.
 **value2**  
 Time value to compare against.
   
+  
 **Return type:**  
 boolean int (1 or 0)  
+  
 **Error conditions:**  
 none  
+  
 **Details:**  
-ProjGuarded will trigger once for each hit of the projectile, so a  
-multi-hit projectile can trigger multiple times.  
-The first form of ProjGuarded shown above is only valid for one tick  
-after hit, unlike MoveGuarded.  
-For the second form, ProjGuarded returns true if the projectile was  
-guarded n ticks ago, where n is a nonnegative number satisfying the  
-relation "n [oper] value2".  
-Specifying an ID number of 0 gives the same behavior as if the ID  
-number is omitted (check all projectiles).  
-    
+ProjGuarded will trigger once for each hit of the projectile, so a multi-hit projectile can trigger multiple times.  
+The first form of ProjGuarded shown above is only valid for one tick after hit, unlike MoveGuarded.  
+For the second form, ProjGuarded returns true if the projectile was guarded n ticks ago, where n is a nonnegative number satisfying the relation "n [oper] value2".  
+Specifying an ID number of 0 gives the same behavior as if the ID number is omitted (check all projectiles).  
   
 Examples:  
 ```  
@@ -5201,10 +5434,14 @@ Examples:
 
 ## ProjGuardedTime (old)
 
-This trigger takes an required nonnegative ID number as an argument.  If the player's last projectile to make any kind of contact was guarded by the opponent and had the specified ID number, then ProjGuardedTime returns the number of ticks since that contact occurred. If the specified ID number is 0, then the projectile ID is not checked. If no projectile meets all the above conditions, then ProjGuardedTime returns -1.  
+This trigger takes an required nonnegative ID number as an argument.  
+If the player's last projectile to make any kind of contact was guarded by the opponent and had the specified ID number, then ProjGuardedTime returns the number of ticks since that contact occurred.  
+If the specified ID number is 0, then the projectile ID is not checked.  
+If no projectile meets all the above conditions, then ProjGuardedTime returns -1.  
   
 **Format:**  
 ProjCancelTime(exprn)  
+  
 **Arguments:**  
 
 **exprn**  
@@ -5212,6 +5449,7 @@ Expression evaluating to a nonnegative ID number (int).
   
 **Return type:**  
 int  
+  
 **Error conditions:**  
 Returns bottom if exprn evaluates to bottom. If a negative ID is  
 specified, then the ID defaults to zero.  
@@ -5230,65 +5468,64 @@ Examples:
 
 ## ProjHit (old)
 
-This trigger takes an optional positive ID number as a suffix. If the ID number is omitted, ProjHit returns true if any of the player's projectiles successfully hit the opponent. When the ID number is specified, ProjHit returns true only if one of the player's projectiles with the specified ID number successfully hit the opponent.  
+This trigger takes an optional positive ID number as a suffix.  
+If the ID number is omitted, ProjHit returns true if any of the player's projectiles successfully hit the opponent.  
+When the ID number is specified, ProjHit returns true only if one of the player's projectiles with the specified ID number successfully hit the opponent.  
   
 **Format:**  
 - ProjHit[ID] = value  
 - ProjHit[ID] = value, [oper] value2  
   
 **Arguments:**  
-
-**[ID] (int)**  
+*[ID] (int)*  
 Optional ID number.  
-**value (boolean)**  
+*value (boolean)*  
 Value to compare against. 0 for false, 1 for true.  
-**[oper]**  
+**[oper]*  
 =, !=, <, >, <=, >=  
-**value2**  
-Time value to compare against.
+*value2*  
+Time value to compare against.  
   
 **Return type:**  
 boolean int  
+  
 **Error conditions:**  
 none  
+  
 **Details:**  
-ProjHit will trigger once for each hit of the projectile, so a  
-multi-hit projectile can trigger multiple times.  
-The first form of ProjHit shown above is only valid for one tick  
-after hit, unlike MoveHit.  
-For the second form, ProjHit returns true if the projectile hit  
-n ticks ago, where n is a nonnegative number satisfying the relation  
-"n [oper] value2".  
-Specifying an ID number of 0 gives the same behavior as if the ID  
-number is omitted (check all projectiles).  
-    
+ProjHit will trigger once for each hit of the projectile, so a multi-hit projectile can trigger multiple times.  
+The first form of ProjHit shown above is only valid for one tick after hit, unlike MoveHit.  
+For the second form, ProjHit returns true if the projectile hit n ticks ago, where n is a nonnegative number satisfying the relation "n [oper] value2".  
+Specifying an ID number of 0 gives the same behavior as if the ID number is omitted (check all projectiles).  
+  
   
 Examples:  
 ```  
 1. trigger1 = ProjHit1234 = 1  
-; Triggers if a projectile with ID 1234 just made successful  
-  contact with the opponent.  
+; Triggers if a projectile with ID 1234 just made successful contact with the opponent.  
 2. trigger1 = ProjHit1234 = 1, < 15  
-; Triggers if any of the player's projectiles made successful  
-  contact with the opponent within the last 15 ticks.  
+; Triggers if any of the player's projectiles made successful contact with the opponent within the last 15 ticks.  
 ```
 
 ---
 
 ## ProjHitTime (old)
 
-This trigger takes an required nonnegative ID number as an argument.  If the player's last projectile to make any kind of contact successfully hit the opponent and had the specified ID number, then ProjHit returns the number of ticks since that contact occurred. If the specified ID number is 0, then the projectile ID is not checked.  
+This trigger takes an required nonnegative ID number as an argument.  
+If the player's last projectile to make any kind of contact successfully hit the opponent and had the specified ID number, then ProjHit returns the number of ticks since that contact occurred.  
+If the specified ID number is 0, then the projectile ID is not checked.  
 If no projectile meets all the above conditions, then ProjHitTime returns -1.  
   
 **Format:**  
 ProjHitTime(exprn)  
+  
 **Arguments:**  
-
-**exprn**  
+*exprn*  
 Expression evaluating to a nonnegative ID number (int).
   
 **Return type:**  
 int  
+  
 **Error conditions:**  
 Returns bottom if exprn evaluates to bottom. If a negative ID is  
 specified, then the ID defaults to zero.  
@@ -5362,10 +5599,13 @@ Returns a random number between 0 and 999, inclusive.
   
 **Format:**  
 Random  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 none  
   
@@ -5513,14 +5753,18 @@ RightEdge returns the x position of the right edge of the screen, in absolute st
   
 **Format:**  
 LeftEdge  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 float  
+  
 **Error conditions:**  
 none  
+  
 **Notes:**  
-This trigger is equivalent to the expression "CameraPos X + GameWidth / 2".  
+This trigger is equivalent to the expression `CameraPos X + GameWidth / 2`.  
   
 Example:  
 ```  
@@ -5533,10 +5777,13 @@ trigger1 = Pos X + CameraPos X > RightEdge
 ## RootDist (old)
 
 This trigger is only valid for helper-type characters.  
-RootDist returns the distance from the helper to its root. The root is the main player character who owns the helper: for instance, if you select Kumquat to play with, and Kumquat spawns a helper named Kiwi, who in turn spawns a helper named Penguin, then Penguin's root is Kumquat, and Penguin is a descendant of Kumquat. RootDist works similarly to P2Dist.  
+RootDist returns the distance from the helper to its root.  
+The root is the main player character who owns the helper: for instance, if you select Kumquat to play with, and Kumquat spawns a helper named Kiwi, who in turn spawns a helper named Penguin, then Penguin's root is Kumquat, and Penguin is a descendant of Kumquat.  
+RootDist works similarly to P2Dist.  
   
 **Format:**  
 RootDist [component]  
+  
 **Arguments:**  
 
 **[component]**  
@@ -5544,22 +5791,18 @@ X, Y
   
 **Return type:**  
 float  
+  
 **Error conditions:**  
 Returns bottom if the player has no root.  
+  
 **Details:**  
-For comparing the Y-distance, RootDist gives the difference in the  
-heights of the players' Y-axes. A negative value means that the  
-root is above its descendant.  
-For comparing the X-distance, ParentDist gives the X-distance  
-of the root's axis from the descendant's axis. A positive value  
-indicates the root is in front of its descendant.  
-    
+For comparing the Y-distance, RootDist gives the difference in the heights of the players' Y-axes. A negative value means that the root is above its descendant.  
+For comparing the X-distance, ParentDist gives the X-distance of the root's axis from the descendant's axis. A positive value indicates the root is in front of its descendant.  
   
 Example:  
 ```  
 trigger1 = RootDist X != 0  
-; Triggers if the root is not at the exact same x-position as the  
-  helper character.  
+; Triggers if the root is not at the exact same x-position as the helper character.  
 ```
 
 ---
@@ -5602,10 +5845,13 @@ Returns the current round number.
   
 **Format:**  
 RoundNo  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 none  
   
@@ -5619,14 +5865,18 @@ trigger1 = RoundNo = 3
 
 ## RoundsExisted (old)
 
-Returns the number of rounds the player has existed for. On the first round, returns 0. This is useful for a Turns mode intro.  
+Returns the number of rounds the player has existed for. On the first round, returns 0.  
+This is useful for a Turns mode intro.  
   
 **Format:**  
 RoundsExisted  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 none  
   
@@ -5649,12 +5899,16 @@ Returns the current round state number.
   
 **Format:**  
 RoundState  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 none  
+  
 **Details:**  
 Return values:  
 0: Pre-intro  - screen fades in  
@@ -5775,12 +6029,16 @@ Returns the height of the screen space in the player's local coordinate space.
   
 **Format:**  
 ScreenHeight  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 float  
+  
 **Error conditions:**  
 none  
+  
 **Notes:**  
 ScreenWidth and ScreenHeight are not affected by the camera zoom factor.  
   
@@ -5802,21 +6060,23 @@ Gets the value of the player's position relative to the top-right corner of the 
   
 **Format:**  
 ScreenPos [component]  
+  
 **Arguments:**  
 
 **[component]**  
 X, Y
   
+  
 **Return type:**  
 float  
+  
 **Error conditions:**  
 none  
+  
 **Details:**  
-For "ScreenPos X", the value is relative to the left of the  
-screen (value 0). Negative is left, positive is right.  
-For "ScreenPos Y", the value is relative to the top of the screen.  
-Negative is above the screen, positive is downward.  
-    
+For `ScreenPos X`, the value is relative to the left of the screen (value 0). Negative is left, positive is right.  
+For `ScreenPos Y`, the value is relative to the top of the screen. Negative is above the screen, positive is downward.  
+  
   
 Example:  
 ```  
@@ -5832,12 +6092,16 @@ Returns the width of the screen space in the player's local coordinate space.
   
 **Format:**  
 ScreenWidth  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 float  
+  
 **Error conditions:**  
 none  
+  
 **Notes:**  
 ScreenWidth and ScreenHeight are not affected by the camera zoom factor.  
   
@@ -5854,7 +6118,8 @@ pos = ScreenWidth / 2, ScreenHeight / 2
 
 ## SelfAnimExist (old)
 
-Like AnimExist, except that this only checks P1's animation data. If P1 has been given P2's animation data by a hit, SelfAnimExist will not check P2's animation data to determine whether or not a given action exists.
+Like AnimExist, except that this only checks P1's animation data.  
+If P1 has been given P2's animation data by a hit, SelfAnimExist will not check P2's animation data to determine whether or not a given action exists.
 
 ---
 
@@ -5911,21 +6176,23 @@ Computes the sine of the specified argument (in radians.)
   
 **Format:**  
 sin(exprn)  
+  
 **Arguments:**  
 
 **exprn**  
 Expression to compute the sine of. (float)
   
+  
 **Return type:**  
 float  
+  
 **Error conditions:**  
 Returns bottom if exprn evaluates to bottom.  
   
 Example:  
 ```  
 value = sin(pi/2)  
-  Sets value to the sine of pi/2, which is approximately 1.0  
-  (possibly with some rounding error.)  
+; Sets value to the sine of pi/2, which is approximately 1.0 (possibly with some rounding error.)  
 ```
 
 ---
@@ -6122,6 +6389,7 @@ A limited number of parameters are supported.
   
 **Format:**  
 StageVar(param_name) [oper] "string"  
+  
 **Arguments:**  
 
 **param_name**  
@@ -6134,18 +6402,17 @@ info.name, info.displayname, info.authorname.
 **"string" (string)**  
 String to compare against. Must be in double quotes.
   
+  
 **Return type:**  
 boolean int (1 or 0)  
+  
 **Error conditions:**  
 none  
+  
 **Details:**  
-- info.author: Compares the value of the "author" parameter  
-in the [Info] group. (boolean)  
-- info.displayname: Compares the value of the "displayname" parameter  
-in the [Info] group. (boolean)  
-- info.name: Compares the value of the "name" parameter  
-in the [Info] group. (boolean)  
-
+- info.author: Compares the value of the "author" parameter in the `[Info]` group. (boolean)  
+- info.displayname: Compares the value of the "displayname" parameter in the `[Info]` group. (boolean)  
+- info.name: Compares the value of the "name" parameter in the `[Info]` group. (boolean)  
   
 **Versions:**  
 1.0 and newer  
@@ -6194,10 +6461,13 @@ Returns the player's current state number. Useful for "move interrupts" in the C
   
 **Format:**  
 StateNo  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 none  
   
@@ -6212,12 +6482,12 @@ trigger1 = stateno = [200,650]
 
 ## StateType (old)
 
-StateType gives the player's state-type. Refer to the section  
-on StateDef in the CNS documentation for more details on StateType.  
+StateType gives the player's state-type. Refer to the section on StateDef in the CNS documentation for more details on StateType.  
 Useful for "move interrupts" in the CMD file.  
   
 **Format:**  
 StateType [oper] state_type  
+  
 **Arguments:**  
 
 **[oper]**  
@@ -6227,9 +6497,9 @@ StateType [oper] state_type
 **S, C, A, L**  
 Stand, Crouch, Air and Liedown state-types.
   
-  
 **Return type:**  
 boolean int (1 or 0)  
+  
 **Error conditions:**  
 none  
   
@@ -6249,6 +6519,7 @@ variables are reserved for bookkeeping in common1.cns.
   
 **Format:**  
 SysFVar(exprn)  
+  
 **Arguments:**  
 
 **exprn**  
@@ -6257,6 +6528,7 @@ at this time are 0-4.
   
 **Return type:**  
 float  
+  
 **Error conditions:**  
 Returns bottom if exprn evaluates to bottom, or if exprn evaluates  
 to an invalid variable index.  
@@ -6277,14 +6549,17 @@ variables are reserved for bookkeeping in common1.cns.
   
 **Format:**  
 SysVar(exprn)  
+  
 **Arguments:**  
 
 **exprn**  
 An expression evaluating to a variable number. Valid numbers  
 at this time are 0-4.
   
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 Returns bottom if exprn evaluates to bottom, or if exprn evaluates  
 to an invalid variable index.  
@@ -6303,13 +6578,16 @@ Computes the tangent of the specified argument (in radians.)
   
 **Format:**  
 tan(exprn)  
+  
 **Arguments:**  
 
 **exprn**  
 Expression to compute the tangent of. (float)
   
+  
 **Return type:**  
 float  
+  
 **Error conditions:**  
 Returns bottom if exprn evaluates to bottom.  
   
@@ -6349,22 +6627,21 @@ TeamMode gives the current mode of play for the player's team.
   
 **Format:**  
 TeamMode [oper] mode  
+  
 **Arguments:**  
-
-**[oper]**  
+*[oper]*  
 =, !=   (other operators not valid)  
-**mode (string)**  
-
+*mode (string)*  
 single - single player
 simul  - 2 players simultaneously
 turns  - turns battle
-
-
   
 **Return type:**  
 boolean int (1 or 0)  
+  
 **Error conditions:**  
 none  
+  
 **Notes:**  
 In survival mode, TeamMode = turns on the enemy side.  
   
@@ -6394,10 +6671,13 @@ Returns the team side the player is on. 1 represents P1 side (left), 2 for P2 si
   
 **Format:**  
 TeamSide  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 none  
   
@@ -6434,10 +6714,13 @@ Returns the number of ticks per second. Useful for time calculations.
   
 **Format:**  
 TicksPerSecond  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 none  
   
@@ -6455,10 +6738,13 @@ Returns the state-time of the player (that is, the number of ticks that the play
   
 **Format:**  
 Time  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 none  
   
@@ -6492,21 +6778,23 @@ trigger1 = TimeElapsed > 600
 ## TimeMod (old)
 
 Returns the remainder when the state-time of the player is divided by the specified value.  
-The % operator subsumes the functionality of TimeMod, so it is recommended that you use % instead.  
+The `%` operator subsumes the functionality of `TimeMod`, so it is recommended that you use `%` instead.  
   
 **Format:**  
 TimeMod [oper] divisor, value1  
+  
 **Arguments:**  
-
-**[oper]**  
+*[oper]*  
 =, !=, <, >, <=, >=  
-**divisor (int)**  
+*divisor (int)*  
 Positive number to use as a divisor.  
-**value1 (int)**  
+*value1 (int)*  
 Value to compare remainder against.
+  
   
 **Return type:**  
 boolean int (1 or 0)  
+  
 **Error conditions:**  
 Returns bottom if the divisor is 0.  
   
@@ -6587,12 +6875,16 @@ TopEdge returns the y position of the top edge of the screen, in absolute stage 
   
 **Format:**  
 TopEdge  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 float  
+  
 **Error conditions:**  
 none  
+  
 **Notes:**  
 This trigger is equivalent to the expression "Pos Y - ScreenPos Y".  
   
@@ -6606,14 +6898,21 @@ trigger1 = Pos Y > TopEdge
 
 ## UniqHitCount (old)
 
-Returns the total number of hits the player's current attack move has done. This value is valid only for a single state; after any state change, it resets to 0. To prevent it from resetting to 0, set hitcountpersist in the StateDef (see cns documentation for details). The HitCount and UniqHitCount triggers differ only when the player is hitting more than one opponent. In the case where the player is hitting two opponents with the same attack, HitCount will increase by 1 for every hit, while UniqHitCount increases by 2.  
+Returns the total number of hits the player's current attack move has done.  
+This value is valid only for a single state; after any state change, it resets to 0.  
+To prevent it from resetting to 0, set hitcountpersist in the StateDef (see cns documentation for details).  
+The HitCount and UniqHitCount triggers differ only when the player is hitting more than one opponent.  
+In the case where the player is hitting two opponents with the same attack, HitCount will increase by 1 for every hit, while UniqHitCount increases by 2.  
   
 **Format:**  
 UniqHitCount  
+  
 **Arguments:**  
 none  
+  
 **Return type:**  
 int  
+  
 **Error conditions:**  
 none  
   
@@ -6631,17 +6930,18 @@ This trigger takes a mandatory variable number as an argument. It returns the va
   
 **Format:**  
 Var(exprn)  
+  
 **Arguments:**  
 
 **exprn**  
-An expression evaluating to a variable number. Valid numbers  
-at this time are 0-59.
+An expression evaluating to a variable number. Valid numbers at this time are 0-59.
+  
   
 **Return type:**  
 int  
+  
 **Error conditions:**  
-Returns bottom if exprn evaluates to bottom, or if exprn evaluates  
-to an invalid variable index.  
+Returns bottom if exprn evaluates to bottom, or if exprn evaluates to an invalid variable index.  
   
 Example:  
 ```  
@@ -6653,21 +6953,26 @@ trigger1 = Var(0) = -34
 
 ## Vel (old)
 
-Gets the value of the player's velocity. You must specify the component that you want to check, eg. "Vel Y" to check the Y-velocity.  
+Gets the value of the player's velocity. You must specify the component that you want to check, eg. `Vel Y` to check the Y-velocity.  
   
 **Format:**  
 Vel [component]  
+  
 **Arguments:**  
 
 **[component]**  
 X, Y
   
+  
 **Return type:**  
 float  
+  
 **Error conditions:**  
 none  
+  
 **Details:**  
-For Vel X, a positive value indicates that the player is moving forward. (This behavior is the opposite of HitVel X's behavior.) For Vel Y, a positive value indicates that the player is moving downward.  
+For Vel X, a positive value indicates that the player is moving forward. (This behavior is the opposite of HitVel X's behavior.)  
+For Vel Y, a positive value indicates that the player is moving downward.  
   
 Example:  
 ```  
@@ -6679,7 +6984,8 @@ trigger1 = Vel Y >= 0
 
 ## Win (old)
 
-Returns true if the player (or the player's team, in team mode) has won the round, false otherwise. Can be suffixed with "KO", "Time", or "Perfect" to return true only when the round has been won by a KO, by time expiring, or with no life lost, respectively.  
+Returns true if the player (or the player's team, in team mode) has won the round, false otherwise.  
+Can be suffixed with "KO", "Time", or "Perfect" to return true only when the round has been won by a KO, by time expiring, or with no life lost, respectively.  
   
 Format:  
 1. Win  
@@ -6689,8 +6995,10 @@ Format:
   
 **Arguments:**  
 none  
+  
 **Return type:**  
 boolean int (1 or 0)  
+  
 **Error conditions:**  
 none  
   
