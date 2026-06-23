@@ -13,7 +13,7 @@
 - [AngleMul](#anglemul)
 - [AngleSet](#angleset)
 - [AppendToClipboard](#appendtoclipboard)
-- [AppendToClipboard, DisplayToClipboard](#appendtoclipboard-displaytoclipboard)
+- [AppendToClipboard, DisplayToClipboard (changed)](#appendtoclipboard-displaytoclipboard-changed)
 - [AssertAnalogVector (nightly build only)](#assertanalogvector-nightly-build-only)
 - [AssertCommand (nightly build only)](#assertcommand-nightly-build-only)
 - [AssertInput](#assertinput)
@@ -24,7 +24,7 @@
 - [AttackMulSet](#attackmulset)
 - [AttackMulSet (changed)](#attackmulset-changed)
 - [BGPalFX](#bgpalfx)
-- [BGPalFX (nightly build only)](#bgpalfx-nightly-build-only)
+- [BGPalFX (nightly build only) (changed)](#bgpalfx-nightly-build-only-changed)
 - [BindToParent](#bindtoparent)
 - [BindToRoot](#bindtoroot)
 - [BindToTarget](#bindtotarget)
@@ -158,6 +158,7 @@
 - [StopSnd](#stopsnd)
 - [StopSnd (changed)](#stopsnd-changed)
 - [SuperPause](#superpause)
+- [SuperPause (changed)](#superpause-changed)
 - [TagIn](#tagin)
 - [TagOut](#tagout)
 - [TargetAdd (nightly build only)](#targetadd-nightly-build-only)
@@ -545,7 +546,7 @@ This is the same as DisplayToClipboard, except that message text is added on a n
 
 ---
 
-## AppendToClipboard, DisplayToClipboard
+## AppendToClipboard, DisplayToClipboard (changed)
 
 *Source: Ikemen GO (changed)*
 
@@ -1248,7 +1249,7 @@ Same as PalFX, except that this affects the palette of the background and lifeba
 
 ---
 
-## BGPalFX (nightly build only)
+## BGPalFX (nightly build only) (changed)
 
 *Source: Ikemen GO (changed)*
 
@@ -7045,7 +7046,7 @@ Mugen allowed stopping all sounds for all players with `channel = -1`, but had n
 
 ## SuperPause
 
-*Source: Ikemen GO (changed), M.U.G.E.N 1.1*
+*Source: M.U.G.E.N 1.1*
 
 Freezes the gameplay and darkens the screen. While each player is frozen, no time passes for them. Use for a dramatic pause during the start of hyper attacks.  
   
@@ -7107,6 +7108,12 @@ the Pause controller's effects expires will not count down.
 **Example:**  
   
 none
+
+---
+
+## SuperPause (changed)
+
+*Source: Ikemen GO (changed)*
 
 ### Brightness (nightly build only)
 
