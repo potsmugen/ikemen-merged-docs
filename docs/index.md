@@ -6,6 +6,7 @@ This page contains automatically generated merged documentation from M.U.G.E.N 1
 
 - [State Controllers (SCTRL)](sctrl)
 - [Triggers](triggers)
+- [Trigger Redirections](redirections)
 
 ---
 
