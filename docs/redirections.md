@@ -2,32 +2,30 @@
 
 ## Table of Contents
 
-- [enemy (M.U.G.E.N)](#enemy-mugen)
-- [enemy(n) (M.U.G.E.N)](#enemyn-mugen)
-- [enemyNear (M.U.G.E.N)](#enemynear-mugen)
-- [enemyNear(n) (M.U.G.E.N)](#enemynearn-mugen)
-- [helper (M.U.G.E.N)](#helper-mugen)
-- [Helper (nightly build only) (changed)](#helper-nightly-build-only-changed)
-- [helper(ID) (M.U.G.E.N)](#helperid-mugen)
+- [enemy (old)](#enemy-old)
+- [enemy(n) (old)](#enemyn-old)
+- [enemyNear (old)](#enemynear-old)
+- [enemyNear(n) (old)](#enemynearn-old)
+- [helper (old)](#helper-old)
+- [Helper (changed)](#helper-changed)
+- [helper(ID) (old)](#helperid-old)
 - [HelperIndex(n) (new)](#helperindexn-new)
 - [P2 (new)](#p2-new)
-- [parent (M.U.G.E.N)](#parent-mugen)
-- [partner (M.U.G.E.N)](#partner-mugen)
-- [partner(n) (M.U.G.E.N)](#partnern-mugen)
+- [parent (old)](#parent-old)
+- [partner (old)](#partner-old)
+- [partner(n) (old)](#partnern-old)
 - [Player(n) (new)](#playern-new)
-- [playerID(ID) (M.U.G.E.N)](#playeridid-mugen)
-- [PlayerIndex(n) (nightly build only) (new)](#playerindexn-nightly-build-only-new)
-- [root (M.U.G.E.N)](#root-mugen)
+- [playerID(ID) (old)](#playeridid-old)
+- [PlayerIndex(n) (new)](#playerindexn-new)
+- [root (old)](#root-old)
 - [StateOwner (new)](#stateowner-new)
-- [target (M.U.G.E.N)](#target-mugen)
-- [Target (nightly build only) (changed)](#target-nightly-build-only-changed)
-- [target(ID) (M.U.G.E.N)](#targetid-mugen)
+- [target (old)](#target-old)
+- [Target (changed)](#target-changed)
+- [target(ID) (old)](#targetid-old)
 
 ---
 
-## enemy (M.U.G.E.N)
-
-*Source: M.U.G.E.N 1.1*
+## enemy (old)
 
 Redirects the trigger to the first opponent found.  
 Normal helpers and neutral players are not considered opponents.  
@@ -35,44 +33,34 @@ See the related trigger `numenemy` in the trigger documentation.
 
 ---
 
-## enemy(n) (M.U.G.E.N)
-
-*Source: M.U.G.E.N 1.1*
+## enemy(n) (old)
 
 `n` should be a well-formed expression that evaluates to a non-negative integer.  
 The trigger is redirected to the n'th opponent.
 
 ---
 
-## enemyNear (M.U.G.E.N)
-
-*Source: M.U.G.E.N 1.1*
+## enemyNear (old)
 
 Redirects the trigger to the nearest opponent.
 
 ---
 
-## enemyNear(n) (M.U.G.E.N)
-
-*Source: M.U.G.E.N 1.1*
+## enemyNear(n) (old)
 
 `n` should be a well-formed expression that evaluates to a non-negative integer.  
 The trigger is redirected to the n'th-nearest opponent.
 
 ---
 
-## helper (M.U.G.E.N)
-
-*Source: M.U.G.E.N 1.1*
+## helper (old)
 
 Redirects the trigger to the first helper found. See the related  
 trigger `NumHelper` in the trigger documentation.
 
 ---
 
-## Helper (nightly build only) (changed)
-
-*Source: Ikemen GO (changed)*
+## Helper (changed)
 
 The `Helper` redirection now also accepts an optional index argument, through the new format `Helper(ID, index)`. Defaults to 0 (first one).  
 The old formats still work exactly the same.  
@@ -85,9 +73,7 @@ trigger1 = Helper(1005, 1), MoveType = A; The second helper with ID 1005
 
 ---
 
-## helper(ID) (M.U.G.E.N)
-
-*Source: M.U.G.E.N 1.1*
+## helper(ID) (old)
 
 ID should be a well-formed expression that evaluates to a positive  
 integer. The trigger is then redirected to a helper with the  
@@ -96,8 +82,6 @@ corresponding ID number.
 ---
 
 ## HelperIndex(n) (new)
-
-*Source: Ikemen GO (new)*
 
 Redirects the trigger to the helper entity by index.
 
@@ -119,8 +103,6 @@ trigger1 = HelperIndex(2), MoveType = A
 
 ## P2 (new)
 
-*Source: Ikemen GO (new)*
-
 Redirects the trigger to the same player as the "P2" family of triggers (P2StateNo, etc). So, for instance, `P2, StateNo` is equivalent to `P2StateNo`.  
 
 The "P2" enemy has some notable properties:  
@@ -138,25 +120,19 @@ trigger1 = P2, DizzyPoints <= 100
 
 ---
 
-## parent (M.U.G.E.N)
-
-*Source: M.U.G.E.N 1.1*
+## parent (old)
 
 Redirects the trigger to the player's parent. (Player must be a helper.)
 
 ---
 
-## partner (M.U.G.E.N)
-
-*Source: M.U.G.E.N 1.1*
+## partner (old)
 
 Redirects the trigger to the player's partner. Normal helpers and neutral players are not considered opponents. See the related trigger `numpartner` in the trigger documentation.
 
 ---
 
-## partner(n) (M.U.G.E.N)
-
-*Source: M.U.G.E.N 1.1*
+## partner(n) (old)
 
 `n` should be a well-formed expression that evaluates to a non-negative integer.  
 The trigger is redirected to the n'th partner.
@@ -164,8 +140,6 @@ The trigger is redirected to the n'th partner.
 ---
 
 ## Player(n) (new)
-
-*Source: Ikemen GO (new)*
 
 Redirects a trigger to the character with the specified PlayerNo.
 
@@ -176,18 +150,14 @@ trigger2 = Player(TeamLeader), MoveType = A
 
 ---
 
-## playerID(ID) (M.U.G.E.N)
-
-*Source: M.U.G.E.N 1.1*
+## playerID(ID) (old)
 
 `n` should be a well-formed expression that evaluates to a non-negative integer.  
 The trigger is redirected to the player with unique ID equal to ID. See the `ID` and `PlayerExistID` triggers in the trigger documentation.
 
 ---
 
-## PlayerIndex(n) (nightly build only) (new)
-
-*Source: Ikemen GO (new)*
+## PlayerIndex(n) (new)
 
 Each player is assigned a specific index in the internal player list. `PlayerIndex` will redirect a trigger to the player (helpers included) with the specified index. The first index is 0. If there are 20 players on screen, valid indexes will be 0 through 19.  
   
@@ -208,17 +178,13 @@ for i = 0; NumPlayer - 1; 1 {
 
 ---
 
-## root (M.U.G.E.N)
-
-*Source: M.U.G.E.N 1.1*
+## root (old)
 
 Redirects the trigger to the root.
 
 ---
 
 ## StateOwner (new)
-
-*Source: Ikemen GO (new)*
 
 Redirects a trigger to the owner of the current state the character is in. Useful when a custom stated target needs to redirect a trigger to the player.  
 Note: states are owned by the root.  
@@ -229,17 +195,13 @@ trigger1 = StateOwner,AILevel
 
 ---
 
-## target (M.U.G.E.N)
-
-*Source: M.U.G.E.N 1.1*
+## target (old)
 
 Redirects the trigger to the first target found.
 
 ---
 
-## Target (nightly build only) (changed)
-
-*Source: Ikemen GO (changed)*
+## Target (changed)
 
 The `Target` redirection now also accepts an optional index argument, through the new format `Target(ID, index)`. Defaults to 0 (first one).  
 The old format still works exactly the same.  
@@ -252,9 +214,7 @@ trigger1 = Target(-1, 1), Alive; The second target with any ID
 
 ---
 
-## target(ID) (M.U.G.E.N)
-
-*Source: M.U.G.E.N 1.1*
+## target(ID) (old)
 
 ID should be a well-formed expression that evaluates to a non-  
 negative integer. The trigger is then redirected to a target with  

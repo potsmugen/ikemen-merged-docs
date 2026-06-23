@@ -2,268 +2,218 @@
 
 ## Table of Contents
 
-- [AfterImage](#afterimage)
+- [About Controllers (old)](#about-controllers-old)
+- [AfterImage (old)](#afterimage-old)
 - [AfterImage (changed)](#afterimage-changed)
-- [AfterImageTime](#afterimagetime)
-- [AllPalFX](#allpalfx)
+- [AfterImageTime (old)](#afterimagetime-old)
+- [AllPalFX (old)](#allpalfx-old)
 - [AllPalFx (changed)](#allpalfx-changed)
-- [AngleAdd](#angleadd)
-- [AngleDraw](#angledraw)
+- [AngleAdd (old)](#angleadd-old)
+- [AngleDraw (old)](#angledraw-old)
 - [AngleDraw, AngleSet, AngleMul (changed)](#angledraw-angleset-anglemul-changed)
-- [AngleMul](#anglemul)
-- [AngleSet](#angleset)
-- [AppendToClipboard](#appendtoclipboard)
+- [AngleMul (old)](#anglemul-old)
+- [AngleSet (old)](#angleset-old)
+- [AppendToClipboard (old)](#appendtoclipboard-old)
 - [AppendToClipboard, DisplayToClipboard (changed)](#appendtoclipboard-displaytoclipboard-changed)
-- [AssertAnalogVector (nightly build only)](#assertanalogvector-nightly-build-only)
-- [AssertCommand (nightly build only)](#assertcommand-nightly-build-only)
-- [AssertInput](#assertinput)
-- [AssertSpecial](#assertspecial)
+- [AssertAnalogVector (new)](#assertanalogvector-new)
+- [AssertCommand (new)](#assertcommand-new)
+- [AssertInput (new)](#assertinput-new)
+- [AssertSpecial (old)](#assertspecial-old)
 - [AssertSpecial (changed)](#assertspecial-changed)
-- [AttackDist](#attackdist)
+- [AttackDist (old)](#attackdist-old)
 - [AttackDist (changed)](#attackdist-changed)
-- [AttackMulSet](#attackmulset)
+- [AttackMulSet (old)](#attackmulset-old)
 - [AttackMulSet (changed)](#attackmulset-changed)
-- [BGPalFX](#bgpalfx)
-- [BGPalFX (nightly build only) (changed)](#bgpalfx-nightly-build-only-changed)
-- [BindToParent](#bindtoparent)
-- [BindToRoot](#bindtoroot)
-- [BindToTarget](#bindtotarget)
+- [BGPalFX (old)](#bgpalfx-old)
+- [BGPalFX (changed)](#bgpalfx-changed)
+- [BindToParent (old)](#bindtoparent-old)
+- [BindToRoot (old)](#bindtoroot-old)
+- [BindToTarget (old)](#bindtotarget-old)
 - [BindToTarget (changed)](#bindtotarget-changed)
-- [Camera [EXPERIMENTAL]](#camera-experimental)
-- [ChangeAnim](#changeanim)
+- [Camera [EXPERIMENTAL] (new)](#camera-experimental-new)
+- [ChangeAnim (old)](#changeanim-old)
 - [ChangeAnim (changed)](#changeanim-changed)
-- [ChangeAnim2](#changeanim2)
-- [ChangeAnim2 (changed) (nightly build only)](#changeanim2-changed-nightly-build-only)
-- [ChangeMovelist (nightly build only)](#changemovelist-nightly-build-only)
-- [ChangeState](#changestate)
+- [ChangeAnim2 (old)](#changeanim2-old)
+- [ChangeAnim2 (changed)](#changeanim2-changed)
+- [ChangeMovelist (new)](#changemovelist-new)
+- [ChangeState (old)](#changestate-old)
 - [ChangeState (changed)](#changestate-changed)
-- [ClearClipboard](#clearclipboard)
-- [Controller Reference](#controller-reference)
-- [CtrlSet](#ctrlset)
-- [DefenceMulSet](#defencemulset)
+- [ClearClipboard (old)](#clearclipboard-old)
+- [Controller Reference (old)](#controller-reference-old)
+- [CtrlSet (old)](#ctrlset-old)
+- [DefenceMulSet (old)](#defencemulset-old)
 - [DefenceMulSet (changed)](#defencemulset-changed)
-- [Depth (nightly build only)](#depth-nightly-build-only)
-- [DestroySelf](#destroyself)
-- [Dialogue](#dialogue)
-- [DisplayToClipboard](#displaytoclipboard)
-- [DizzyPointsAdd](#dizzypointsadd)
-- [DizzyPointsSet](#dizzypointsset)
-- [DizzySet](#dizzyset)
-- [EnvColor](#envcolor)
-- [EnvShake](#envshake)
+- [Depth (new)](#depth-new)
+- [DestroySelf (old)](#destroyself-old)
+- [Dialogue (new)](#dialogue-new)
+- [DisplayToClipboard (old)](#displaytoclipboard-old)
+- [DizzyPointsAdd (new)](#dizzypointsadd-new)
+- [DizzyPointsSet (new)](#dizzypointsset-new)
+- [DizzySet (new)](#dizzyset-new)
+- [EnvColor (old)](#envcolor-old)
+- [EnvShake (old)](#envshake-old)
 - [EnvShake (changed)](#envshake-changed)
-- [Explod](#explod)
+- [Explod (old)](#explod-old)
 - [Explod (changed)](#explod-changed)
-- [ExplodBindTime](#explodbindtime)
-- [FallEnvShake](#fallenvshake)
-- [ForceFeedback](#forcefeedback)
+- [ExplodBindTime (old)](#explodbindtime-old)
+- [FallEnvShake (old)](#fallenvshake-old)
+- [ForceFeedback (old)](#forcefeedback-old)
 - [Forcefeedback (changed)](#forcefeedback-changed)
-- [GameMakeAnim](#gamemakeanim)
-- [GetHitVarSet (nightly build only)](#gethitvarset-nightly-build-only)
-- [Gravity](#gravity)
-- [GroundLevelOffset (nightly build only)](#groundleveloffset-nightly-build-only)
-- [GuardBreakSet](#guardbreakset)
-- [GuardPointsAdd](#guardpointsadd)
-- [GuardPointsSet](#guardpointsset)
-- [Height (nightly build only)](#height-nightly-build-only)
-- [Helper](#helper)
+- [GameMakeAnim (old)](#gamemakeanim-old)
+- [GetHitVarSet (new)](#gethitvarset-new)
+- [Gravity (old)](#gravity-old)
+- [GroundLevelOffset (new)](#groundleveloffset-new)
+- [GuardBreakSet (new)](#guardbreakset-new)
+- [GuardPointsAdd (new)](#guardpointsadd-new)
+- [GuardPointsSet (new)](#guardpointsset-new)
+- [Height (new)](#height-new)
+- [Helper (old)](#helper-old)
 - [Helper (changed)](#helper-changed)
-- [HitAdd](#hitadd)
-- [HitBy](#hitby)
+- [HitAdd (old)](#hitadd-old)
+- [HitBy (old)](#hitby-old)
 - [HitBy (changed)](#hitby-changed)
-- [HitDef](#hitdef)
+- [HitDef (old)](#hitdef-old)
 - [HitDef (changed)](#hitdef-changed)
-- [HitFallDamage](#hitfalldamage)
-- [HitFallSet](#hitfallset)
-- [HitFallVel](#hitfallvel)
-- [HitOverride](#hitoverride)
+- [HitFallDamage (old)](#hitfalldamage-old)
+- [HitFallSet (old)](#hitfallset-old)
+- [HitFallVel (old)](#hitfallvel-old)
+- [HitOverride (old)](#hitoverride-old)
 - [HitOverride (changed)](#hitoverride-changed)
-- [HitVelSet](#hitvelset)
+- [HitVelSet (old)](#hitvelset-old)
 - [HitVelSet (changed)](#hitvelset-changed)
-- [LifeAdd](#lifeadd)
-- [LifebarAction](#lifebaraction)
-- [LifeSet](#lifeset)
-- [LoadFile](#loadfile)
-- [MakeDust](#makedust)
-- [MapAdd](#mapadd)
-- [MapReset (nightly build only)](#mapreset-nightly-build-only)
-- [MapSet](#mapset)
-- [MatchRestart](#matchrestart)
-- [ModifyBGCtrl](#modifybgctrl)
-- [ModifyBGCtrl3D (nightly build only)](#modifybgctrl3d-nightly-build-only)
-- [ModifyBgm (nightly build only)](#modifybgm-nightly-build-only)
-- [ModifyExplod](#modifyexplod)
+- [LifeAdd (old)](#lifeadd-old)
+- [LifebarAction (new)](#lifebaraction-new)
+- [LifeSet (old)](#lifeset-old)
+- [LoadFile (new)](#loadfile-new)
+- [MakeDust (old)](#makedust-old)
+- [MapAdd (new)](#mapadd-new)
+- [MapReset (new)](#mapreset-new)
+- [MapSet (new)](#mapset-new)
+- [MatchRestart (new)](#matchrestart-new)
+- [ModifyBGCtrl (new)](#modifybgctrl-new)
+- [ModifyBGCtrl3D (new)](#modifybgctrl3d-new)
+- [ModifyBgm (new)](#modifybgm-new)
+- [ModifyExplod (old)](#modifyexplod-old)
 - [ModifyExplod (changed)](#modifyexplod-changed)
-- [ModifyHitDef (nightly build only)](#modifyhitdef-nightly-build-only)
-- [ModifyPlayer (nightly build only)](#modifyplayer-nightly-build-only)
-- [ModifyProjectile (nightly build only)](#modifyprojectile-nightly-build-only)
-- [ModifyReflection (nightly build only)](#modifyreflection-nightly-build-only)
-- [ModifyReversalDef (nightly build only)](#modifyreversaldef-nightly-build-only)
-- [ModifyShadow (nightly build only)](#modifyshadow-nightly-build-only)
-- [ModifySnd (nightly build only)](#modifysnd-nightly-build-only)
-- [ModifyStageBG (nightly build only)](#modifystagebg-nightly-build-only)
-- [ModifyStageVar](#modifystagevar)
-- [ModifyText (nighty build only)](#modifytext-nighty-build-only)
-- [MoveHitReset](#movehitreset)
-- [NotHitBy](#nothitby)
+- [ModifyHitDef (new)](#modifyhitdef-new)
+- [ModifyPlayer (new)](#modifyplayer-new)
+- [ModifyProjectile (new)](#modifyprojectile-new)
+- [ModifyReflection (new)](#modifyreflection-new)
+- [ModifyReversalDef (new)](#modifyreversaldef-new)
+- [ModifyShadow (new)](#modifyshadow-new)
+- [ModifySnd (new)](#modifysnd-new)
+- [ModifyStageBG (new)](#modifystagebg-new)
+- [ModifyStageVar (new)](#modifystagevar-new)
+- [ModifyText (nighty build only) (new)](#modifytext-nighty-build-only-new)
+- [MoveHitReset (old)](#movehitreset-old)
+- [New state controller features (new)](#new-state-controller-features-new)
+- [New state controllers (new)](#new-state-controllers-new)
+- [NotHitBy (old)](#nothitby-old)
 - [NotHitBy (changed)](#nothitby-changed)
-- [Null](#null)
-- [Offset](#offset)
-- [OverrideClsn (nightly build only)](#overrideclsn-nightly-build-only)
-- [PalFX](#palfx)
+- [Null (old)](#null-old)
+- [Offset (old)](#offset-old)
+- [OverrideClsn (new)](#overrideclsn-new)
+- [PalFX (old)](#palfx-old)
 - [PalFx (changed)](#palfx-changed)
-- [ParentMapAdd](#parentmapadd)
-- [ParentMapSet](#parentmapset)
-- [ParentVarAdd](#parentvaradd)
-- [ParentVarSet](#parentvarset)
-- [Pause](#pause)
-- [PlayBgm](#playbgm)
-- [PlayerPush](#playerpush)
+- [ParentMapAdd (new)](#parentmapadd-new)
+- [ParentMapSet (new)](#parentmapset-new)
+- [ParentVarAdd (old)](#parentvaradd-old)
+- [ParentVarSet (old)](#parentvarset-old)
+- [Pause (old)](#pause-old)
+- [PlayBgm (new)](#playbgm-new)
+- [PlayerPush (old)](#playerpush-old)
 - [PlayerPush (changed)](#playerpush-changed)
-- [PlaySnd](#playsnd)
+- [PlaySnd (old)](#playsnd-old)
 - [PlaySnd (changed)](#playsnd-changed)
-- [PosAdd](#posadd)
-- [PosFreeze](#posfreeze)
-- [PosSet](#posset)
-- [PowerAdd](#poweradd)
-- [PowerSet](#powerset)
-- [PrintToConsole](#printtoconsole)
-- [Projectile](#projectile)
+- [PosAdd (old)](#posadd-old)
+- [PosFreeze (old)](#posfreeze-old)
+- [PosSet (old)](#posset-old)
+- [PowerAdd (old)](#poweradd-old)
+- [PowerSet (old)](#powerset-old)
+- [PrintToConsole (new)](#printtoconsole-new)
+- [Projectile (old)](#projectile-old)
 - [Projectile (changed)](#projectile-changed)
-- [RedLifeAdd](#redlifeadd)
-- [RedLifeSet](#redlifeset)
-- [RemapPal](#remappal)
-- [RemapSprite](#remapsprite)
-- [RemoveExplod](#removeexplod)
-- [RemoveText (nightly build only)](#removetext-nightly-build-only)
-- [ReversalDef](#reversaldef)
+- [RedLifeAdd (new)](#redlifeadd-new)
+- [RedLifeSet (new)](#redlifeset-new)
+- [RemapPal (old)](#remappal-old)
+- [RemapSprite (new)](#remapsprite-new)
+- [RemoveExplod (old)](#removeexplod-old)
+- [RemoveText (new)](#removetext-new)
+- [ReversalDef (old)](#reversaldef-old)
 - [ReversalDef (changed)](#reversaldef-changed)
-- [RootMapAdd](#rootmapadd)
-- [RootMapSet](#rootmapset)
-- [RootVarAdd](#rootvaradd)
-- [RootVarSet](#rootvarset)
-- [RoundTimeAdd](#roundtimeadd)
-- [RoundTimeSet](#roundtimeset)
-- [SaveFile](#savefile)
-- [ScoreAdd](#scoreadd)
-- [ScreenBound](#screenbound)
+- [RootMapAdd (new)](#rootmapadd-new)
+- [RootMapSet (new)](#rootmapset-new)
+- [RootVarAdd (new)](#rootvaradd-new)
+- [RootVarSet (new)](#rootvarset-new)
+- [RoundTimeAdd (new)](#roundtimeadd-new)
+- [RoundTimeSet (new)](#roundtimeset-new)
+- [SaveFile (new)](#savefile-new)
+- [ScoreAdd (new)](#scoreadd-new)
+- [ScreenBound (old)](#screenbound-old)
 - [ScreenBound (changed)](#screenbound-changed)
-- [SelfState](#selfstate)
+- [SelfState (old)](#selfstate-old)
 - [SelfState (changed)](#selfstate-changed)
-- [ShiftInput (nightly build only)](#shiftinput-nightly-build-only)
-- [SndPan](#sndpan)
-- [SprPriority](#sprpriority)
+- [ShiftInput (new)](#shiftinput-new)
+- [SndPan (old)](#sndpan-old)
+- [SprPriority (old)](#sprpriority-old)
 - [SprPriority (changed)](#sprpriority-changed)
-- [StateTypeSet](#statetypeset)
-- [StopSnd](#stopsnd)
+- [StateTypeSet (old)](#statetypeset-old)
+- [StopSnd (old)](#stopsnd-old)
 - [StopSnd (changed)](#stopsnd-changed)
-- [SuperPause](#superpause)
+- [SuperPause (old)](#superpause-old)
 - [SuperPause (changed)](#superpause-changed)
-- [TagIn](#tagin)
-- [TagOut](#tagout)
-- [TargetAdd (nightly build only)](#targetadd-nightly-build-only)
-- [TargetBind](#targetbind)
+- [TagIn (new)](#tagin-new)
+- [TagOut (new)](#tagout-new)
+- [TargetAdd (new)](#targetadd-new)
+- [TargetBind (old)](#targetbind-old)
 - [TargetBind (changed)](#targetbind-changed)
-- [TargetDizzyPointsAdd](#targetdizzypointsadd)
-- [TargetDrop](#targetdrop)
-- [TargetFacing](#targetfacing)
+- [TargetDizzyPointsAdd (new)](#targetdizzypointsadd-new)
+- [TargetDrop (old)](#targetdrop-old)
+- [TargetFacing (old)](#targetfacing-old)
 - [TargetFacing (changed)](#targetfacing-changed)
-- [TargetGuardPointsAdd](#targetguardpointsadd)
-- [TargetLifeAdd](#targetlifeadd)
+- [TargetGuardPointsAdd (new)](#targetguardpointsadd-new)
+- [TargetLifeAdd (old)](#targetlifeadd-old)
 - [TargetLifeAdd (changed)](#targetlifeadd-changed)
-- [TargetPowerAdd](#targetpoweradd)
+- [TargetPowerAdd (old)](#targetpoweradd-old)
 - [TargetPowerAdd (changed)](#targetpoweradd-changed)
-- [TargetRedLifeAdd](#targetredlifeadd)
-- [TargetScoreAdd](#targetscoreadd)
-- [TargetState](#targetstate)
+- [TargetRedLifeAdd (new)](#targetredlifeadd-new)
+- [TargetScoreAdd (new)](#targetscoreadd-new)
+- [TargetState (old)](#targetstate-old)
 - [TargetState (changed)](#targetstate-changed)
-- [TargetVelAdd](#targetveladd)
+- [TargetVelAdd (old)](#targetveladd-old)
 - [TargetVelAdd (changed)](#targetveladd-changed)
-- [TargetVelSet](#targetvelset)
+- [TargetVelSet (old)](#targetvelset-old)
 - [TargetVelSet (changed)](#targetvelset-changed)
-- [TeamMapAdd](#teammapadd)
-- [TeamMapSet](#teammapset)
-- [Text](#text)
-- [Trans](#trans)
+- [TeamMapAdd (new)](#teammapadd-new)
+- [TeamMapSet (new)](#teammapset-new)
+- [Text (new)](#text-new)
+- [Trans (old)](#trans-old)
 - [Trans (changed)](#trans-changed)
-- [TransformClsn (nightly build only)](#transformclsn-nightly-build-only)
-- [TransformSprite (nightly build only)](#transformsprite-nightly-build-only)
-- [Turn](#turn)
-- [VarAdd](#varadd)
-- [VarRandom](#varrandom)
-- [VarRangeSet](#varrangeset)
-- [VarSet](#varset)
-- [VelAdd](#veladd)
-- [VelMul](#velmul)
-- [VelSet](#velset)
-- [VictoryQuote](#victoryquote)
-- [Width](#width)
+- [TransformClsn (new)](#transformclsn-new)
+- [TransformSprite (new)](#transformsprite-new)
+- [Turn (old)](#turn-old)
+- [VarAdd (old)](#varadd-old)
+- [VarRandom (old)](#varrandom-old)
+- [VarRangeSet (old)](#varrangeset-old)
+- [VarSet (old)](#varset-old)
+- [VelAdd (old)](#veladd-old)
+- [VelMul (old)](#velmul-old)
+- [VelSet (old)](#velset-old)
+- [VictoryQuote (old)](#victoryquote-old)
+- [Width (old)](#width-old)
 - [Zoom (changed)](#zoom-changed)
 
 ---
 
-# About Controllers
+## About Controllers (old)
 
-All state controllers have two optional parameters, `persistent` and `ignorehitpause`. These must be set to integer constants. Unless otherwise specified, any other numeric state controller parameter can be specified with an arithmetic expression.  
-In all cases, if setting a parameter with an expression, you should be careful that the expression does not evaluate to bottom, as in this case the parameter will be set to 0.
-
-*Source: M.U.G.E.N 1.1*
-
----
-
-# New state controller features
-
-Both new and old state controllers can now take advantage of some global new features.
-
-
-## fightfx actions
-
-All the remaining CNS parameters used to assign character actions that didn't support the `F` prefix (*[Statedef]*, *ChangeState*, *SelfState*, *ChangeAnim*, *ChangeAnim2*, *Projectile*) have access to loading animations from `fightfx.air`. The implementation is the same as in the *Explod* anim parameter.  
-
-```ini
-[Statedef 1000]
-anim = F 300
-```
-
-
-## RedirectID
-
-This feature can be utilized with all state controllers, including legacy ones. It is an optional parameter that sends the execution of the state controller to the player with the designated PlayerID. Unlike custom states, this parameter allows interfering with a player's behavior without putting them in another player's states.
-
-For state controllers that normally stop state execution (ChangeState and SelfState), redirecting to an ID different from the owner will not stop the execution of the current state code.
-
-Example of a poison effect that reduces life, applied without touching the opponent:
-
-```ini
-[State -2, Poison]
-type = LifeAdd
-trigger1 = <Is the enemy posioned? trigger>
-value = -1
-kill = 0
-RedirectID = <Enemy id here>
-```
-
-Example of increasing a team leader's map, regardless of who is running it, if leader's map is < 10.
-
-```ini
-[State Test]
-type = MapAdd
-trigger1 = Player(TeamLeader), Map(SomeLeaderMap) < 10
-Map = "SomeLeaderMap"
-value = 1
-RedirectID = Player(TeamLeader), ID
-```
-
-Due to limitations in how some logic must be handled, certain state controllers may not work with RedirectID. Usually because of the order the players are processed in.  
-TODO: list of sctrls that can't be redirected.
-
-*Source: Ikemen GO (new)*
+All state controllers have two optional parameters, `persistent` and `ignorehitpause`. These must be set to integer constants.  
+Unless otherwise specified, any other numeric state controller parameter can be specified with an arithmetic expression.  
+In all cases, if setting a parameter with an expression, you should be careful that the expression does not evaluate to bottom, as in this case the parameter will be set to `0`.
 
 ---
 
-## AfterImage
-
-*Source: M.U.G.E.N 1.1*
+## AfterImage (old)
 
 Enables player afterimage effects. The character's frames are stored in a history buffer, and are displayed after a delay as afterimages.  
   
@@ -356,8 +306,6 @@ none
 
 ## AfterImage (changed)
 
-*Source: Ikemen GO (changed)*
-
 ### palinvertblend 
 
 >palinvertblend = *blend_mode* (int)  
@@ -374,9 +322,7 @@ If character MugenVersion is 1.1 and invertall = 1 and if invertblend param is o
 
 ---
 
-## AfterImageTime
-
-*Source: M.U.G.E.N 1.1*
+## AfterImageTime (old)
 
 Changes the duration of the player's afterimage effects, if currently enabled. If no afterimage effects are being displayed, this controller does nothing.  
 Known bugs: If the timegap parameter in the originating AfterImage controller is not set at 1, using this AfterImageTime will cause the frame positions to be reset.  
@@ -402,17 +348,13 @@ none
 
 ---
 
-## AllPalFX
-
-*Source: M.U.G.E.N 1.1*
+## AllPalFX (old)
 
 Same as PalFX, except that this affects the palette of the background and lifebars as well as the palette of all characters and explods (regardless of the ownpal parameter). See the PalFX section for details on the parameters to AllPalFX.
 
 ---
 
 ## AllPalFx (changed)
-
-*Source: Ikemen GO (changed)*
 
 ### invertblend
 
@@ -428,9 +370,7 @@ Defaults to 0 if omitted. If 1 it inverts blending on chars "layer".
 
 ---
 
-## AngleAdd
-
-*Source: M.U.G.E.N 1.1*
+## AngleAdd (old)
 
 Adds to the drawing rotation angle used by AngleDraw.  
   
@@ -450,9 +390,7 @@ none
 
 ---
 
-## AngleDraw
-
-*Source: M.U.G.E.N 1.1*
+## AngleDraw (old)
 
 Draws the player (for 1 frame) rotated about his axis by the angle set by the AngleSet controller. When facing right, a positive angle means a counterclockwise rotation.  
   
@@ -482,8 +420,6 @@ none
 
 ## AngleDraw, AngleSet, AngleMul (changed)
 
-*Source: Ikemen GO (changed)*
-
 ### xangle (nightly build only)
 
 >xangle = *xangle* (int)  
@@ -494,9 +430,7 @@ none
 
 ---
 
-## AngleMul
-
-*Source: M.U.G.E.N 1.1*
+## AngleMul (old)
 
 Multiplies the drawing rotation angle used by AngleDraw by the specified factor.  
   
@@ -516,9 +450,7 @@ none
 
 ---
 
-## AngleSet
-
-*Source: M.U.G.E.N 1.1*
+## AngleSet (old)
 
 Sets the drawing rotation angle used by AngleDraw. The angle is initialized at 0.  
   
@@ -538,9 +470,7 @@ none
 
 ---
 
-## AppendToClipboard
-
-*Source: M.U.G.E.N 1.1*
+## AppendToClipboard (old)
 
 This is the same as DisplayToClipboard, except that message text is added on a new line, instead of overwriting whatever text is already on the clipboard. See DisplayToClipboard for a format description.
 
@@ -548,15 +478,11 @@ This is the same as DisplayToClipboard, except that message text is added on a n
 
 ## AppendToClipboard, DisplayToClipboard (changed)
 
-*Source: Ikemen GO (changed)*
-
 Unlike Mugen, Ikemen GO can use unlimited amount of numeric arguments. Also it supports format specifiers, e.g. %0.2f (prints float value truncated to 2 digits), %v (prints the value in a default format and optimal formatting, regardless if it's int, float or string).
 
 ---
 
-## AssertAnalogVector (nightly build only)
-
-*Source: Ikemen GO (new)*
+## AssertAnalogVector (new)
 
 This controller allows (de)activating the player's analog vectors without input from a joystick. Values will be clamped to `[-1,1]` with the exception of analog triggers which are normalized to `[0,1]`.
 
@@ -592,9 +518,7 @@ righttrigger = 0
 
 ---
 
-## AssertCommand (nightly build only)
-
-*Source: Ikemen GO (new)*
+## AssertCommand (new)
 
 This controller allows (de)activating the player's commands without any button presses. If the player has multiple commands with the same name, the controller will affect all of them.
 
@@ -624,9 +548,7 @@ name = ""
 
 ---
 
-## AssertInput
-
-*Source: Ikemen GO (new)*
+## AssertInput (new)
 
 This controller allows you to assert up to three input flags simultaneously via single sctrl. Similarly to AssertSpecial, there is no limit how many times this controller is called. Each flag will be automatically "de-asserted" at every game tick, so you must assert a flag for each tick that you want it to be active. Ikemen interprets input flags the same was as if corresponding input keys were pressed.
 
@@ -663,9 +585,7 @@ This controller allows you to assert up to three input flags simultaneously via 
 
 ---
 
-## AssertSpecial
-
-*Source: M.U.G.E.N 1.1*
+## AssertSpecial (old)
 
 This controller allows you to assert up to three special flags simultaneously. MUGEN will automatically `deassert` each flag at every game tick, so you must assert a flag for each tick that you want it to be active.  
   
@@ -788,8 +708,6 @@ none
 ---
 
 ## AssertSpecial (changed)
-
-*Source: Ikemen GO (changed)*
 
 ### Enabled (nightly build only)
 
@@ -1107,9 +1025,7 @@ While asserted, the winner announcement on round end will be skipped.
 
 ---
 
-## AttackDist
-
-*Source: M.U.G.E.N 1.1*
+## AttackDist (old)
 
 Changes the value of the guard.dist parameter for the player's current HitDef. The guard.dist is the x-distance from P1 in which P2 will go  
 into a guard state if P2 is holding the direction away from P1.  
@@ -1132,8 +1048,6 @@ none
 ---
 
 ## AttackDist (changed)
-
-*Source: Ikemen GO (changed)*
 
 ### Value (nightly build only)
 
@@ -1177,9 +1091,7 @@ depth = 10, 10
 
 ---
 
-## AttackMulSet
-
-*Source: M.U.G.E.N 1.1*
+## AttackMulSet (old)
 
 Sets the player's attack multiplier. All damage the player gives is scaled by this amount.  
   
@@ -1201,8 +1113,6 @@ none
 ---
 
 ## AttackMulSet (changed)
-
-*Source: Ikemen GO (changed)*
 
 ### Damage (nightly build only)
 
@@ -1241,17 +1151,13 @@ GuardPoints = 0.00
 
 ---
 
-## BGPalFX
-
-*Source: M.U.G.E.N 1.1*
+## BGPalFX (old)
 
 Same as PalFX, except that this affects the palette of the background and lifebars instead of the palette of the character. See the PalFX section for details on the parameters to BGPalFX.
 
 ---
 
-## BGPalFX (nightly build only) (changed)
-
-*Source: Ikemen GO (changed)*
+## BGPalFX (changed)
 
 BGPalFX now also accepts `ID` and `index` parameters. This allows it to apply PalFX to specific BG elements of the stage.  
 
@@ -1279,9 +1185,7 @@ invertall = 1
 
 ---
 
-## BindToParent
-
-*Source: M.U.G.E.N 1.1*
+## BindToParent (old)
 
 If the player is a helper, binds the player to a specified position relative to its parent. If the player is not a helper, this controller does nothing.  
   
@@ -1321,9 +1225,7 @@ none
 
 ---
 
-## BindToRoot
-
-*Source: M.U.G.E.N 1.1*
+## BindToRoot (old)
 
 If the player is a helper, binds the player to a specified position relative to its root. If the player is not a helper, this controller does nothing.  
   
@@ -1362,9 +1264,7 @@ none
 
 ---
 
-## BindToTarget
-
-*Source: M.U.G.E.N 1.1*
+## BindToTarget (old)
 
 Binds the player to a specified position relative to the specified target.  
   
@@ -1405,8 +1305,6 @@ none
 
 ## BindToTarget (changed)
 
-*Source: Ikemen GO (changed)*
-
 ### PosZ (nightly build only)
 
 >posz = *pos_z* (float)
@@ -1419,9 +1317,7 @@ The index of the target to bind to. Defaults to 0 (first one).
 
 ---
 
-## Camera [EXPERIMENTAL]
-
-*Source: Ikemen GO (new)*
+## Camera [EXPERIMENTAL] (new)
 
 **This SCTRL is still experimental and subject to possible changes, there is no guarantee this will be supported as is in future IKEMEN Go versions.**  
   
@@ -1441,9 +1337,7 @@ Changes the camera position and the way players interact with screen and stage e
 
 ---
 
-## ChangeAnim
-
-*Source: M.U.G.E.N 1.1*
+## ChangeAnim (old)
 
 Changes the action number of the player's animation.  
   
@@ -1467,8 +1361,6 @@ none
 ---
 
 ## ChangeAnim (changed)
-
-*Source: Ikemen GO (changed)*
 
 ### ElemTime (nightly build only)
 
@@ -1500,17 +1392,13 @@ This parameter lets a character use the specified animation from another charact
 
 ---
 
-## ChangeAnim2
-
-*Source: M.U.G.E.N 1.1*
+## ChangeAnim2 (old)
 
 Like ChangeAnim, except this controller should be used if you have placed P2 in a custom state via a hit and wish to change P2's animation to one specified in P1's air file. For example, when making throws, use this to change P2 to a being-thrown animation.
 
 ---
 
-## ChangeAnim2 (changed) (nightly build only)
-
-*Source: Ikemen GO (changed)*
+## ChangeAnim2 (changed)
 
 ### ElemTime (nightly build only)
 
@@ -1523,9 +1411,7 @@ This parameter lets a character use the specified animation from another charact
 
 ---
 
-## ChangeMovelist (nightly build only)
-
-*Source: Ikemen GO (new)*
+## ChangeMovelist (new)
 
 Selects which movelist assigned in the character's DEF file should be displayed in the Pause menu command list.
 
@@ -1547,9 +1433,7 @@ value = 1
 
 ---
 
-## ChangeState
-
-*Source: M.U.G.E.N 1.1*
+## ChangeState (old)
 
 Changes the state number of the player.  
   
@@ -1584,8 +1468,6 @@ ctrl = 1
 
 ## ChangeState (changed)
 
-*Source: Ikemen GO (changed)*
-
 ### Continue (nightly build only)
 
 Due to the way State -1 is normally used to read inputs and change states, Mugen had it so that using a `ChangeState` in a negative state would stop the execution of the rest of the code in that state. Setting `Continue` to 1 will disable this behavior.  
@@ -1593,9 +1475,7 @@ When a `ChangeState` is redirected, `Continue` will default to 1.
 
 ---
 
-## ClearClipboard
-
-*Source: M.U.G.E.N 1.1*
+## ClearClipboard (old)
 
 Erases any text currently on the player's clipboard.  
   
@@ -1613,9 +1493,7 @@ none
 
 ---
 
-## CtrlSet
-
-*Source: M.U.G.E.N 1.1*
+## CtrlSet (old)
 
 Sets the player's control flag.  
   
@@ -1635,9 +1513,7 @@ none
 
 ---
 
-## DefenceMulSet
-
-*Source: M.U.G.E.N 1.1*
+## DefenceMulSet (old)
 
 Sets the player's defense multiplier. All damage the player takes is scaled by this amount.  
   
@@ -1666,8 +1542,6 @@ value = 0.5
 ---
 
 ## DefenceMulSet (changed)
-
-*Source: Ikemen GO (changed)*
 
 In Mugen, `DefenceMulSet` changes the player's final defense multiplier. That means it will override any defense buffs such as those gained through the `fall.defence_up` constant or the `SuperPause` `p2defmul` parameter. In Ikemen GO, it is only another multiplier, meaning the other defense buffs will still work correctly.  
 
@@ -1714,9 +1588,7 @@ ignorehitpause = 1
 
 ---
 
-## Depth (nightly build only)
-
-*Source: Ikemen GO (new)*
+## Depth (new)
 
 Temporarily changes the depth size of the player's for 1 frame. Similar to Width in function. 
 
@@ -1745,9 +1617,7 @@ edge = 0, 0
 
 ---
 
-## DestroySelf
-
-*Source: M.U.G.E.N 1.1*
+## DestroySelf (old)
 
 If called by a helper-type character, DestroySelf causes that character to be removed from the field of play. DestroySelf is not valid for non-helper characters.  
   
@@ -1782,9 +1652,7 @@ none
 
 ---
 
-## Dialogue
-
-*Source: Ikemen GO (new)*
+## Dialogue (new)
 
 Assigns dialogue data to be displayed either right before the lifebar calls the fight during first round (last frame of  RoundState = 1) or at the last active frame of the final round (RoundState = 4, right before screen starts fading out). If more than 1 player calls this sctrl, who will end up initiating dialogue is chosen randomly.
 
@@ -1855,9 +1723,7 @@ text3 = "<p2><p2face=enemy,9100,0><sound=enemy,9200,1>Ah...<wait=90> sarcasm.<p1
 
 ---
 
-## DisplayToClipboard
-
-*Source: M.U.G.E.N 1.1*
+## DisplayToClipboard (old)
 
 This controller is only useful for debugging. DisplayToClipboard clears the player clipboard and prints a specified message to it. Display of the player clipboards is enabled in debug mode (press Ctrl+D).  
   
@@ -1910,9 +1776,7 @@ The value of var(17) is 1, which is 4.347826% of 23.
 
 ---
 
-## DizzyPointsAdd
-
-*Source: Ikemen GO (new)*
+## DizzyPointsAdd (new)
 
 Adds the specified amount to the player's dizzy points.
 
@@ -1922,9 +1786,7 @@ Adds the specified amount to the player's dizzy points.
 
 ---
 
-## DizzyPointsSet
-
-*Source: Ikemen GO (new)*
+## DizzyPointsSet (new)
 
 Sets the amount of dizzy points that the player has.
 
@@ -1934,9 +1796,7 @@ Sets the amount of dizzy points that the player has.
 
 ---
 
-## DizzySet
-
-*Source: Ikemen GO (new)*
+## DizzySet (new)
 
 Sets the player's Dizzy flag. For the duration that this flag is set, combo hit counter does not reset and the combo count lifebar text will stay on screen. 
 
@@ -1946,9 +1806,7 @@ Sets the player's Dizzy flag. For the duration that this flag is set, combo hit 
 
 ---
 
-## EnvColor
-
-*Source: M.U.G.E.N 1.1*
+## EnvColor (old)
 
 Turns the whole screen a solid color, excepting foreground-layer animations like hit sparks and `ontop` explods. Foreground layers of the stage will not be visible.  
   
@@ -1984,9 +1842,7 @@ none
 
 ---
 
-## EnvShake
-
-*Source: M.U.G.E.N 1.1*
+## EnvShake (old)
 
 Causes the screen to shake vertically.  
   
@@ -2022,8 +1878,6 @@ none
 ---
 
 ## EnvShake (changed)
-
-*Source: Ikemen GO (changed)*
 
 ### Decay (nightly build only)
 
@@ -2084,9 +1938,7 @@ Note: This parameter has been superseded by the `decay` parameter.
 
 ---
 
-## Explod
-
-*Source: M.U.G.E.N 1.1*
+## Explod (old)
 
 The Explod controller is a flexible tool for displaying animations such as sparks, dust and other visual effects. Its functionality includes that of GameMakeAnim, which is now deprecated.  
   
@@ -2402,8 +2254,6 @@ actual screen position will be 165,0.
 
 ## Explod (changed)
 
-*Source: Ikemen GO (changed)*
-
 ### AfterImage (nightly build only)
 Explods now support AfterImage parameters (e.g. afterimage.time, afterimage.length, afterimage.trans). Usage is identical to Projectile's AfterImage.
 
@@ -2665,9 +2515,7 @@ Specifies the amount of horizontal shearing to apply to the explod. Defaults to 
 
 ---
 
-## ExplodBindTime
-
-*Source: M.U.G.E.N 1.1*
+## ExplodBindTime (old)
 
 Changes the position binding time of the player's explods.  
   
@@ -2700,9 +2548,7 @@ none
 
 ---
 
-## FallEnvShake
-
-*Source: M.U.G.E.N 1.1*
+## FallEnvShake (old)
 
 Shakes the screen using the fall.envshake parameters set by an attack (see HitDef controller). This controller is effective only if GetHitVar(fall.envshake.time) is not zero, and it sets GetHitVar(fall.envshake.time) to zero after being executed. This controller is used in common1.cns to shake the screen when a player falls, and is not normally useful otherwise.  
   
@@ -2720,9 +2566,7 @@ See common1.cns.
 
 ---
 
-## ForceFeedback
-
-*Source: M.U.G.E.N 1.1*
+## ForceFeedback (old)
 
 Creates force feedback for supported force feedback devices. <strong>This controller is not implemented in MUGEN 1.0.</strong>  
   
@@ -2780,8 +2624,6 @@ See common1.cns.
 
 ## Forcefeedback (changed)
 
-*Source: Ikemen GO (changed)*
-
 Note: The below parameters are considered "new API" and override all `freq` and `ampl` parameters of ForceFeedback. `ampl` is ignored regardless of API used.
 
 
@@ -2799,9 +2641,7 @@ Sets the frequency for the high frequency (right) rumble motor. Defaults to 0.
 
 ---
 
-## GameMakeAnim
-
-*Source: M.U.G.E.N 1.1*
+## GameMakeAnim (old)
 
 Creates a game animation, like a hit spark or a super charging effect. This controller has been superseded by Explod and is now considered deprecated. Support for it may be removed in future versions.  
   
@@ -2838,9 +2678,7 @@ none
 
 ---
 
-## GetHitVarSet (nightly build only)
-
-*Source: Ikemen GO (new)*
+## GetHitVarSet (new)
 
 Changes a player's `GetHitVar` directly, without requiring a hit.  
   
@@ -2855,9 +2693,7 @@ fall.recovertime= 0
 
 ---
 
-## Gravity
-
-*Source: M.U.G.E.N 1.1*
+## Gravity (old)
 
 Accelerates the player downwards, using the value of the player's `yaccel` constant.  
   
@@ -2879,9 +2715,7 @@ type = Gravity
 
 ---
 
-## GroundLevelOffset (nightly build only)
-
-*Source: Ikemen GO (new)*
+## GroundLevelOffset (new)
 
 Applies a temporary offset to the player's ground level, which is otherwise 0. This makes the player treat a different position as `pos y = 0`, and therefore allows coding features such as platforms.
 
@@ -2898,9 +2732,7 @@ value = -60
 
 ---
 
-## GuardBreakSet
-
-*Source: Ikemen GO (new)*
+## GuardBreakSet (new)
 
 Sets the player's Guard Break flag.
 
@@ -2910,9 +2742,7 @@ Sets the player's Guard Break flag.
 
 ---
 
-## GuardPointsAdd
-
-*Source: Ikemen GO (new)*
+## GuardPointsAdd (new)
 
 Adds the specified amount to the player's guard points.
 
@@ -2922,9 +2752,7 @@ Adds the specified amount to the player's guard points.
 
 ---
 
-## GuardPointsSet
-
-*Source: Ikemen GO (new)*
+## GuardPointsSet (new)
 
 Sets the amount of guard points that the player has.
 
@@ -2934,9 +2762,7 @@ Sets the amount of guard points that the player has.
 
 ---
 
-## Height (nightly build only)
-
-*Source: Ikemen GO (new)*
+## Height (new)
 
 Temporarily changes the vertical size of the player's "push box" for 1 frame. Similar to Width in function: the values are added to the height, as defined in the player's constants file—they do not override them. A positive value will make the box larger, and a negative one will make it smaller.
 
@@ -2952,9 +2778,7 @@ value = 0, -30
 
 ---
 
-## Helper
-
-*Source: M.U.G.E.N 1.1*
+## Helper (old)
 
 Creates another instance of the player as a helper character.  
   
@@ -3137,8 +2961,6 @@ none
 
 ## Helper (changed)
 
-*Source: Ikemen GO (changed)*
-
 ### ClsnProxy (nightly build only)
 
 If set to 1, any overlap with the helper's clsn boxes will instead affect its parent as if the helper's clsn boxes were part of the parent's anim. Defaults to 0.
@@ -3215,9 +3037,7 @@ Helpers inherit standby flag from root characters. By using this parameter, a ch
 
 ---
 
-## HitAdd
-
-*Source: M.U.G.E.N 1.1*
+## HitAdd (old)
 
 Adds to the current combo counter.  
   
@@ -3238,9 +3058,7 @@ none
 
 ---
 
-## HitBy
-
-*Source: M.U.G.E.N 1.1*
+## HitBy (old)
 
 Temporarily specifies the types of hits that are be allowed hit to the player.  
   
@@ -3282,8 +3100,6 @@ value = S, NA
 ---
 
 ## HitBy (changed)
-
-*Source: Ikemen GO (changed)*
 
 ### IkemenVersion
 
@@ -3353,9 +3169,7 @@ Using this parameter limits vulnerability to a specific player ID.
 
 ---
 
-## HitDef
-
-*Source: M.U.G.E.N 1.1*
+## HitDef (old)
 
 Defines a single hit of the player's attack. If the player's Clsn1 box (red) comes in contact with his opponent's Clsn2 box (blue), and the HitDef was define on or before that particular point in time, then the specified effect will be applied. This is one of the more complex, but most commonly-used controllers.  
 A single HitDef is valid only for a single hit. To make a move hit several times, you must trigger more than one HitDef during the attack.  
@@ -3879,8 +3693,6 @@ none
 
 ## HitDef (changed)
 
-*Source: Ikemen GO (changed)*
-
 ### air.juggle (changed) (nightly build only)
 
 In Mugen, the `air.juggle` parameter is only used by the `Projectile` state controller. Characters with `ikemenversion` can now use this parameter in a `Hitdef` to update their juggle points. This allows a move with multiple hits to have different juggle properties in every hit, for instance.  
@@ -4196,9 +4008,7 @@ For backwards compatibility reasons, this acceleration is not used by default, a
 
 ---
 
-## HitFallDamage
-
-*Source: M.U.G.E.N 1.1*
+## HitFallDamage (old)
 
 When the player has been hit and is in a falling state, apply damage  
 from the fall (specified in the hitdef) to the player.  
@@ -4217,9 +4027,7 @@ none
 
 ---
 
-## HitFallSet
-
-*Source: M.U.G.E.N 1.1*
+## HitFallSet (old)
 
 When the player has been hit, sets the player's fall variables.  
   
@@ -4252,9 +4060,7 @@ none
 
 ---
 
-## HitFallVel
-
-*Source: M.U.G.E.N 1.1*
+## HitFallVel (old)
 
 If the player has been hit and is in a falling state, sets the player's velocities to the fall velocities (fall.xvel and fall.yvel) specified in the HitDef.  
   
@@ -4272,9 +4078,7 @@ none
 
 ---
 
-## HitOverride
-
-*Source: M.U.G.E.N 1.1*
+## HitOverride (old)
 
 Defines a hit override. If the player is hit by an attack of the specified type, he will go to the specified state number instead of his default gethit behavior. Up to 8 hit overrides can be active at one time.  
   
@@ -4325,8 +4129,6 @@ none
 
 ## HitOverride (changed)
 
-*Source: Ikemen GO (changed)*
-
 ### forceguard (nightly build only)
 
 >forceguard = *value* (bool)
@@ -4366,9 +4168,7 @@ If set to 1, the character will override a hit without changing states at all.
 
 ---
 
-## HitVelSet
-
-*Source: M.U.G.E.N 1.1*
+## HitVelSet (old)
 
 <strong>This controller is deprecated.</strong>  
   
@@ -4402,8 +4202,6 @@ Obsolete.
 
 ## HitVelSet (changed)
 
-*Source: Ikemen GO (changed)*
-
 ### Z (nightly build only)
 
 >z = z_flag (int)
@@ -4412,9 +4210,7 @@ A nonzero flag means to change that z-component of the player's velocity to the 
 
 ---
 
-## LifeAdd
-
-*Source: M.U.G.E.N 1.1*
+## LifeAdd (old)
 
 Adds the specified amount to the player's life, scaled by the player's defense multiplier if necessary.  
   
@@ -4442,9 +4238,7 @@ none
 
 ---
 
-## LifebarAction
-
-*Source: Ikemen GO (new)*
+## LifebarAction (new)
 
 Displays text/sprites/anims synchronized with each other, using [lifebar data](Lifebar-features/#new_action). The intended use case is implementation of messages, often found in commercial fighting games.
 
@@ -4497,9 +4291,7 @@ Refer to *data/action.zss* file and default lifebar distributed with engine for 
 
 ---
 
-## LifeSet
-
-*Source: M.U.G.E.N 1.1*
+## LifeSet (old)
 
 Sets the player's life to the specified value.  
   
@@ -4520,9 +4312,7 @@ none
 
 ---
 
-## LoadFile
-
-*Source: Ikemen GO (new)*
+## LoadFile (new)
 
 Loads the specified data and overrides the data of the execution character. Note that all the data before reading will disappear.
 
@@ -4550,9 +4340,7 @@ path = "kfm.gob"
 
 ---
 
-## MakeDust
-
-*Source: M.U.G.E.N 1.1*
+## MakeDust (old)
 
 <strong>This controller is deprecated; use the Explod controller.</strong>  
   
@@ -4586,9 +4374,7 @@ none
 
 ---
 
-## MapAdd
-
-*Source: Ikemen GO (new)*
+## MapAdd (new)
 
 Adds value to player's map.
 
@@ -4601,9 +4387,7 @@ Adds value to player's map.
 
 ---
 
-## MapReset (nightly build only)
-
-*Source: Ikemen GO (new)*
+## MapReset (new)
 
 Clears all of the player's maps, except those containing the specified strings.  
 Maps that are defined in the character's DEF file will be reset to the value specified there.  
@@ -4625,9 +4409,7 @@ mapReset{exclude: "level_"; exclude2: "experience_"; exclude3: "score_"}
 
 ---
 
-## MapSet
-
-*Source: Ikemen GO (new)*
+## MapSet (new)
 
 Sets value to player's map. This state controller can be used to change a number that has already been set via character's DEF file or to set a new map.
 
@@ -4640,9 +4422,7 @@ Sets value to player's map. This state controller can be used to change a number
 
 ---
 
-## MatchRestart
-
-*Source: Ikemen GO (new)*
+## MatchRestart (new)
 
 Reset the round or match and resume. By default (when no optional parameters are set) has the same effect as F4 debug key (round restart). Optionally allows characters and stage reloading, which also changes the state controller functionality to work like shift+F4 debug key (match restart).
 
@@ -4683,9 +4463,7 @@ reload = 1, 1
 
 ---
 
-## ModifyBGCtrl
-
-*Source: Ikemen GO (new)*
+## ModifyBGCtrl (new)
 
 Modifies the parameters of an existing stage [background controller](http://www.elecbyte.com/mugendocs/bgs.html#background-controllers).
 
@@ -4719,9 +4497,7 @@ value = 0
 
 ---
 
-## ModifyBGCtrl3D (nightly build only)
-
-*Source: Ikemen GO (new)*
+## ModifyBGCtrl3D (new)
 
 Modifies the parameters of an existing [3D stage background controller](../Stage-features-(3d)/).
 
@@ -4750,9 +4526,7 @@ value = 1
 
 ---
 
-## ModifyBgm (nightly build only)
-
-*Source: Ikemen GO (new)*
+## ModifyBgm (new)
 
 Modifies currently playing music.
 
@@ -4780,9 +4554,7 @@ Modifies currently playing music.
 
 ---
 
-## ModifyExplod
-
-*Source: M.U.G.E.N 1.1*
+## ModifyExplod (old)
 
 Modifies the parameters of an existing Explod. Syntax is basically  
 the same as Explod. However, this controller is subject to future  
@@ -4792,8 +4564,6 @@ work in the future.
 ---
 
 ## ModifyExplod (changed)
-
-*Source: Ikemen GO (changed)*
 
 ### IkemenVersion
 
@@ -4833,9 +4603,7 @@ Modifies the `under` parameter of an existing Explod.
 
 ---
 
-## ModifyHitDef (nightly build only)
-
-*Source: Ikemen GO (new)*
+## ModifyHitDef (new)
 
 Using this state controller will update the specified parameters of the player's currently active `HitDef`. Has no effect if no `HitDef` is active.
 
@@ -4855,9 +4623,7 @@ damage = 100, 25
 
 ---
 
-## ModifyPlayer (nightly build only)
-
-*Source: Ikemen GO (new)*
+## ModifyPlayer (new)
 
 Allows changing some player parameters that are otherwise out of reach, or don't justify having their own dedicated state controllers. Some parameters should be used with care.  
   
@@ -4943,9 +4709,7 @@ teamside = 2
 
 ---
 
-## ModifyProjectile (nightly build only)
-
-*Source: Ikemen GO (new)*
+## ModifyProjectile (new)
 
 Using this state controller will update the specified parameters for the projectiles with the specified `ID`. Syntax is essentially the same as for `Projectile`.
 
@@ -4972,9 +4736,7 @@ teamside = 2
 
 ---
 
-## ModifyReflection (nightly build only)
-
-*Source: Ikemen GO (new)*
+## ModifyReflection (new)
 
 This state controller allows modifying parameters of a char's Reflection
 
@@ -4994,9 +4756,7 @@ This state controller allows modifying parameters of a char's Reflection
 
 ---
 
-## ModifyReversalDef (nightly build only)
-
-*Source: Ikemen GO (new)*
+## ModifyReversalDef (new)
 
 Using this state controller will update the specified parameters of the player's currently active `ReversalDef`. Has no effect if no `ReversalDef` is active.
 
@@ -5016,9 +4776,7 @@ fall = 0
 
 ---
 
-## ModifyShadow (nightly build only)
-
-*Source: Ikemen GO (new)*
+## ModifyShadow (new)
 
 This state controller allows modifying parameters of a char's Shadow
 
@@ -5038,9 +4796,7 @@ This state controller allows modifying parameters of a char's Shadow
 
 ---
 
-## ModifySnd (nightly build only)
-
-*Source: Ikemen GO (new)*
+## ModifySnd (new)
 
 Modifies the following sound parameters on-the-fly. This cannot modify the `lowpriority` parameter. If you need your sound to be low priority, call PlaySnd with the respective parameter set.
 
@@ -5096,9 +4852,7 @@ freqmul = 1 + cos(pi*fightTime/256)
 
 ---
 
-## ModifyStageBG (nightly build only)
-
-*Source: Ikemen GO (new)*
+## ModifyStageBG (new)
 
 This state controller allows modifying the stage's BG elements. Refer to stage documentation for more information.  
 
@@ -5186,9 +4940,7 @@ velocity.x = 4
 
 ---
 
-## ModifyStageVar
-
-*Source: Ikemen GO (new)*
+## ModifyStageVar (new)
 
 This SCTRL lets a character modify basic stage parameters or "stage vars", as declared in the stage .def file. Not all parameters are modifable for now, but the SCTRL could be expanded in the future to allow it.
 
@@ -5271,9 +5023,7 @@ This SCTRL lets a character modify basic stage parameters or "stage vars", as de
 
 ---
 
-## ModifyText (nighty build only)
-
-*Source: Ikemen GO (new)*
+## ModifyText (nighty build only) (new)
 
 Using this state controller will update the specified parameters for the texts with the specified ID. Syntax is essentially the same as for Text sctrl.
 
@@ -5298,9 +5048,7 @@ params = animElemNo(0) ;Update params
 
 ---
 
-## MoveHitReset
-
-*Source: M.U.G.E.N 1.1*
+## MoveHitReset (old)
 
 Resets the movehit flag to 0. That is, after executing MoveHitReset, the triggers MoveContact, MoveGuarded, and MoveHit will all return 0.  
   
@@ -5318,9 +5066,55 @@ none
 
 ---
 
-## NotHitBy
+## New state controller features (new)
 
-*Source: M.U.G.E.N 1.1*
+Both new and old state controllers can now take advantage of some global new features.
+
+
+## fightfx actions
+
+All the remaining CNS parameters used to assign character actions that didn't support the `F` prefix (*[Statedef]*, *ChangeState*, *SelfState*, *ChangeAnim*, *ChangeAnim2*, *Projectile*) have access to loading animations from `fightfx.air`. The implementation is the same as in the *Explod* anim parameter.  
+
+```ini
+[Statedef 1000]
+anim = F 300
+```
+
+
+## RedirectID
+
+This feature can be utilized with all state controllers, including legacy ones. It is an optional parameter that sends the execution of the state controller to the player with the designated PlayerID. Unlike custom states, this parameter allows interfering with a player's behavior without putting them in another player's states.
+
+For state controllers that normally stop state execution (ChangeState and SelfState), redirecting to an ID different from the owner will not stop the execution of the current state code.
+
+Example of a poison effect that reduces life, applied without touching the opponent:
+
+```ini
+[State -2, Poison]
+type = LifeAdd
+trigger1 = <Is the enemy posioned? trigger>
+value = -1
+kill = 0
+RedirectID = <Enemy id here>
+```
+
+Example of increasing a team leader's map, regardless of who is running it, if leader's map is < 10.
+
+```ini
+[State Test]
+type = MapAdd
+trigger1 = Player(TeamLeader), Map(SomeLeaderMap) < 10
+Map = "SomeLeaderMap"
+value = 1
+RedirectID = Player(TeamLeader), ID
+```
+
+Due to limitations in how some logic must be handled, certain state controllers may not work with RedirectID. Usually because of the order the players are processed in.  
+TODO: list of sctrls that can't be redirected.
+
+---
+
+## NotHitBy (old)
 
 Temporarily specifies types of hits that are not allowed to hit the player.  
   
@@ -5369,15 +5163,11 @@ value = , NA, AP
 
 ## NotHitBy (changed)
 
-*Source: Ikemen GO (changed)*
-
 See HitBy.
 
 ---
 
-## Null
-
-*Source: M.U.G.E.N 1.1*
+## Null (old)
 
 Does nothing. May be used for disabling other state controllers by changing their type to Null.  
   
@@ -5395,9 +5185,7 @@ Any triggers associated with the controller will still be evaluated.
 
 ---
 
-## Offset
-
-*Source: M.U.G.E.N 1.1*
+## Offset (old)
 
 Changes the player's display offset. The player is drawn shifted from his axis by this amount.  
   
@@ -5422,9 +5210,7 @@ none
 
 ---
 
-## OverrideClsn (nightly build only)
-
-*Source: Ikemen GO (new)*
+## OverrideClsn (new)
 
 This state controller allows you to directly modify a player’s collision boxes without changing their animation.
 
@@ -5467,9 +5253,7 @@ overrideClsn{group: Clsn2; index = -1; rect = 0, 0, 0, 0}
 
 ---
 
-## PalFX
-
-*Source: M.U.G.E.N 1.1*
+## PalFX (old)
 
 Applies temporary effects the player's palette. These will also affect the palette of any explods and helpers the player owns, unless they have set ownpal to a nonzero value.  
   
@@ -5535,8 +5319,6 @@ none
 
 ## PalFx (changed)
 
-*Source: Ikemen GO (changed)*
-
 ### invertblend
 
 >invertblend = *blend_mode* (int)  
@@ -5577,9 +5359,7 @@ Similliar to "sinadd" parameter but instead it creates effect related to "hue" p
 
 ---
 
-## ParentMapAdd
-
-*Source: Ikemen GO (new)*
+## ParentMapAdd (new)
 
 If the player is a helper, adds value to parent's map. If the player is not a helper, this controller does nothing. Parent refers to the instance that spawned the helper.
 
@@ -5592,9 +5372,7 @@ If the player is a helper, adds value to parent's map. If the player is not a he
 
 ---
 
-## ParentMapSet
-
-*Source: Ikemen GO (new)*
+## ParentMapSet (new)
 
 If the player is a helper, sets value to parent's map. If the player is not a helper, this controller does nothing. Parent refers to the instance that spawned the helper.
 
@@ -5607,9 +5385,7 @@ If the player is a helper, sets value to parent's map. If the player is not a he
 
 ---
 
-## ParentVarAdd
-
-*Source: M.U.G.E.N 1.1*
+## ParentVarAdd (old)
 
 If the player is a helper, adds to one of the player's parent's working variables. Either a float variable or an int variable can be added to by this controller. If the player is not a helper, this controller does nothing.  
   
@@ -5667,9 +5443,7 @@ none
 
 ---
 
-## ParentVarSet
-
-*Source: M.U.G.E.N 1.1*
+## ParentVarSet (old)
 
 If the player is a helper, sets one of the parent's working variables. Either a float variable or an int variable can be set by this controller. Does nothing if the player is not a helper.  
   
@@ -5726,9 +5500,7 @@ none
 
 ---
 
-## Pause
-
-*Source: M.U.G.E.N 1.1*
+## Pause (old)
 
 Pauses the game for the specified amount of time. Player and background updates are not carried out during this time.  
   
@@ -5771,9 +5543,7 @@ none
 
 ---
 
-## PlayBgm
-
-*Source: Ikemen GO (new)*
+## PlayBgm (new)
 
 Plays back a music. Supported file formats: *mp3*, *ogg*, *wav*. 
 
@@ -5807,9 +5577,7 @@ Plays back a music. Supported file formats: *mp3*, *ogg*, *wav*.
 
 ---
 
-## PlayerPush
-
-*Source: M.U.G.E.N 1.1*
+## PlayerPush (old)
 
 Disables the player's push checking for one tick. Push checking keeps players from overlapping one another. By temporarily disabling push checking, dodge-type moves in which the player passes through another (but can still be hit) can be implemented.  
   
@@ -5832,8 +5600,6 @@ none
 
 ## PlayerPush (changed)
 
-*Source: Ikemen GO (changed)*
-
 ### Priority (nightly build only)
 
 `PlayerPush` now accepts a `priority` parameter. A player with a higher priority can't be pushed by a player with a lower priority and will also push them out of a stage corner. Priority is reset to 0 every frame.  
@@ -5849,9 +5615,7 @@ specifies which team's players can be push.
 
 ---
 
-## PlaySnd
-
-*Source: M.U.G.E.N 1.1*
+## PlaySnd (old)
 
 Plays back a sound.  
   
@@ -5936,8 +5700,6 @@ Prior to version 1.0 RC8, a volume parameter was used instead of volumescale. Th
 
 ## PlaySnd (changed)
 
-*Source: Ikemen GO (changed)*
-
 ### Priority
 
 >priority = *snd_priority* (int)  
@@ -5982,9 +5744,7 @@ This parameter makes the sound be interrupted if the player changes states.
 
 ---
 
-## PosAdd
-
-*Source: M.U.G.E.N 1.1*
+## PosAdd (old)
 
 Offsets the player's position by the specified amounts. The X coordinate is relative to the player's axis, with positive values moving in the direction that the player is facing. The Y coordinate  
 is relative to the player's axis, with negative values moving up.  
@@ -6009,9 +5769,7 @@ none
 
 ---
 
-## PosFreeze
-
-*Source: M.U.G.E.N 1.1*
+## PosFreeze (old)
 
 Temporarily freezes the player's position.  
   
@@ -6032,9 +5790,7 @@ none
 
 ---
 
-## PosSet
-
-*Source: M.U.G.E.N 1.1*
+## PosSet (old)
 
 Sets the player's position to the specified coordinates. The X coordinate is relative to the center of the screen, with positive values moving right. The Y coordinate is relative to the floor, with negative values moving up.  
   
@@ -6058,9 +5814,7 @@ none
 
 ---
 
-## PowerAdd
-
-*Source: M.U.G.E.N 1.1*
+## PowerAdd (old)
 
 Adds the specified amount to the player's power.  
   
@@ -6080,9 +5834,7 @@ none
 
 ---
 
-## PowerSet
-
-*Source: M.U.G.E.N 1.1*
+## PowerSet (old)
 
 Sets the amount of power that the player has.  
   
@@ -6102,9 +5854,7 @@ none
 
 ---
 
-## PrintToConsole
-
-*Source: Ikemen GO (new)*
+## PrintToConsole (new)
 
 This controller is only useful for debugging. PrintToConsole prints a specified message to debug mode console, as well as terminal / command line window, if it's opened.
 
@@ -6135,9 +5885,7 @@ params = var(17):=1,var(17)/.230
 
 ---
 
-## Projectile
-
-*Source: M.U.G.E.N 1.1*
+## Projectile (old)
 
 Creates a projectile for the player. The Projectile controller takes all the parameters of the HitDef controller, which control the HitDef for the projectile. In addition, Projectile has the following additional parameters:  
   
@@ -6370,8 +6118,6 @@ none
 
 ## Projectile (changed)
 
-*Source: Ikemen GO (changed)*
-
 ### IkemenVersion
 
 In MUGEN, contrary to its documentation, projectiles do not support the ChainID and NochainID parameters. This behavior has been replicated by default in Ikemen GO. However, when a character's `ikemenversion` is not 0, projectiles do take these parameters into account.  
@@ -6441,9 +6187,7 @@ Specifies the amount of horizontal shearing to apply to the projectile. Defaults
 
 ---
 
-## RedLifeAdd
-
-*Source: Ikemen GO (new)*
+## RedLifeAdd (new)
 
 Adds the specified amount to the player's red life, scaled by the player's defense multiplier if necessary.
 
@@ -6457,9 +6201,7 @@ Adds the specified amount to the player's red life, scaled by the player's defen
 
 ---
 
-## RedLifeSet
-
-*Source: Ikemen GO (new)*
+## RedLifeSet (new)
 
 Sets the amount of red life that the player has.
 
@@ -6469,9 +6211,7 @@ Sets the amount of red life that the player has.
 
 ---
 
-## RemapPal
-
-*Source: M.U.G.E.N 1.1*
+## RemapPal (old)
 
 Changes one of the player's palettes to another.  
   
@@ -6523,9 +6263,7 @@ dest = 1,3
 
 ---
 
-## RemapSprite
-
-*Source: Ikemen GO (new)*
+## RemapSprite (new)
 
 Remaps one sprite with another (or does this for multiple sprites at once, based on character's CNS [RemapPreset](Character-features/#cns_remappreset) data)
 
@@ -6555,9 +6293,7 @@ reset = 1
 
 ---
 
-## RemoveExplod
-
-*Source: M.U.G.E.N 1.1*
+## RemoveExplod (old)
 
 Removes all of a player's explods, or just the explods with a specified ID number.  
   
@@ -6574,9 +6310,7 @@ removes all explods owned by the player.
 
 ---
 
-## RemoveText (nightly build only)
-
-*Source: Ikemen GO (new)*
+## RemoveText (new)
 
 Removes all of a player's texts, or just the texts with a specified ID number.
 
@@ -6596,9 +6330,7 @@ ID = 10
 
 ---
 
-## ReversalDef
-
-*Source: M.U.G.E.N 1.1*
+## ReversalDef (old)
 
 Defines a reversal. If one of P2's Clns1 boxes comes in contact with one of P1's Clsn1 boxes and a ReversalDef is active, then P1 will reverse P2's attack. Use with p1stateno (and optionally p2stateno) for creating reversal attacks.  
   
@@ -6630,8 +6362,6 @@ none
 
 ## ReversalDef (changed)
 
-*Source: Ikemen GO (changed)*
-
 ReversalDef can also use the new HitDef parameters. In addition it has the following exclusive parameters.
 
 ### reversal.guardflag (nightly build only)
@@ -6659,9 +6389,7 @@ reversal.guardflag.not = H
 
 ---
 
-## RootMapAdd
-
-*Source: Ikemen GO (new)*
+## RootMapAdd (new)
 
 If the player is a helper, adds value to root's map. If the player is not a helper, this controller does nothing. Root refers to the main player.
 
@@ -6674,9 +6402,7 @@ If the player is a helper, adds value to root's map. If the player is not a help
 
 ---
 
-## RootMapSet
-
-*Source: Ikemen GO (new)*
+## RootMapSet (new)
 
 If the player is a helper, sets value root's map. If the player is not a helper, this controller does nothing. Root refers to the main player.
 
@@ -6689,9 +6415,7 @@ If the player is a helper, sets value root's map. If the player is not a helper,
 
 ---
 
-## RootVarAdd
-
-*Source: Ikemen GO (new)*
+## RootVarAdd (new)
 
 If the player is a helper, adds value to root's working variables. Either a float variable or an int variable can be added by this controller. If the player is not a helper, this controller does nothing. Root refers to the main player.
 
@@ -6715,9 +6439,7 @@ If the player is a helper, adds value to root's working variables. Either a floa
 
 ---
 
-## RootVarSet
-
-*Source: Ikemen GO (new)*
+## RootVarSet (new)
 
 If the player is a helper, sets value root's working variables. Either a float variable or an int variable can be set by this controller. If the player is not a helper, this controller does nothing. Root refers to the main player.
 
@@ -6741,9 +6463,7 @@ If the player is a helper, sets value root's working variables. Either a float v
 
 ---
 
-## RoundTimeAdd
-
-*Source: Ikemen GO (new)*
+## RoundTimeAdd (new)
 
 Add specified amount of ticks into round time.
 
@@ -6753,9 +6473,7 @@ Add specified amount of ticks into round time.
 
 ---
 
-## RoundTimeSet
-
-*Source: Ikemen GO (new)*
+## RoundTimeSet (new)
 
 Set round time to specified amount of ticks.
 
@@ -6765,9 +6483,7 @@ Set round time to specified amount of ticks.
 
 ---
 
-## SaveFile
-
-*Source: Ikemen GO (new)*
+## SaveFile (new)
 
 Put specified data together and save it as binary. It uses gob, which is a serialized format for Go language, as the storage format. All characters specified by the character or helper who executed the function are stored at that time.
 
@@ -6795,9 +6511,7 @@ path = "kfm.gob"
 
 ---
 
-## ScoreAdd
-
-*Source: Ikemen GO (new)*
+## ScoreAdd (new)
 
 Adds the specified amount of points to P1 current score counter.
 
@@ -6814,9 +6528,7 @@ value = 100
 
 ---
 
-## ScreenBound
-
-*Source: M.U.G.E.N 1.1*
+## ScreenBound (old)
 
 Specifies whether or not the player's movement should be constrained to the screen or not. Also determines whether the camera should move to follow the player or not. The results of this controller are valid for 1 tick.  
   
@@ -6845,25 +6557,19 @@ none
 
 ## ScreenBound (changed)
 
-*Source: Ikemen GO (changed)*
-
 ### StageBound
 
 Lets a character bypass leftbound and rightbound from stage.
 
 ---
 
-## SelfState
-
-*Source: M.U.G.E.N 1.1*
+## SelfState (old)
 
 Like ChangeState, except that this changes a player back to a state in his own state data. Use this when you have placed an opponent player in a custom state via an attack, and wish to restore the opponent to his own states.
 
 ---
 
 ## SelfState (changed)
-
-*Source: Ikemen GO (changed)*
 
 ### ReadPlayerID
 
@@ -6873,9 +6579,7 @@ See also [ChangeState](State-controllers-(changed)/#changed_changestate).
 
 ---
 
-## ShiftInput (nightly build only)
-
-*Source: Ikemen GO (new)*
+## ShiftInput (new)
 
 Allows temporarily changing the function of the player's keys. Resets every frame.  
 
@@ -6905,9 +6609,7 @@ shiftInput{input: a; output: none}
 
 ---
 
-## SndPan
-
-*Source: M.U.G.E.N 1.1*
+## SndPan (old)
 
 Changes the panning of a currently playing sound. This controller may be continually triggered to smoothly move a sound across the sound field or to have a sound follow the player.  
   
@@ -6934,9 +6636,7 @@ none
 
 ---
 
-## SprPriority
-
-*Source: M.U.G.E.N 1.1*
+## SprPriority (old)
 
 Changes the player's sprite priority. Higher-priority sprites are drawn on top of lower-priority sprites.  
   
@@ -6958,8 +6658,6 @@ none
 
 ## SprPriority (changed)
 
-*Source: Ikemen GO (changed)*
-
 ### LayerNo (nightly build only)
 
 >layerno = *layer_number* (int)
@@ -6978,9 +6676,7 @@ layerno = -1
 
 ---
 
-## StateTypeSet
-
-*Source: M.U.G.E.N 1.1*
+## StateTypeSet (old)
 
 Changes the current state type and move type. Useful for states that go from the ground into the air, etc.  
   
@@ -7011,9 +6707,7 @@ none
 
 ---
 
-## StopSnd
-
-*Source: M.U.G.E.N 1.1*
+## StopSnd (old)
 
 Stops any sound which is playing on the specified channel.  
   
@@ -7036,17 +6730,13 @@ none
 
 ## StopSnd (changed)
 
-*Source: Ikemen GO (changed)*
-
 ### Channel
 
 Mugen allowed stopping all sounds for all players with `channel = -1`, but had no way to stop only the player's own sound channels. Using `channel = -2` will now do just that.
 
 ---
 
-## SuperPause
-
-*Source: M.U.G.E.N 1.1*
+## SuperPause (old)
 
 Freezes the gameplay and darkens the screen. While each player is frozen, no time passes for them. Use for a dramatic pause during the start of hyper attacks.  
   
@@ -7113,17 +6803,13 @@ none
 
 ## SuperPause (changed)
 
-*Source: Ikemen GO (changed)*
-
 ### Brightness (nightly build only)
 
 Determines how much the screen should darken during the pause. Valid values are between 0 (pitch black) and 255 (no change). Defaults to 128 (same as old `darken` parameter).
 
 ---
 
-## TagIn
-
-*Source: Ikemen GO (new)*
+## TagIn (new)
 
 Makes the P1 and/or the specified partner exit `Standby` state. If no parameters are given it affects the player that called it. (Also affects helpers)
 
@@ -7155,9 +6841,7 @@ stateno = 5600
 
 ---
 
-## TagOut
-
-*Source: Ikemen GO (new)*
+## TagOut (new)
 
 Makes the the player and/or the specified partner enter `Standby` state. If no parameters are given it affects the player that called it.  
 The main purpose of the `Standby` flag is to put a player away so it won't interfere in a Tag match. For that reason it carries several special properties:  
@@ -7195,9 +6879,7 @@ memberNo = 3
 
 ---
 
-## TargetAdd (nightly build only)
-
-*Source: Ikemen GO (new)*
+## TargetAdd (new)
 
 Adds the player with the specified ID to the original player's target list.  
 Do not confuse this player ID with a target ID. Target ID can be assigned with `chainID` parameter of [GetHitVarSet](State-controllers-(new)/#new_gethitvarset).  
@@ -7208,9 +6890,7 @@ Do not confuse this player ID with a target ID. Target ID can be assigned with `
 
 ---
 
-## TargetBind
-
-*Source: M.U.G.E.N 1.1*
+## TargetBind (old)
 
 Binds the player's specified targets to a specified location relative to the player's axis.  
   
@@ -7239,8 +6919,6 @@ Defaults to `0, 0` if omitted.
 
 ## TargetBind (changed)
 
-*Source: Ikemen GO (changed)*
-
 ### Index (nightly build only)
 
 The index of the target to be affected. Defaults to -1 (all).  
@@ -7254,9 +6932,7 @@ This parameter now takes a third value, Specifies the offset from the player's z
 
 ---
 
-## TargetDizzyPointsAdd
-
-*Source: Ikemen GO (new)*
+## TargetDizzyPointsAdd (new)
 
 Adds the specified amount to all targets' dizzy points.
 
@@ -7270,9 +6946,7 @@ Adds the specified amount to all targets' dizzy points.
 
 ---
 
-## TargetDrop
-
-*Source: M.U.G.E.N 1.1*
+## TargetDrop (old)
 
 Drops all targets from the player's target list, except possibly for those having a specified target ID number. Useful for applying effects to only certain targets.  
   
@@ -7304,9 +6978,7 @@ none
 
 ---
 
-## TargetFacing
-
-*Source: M.U.G.E.N 1.1*
+## TargetFacing (old)
 
 Turns all targets to face a specified direction relative to the player.  
   
@@ -7333,17 +7005,13 @@ none
 
 ## TargetFacing (changed)
 
-*Source: Ikemen GO (changed)*
-
 ### Index (nightly build only)
 
 The index of the target to be affected. Defaults to -1 (all).
 
 ---
 
-## TargetGuardPointsAdd
-
-*Source: Ikemen GO (new)*
+## TargetGuardPointsAdd (new)
 
 Adds the specified amount to all targets' guard points.
 
@@ -7357,9 +7025,7 @@ Adds the specified amount to all targets' guard points.
 
 ---
 
-## TargetLifeAdd
-
-*Source: M.U.G.E.N 1.1*
+## TargetLifeAdd (old)
 
 Adds the specified amount to all targets' life, scaled by the targets' defense multipliers if necessary.  
   
@@ -7394,8 +7060,6 @@ none
 
 ## TargetLifeAdd (changed)
 
-*Source: Ikemen GO (changed)*
-
 ### Dizzy
 
 If set to 1, enables life to dizzy points conversion support using `Default.LifeToDizzyPointsMul` / `Super.LifeToDizzyPointsMul` const. Defaults to 1.
@@ -7407,9 +7071,7 @@ The index of the target to be affected. Defaults to -1 (all).
 
 ---
 
-## TargetPowerAdd
-
-*Source: M.U.G.E.N 1.1*
+## TargetPowerAdd (old)
 
 Adds the specified amount to all targets' power.  
   
@@ -7434,17 +7096,13 @@ none
 
 ## TargetPowerAdd (changed)
 
-*Source: Ikemen GO (changed)*
-
 ### Index (nightly build only)
 
 The index of the target to be affected. Defaults to -1 (all).
 
 ---
 
-## TargetRedLifeAdd
-
-*Source: Ikemen GO (new)*
+## TargetRedLifeAdd (new)
 
 Adds the specified amount to all targets' red life, scaled by the targets' defense multipliers if necessary.
 
@@ -7461,9 +7119,7 @@ Adds the specified amount to all targets' red life, scaled by the targets' defen
 
 ---
 
-## TargetScoreAdd
-
-*Source: Ikemen GO (new)*
+## TargetScoreAdd (new)
 
 Adds the specified amount of points to targets' current score counter.
 
@@ -7477,9 +7133,7 @@ Adds the specified amount of points to targets' current score counter.
 
 ---
 
-## TargetState
-
-*Source: M.U.G.E.N 1.1*
+## TargetState (old)
 
 Makes all targets change to the specified state number.  
   
@@ -7504,17 +7158,13 @@ none
 
 ## TargetState (changed)
 
-*Source: Ikemen GO (changed)*
-
 ### Index (nightly build only)
 
 The index of the target to be affected. Defaults to -1 (all).
 
 ---
 
-## TargetVelAdd
-
-*Source: M.U.G.E.N 1.1*
+## TargetVelAdd (old)
 
 Adds the specified amounts to all targets' velocities. A positive x velocity is in the direction that the target is facing, while a positive y velocity is downward on the screen.  
   
@@ -7550,8 +7200,6 @@ y = 0.45
 
 ## TargetVelAdd (changed)
 
-*Source: Ikemen GO (changed)*
-
 ### Index (nightly build only)
 
 The index of the target to be affected. Defaults to -1 (all). 
@@ -7565,9 +7213,7 @@ Specifies the value to add to the target's z-velocity.
 
 ---
 
-## TargetVelSet
-
-*Source: M.U.G.E.N 1.1*
+## TargetVelSet (old)
 
 Sets all targets' velocities to the specified values. A positive x velocity is in the direction that the player is facing, while a positive y velocity is downward on the screen.  
   
@@ -7598,8 +7244,6 @@ none
 
 ## TargetVelSet (changed)
 
-*Source: Ikemen GO (changed)*
-
 ### Index (nightly build only)
 
 The index of the target to be affected. Defaults to -1 (all). 
@@ -7613,9 +7257,7 @@ Specifies the value to set the target's z-velocity to.
 
 ---
 
-## TeamMapAdd
-
-*Source: Ikemen GO (new)*
+## TeamMapAdd (new)
 
 Adds value to all team members maps.
 
@@ -7628,9 +7270,7 @@ Adds value to all team members maps.
 
 ---
 
-## TeamMapSet
-
-*Source: Ikemen GO (new)*
+## TeamMapSet (new)
 
 Sets value to all team members maps.
 
@@ -7643,9 +7283,7 @@ Sets value to all team members maps.
 
 ---
 
-## Text
-
-*Source: Ikemen GO (new)*
+## Text (new)
 
 Text controller is used for displaying text on screen.
 
@@ -7720,9 +7358,7 @@ Text controller is used for displaying text on screen.
 
 ---
 
-## Trans
-
-*Source: M.U.G.E.N 1.1*
+## Trans (old)
 
 Overrides the player's animation transparency parameters for current game tick. Useful for special effects.  
   
@@ -7761,8 +7397,6 @@ alpha = time, 256-time
 
 ## Trans (changed)
 
-*Source: Ikemen GO (changed)*
-
 Ikemen GO has some expanded transparency options.  
 Note: Applies to all `trans` definitions (e.g. explods, backgrounds, etc).
 
@@ -7788,9 +7422,7 @@ trans{trans: subAlpha; alpha: 256, 256}
 
 ---
 
-## TransformClsn (nightly build only)
-
-*Source: Ikemen GO (new)*
+## TransformClsn (new)
 
 Changes the geometry or certain properties of the player's collision boxes.  
 
@@ -7806,9 +7438,7 @@ Changes the geometry or certain properties of the player's collision boxes.
 
 ---
 
-## TransformSprite (nightly build only)
-
-*Source: Ikemen GO (new)*
+## TransformSprite (new)
 
 Apply certain deformations to the char's sprite.  
 
@@ -7828,9 +7458,7 @@ Apply certain deformations to the char's sprite.
 
 ---
 
-## Turn
-
-*Source: M.U.G.E.N 1.1*
+## Turn (old)
 
 Instantly turns the player to face the opposite direction. Does not play a turning animation.  
   
@@ -7848,9 +7476,7 @@ none
 
 ---
 
-## VarAdd
-
-*Source: M.U.G.E.N 1.1*
+## VarAdd (old)
 
 Adds to one of the player's working variables. Either a float variable or an int variable can be added to by this controller.  
   
@@ -7906,9 +7532,7 @@ none
 
 ---
 
-## VarRandom
-
-*Source: M.U.G.E.N 1.1*
+## VarRandom (old)
 
 Sets the specified int variable to a random value. Float variables cannot be set by this controller.  
   
@@ -7948,9 +7572,7 @@ range = 500
 
 ---
 
-## VarRangeSet
-
-*Source: M.U.G.E.N 1.1*
+## VarRangeSet (old)
 
 Sets a contiguous range of the player's working variables to the same value. Either float variables or int variables can be set by this controller, but not both at the same time.  
   
@@ -7994,9 +7616,7 @@ none
 
 ---
 
-## VarSet
-
-*Source: M.U.G.E.N 1.1*
+## VarSet (old)
 
 Sets one of the player's working variables. Either a float variable or an int variable can be set by this controller, but not both at the same time.  
   
@@ -8051,9 +7671,7 @@ none
 
 ---
 
-## VelAdd
-
-*Source: M.U.G.E.N 1.1*
+## VelAdd (old)
 
 Adds the specified amounts to the player's velocity. A positive x velocity is in the direction that the player is facing, while a positive y velocity is downward on the screen.  
   
@@ -8082,9 +7700,7 @@ y = 0.45
 
 ---
 
-## VelMul
-
-*Source: M.U.G.E.N 1.1*
+## VelMul (old)
 
 Multiplies the player's velocity by the specified amounts. A positive x velocity is in the direction that the player is facing, while a positive y velocity is downward on the screen.  
   
@@ -8113,9 +7729,7 @@ x = 0.8
 
 ---
 
-## VelSet
-
-*Source: M.U.G.E.N 1.1*
+## VelSet (old)
 
 Sets the player's velocity to the specified values. A positive x velocity is in the direction that the player is facing, while a positive y velocity is downward on the screen.  
   
@@ -8139,9 +7753,7 @@ none
 
 ---
 
-## VictoryQuote
-
-*Source: M.U.G.E.N 1.1*
+## VictoryQuote (old)
 
 Selects a victory quote from the player to display in the next victory screen.  
   
@@ -8171,9 +7783,7 @@ none
 
 ---
 
-## Width
-
-*Source: M.U.G.E.N 1.1*
+## Width (old)
 
 Temporarily changes the size of the player's width bar for 1 tick. Useful for controlling the `pushing` behavior when the player makes contact with another or with the sides of the screen.  
   
@@ -8218,8 +7828,6 @@ none
 ---
 
 ## Zoom (changed)
-
-*Source: Ikemen GO (changed)*
 
 Zoom was a beta feature in Mugen 1.1. It is a fully functional state controller in Ikemen GO.  
 
