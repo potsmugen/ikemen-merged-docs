@@ -2,7 +2,6 @@
 
 ## Table of Contents
 
-- [About Controllers](#about-controllers)
 - [AfterImage](#afterimage)
 - [AfterImage (changed)](#afterimage-changed)
 - [AfterImageTime](#afterimagetime)
@@ -106,7 +105,6 @@
 - [ModifyStageVar](#modifystagevar)
 - [ModifyText (nighty build only)](#modifytext-nighty-build-only)
 - [MoveHitReset](#movehitreset)
-- [New state controller features](#new-state-controller-features)
 - [NotHitBy](#nothitby)
 - [NotHitBy (changed)](#nothitby-changed)
 - [Null](#null)
@@ -203,6 +201,15 @@
 
 ---
 
+# About Controllers
+
+All state controllers have two optional parameters, `persistent` and `ignorehitpause`. These must be set to integer constants. Unless otherwise specified, any other numeric state controller parameter can be specified with an arithmetic expression.  
+In all cases, if setting a parameter with an expression, you should be careful that the expression does not evaluate to bottom, as in this case the parameter will be set to 0.
+
+*Source: M.U.G.E.N 1.1*
+
+---
+
 # New state controller features
 
 Both new and old state controllers can now take advantage of some global new features.
@@ -249,14 +256,7 @@ RedirectID = Player(TeamLeader), ID
 Due to limitations in how some logic must be handled, certain state controllers may not work with RedirectID. Usually because of the order the players are processed in.  
 TODO: list of sctrls that can't be redirected.
 
----
-
-# About Controllers
-
-*Source: M.U.G.E.N 1.1*
-
-All state controllers have two optional parameters, `persistent` and `ignorehitpause`. These must be set to integer constants. Unless otherwise specified, any other numeric state controller parameter can be specified with an arithmetic expression.  
-In all cases, if setting a parameter with an expression, you should be careful that the expression does not evaluate to bottom, as in this case the parameter will be set to 0.
+*Source: Ikemen GO (new)*
 
 ---
 
