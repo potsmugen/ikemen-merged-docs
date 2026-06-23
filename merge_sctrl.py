@@ -34,7 +34,6 @@ def main():
     changed = parse_sections(changed_text)
     new = parse_sections(new_text)
 
-    # The Universal section comes only from the new page.
     # Rename changed sections (e.g., "AfterImage parameters" → "AfterImage (changed)")
     changed = rename_changed_sections(changed, suffix="(changed)")
 
@@ -50,9 +49,18 @@ def main():
 
     print(f"Merged {len(merged)} sections.", file=sys.stderr)
 
-    output = output_merged(merged, "Merged State Controller Reference", skip)
+    # Output with "About" and "New features" placed right after the TOC
+    output = output_merged(
+        merged,
+        "Merged State Controller Reference",
+        sections_to_skip=skip,
+        top_sections=["About controllers", "New state controller features"]
+    )
 
-    output_file = Path("sctrl_merged.md")
+    # Write directly to the docs folder
+    output_file = Path("docs/sctrl.md")
+    output_file.parent.mkdir(parents=True, exist_ok=True)
+    
     output_file.write_text(output, encoding="utf-8")
     print(f"\nDone. Output saved to: {output_file}", file=sys.stderr)
     print(f"  {len(merged)} sections merged.", file=sys.stderr)

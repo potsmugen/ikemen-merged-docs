@@ -10,6 +10,7 @@ Automatically generated merged documentation for Ikemen GO.
 
 - [State Controllers](https://potsmugen.github.io/ikemen-merged-docs/sctrl)
 - [Triggers](https://potsmugen.github.io/ikemen-merged-docs/triggers)
+- [Trigger Redirections](https://potsmugen.github.io/ikemen-merged-docs/redirections)
 
 **[View on GitHub Pages](https://potsmugen.github.io/ikemen-merged-docs/)**
 

@@ -24,7 +24,7 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install requests beautifulsoup4
+        run: pip install requests
 
       - name: Generate state controllers
         run: python merge_sctrl.py
@@ -32,13 +32,8 @@ jobs:
       - name: Generate triggers
         run: python merge_triggers.py
 
-      - name: Create docs folder
-        run: mkdir -p docs
-
-      - name: Copy generated files to docs
-        run: |
-          cp sctrl_merged.md docs/sctrl.md
-          cp triggers_merged.md docs/triggers.md
+      - name: Generate redirections
+        run: python merge_redirections.py
 
       - name: Create index page (Home)
         run: |
@@ -51,6 +46,7 @@ jobs:
 
           - [State Controllers (SCTRL)](sctrl)
           - [Triggers](triggers)
+          - [Trigger Redirections](redirections)
 
           ---
 

@@ -350,8 +350,7 @@ def output_merged(
     """
     Output the merged documentation with:
     - Table of contents (first)
-    - Top sections (list) moved after TOC (content only, no heading)
-    - Universal section (if present)
+    - Top sections (moved after TOC, headings kept)
     - Alphabetical listing with source tags
     """
     if sections_to_skip is None:
@@ -361,8 +360,21 @@ def output_merged(
 
     lines = [f"# {title}", ""]
 
-    # Generate TOC from ALL sections
-    toc = generate_toc_from_sections(merged, sections_to_skip)
+    # ---------------------------------------------------------
+    # 1. Identify top sections using case-insensitive matching
+    # ---------------------------------------------------------
+    top_keys_to_move = {}
+    for top_key in top_sections:
+        for k in merged.keys():
+            if k.lower() == top_key.lower():
+                top_keys_to_move[top_key] = k
+                break
+
+    # ---------------------------------------------------------
+    # 2. Generate TOC (skip standard skips AND the top sections)
+    # ---------------------------------------------------------
+    skip_for_toc = list(set(sections_to_skip) | set(top_keys_to_move.values()))
+    toc = generate_toc_from_sections(merged, skip_for_toc)
     if toc:
         lines.append("## Table of Contents")
         lines.append("")
@@ -371,55 +383,36 @@ def output_merged(
         lines.append("---")
         lines.append("")
 
-    # Move top_sections to the top (after TOC) – content only
+    # ---------------------------------------------------------
+    # 3. Output top sections in the requested order (KEEP headings)
+    # ---------------------------------------------------------
     for top_key in top_sections:
-        if top_key in merged:
-            top_data = merged.pop(top_key)
+        actual_key = top_keys_to_move.get(top_key)
+        if actual_key and actual_key in merged:
+            top_data = merged.pop(actual_key)
             top_content = top_data['content']
+            top_level = top_data.get('level', 2)
             sources = source_tag_str(top_data['sources'])
 
-            # Remove the top-level heading from the content
-            content_lines = top_content.splitlines()
-            if content_lines and re.match(r'^#{1,6}\s+', content_lines[0]):
-                content_lines = content_lines[1:]
-            body = '\n'.join(content_lines).strip()
-
-            # Clean HTML tags
-            body = re.sub(r'<a[^>]+>', '', body)
-            body = re.sub(r'</a>', '', body)
-
-            if body.strip():
-                lines.append(body)
+            # Clean HTML tags from body
+            top_content = re.sub(r'<a[^>]+>', '', top_content)
+            top_content = re.sub(r'</a>', '', top_content)
+            clean_top = clean_heading(actual_key)
+            
+            # Reconstruct the heading
+            lines.append(f"{'#' * top_level} {clean_top}")
+            lines.append("")
+            if top_content.strip():
+                lines.append(top_content)
                 lines.append("")
-                if not body.strip().startswith('*Source:'):
-                    lines.append(f"*Source: {sources}*")
-                    lines.append("")
+            lines.append(f"*Source: {sources}*")
+            lines.append("")
             lines.append("---")
             lines.append("")
 
-    # Extract Universal section if present (from state controllers)
-    universal_key = None
-    for key in merged.keys():
-        if key in ("New state controller features", "Universal state controller features"):
-            universal_key = key
-            break
-
-    if universal_key:
-        universal_data = merged.pop(universal_key)
-        universal_content = universal_data['content']
-        universal_level = universal_data.get('level', 1)
-        universal_content = re.sub(r'<a[^>]+>', '', universal_content)
-        universal_content = re.sub(r'</a>', '', universal_content)
-        clean_universal = clean_heading(universal_key)
-        lines.append(f"{'#' * universal_level} {clean_universal}")
-        lines.append("")
-        if universal_content.strip():
-            lines.append(universal_content)
-            lines.append("")
-        lines.append("---")
-        lines.append("")
-
-    # Output remaining sections alphabetically
+    # ---------------------------------------------------------
+    # 4. Output remaining sections alphabetically
+    # ---------------------------------------------------------
     for name in sorted(merged.keys(), key=lambda s: s.lower()):
         if name in sections_to_skip:
             continue

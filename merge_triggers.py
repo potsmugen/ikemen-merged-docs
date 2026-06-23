@@ -2,10 +2,6 @@
 # -*- coding: utf-8 -*-
 """
 Merge M.U.G.E.N 1.1 + Ikemen GO Triggers.
-
-The "new" page has two parts:
-- "New trigger redirections" → moved to the top as a dedicated section (content only)
-- "New triggers" → individual triggers merged alphabetically with the rest
 """
 
 import sys
@@ -18,7 +14,6 @@ def main():
     print("MERGED TRIGGERS", file=sys.stderr)
     print("=" * 60, file=sys.stderr)
 
-    # Sources
     mugen_file = Path("triggers_mugen11.md")
     if not mugen_file.exists():
         print(f"ERROR: {mugen_file} not found", file=sys.stderr)
@@ -35,53 +30,58 @@ def main():
     print("Fetching Ikemen GO (new)...", file=sys.stderr)
     new_text = fetch_raw_markdown(new_url)
 
-    # Parse sections
+    # Parse all documents (parse_sections automatically handles HTML in headings)
     mugen = parse_sections(mugen_text)
     changed = parse_sections(changed_text)
+    new = parse_sections(new_text)
 
-    # Parse the new page differently – we want to keep the redirections section intact,
-    # but extract individual triggers from the "New triggers" block
-    new_sections = parse_sections(new_text)
+    # --- FILTER OUT REDIRECTIONS ---
+    # Remove redirection sections from M.U.G.E.N (they go to the redirections page)
+    for key in list(mugen.keys()):
+        if "redirection" in key.lower():
+            mugen.pop(key, None)
 
-    # Separate "New trigger redirections"
-    new_redirections = {}
-    if "New trigger redirections" in new_sections:
-        new_redirections["New trigger redirections"] = new_sections.pop("New trigger redirections")
+    # Remove redirection sections from changed (if any)
+    for key in list(changed.keys()):
+        if "redirection" in key.lower():
+            changed.pop(key, None)
 
-    # Extract individual triggers from "New triggers"
+    # Extract ONLY the individual triggers from the "New triggers" block
     new_individual = {}
-    if "New triggers" in new_sections:
-        triggers_block = new_sections.pop("New triggers")
-        # The content of "New triggers" contains individual triggers with ## headings
-        # Extract them using parse_sub_sections
+    if "New triggers" in new:
+        triggers_block = new.pop("New triggers")
         new_individual = parse_sub_sections(triggers_block)
 
-    # Rename changed sections
+    # Discard "New trigger redirections" from the new page if it exists
+    new.pop("New trigger redirections", None)
+
+    # --- RENAME CHANGED SECTIONS ---
+    # e.g., "Anim triggers" becomes "Anim (changed)"
     changed = rename_changed_sections(changed, suffix="(changed)")
 
-    # Merge all individual triggers
+    # --- MERGE ---
+    # Merge only pure triggers (redirections are handled by merge_redirections.py)
     merged = merge_sections([
         ("M.U.G.E.N 1.1", mugen),
         ("Ikemen GO (changed)", changed),
         ("Ikemen GO (new)", new_individual),
     ])
 
-    print(f"Merged {len(merged)} sections.", file=sys.stderr)
+    print(f"Merged {len(merged)} trigger sections.", file=sys.stderr)
 
-    # Output
-    # top_sections: "New trigger redirections" at the top (content only)
+    # --- OUTPUT ---
     output = output_merged(
         merged,
         "Merged Trigger Reference",
         sections_to_skip=[],
-        top_sections=["New trigger redirections"]
+        top_sections=[]
     )
 
-    output_file = Path("triggers.md")
+    output_file = Path("docs/triggers.md")
+    output_file.parent.mkdir(parents=True, exist_ok=True)
     output_file.write_text(output, encoding="utf-8")
     print(f"\nDone. Output saved to: {output_file}", file=sys.stderr)
-    print(f"  {len(merged)} sections merged.", file=sys.stderr)
-    print(f"  Redirections section moved to top.", file=sys.stderr)
+    print(f"  {len(merged)} trigger sections merged.", file=sys.stderr)
 
 
 if __name__ == "__main__":
