@@ -259,24 +259,46 @@ def source_tag_str(sources: Set[str]) -> str:
 
 
 # ----------------------------------------------------------------------
+# HELPER TO TAG THE FIRST HEADING ONLY
+# ----------------------------------------------------------------------
+
+def tag_first_heading(content: str, suffix: str) -> str:
+    """
+    Tag only the first heading in the content (any level: H1-H6).
+    Leaves all other headings untouched.
+    """
+    lines = content.splitlines()
+    if not lines:
+        return content
+
+    # Find the first line that contains a heading
+    for i, line in enumerate(lines):
+        m = re.match(r'^(#{1,6})\s+(.+)$', line)
+        if m:
+            level = m.group(1)
+            heading_text = m.group(2).strip()
+            heading_text = clean_heading(heading_text)
+            if not re.search(rf'{re.escape(suffix)}$', heading_text):
+                heading_text = f"{heading_text} {suffix}"
+            lines[i] = f"{level} {heading_text}"
+            break
+
+    return '\n'.join(lines)
+
+
+# ----------------------------------------------------------------------
 # RENAME CHANGED SECTIONS
 # ----------------------------------------------------------------------
 
 def rename_changed_sections(sections: Dict[str, str], suffix: str = "(changed)") -> Dict[str, str]:
     """
     Rename sections from the changed page:
-    - If heading contains 'parameters' or 'triggers', replace those words with the suffix
-      (e.g., 'Anim triggers' → 'Anim (changed)').
-    - Otherwise, append the suffix directly (e.g., 'command' → 'command (changed)').
-    Also updates the heading line inside the content.
+    - For any section, tag the first heading (block header) and the dict key.
+    - Leaves all other headings inside the block untouched.
     """
     renamed = {}
     tag_word = suffix.strip('()')  # "changed"
     for name, content in sections.items():
-        if name in ("New state controller features", "New trigger redirections", "Changed trigger redirections"):
-            renamed[name] = content
-            continue
-
         # If name already contains the tag word, keep it as-is
         if re.search(rf'\b{re.escape(tag_word)}\b', name, re.IGNORECASE):
             renamed[name] = content
@@ -289,20 +311,10 @@ def rename_changed_sections(sections: Dict[str, str], suffix: str = "(changed)")
         else:
             new_name = f"{name} {suffix}"
 
-        renamed[new_name] = content
+        # Tag only the first heading inside the content
+        content = tag_first_heading(content, suffix)
 
-        # Also update the heading line inside the content
-        content_lines = content.splitlines()
-        if content_lines and re.match(r'^#{1,6}\s+', content_lines[0]):
-            heading_text = re.sub(r'^#{1,6}\s+', '', content_lines[0])
-            heading_text = clean_heading(heading_text)  # strip nightly suffix too
-            if re.search(r'(?i)\b(parameters|triggers)\b', heading_text):
-                new_heading_text = re.sub(r'(?i)\s*(parameters|triggers)\s*', f' {suffix} ', heading_text).strip()
-                new_heading_text = re.sub(r'\s+', ' ', new_heading_text).strip()
-            else:
-                new_heading_text = f"{heading_text} {suffix}"
-            content_lines[0] = f"## {new_heading_text}"
-            renamed[new_name] = '\n'.join(content_lines)
+        renamed[new_name] = content
 
     return renamed
 
@@ -314,31 +326,27 @@ def rename_changed_sections(sections: Dict[str, str], suffix: str = "(changed)")
 def tag_old_sections(sections: Dict[str, str], suffix: str = "(old)") -> Dict[str, str]:
     """
     Tag M.U.G.E.N sections with (old) suffix.
-    Skips special sections and "About controllers" to keep them untagged.
+    Tags the first heading (block header) and the dict key.
+    Leaves all other headings inside the block untouched.
+    Skips "About controllers" to keep it untagged.
     """
     tagged = {}
     for name, content in sections.items():
-        # Skip sections we want to keep untagged
-        if name in ("New state controller features", "New trigger redirections",
-                    "Changed trigger redirections", "New triggers", "About controllers"):
+        # Skip "About controllers" and other special sections that we want to keep as-is
+        if name in ("About controllers", "New trigger redirections", "Changed trigger redirections", "New triggers"):
             tagged[name] = content
             continue
 
+        # If already has a suffix, keep
         if re.search(r'\((old|changed|new)\)$', name):
             tagged[name] = content
             continue
 
         new_name = f"{name} {suffix}"
-        tagged[new_name] = content
+        # Tag only the first heading inside the content
+        content = tag_first_heading(content, suffix)
 
-        # Also update the heading line inside the content
-        content_lines = content.splitlines()
-        if content_lines and re.match(r'^#{1,6}\s+', content_lines[0]):
-            heading_text = re.sub(r'^#{1,6}\s+', '', content_lines[0])
-            heading_text = clean_heading(heading_text)  # strip nightly suffix
-            new_heading_text = f"{heading_text} {suffix}"
-            content_lines[0] = f"## {new_heading_text}"
-            tagged[new_name] = '\n'.join(content_lines)
+        tagged[new_name] = content
 
     return tagged
 
@@ -346,30 +354,27 @@ def tag_old_sections(sections: Dict[str, str], suffix: str = "(old)") -> Dict[st
 def tag_new_sections(sections: Dict[str, str], suffix: str = "(new)") -> Dict[str, str]:
     """
     Tag Ikemen GO new sections with (new) suffix.
-    Skips redirection sections (they go to redirections page).
+    Tags the first heading (block header) and the dict key.
+    Leaves all other headings inside the block untouched.
+    Skips redirection sections.
     """
     tagged = {}
     for name, content in sections.items():
-        # Only skip redirection sections
+        # Skip redirection sections entirely
         if name in ("New trigger redirections", "Changed trigger redirections"):
             tagged[name] = content
             continue
 
+        # If already has a suffix, keep
         if re.search(r'\((old|changed|new)\)$', name):
             tagged[name] = content
             continue
 
         new_name = f"{name} {suffix}"
-        tagged[new_name] = content
+        # Tag only the first heading inside the content
+        content = tag_first_heading(content, suffix)
 
-        # Update heading line inside content
-        content_lines = content.splitlines()
-        if content_lines and re.match(r'^#{1,6}\s+', content_lines[0]):
-            heading_text = re.sub(r'^#{1,6}\s+', '', content_lines[0])
-            heading_text = clean_heading(heading_text)  # strip nightly suffix
-            new_heading_text = f"{heading_text} {suffix}"
-            content_lines[0] = f"## {new_heading_text}"
-            tagged[new_name] = '\n'.join(content_lines)
+        tagged[new_name] = content
 
     return tagged
 
@@ -445,6 +450,11 @@ def generate_toc_from_sections(merged: Dict[str, Dict[str, Set[str]]], sections_
 # OUTPUT
 # ----------------------------------------------------------------------
 
+def strip_source_tag(name: str) -> str:
+    """Remove any trailing (old), (changed), or (new) suffix."""
+    return re.sub(r'\s*\((old|changed|new)\)$', '', name).strip()
+
+
 def output_merged(
     merged: Dict[str, Dict[str, Set[str]]],
     title: str,
@@ -455,7 +465,7 @@ def output_merged(
     Output the merged documentation with:
     - Table of contents (first)
     - Top sections (moved after TOC, headings kept)
-    - Alphabetical listing with source tags in headings
+    - A "# State Controller Reference" heading before the alphabetical list
     """
     if sections_to_skip is None:
         sections_to_skip = []
@@ -464,19 +474,19 @@ def output_merged(
 
     lines = [f"# {title}", ""]
 
-    # ---------------------------------------------------------
-    # 1. Identify top sections using case-insensitive matching
-    # ---------------------------------------------------------
+    # Helper to strip tag for matching
+    def strip_source_tag(name: str) -> str:
+        return re.sub(r'\s*\((old|changed|new)\)$', '', name).strip()
+
+    # Identify top sections
     top_keys_to_move = {}
     for top_key in top_sections:
         for k in merged.keys():
-            if k.lower() == top_key.lower():
+            if strip_source_tag(k).lower() == top_key.lower():
                 top_keys_to_move[top_key] = k
                 break
 
-    # ---------------------------------------------------------
-    # 2. Generate TOC (skip standard skips AND the top sections)
-    # ---------------------------------------------------------
+    # Generate TOC
     skip_for_toc = list(set(sections_to_skip) | set(top_keys_to_move.values()))
     toc = generate_toc_from_sections(merged, skip_for_toc)
     if toc:
@@ -487,9 +497,7 @@ def output_merged(
         lines.append("---")
         lines.append("")
 
-    # ---------------------------------------------------------
-    # 3. Output top sections in the requested order (KEEP headings)
-    # ---------------------------------------------------------
+    # Output top sections
     for top_key in top_sections:
         actual_key = top_keys_to_move.get(top_key)
         if actual_key and actual_key in merged:
@@ -497,12 +505,10 @@ def output_merged(
             top_content = top_data['content']
             top_level = top_data.get('level', 2)
 
-            # Clean HTML tags from body
             top_content = re.sub(r'<a[^>]+>', '', top_content)
             top_content = re.sub(r'</a>', '', top_content)
             clean_top = clean_heading(actual_key)
 
-            # Reconstruct the heading (no source line)
             lines.append(f"{'#' * top_level} {clean_top}")
             lines.append("")
             if top_content.strip():
@@ -513,7 +519,13 @@ def output_merged(
 
     # ---------------------------------------------------------
     # 4. Output remaining sections sorted by base name, then tag
+    #    with a "# State Controller Reference" heading before the list
     # ---------------------------------------------------------
+    remaining = [name for name in merged.keys() if name not in sections_to_skip and merged[name]['content'].strip()]
+    if remaining:
+        lines.append("# State Controller Reference")
+        lines.append("")
+
     for name in sorted(merged.keys(), key=get_sort_key):
         if name in sections_to_skip:
             continue
