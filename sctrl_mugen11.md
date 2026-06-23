@@ -18,17 +18,14 @@ none
   
 **time = *duration* (int)**  
   
-Specifies the number of ticks that the afterimages should be  
-displayed for. Set to -1 to display indefinitely. Defaults to 1.  
+Specifies the number of ticks that the afterimages should be displayed for. Set to -1 to display indefinitely. Defaults to 1.  
   
 **length = *no_of_frames* (int)**  
   
-Sets the capacity of the frame history buffer. The history will  
-hold up to *no_of_frames* of the character's most recently saved  
-frames. Assuming constant values for timegap and framegap,  
-increasing the length can increase the number and `age` (for lack  
-of a better term) of afterimages displayed at one time. The  
-maximum length is 60, and the default is 20.  
+Sets the capacity of the frame history buffer.  
+The history will hold up to *no_of_frames* of the character's most recently saved frames.  
+Assuming constant values for timegap and framegap, increasing the length can increase the number and `age` (for lack of a better term) of afterimages displayed at one time.  
+The maximum length is 60, and the default is 20.  
   
 **palcolor = *col* (int)**  
   
@@ -48,7 +45,13 @@ See below.
   
 **palpostbright = *add2_r*, *add2_g*, *add2_b* (int)**  
   
-These parameters determine palette effects to be applied to all afterimages. First the color level is adjusted according to the palcolor value, then if invertall is non-zero the colors are inverted. Afterwards, the palbright components are added to the corresponding component of the player's palette, then each component is multiplied by the corresponding palcontrast component divided by 256, then the palpostbright components are added to the result. The value of palcolor ranges from 0 (greyscale) to 256 (normal color). For instance, if the red component of the character's palette is denoted *pal_r*, then the red component of the afterimage palette is given by (*pal_r* + *add_r*) * *mul_r* / 256 + *add2_r*, assuming palcolor and palinvert are left at their default values. Valid values are 0-256 for palcolor, 0-255 for palbright and palpostbright components, and any non-negative integer for palcontrast components. The defaults are:  
+These parameters determine palette effects to be applied to all afterimages.  
+First the color level is adjusted according to the palcolor value, then if invertall is non-zero the colors are inverted.  
+Afterwards, the palbright components are added to the corresponding component of the player's palette, then each component is multiplied by the corresponding palcontrast component divided by 256, then the palpostbright components are added to the result.  
+The value of palcolor ranges from 0 (greyscale) to 256 (normal color).  
+For instance, if the red component of the character's palette is denoted *pal_r*, then the red component of the afterimage palette is given by (*pal_r* + *add_r*) \* *mul_r* / 256 + *add2_r*, assuming palcolor and palinvert are left at their default values.  
+Valid values are 0-256 for palcolor, 0-255 for palbright and palpostbright components, and any non-negative integer for palcontrast components.  
+The defaults are:  
   
 ```  
 palcolor = 256  
@@ -64,7 +67,11 @@ See below.
   
 **palmul = *mul_r*, *mul_g*, *mul_b* (float)**  
   
-These parameters specify palette effects that are applied repeatedly to successive frames in the afterimage. In one application of these palette effects, first the paladd components are added to the afterimage palette, then the components are multiplied by the palmul multipliers. These effects are applied zero times to the most recent afterimage frame, once to the  second-newest afterimage frame, twice in succession to the third-newest afterimage frame, etc. Valid values are 0-255 for the paladd components, and any non-negative float value for the palmul multipliers. The defaults are:  
+These parameters specify palette effects that are applied repeatedly to successive frames in the afterimage.  
+In one application of these palette effects, first the paladd components are added to the afterimage palette, then the components are multiplied by the palmul multipliers.  
+These effects are applied zero times to the most recent afterimage frame, once to the second-newest afterimage frame, twice in succession to the third-newest afterimage frame, etc.  
+Valid values are 0-255 for the paladd components, and any non-negative float value for the palmul multipliers.  
+The defaults are:  
   
 ```  
 paladd = 10, 10, 25  
@@ -73,22 +80,18 @@ palmul = 0.65, 0.65, 0.75
   
 **timegap = *value* (int)**  
   
-This parameter controls how many frames to skip between saving  
-player frames to the history buffer for afterimage display. The  
-default is 1 (skip no frames). To save every third frame (for  
-example), you would use timegap = 3.  
+This parameter controls how many frames to skip between saving player frames to the history buffer for afterimage display.  
+The default is 1 (skip no frames). To save every third frame (for example), you would use timegap = 3.  
   
 **framegap = *value* (int)**  
   
-Every *value*'th frame in the history buffer will be displayed as an  
-afterimage. For instance, if framegap = 4 (the default), then the  
-first, fifth, ninth, ... frames of the history buffer will be  
-displayed as afterimages.  
+Every *value*'th frame in the history buffer will be displayed as an afterimage.  
+For instance, if framegap = 4 (the default), then the first, fifth, ninth, ... frames of the history buffer will be displayed as afterimages.  
   
 **trans = *type* (string)**  
   
-Specifies the transparency type for the afterimages. Valid values for *type*  
-are `none` for an opaque afterimage, `add`, `add1`, and `sub`.  
+Specifies the transparency type for the afterimages.  
+Valid values for *type* are `none` for an opaque afterimage, `add`, `add1`, and `sub`.  
 Defaults to `none`.  
   
 **Example:**  
