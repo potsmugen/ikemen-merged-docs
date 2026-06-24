@@ -1,121 +1,46 @@
-/* Base variables */
-:root {
-  --bg: #fff;
-  --text: #222;
-  --toc-bg: #f8f9fa;
-  --border: #ddd;
-  --toc-hover: #e9ecef;
+---
+---
+
+@import "{{ site.theme }}";
+
+/* Just slightly wider content */
+.markdown-body {
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
 }
 
-body.dark {
-  --bg: #1e1e1e;
-  --text: #e0e0e0;
-  --toc-bg: #2d2d2d;
-  --border: #444;
-  --toc-hover: #3a3a3a;
+/* Multi-column TOC */
+.markdown-body h2:has(+ ul),
+.markdown-body h2:has(+ p + ul) {
+  margin-bottom: 0;
 }
 
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+.markdown-body ul:has(li a[href^="#"]) {
+  column-count: 3;
+  column-gap: 2em;
+  column-rule: 1px solid #e1e4e8;
+  padding-left: 20px !important;
+  margin-top: 10px;
+}
+
+.markdown-body ul:has(li a[href^="#"]) li {
+  break-inside: avoid;
+  padding: 2px 0;
+  font-size: 0.9em;
   line-height: 1.6;
-  margin: 0;
-  padding: 20px;
-  transition: background 0.2s, color 0.2s;
 }
 
-.page-wrapper {
-  display: flex;
-  gap: 30px;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-/* TOC sidebar */
-.toc-wrapper {
-  flex: 0 0 250px;
-  position: sticky;
-  top: 20px;
-  align-self: flex-start;
-  max-height: calc(100vh - 40px);
-  overflow-y: auto;
-  background: var(--toc-bg);
-  padding: 1rem;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  font-size: 0.9rem;
-}
-
-.toc-wrapper h2 {
-  margin-top: 0;
-  font-size: 1.1rem;
-}
-
-.toc-wrapper ul {
-  list-style: none;
-  padding-left: 0;
-}
-
-.toc-wrapper li {
-  margin: 6px 0;
-}
-
-.toc-wrapper a {
-  color: var(--text);
-  text-decoration: none;
-  display: block;
-  padding: 4px 8px;
-  border-radius: 4px;
-}
-
-.toc-wrapper a:hover {
-  background: var(--toc-hover);
-}
-
-/* Main content */
-.content {
-  flex: 1;
-  min-width: 0;
-}
-
-/* Header with toggle */
-header {
-  display: flex;
-  justify-content: flex-end;
-  padding: 10px 0;
-  margin-bottom: 20px;
-}
-
-#theme-toggle {
-  background: none;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  padding: 6px 12px;
-  cursor: pointer;
-  font-size: 1.2rem;
-  color: var(--text);
-  background: var(--bg);
-}
-
-/* Markdown content styling */
-.content h1, .content h2, .content h3 {
-  color: var(--text);
-}
-.content code {
-  background: var(--toc-bg);
-  padding: 2px 4px;
-  border-radius: 4px;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .page-wrapper {
-    flex-direction: column;
+/* Responsive: fewer columns on smaller screens */
+@media (max-width: 900px) {
+  .markdown-body ul:has(li a[href^="#"]) {
+    column-count: 2;
   }
-  .toc-wrapper {
-    position: static;
-    flex: none;
-    width: 100%;
+}
+
+@media (max-width: 600px) {
+  .markdown-body ul:has(li a[href^="#"]) {
+    column-count: 1;
+    column-rule: none;
   }
 }
