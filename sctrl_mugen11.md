@@ -107,8 +107,7 @@ Known bugs: If the timegap parameter in the originating AfterImage controller is
   
 **time = *new_duration* (int)**  
   
-Sets the new number of ticks that the afterimages will be  
-displayed before being removed.  
+Sets the new number of ticks that the afterimages will be displayed before being removed.  
   
 **Alternate syntax:**  
   
@@ -236,20 +235,15 @@ The flag name can be one of the following:
   
 **intro**  
   
-Tells MUGEN that the character is currently performing his intro  
-pose. Must be asserted on every tick while the intro pose is  
-being performed.  
+Tells MUGEN that the character is currently performing his intro pose. Must be asserted on every tick while the intro pose is being performed.  
   
 **invisible**  
   
-Turns the character invisible while asserted. Does not affect  
-display of afterimages.  
+Turns the character invisible while asserted. Does not affect display of afterimages.  
   
 **roundnotover**  
   
-Tells MUGEN that the character is currently performing his win  
-pose. Should be asserted on every tick while the win pose is being  
-performed.  
+Tells MUGEN that the character is currently performing his win pose. Should be asserted on every tick while the win pose is being performed.  
   
 **nobardisplay**  
   
@@ -277,25 +271,19 @@ While asserted, disables air guard for the character.
   
 **noautoturn**  
   
-While asserted, keeps the character from automatically turning  
-to face the opponent.  
+While asserted, keeps the character from automatically turning to face the opponent.  
   
 **nojugglecheck**  
   
-While asserted, disables juggle checking. P2 can be juggled  
-regardless of juggle points.  
+While asserted, disables juggle checking. P2 can be juggled regardless of juggle points.  
   
 **nokosnd**  
   
-Suppresses playback of sound 11, 0 (the KO sound) for players  
-who are knocked out. For players whose KO sound echoes, nokosnd  
-must be asserted for 50 or more ticks after the player is KOed  
-in order to suppress all echoes.  
+Suppresses playback of sound 11, 0 (the KO sound) for players who are knocked out. For players whose KO sound echoes, nokosnd must be asserted for 50 or more ticks after the player is KOed in order to suppress all echoes.  
   
 **nokoslow**  
   
-While asserted, keeps MUGEN from showing the end of the round in  
-slow motion.  
+While asserted, keeps MUGEN from showing the end of the round in slow motion.  
   
 **noshadow**  
   
@@ -311,20 +299,15 @@ While asserted, pauses playback of background music.
   
 **nowalk**  
   
-While asserted, the player cannot enter his walk states, even if  
-he has control. Use to prevent run states from canceling into  
-walking.  
+While asserted, the player cannot enter his walk states, even if he has control. Use to prevent run states from canceling into walking.  
   
 **timerfreeze**  
   
-While asserted, keeps the round timer from counting down. Useful  
-to keep the round from timing over in the middle of a splash  
-screen.  
+While asserted, keeps the round timer from counting down. Useful to keep the round from timing over in the middle of a splash screen.  
   
 **unguardable**  
   
-While asserted, all the asserting player's HitDefs become  
-unblockable, i.e., their guardflags are ignored.  
+While asserted, all the asserting player's HitDefs become unblockable, i.e., their guardflags are ignored.  
   
 **Example:**  
   
@@ -332,9 +315,8 @@ none
   
 ## AttackDist  
   
-Changes the value of the guard.dist parameter for the player's current HitDef. The guard.dist is the x-distance from P1 in which P2 will go  
-into a guard state if P2 is holding the direction away from P1.  
-The effect of guard.dist only takes effect when P1 has movetype = A.  
+Changes the value of the guard.dist parameter for the player's current HitDef. The guard.dist is the x-distance from P1 in which P2 will go into a guard state if P2 is holding the direction away from P1.  
+The effect of guard.dist only takes effect when P1 has `movetype = A`.  
   
 **Required parameters:**  
   
@@ -382,30 +364,24 @@ If the player is a helper, binds the player to a specified position relative to 
 none  
   
 **Optional parameters:**  
-  
-**time = *bind_time* (int)**  
+*time = *bind_time* (int)*  
   
 Specify number of ticks that this binding should be effective.  
 Defaults to 1.  
   
-**facing = *facing_flag* (int)**  
+*facing = *facing_flag* (int)*  
   
-If *facing_flag* is -1, makes the player always face the opposite  
-direction from its parent during the binding time. If *facing_flag *  
-is 1, makes the player always face the same direction as its  
-parent during the binding time. If *facing_flag* is 0, the player  
-will not turn regardless of what its parent does. Defaults to 0.  
+If *facing_flag* is -1, makes the player always face the opposite direction from its parent during the binding time.  
+If *facing_flag* is 1, makes the player always face the same direction as its parent during the binding time.  
+If *facing_flag* is 0, the player will not turn regardless of what its parent does. Defaults to 0.  
   
 **pos = *pos_x* (float), *pos_y* (float)**  
   
-*pos_x* and *pos_y* specify the offsets (from the parent's axis) to  
-bind to. Defaults to 0, 0.  
+*pos_x* and *pos_y* specify the offsets (from the parent's axis) to bind to. Defaults to `0, 0`.  
   
 **Notes:**  
   
-If the player's parent is destroyed (for example, if it is a  
-helper, and executes DestroySelf), then the effect of  
-BindToParent is terminated.  
+If the player's parent is destroyed (for example, if it is a helper, and executes DestroySelf), then the effect of BindToParent is terminated.  
   
 **Example:**  
   
@@ -428,16 +404,14 @@ Defaults to 1.
   
 **facing = *facing_flag* (int)**  
   
-If *facing_flag* is -1, makes the player always face the opposite  
-direction from its root during the binding time. If *facing_flag*  
-is 1, makes the player always face the same direction as its  
-root during the binding time. If *facing_flag* is 0, the player  
-will not turn regardless of what its root does. Defaults to 0.  
+If *facing_flag* is -1, makes the player always face the opposite direction from its root during the binding time.  
+If *facing_flag* is 1, makes the player always face the same direction as its root during the binding time.  
+If *facing_flag* is 0, the player will not turn regardless of what its root does. Defaults to 0.  
   
 **pos = *pos_x* (float), *pos_y* (float)**  
   
 *pos_x* and *pos_y* specify the offsets (from the root's axis) to  
-bind to. Defaults to 0, 0.  
+bind to. Defaults to `0, 0`.  
   
 **Notes:**  
   
@@ -1188,7 +1162,7 @@ sprites. Defaults to 0 (draw over characters).
 **pos = *x_pos*, *y_pos* (float)**  
   
 Specifies the position to display the animation at, relative to  
-the player axis. Defaults to 0, 0.  
+the player axis. Defaults to `0, 0`.  
   
 **random = *rand_amt* (int)**  
   
@@ -2178,7 +2152,7 @@ none
 **pos = *x_pos*, *y_pos* (int)**  
   
 Specifies the position that the dust should be drawn at, relative  
-to the player's axis. Defaults to 0, 0.  
+to the player's axis. Defaults to `0, 0`.  
   
 **pos2 = *x_pos*, *y_pos* (float)**  
   
@@ -3186,7 +3160,7 @@ The default is -1, which means no sound is played. If you prepend `S` to *snd_gr
     
 **pos = *x_pos*, *y_pos* (float)**  
   
-Specifies the offset (from the player axis) at which the super anim is to be displayed. Defaults to 0, 0.  
+Specifies the offset (from the player axis) at which the super anim is to be displayed. Defaults to `0, 0`.  
   
 **darken = *bvalue* (boolean)**  
   
@@ -3787,28 +3761,22 @@ none
   
 Sets the player's edge width in front and behind. Edge width  
 determines how close the player can get to the edge of the screen.  
-These parameters default to 0, 0 if omitted.  
+These parameters default to `0, 0` if omitted.  
   
 **player = *playwidth_front*, *playwidth_back* (int, int)**  
   
-Sets the player width in front and behind. Player width determines  
-how close the player can get to other players. These parameters  
-default to 0, 0 if omitted.  
+Sets the player width in front and behind.  
+Player width determines how close the player can get to other players. These parameters default to `0, 0` if omitted.  
   
 **Alternate syntax:**  
   
 **value = *width_front*, *width_back* (int, int)**  
   
-This is a shorthand syntax for setting both edge width and player  
-width simultaneously. This may only be used if the edge and player  
-parameters are not specified.  
+This is a shorthand syntax for setting both edge width and player width simultaneously. This may only be used if the edge and player parameters are not specified.  
   
 **Notes:**  
   
-When collision box display is enabled, the edge width bar is  
-displayed in orange, and the player width bar is displayed in  
-yellow. Where they overlap, the overlapping region is displayed in  
-bright yellow.  
+When collision box display is enabled, the edge width bar is displayed in orange, and the player width bar is displayed in yellow. Where they overlap, the overlapping region is displayed in bright yellow.  
   
 **Example:**  
   
