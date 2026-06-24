@@ -280,7 +280,7 @@
 
 ---
 
-# State Controller Reference
+# Triggers
 
 ## Abs (math) (old)
 
@@ -324,7 +324,7 @@ Returns bottom if exprn evaluates to bottom, or if exprn is not in
 the domain of arccosine (which is `[-1.0,1.0]`).  
   
 Example:  
-```  
+```
 value = acos(1)  
   Sets value to the arccosine of 1, which is approximately 0.0  
   (possibly with some rounding error.)  
@@ -353,7 +353,7 @@ If AI is enabled on the player, the value ranges from 1 (easiest) to 8 (most dif
 If AI is not enabled on the player, the return value is 0.  
   
 Example:  
-```  
+```
 trigger1 = Random < AILevel * 10  
 ; Triggers with 10% probability at AILevel 1, 20% at AILevel 2, etc.  
 ```
@@ -411,7 +411,7 @@ boolean int (1 or 0)
 none  
   
 Example:  
-```  
+```
 trigger1 = Alive = 0  
 ; Triggers if the player has been KOed.  
 ```
@@ -494,7 +494,7 @@ int
 none  
   
 Example:  
-```  
+```
 trigger1 = Anim = 200  
 ; Triggers if the player is currently in action 200.  
 ```
@@ -539,7 +539,7 @@ AnimElem will not trigger on the first game-tick of the second or later loop of 
 For example, "AnimElem = 1" will trigger the first tick a player changes to an animation, but will not trigger on the tick that it loops. You may get it to trigger each time using `AnimElem = 1 || AnimTime = 0`.  
   
 Examples:  
-```  
+```
 trigger1 = AnimElem = 2  
 ; True on the first game-tick that the player's animation is on element 2.
 ; Is equivalent to saying: trigger1 = AnimElem = 2, = 0  
@@ -583,7 +583,7 @@ the past you check, AnimElemNo will always return an element number
 that lies within the looping portion of the action.  
   
 Examples:  
-```  
+```
 trigger1 = AnimElemNo(0) = 2  
 ; True when the animation element to be displayed 0 ticks in the  
   future (i.e., now) is element 2. This is equivalent to:  
@@ -624,7 +624,7 @@ to an element number that is not valid for the current action.
 AnimElemTime will not trigger on the first game-tick of the second or later loop of an animation with a finite looptime. For example, "AnimElemTime(1) = 0" will trigger the first tick a player changes to an animation, but will not trigger on the tick that it loops. You may get it to trigger each time using "AnimElemTime(1) = 0 || AnimTime = 0".  
   
 Examples:  
-```  
+```
 trigger1 = AnimElemTime(2) = 0  
   True on the first game-tick that the player's animation  
   is on element 2. Is equivalent to saying:  
@@ -687,7 +687,7 @@ boolean int (1 or 0)
 Returns bottom if exprn evaluates to bottom.  
   
 Example:  
-```  
+```
 trigger1 = !AnimExist(200)  
 ; Triggers if the player is missing action 200.  
 ```
@@ -752,7 +752,7 @@ int
 none  
   
 Example:  
-```  
+```
 trigger1 = AnimTime = 0  
 ; Triggers when the animation-time is equal to the animation  
   action's looptime, ie. the end of the action has been  
@@ -782,7 +782,7 @@ Returns bottom if exprn evaluates to bottom, or if exprn is not in
 the domain of arcsine (which is `[-1.0,1.0]`).  
   
 Example:  
-```  
+```
 value = asin(1)  
   Sets value to the arcsine of 1, which is approximately pi/2  
   (possibly with some rounding error.)  
@@ -810,7 +810,7 @@ float
 Returns bottom if exprn evaluates to bottom.  
   
 Example:  
-```  
+```
 value = atan(1)  
   Sets value to the arccosine of 1, which is approximately pi/4  
   (possibly with some rounding error.)  
@@ -901,7 +901,7 @@ boolean int (1 or 0)
 none  
   
 Example:  
-```  
+```
 trigger1 = Authorname = "Suika"  
   Returns true if the character's author is named Suika.  
 ```
@@ -928,7 +928,7 @@ none
 This trigger is equivalent to the expression "ifelse(facing = 1, LeftEdge, RightEdge)".  
   
 Example:  
-```  
+```
 trigger1 = Pos X + CameraPos X < BackEdge  
 ; Triggers if the player is to the left of the back edge of the screen.  
 ```
@@ -952,7 +952,7 @@ float
 none  
   
 Example:  
-```  
+```
 trigger1 = BackEdgeBodyDist < 30  
 ; Triggers if the back of the player’s width bar is within 30 pixels  
   of the edge of the screen in back of him.  
@@ -977,7 +977,7 @@ float
 none  
   
 Example:  
-```  
+```
 trigger1 = BackEdgeDist < 30  
 ; Triggers if the x-axis of the player is within 30 pixels of the edge of the screen in back of him.  
 ```
@@ -1058,7 +1058,7 @@ none
 This trigger is equivalent to the expression "Pos Y - ScreenPos Y + GameHeight".  
   
 Example:  
-```  
+```
 trigger1 = Pos Y < BottomEdge  
 ; Triggers if the player is above the bottom edge of the screen.  
 ```
@@ -1092,7 +1092,8 @@ The units of the position returned is in the coordspace of the player.
   
   
 Example:  
-```  
+```
+trigger1 = CameraPos X >= 0 
 ; True when the camera is to the left of the center of the stage.  
 ```
 
@@ -1118,7 +1119,7 @@ none
 The zoom factor de  
   
 Example:  
-```  
+```
 fvar(1) = CameraZoom * ScreenWidth  
 ; Sets fvar(1) to the distance between the left and right edges of the screen.
 ; The expression "CameraZoom * ScreenWidth" is equivalent to the GameWidth trigger.  
@@ -1164,7 +1165,7 @@ int
 Returns bottom if exprn evaluates to bottom.  
   
 Example:  
-```  
+```
 value = ceil(5.5)  
 ; Sets value to 6.  
   
@@ -1296,7 +1297,7 @@ boolean int (1 or 0)
 none  
   
 Example:  
-```  
+```
 trigger1 = Command = "fireball motion"  
 ; True if the user inputs the command corresponding to the command name "fireball motion".  
 ```
@@ -1336,7 +1337,7 @@ Returns bottom if exp_cond evaluates to bottom, or if exp_true or exp_false
 (whichever is actually used) evaluates to bottom.  
   
 Example:  
-```  
+```
 value = Cond(var(3),1,2)  
 ; Sets value to 1 if var(3) is not zero, and sets value to 2 if var(3) is 0.  
 ```
@@ -1468,7 +1469,7 @@ The following values of param_name return values specified in the `[Movement]` g
 - movement.down.friction.threshold: Returns value of the "down.friction.threshold" parameter. (float)  
   
 Example:  
-```  
+```
 trigger1 = Const(velocity.walk.fwd.x) > 4  
 ; Triggers if the forward walking velocity is greater than 4.  
 ```
@@ -1604,7 +1605,7 @@ the `Const` triggers to maintain consistency with characters from a different
 coordinate space.  
   
 Example:  
-```  
+```
 value = Const240p(3)  
 ; Sets value 3 if the player has a coordinate space of 320x240 (240p).  
 ; Sets value 6 if the player has a coordinate space of 640x480 (480p).  
@@ -1638,7 +1639,7 @@ Non-zero position and velocity offset values in common1.cns should use one of th
 coordinate space.  
   
 Example:  
-```  
+```
 value = Const480p(6)  
 ; Sets value 3 if the player has a coordinate space of 320x240 (240p).  
 ; Sets value 6 if the player has a coordinate space of 640x480 (480p).  
@@ -1671,7 +1672,7 @@ Returns bottom if exprn evaluates to bottom.
 Non-zero position and velocity offset values in common1.cns should use one of the `Const` triggers to maintain consistency with characters from a different coordinate space.  
   
 Example:  
-```  
+```
 value = Const720p(12)  
 ; Sets value 3 if the player has a coordinate space of 320x240 (240p).  
 ; Sets value 6 if the player has a coordinate space of 640x480 (480p).  
@@ -1700,7 +1701,7 @@ float
 Returns bottom if exprn evaluates to bottom.  
   
 Example:  
-```  
+```
 value = cos(0)  
 ; Sets value to the cosine of 0, which is approximately 1.0 (possibly with some rounding error.)  
 ```
@@ -1724,7 +1725,7 @@ boolean int (1 or 0)
 none  
   
 Example:  
-```  
+```
 trigger1 = Ctrl  
 ; Triggers if the player has control.  
 ```
@@ -1924,7 +1925,7 @@ boolean int (1 or 0)
 none  
   
 Examples:  
-```  
+```
 trigger1 = DrawGame  
 ; Triggers if the player (or team) ended round in a draw.  
 ```
@@ -2013,7 +2014,7 @@ float
 Returns bottom if exprn evaluates to bottom.  
   
 Example:  
-```  
+```
 value = exp(4-var(0))  
 ; Sets value to e raised to the quantity 4-var(0).  
 ```
@@ -2059,7 +2060,7 @@ int
 none  
   
 Example:  
-```  
+```
 Trigger = Facing = -1  
 ; Triggers if the player is facing toward the left of the screen.  
 ```
@@ -2191,7 +2192,7 @@ int
 Returns bottom if exprn evaluates to bottom.  
   
 Examples:  
-```  
+```
 value=floor(5.5)  
 ; Sets value to 5.  
 
@@ -2221,7 +2222,7 @@ none
 This trigger is equivalent to the expression "ifelse(facing = 1, RightEdge, LeftEdge)".  
   
 Example:  
-```  
+```
 trigger1 = facing * (Pos X + CameraPos X) < facing * (FrontEdge)  
 ; Triggers if the player is behind the front edge of the screen.  
 ```
@@ -2245,7 +2246,7 @@ float
 none  
   
 Example:  
-```  
+```
 trigger1 = FrontEdgeBodyDist < 30  
 ; Triggers if the front of the player is within 30 pixels  
   of the edge of the screen in front of him.  
@@ -2270,7 +2271,7 @@ float
 none  
   
 Example:  
-```  
+```
 trigger1 = FrontEdgeDist < 30  
 ; Triggers if the x-axis of the player is within 30 pixels  
   of the edge of the screen in front of him.  
@@ -2300,7 +2301,7 @@ Returns bottom if exprn evaluates to bottom, or if exprn evaluates
 to an invalid variable index.  
   
 Example:  
-```  
+```
 trigger1 = FVar(5) = -1.23  
 ; Triggers if the value of float variable 5 is -1.23.  
 ```
@@ -2333,7 +2334,7 @@ ScreenWidth and ScreenHeight are the equivalent triggers that are not affected b
   
   
 Example:  
-```  
+```
 trigger1 = ScreenPos Y < GameHeight / 2  
 ; Triggers if the player is above the center of the screen.  
 ```
@@ -2429,7 +2430,7 @@ int
 none  
   
 Example:  
-```  
+```
 trigger1 = (GameTime % 27) = 0  
   Triggers every 27th game tick.  
 ```
@@ -2490,7 +2491,7 @@ For example, if the camera zoom factor is 0.5, the values returned by GameWidth 
 ScreenWidth and ScreenHeight are the equivalent triggers that are not affected by the camera zoom factor.  
   
 Example:  
-```  
+```
 trigger1 = ScreenPos X >= GameWidth / 2  
 ; Triggers if the player is to the right of the center of the screen.  
 ```
@@ -2565,7 +2566,7 @@ This counts down by 1 per game tick, as long as hitshaketime (see above) is grea
 - fall.envshake.phase: Returns values set by the fall.envshake.\* parameters in an attacker's hitdef. (float)  
   
 Example:  
-```  
+```
 trigger1 = GetHitVar(yvel) < -5.5  
 ; Triggers if the hit's specified y velocity is less than -5.5.  
 ```
@@ -2993,7 +2994,7 @@ int
 none  
   
 Example:  
-```  
+```
 trigger1 = HitCount > 8  
 ; Triggers when more than 8 hits have been dealt to the  
   opponent since the start of the player's attack move.  
@@ -3038,7 +3039,7 @@ boolean int (1 or 0)
 none  
   
 Example:  
-```  
+```
 trigger1 = HitDefAttr = A, HA  
 ; Triggers when the player is in an attack state, where the current HitDef has the following attributes:  
 ; 1. is an aerial attack and 2. is a hyper (super) attack  
@@ -3150,7 +3151,7 @@ boolean int (1 or 0)
 none  
   
 Example:  
-```  
+```
 trigger1 = !HitFall  
 ; Triggers if the hit did not put the player into a fall state.  
 ```
@@ -3174,7 +3175,7 @@ boolean int (1 or 0)
 none  
   
 Example:  
-```  
+```
 trigger1 = HitOver = 1  
 ; Triggers when the player’s hittime has expired.  
 ```
@@ -3220,7 +3221,7 @@ int
 none  
   
 Example:  
-```  
+```
 trigger1 = HitPauseTime = 0  
 ; Triggers when the player is not paused for a hit.  
 ```
@@ -3244,7 +3245,7 @@ boolean int (1 or 0)
 none  
   
 Example:  
-```  
+```
 trigger1 = HitShakeOver = 0  
 ; Triggers if the player is still shaking from the hit.  
 ```
@@ -3277,7 +3278,7 @@ A positive HitVel X means that the player is moving backward.
 Note that the HitVel X trigger behaves in the opposite manner to the Vel X trigger.  
   
 Example:  
-```  
+```
 trigger1 = HitVel X > 0.5  
 ; True when the player's gethit x-velocity is greater than 0.5  
   pixels per tick.  
@@ -3305,7 +3306,7 @@ int
 none  
   
 Example:  
-```  
+```
 value = ID  
   This sets value to the ID number of the current player.  
 value = EnemyNear, ID  
@@ -3340,7 +3341,7 @@ Type of exp_true or exp_false, whichever is returned.
 Returns bottom if exp_cond evaluates to bottom, or if exp_true or exp_false (whichever is returned) evaluates to bottom.  
   
 Example:  
-```  
+```
 value = ifelse(var(3),1,2)  
 ; Sets value to 1 if var(3) is not zero, and sets value to 2 if var(3) is 0.  
 ```
@@ -3558,7 +3559,7 @@ boolean int (1 or 0)
 Returns bottom if exprn evaluates to bottom.  
   
 Examples:  
-```  
+```
 1. trigger1 = !IsHelper  
 ; Triggers if the player is not a helper-type character.  
 2. trigger1 = IsHelper(1234)  
@@ -3698,7 +3699,7 @@ none
 This trigger is equivalent to the expression `CameraPos X - GameWidth / 2`.  
   
 Example:  
-```  
+```
 trigger1 = Pos X + CameraPos X < LeftEdge  
 ; Triggers if the player is to the left of the left edge of the screen.  
 ```
@@ -3748,7 +3749,7 @@ int
 none  
   
 Example:  
-```  
+```
 trigger1 = life <= 10  
 ; Triggers if the player has 10 or less life points remaining.  
 ```
@@ -3772,7 +3773,7 @@ int
 none  
   
 Example:  
-```  
+```
 trigger1 = life < lifemax / 4  
 ; Triggers if the player has less than 1/4 of his maximum life.  
 ```
@@ -3800,7 +3801,7 @@ Returns bottom if exprn evaluates to bottom, or if exprn is not
 positive.  
   
 Example:  
-```  
+```
 value = ln(time)  
   Sets value to the natural logarithm of the player's statetime.  
 ```
@@ -3851,7 +3852,7 @@ Returns bottom if either of exp1 or exp2 evaluates to bottom, or if
 either of exp1 or exp2 is not positive.  
   
 Example:  
-```  
+```
 value=log(2,64)  
   Sets value to the base 2 log of 64, which is 6.0.  
 ```
@@ -3877,7 +3878,7 @@ boolean int (1 or 0)
 none  
   
 Examples:  
-```  
+```
 1. trigger1 = Lose  
 ; Triggers if the player (or his team) has lost the round.  
   
@@ -3950,7 +3951,7 @@ none
 Currently, MatchOver does not return true until the players start their win poses (state 180). This behavior may be subject to change in future releases.  
   
 Example:  
-```  
+```
 trigger1 = !matchover  
 ; Triggers if the match is not over. For instance, the current round  
   may not yet have ended, or it may have ended without deciding the  
@@ -4089,7 +4090,7 @@ Note 2: the values of the four Move\* triggers reset to 0 and stop incrementing 
   
   
 Examples:  
-```  
+```
 trigger1 = MoveContact  
   True if P1's attack did not miss P2.  
   
@@ -4140,7 +4141,7 @@ none
 See Details section for MoveContact trigger.  
   
 Example:  
-```  
+```
 trigger1 = MoveGuarded  
 ; True if P1's attack was guarded by P2.  
 ```
@@ -4169,7 +4170,7 @@ none
 See Details section for MoveContact trigger.  
   
 Example:  
-```  
+```
 trigger1 = MoveHit  
   True if P1's attack connected successfully with P2.  
 ```
@@ -4239,7 +4240,7 @@ none
 See Details section for MoveContact trigger.  
   
 Example:  
-```  
+```
 trigger1 = MoveReversed  
   True if P1's attack was reversed by P2.  
 ```
@@ -4271,7 +4272,7 @@ boolean int (1 or 0)
 none  
   
 Example:  
-```  
+```
 trigger1 = movetype != H  
 ; Triggers if the player is not currently in a gethit-type state.  
 ```
@@ -4323,7 +4324,7 @@ boolean int (1 or 0)
 none  
   
 Example:  
-```  
+```
 trigger1 = Name = "Kumquat"  
   Returns true if the player is named Kumquat.  
 ```
@@ -4347,7 +4348,7 @@ int
 none  
   
 Examples:  
-```  
+```
 trigger1 = NumEnemy = 2  
 trigger1 = enemynear(1), name = "Squash"  
 ; Triggers if there are 2 opponents, and the second-closest one is named Squash.  
@@ -4379,7 +4380,7 @@ int
 Returns bottom if exprn evaluates to bottom.  
   
 Examples:  
-```  
+```
 1. trigger1 = NumExplod >= 4  
 ; Triggers if the player currently owns 4 or more explods.  
 2. trigger1 = NumExplod(1234) >= 4  
@@ -4413,7 +4414,7 @@ int
 Returns bottom if exprn evaluates to bottom.  
   
 Examples:  
-```  
+```
 1. trigger1 = NumHelper < 2  
 ; Triggers if the player now has less than 2 helpers.  
 2. trigger1 = NumHelper(1234) < 2  
@@ -4439,7 +4440,7 @@ int
 none  
   
 Examples:  
-```  
+```
 trigger1 = NumPartner = 1  
 trigger1 = partner, life < 200  
 ; Triggers if the player has a partner with less than 200 life  
@@ -4474,7 +4475,7 @@ int
 none  
   
 Example:  
-```  
+```
 trigger1 = NumProj = 0  
 ; Triggers if the player has no currently active projectiles.  
 ```
@@ -4502,7 +4503,7 @@ If a negative ID is specified, then the ID defaults to 0. Returns
 bottom if exprn evaluates to bottom.  
   
 Example:  
-```  
+```
 trigger1 = NumProjID(1234) = 1  
 ; Triggers if there the player currently owns exactly 1 projectile  
   with the ID number 1234.  
@@ -4562,7 +4563,7 @@ int
 Returns bottom if exprn evaluates to bottom.  
   
 Examples:  
-```  
+```
 1. trigger1 = NumExplod >= 4  
 ; Triggers if the player currently owns 4 or more explods.  
 2. trigger1 = NumExplod(1234) >= 4  
@@ -4676,7 +4677,7 @@ player variables.
 See also P2Dist.  
   
 Example:  
-```  
+```
 trigger1 = P2BodyDist X < 30  
 ; Triggers if the front of P2 is within 30 pixels of the front of  
   P1.  
@@ -4724,7 +4725,7 @@ is in front of P1.
 See also P2BodyDist.  
   
 Example:  
-```  
+```
 trigger1 = P2Dist Y <= -12  
   True if P2 is at least 12 pixels higher up than P1.  
 ```
@@ -4861,7 +4862,7 @@ If omitted, the default ordering is:
 `1  2  3  4  5  6  7  8  9 10 11 12`
   
 Example:  
-```  
+```
 trigger1 = PalNo = 5  
   Returns true if the current palette number is 5.  
 ```
@@ -4894,7 +4895,7 @@ For comparing the Y-distance, ParentDist gives the difference in the heights of 
 For comparing the X-distance, ParentDist gives the X-distance of the parent's axis from the child's axis. A positive value indicates the parent is in front of the child.  
   
 Example:  
-```  
+```
 trigger1 = ParentDist X != 0  
 ; Triggers if the parent is not at the exact same x-position as the  
   helper character.  
@@ -5003,7 +5004,7 @@ boolean int (1 or 0)
 Returns bottom if exprn evaluates to bottom.  
   
 Example:  
-```  
+```
 trigger1 = PlayerIDExist(var(4))  
 ; Triggers if a player with an ID number equal to the value of  
   var(4) exists.  
@@ -5090,7 +5091,7 @@ To get the absolute position of the player, use `Pos X + CameraPos X`.
 For "Pos Y", the value is relative to the floor. Negative is higher up, positive is below the floor.  
   
 Example:  
-```  
+```
 trigger1 = Pos Y >= 0  
 ; True when the player is below the floor.  
 ```
@@ -5114,7 +5115,7 @@ int
 none  
   
 Example:  
-```  
+```
 trigger1 = power >= 1000  
   True if player has at least 1000 power (level 1).  
 ```
@@ -5138,7 +5139,7 @@ int
 none  
   
 Example:  
-```  
+```
 trigger1 = power < powermax / 2  
   True if player has less than half his maximum power.  
 ```
@@ -5209,7 +5210,7 @@ int
 none  
   
 Example:  
-```  
+```
 trigger1 = PrevStateNo = [200,650]  
   Returns true if the player's last state number is between 200 and 650,  
   inclusive.  
@@ -5266,7 +5267,7 @@ Returns bottom if exprn evaluates to bottom. If a negative ID is
 specified, then the ID defaults to zero.  
   
 Examples:  
-```  
+```
 1. trigger1 = ProjCancelTime(1234) = 1  
 ; Triggers if a projectile with ID 1234 was just cancelled by an  
   opponent's projectile.  
@@ -5342,7 +5343,7 @@ Specifying an ID number of 0 gives the same behavior as if the ID number is omit
   
   
 Examples:  
-```  
+```
 1. trigger1 = ProjContact1234 = 1  
 ; Triggers if a projectile with ID 1234 just made contact with the  
   opponent.  
@@ -5377,7 +5378,7 @@ Returns bottom if exprn evaluates to bottom.
 If a negative ID is specified, then the ID defaults to zero.  
   
 Examples:  
-```  
+```
 1. trigger1 = ProjContactTime(1234) = 1  
 ; Triggers if a projectile with ID 1234 just made contact with  
   the opponent.  
@@ -5423,7 +5424,7 @@ For the second form, ProjGuarded returns true if the projectile was guarded n ti
 Specifying an ID number of 0 gives the same behavior as if the ID number is omitted (check all projectiles).  
   
 Examples:  
-```  
+```
 1. trigger1 = ProjGuarded1234 = 1  
 ; Triggers if the opponent just blocked a projectile with ID 1234.  
 2. trigger1 = ProjGuarded = 1, < 15  
@@ -5456,7 +5457,7 @@ Returns bottom if exprn evaluates to bottom. If a negative ID is
 specified, then the ID defaults to zero.  
   
 Examples:  
-```  
+```
 1. trigger1 = ProjGuardedTime(1234) = 1  
 ; Triggers if a projectile with ID 1234 was just guarded by the  
   opponent.  
@@ -5501,7 +5502,7 @@ Specifying an ID number of 0 gives the same behavior as if the ID number is omit
   
   
 Examples:  
-```  
+```
 1. trigger1 = ProjHit1234 = 1  
 ; Triggers if a projectile with ID 1234 just made successful contact with the opponent.  
 2. trigger1 = ProjHit1234 = 1, < 15  
@@ -5532,7 +5533,7 @@ Returns bottom if exprn evaluates to bottom. If a negative ID is
 specified, then the ID defaults to zero.  
   
 Examples:  
-```  
+```
 1. trigger1 = ProjHitTime(1234) = 1  
 ; Triggers if a projectile with ID 1234 just made successful  
   contact with the opponent.  
@@ -5611,7 +5612,7 @@ int
 none  
   
 Example:  
-```  
+```
 trigger1 = Random <= 249  
 ; Triggers if the random number returned is less than or equal to  
   249. (This occurs with 25% probability.)  
@@ -5768,7 +5769,7 @@ none
 This trigger is equivalent to the expression `CameraPos X + GameWidth / 2`.  
   
 Example:  
-```  
+```
 trigger1 = Pos X + CameraPos X > RightEdge  
 ; Triggers if the player is to the right of the right edge of the screen.  
 ```
@@ -5801,7 +5802,7 @@ For comparing the Y-distance, RootDist gives the difference in the heights of th
 For comparing the X-distance, ParentDist gives the X-distance of the root's axis from the descendant's axis. A positive value indicates the root is in front of its descendant.  
   
 Example:  
-```  
+```
 trigger1 = RootDist X != 0  
 ; Triggers if the root is not at the exact same x-position as the helper character.  
 ```
@@ -5857,7 +5858,7 @@ int
 none  
   
 Example:  
-```  
+```
 trigger1 = RoundNo = 3  
 ; Triggers if this is the third round of the match.  
 ```
@@ -5882,7 +5883,7 @@ int
 none  
   
 Example:  
-```  
+```
 trigger1 = RoundsExisted = 0  
 trigger1 = TeamMode = Turns  
 trigger1 = RoundNo > 0  
@@ -5919,7 +5920,7 @@ Return values:
 4: Over - win poses  
   
 Example:  
-```  
+```
 trigger1 = RoundState = 2  
 ; Triggers if the actual fighting portion of the round is in  
   progress.  
@@ -6044,7 +6045,7 @@ none
 ScreenWidth and ScreenHeight are not affected by the camera zoom factor.  
   
 Example:  
-```  
+```
 type = Explod  
 space = screen  
 pos = 0, ScreenHeight  
@@ -6080,7 +6081,7 @@ For `ScreenPos Y`, the value is relative to the top of the screen. Negative is a
   
   
 Example:  
-```  
+```
 trigger1 = ScreenPos Y >= 0 && ScreenPos Y < GameHeight  
 ; True when the player's is in the screen's vertical extent.  
 ```
@@ -6107,7 +6108,7 @@ none
 ScreenWidth and ScreenHeight are not affected by the camera zoom factor.  
   
 Example:  
-```  
+```
 type = Explod  
 space = screen  
 pos = ScreenWidth / 2, ScreenHeight / 2  
@@ -6191,7 +6192,7 @@ float
 Returns bottom if exprn evaluates to bottom.  
   
 Example:  
-```  
+```
 value = sin(pi/2)  
 ; Sets value to the sine of pi/2, which is approximately 1.0 (possibly with some rounding error.)  
 ```
@@ -6439,7 +6440,7 @@ none
 1.0 and newer  
   
 Example:  
-```  
+```
 trigger1 = StageVar(info.author) = "Suika"  
   Returns true if the stage author is named "Suika".  
 ```
@@ -6493,7 +6494,7 @@ int
 none  
   
 Example:  
-```  
+```
 trigger1 = stateno = [200,650]  
   Returns true if the state number is between 200 and 650,  
   inclusive.  
@@ -6525,7 +6526,7 @@ boolean int (1 or 0)
 none  
   
 Example:  
-```  
+```
 trigger1 = StateType != A  
 ; Triggers if the player is not in an air-type state.  
 ```
@@ -6555,7 +6556,7 @@ Returns bottom if exprn evaluates to bottom, or if exprn evaluates
 to an invalid variable index.  
   
 Example:  
-```  
+```
 trigger1 = SysFVar(0) = -1.23  
 ; Triggers if the value of system float variable 0 is -1.23.  
 ```
@@ -6586,7 +6587,7 @@ Returns bottom if exprn evaluates to bottom, or if exprn evaluates
 to an invalid variable index.  
   
 Example:  
-```  
+```
 trigger1 = SysVar(0) = -34  
 ; Triggers if the value of system variable 0 is -34.  
 ```
@@ -6613,7 +6614,7 @@ float
 Returns bottom if exprn evaluates to bottom.  
   
 Example:  
-```  
+```
 value = tan(pi/4)  
   Sets value to the tangent of pi/4, which is approximately 1.0  
   (possibly with some rounding error.)  
@@ -6667,7 +6668,7 @@ none
 In survival mode, TeamMode = turns on the enemy side.  
   
 Example:  
-```  
+```
 trigger1 = TeamMode = Single  
 ; Triggers if the player is playing in single play.  
 ```
@@ -6703,7 +6704,7 @@ int
 none  
   
 Example:  
-```  
+```
 trigger1 = TeamSide = 2  
 ; Triggers if player is on the P2 side team.  
 ```
@@ -6746,7 +6747,7 @@ int
 none  
   
 Example:  
-```  
+```
 trigger1 = Time > 10 * TicksPerSecond  
 ; Triggers after 10 seconds, regardless of game speed.  
 ```
@@ -6770,7 +6771,7 @@ int
 none  
   
 Example:  
-```  
+```
 trigger1 = Time = 2  
 ; Triggers when the player's state-time is 2.  
 ```
@@ -6820,7 +6821,7 @@ boolean int (1 or 0)
 Returns bottom if the divisor is 0.  
   
 Example:  
-```  
+```
 trigger1 = TimeMod = 4, 3  
 ; Triggers when the state-time is 3, 7, 11, 15, ...  
 ```
@@ -6910,7 +6911,7 @@ none
 This trigger is equivalent to the expression "Pos Y - ScreenPos Y".  
   
 Example:  
-```  
+```
 trigger1 = Pos Y > TopEdge  
 ; Triggers if the player is below the top edge of the screen.  
 ```
@@ -6938,7 +6939,7 @@ int
 none  
   
 Example:  
-```  
+```
 trigger1 = UniqHitCount = [4,6]  
 ; Triggers when 4, 5 or 6 hits have been dealt since the start of the player's attack move.  
 ```
@@ -6965,7 +6966,7 @@ int
 Returns bottom if exprn evaluates to bottom, or if exprn evaluates to an invalid variable index.  
   
 Example:  
-```  
+```
 trigger1 = Var(0) = -34  
 ; Triggers if the value of variable 0 is -34.  
 ```
@@ -6996,7 +6997,7 @@ For Vel X, a positive value indicates that the player is moving forward. (This b
 For Vel Y, a positive value indicates that the player is moving downward.  
   
 Example:  
-```  
+```
 trigger1 = Vel Y >= 0  
 ; True when the player is not moving upward.  
 ```
@@ -7024,7 +7025,7 @@ boolean int (1 or 0)
 none  
   
 Examples:  
-```  
+```
 trigger1 = Win  
 ; Triggers if the player (or his team) has won the round.  
   
