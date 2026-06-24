@@ -30,18 +30,29 @@ def main():
     print("Fetching Ikemen GO (new)...", file=sys.stderr)
     new_text = fetch_raw_markdown(new_url)
 
-    # Parse – keep "New state controller features" as one block
+    # Parse
     mugen = parse_sections(mugen_text, keep_blocks=[])
     changed = parse_sections(changed_text, keep_blocks=[])
     new = parse_sections(new_text, keep_blocks=["New state controller features"])
+
+    # Remove title sections BEFORE tagging
+    skip_titles = {"New state controllers", "Controller Reference"}
+    for name in list(mugen.keys()):
+        if name in skip_titles:
+            del mugen[name]
+
+    # Also check changed and new for stray title sections
+    for name in list(changed.keys()):
+        if name in skip_titles:
+            del changed[name]
+    for name in list(new.keys()):
+        if name in skip_titles:
+            del new[name]
 
     # Tag sources
     mugen = tag_sections(mugen, "(old)", skip_names=["About controllers"])
     changed = tag_sections(changed, "(changed)", replace_words=["parameters", "triggers"])
     new = tag_sections(new, "(new)")
-
-    # Skip the "New state controllers" title section (it's just a header)
-    skip = {"New state controllers"}
 
     # Merge all sections
     merged = merge_sections([
@@ -52,11 +63,11 @@ def main():
 
     print(f"Merged {len(merged)} sections.", file=sys.stderr)
 
-    # Output with "About" and "New features" placed right after the TOC
+    # Output – no sections_to_skip needed (already filtered)
     output = output_merged(
         merged,
         title="Merged State Controller Reference",
-        sections_to_skip=skip,
+        sections_to_skip=[],
         top_sections=["About controllers", "New state controller features"],
         list_heading="# State Controllers"
     )

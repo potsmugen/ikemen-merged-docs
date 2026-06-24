@@ -34,7 +34,7 @@ def load_file(filepath: Path) -> str:
 
 
 # ----------------------------------------------------------------------
-# CODE BLOCK HIDING (unchanged)
+# CODE BLOCK HIDING
 # ----------------------------------------------------------------------
 
 def hide_code_blocks(text: str) -> Tuple[str, Dict[str, str]]:
@@ -285,8 +285,13 @@ def generate_toc_from_sections(merged: Dict[str, Dict[str, Set[str]]], sections_
 
 
 def strip_source_tag(name: str) -> str:
+    """Remove any trailing (old), (changed), or (new) suffix."""
     return re.sub(r'\s*\((old|changed|new)\)$', '', name).strip()
 
+
+# ----------------------------------------------------------------------
+# OUTPUT
+# ----------------------------------------------------------------------
 
 def output_merged(
     merged: Dict[str, Dict[str, Set[str]]],
@@ -295,6 +300,12 @@ def output_merged(
     top_sections: List[str] = None,
     list_heading: str = "# Main List"
 ) -> str:
+    """
+    Output the merged documentation with:
+    - Table of contents (first)
+    - Top sections (moved after TOC, headings kept)
+    - A heading before the alphabetical list (customizable via list_heading)
+    """
     if sections_to_skip is None:
         sections_to_skip = []
     if top_sections is None:
@@ -337,7 +348,7 @@ def output_merged(
     # Remaining sections with heading before list
     remaining = [n for n in merged.keys() if n not in sections_to_skip and merged[n]['content'].strip()]
     if remaining:
-        lines.append(list_heading)   # <-- use the provided heading
+        lines.append(list_heading)
         lines.append("")
 
     for name in sorted(merged.keys(), key=get_sort_key):
