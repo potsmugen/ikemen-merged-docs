@@ -144,7 +144,7 @@ Trigger in Format 2 compares the player's animation-time to `t+value2`, where `t
   
 **Notes:**  
 AnimElem will not trigger on the first game-tick of the second or later loop of an animation with a finite looptime.  
-For example, "AnimElem = 1" will trigger the first tick a player changes to an animation, but will not trigger on the tick that it loops. You may get it to trigger each time using `AnimElem = 1 || AnimTime = 0`.  
+For example, `AnimElem = 1` will trigger the first tick a player changes to an animation, but will not trigger on the tick that it loops. You may get it to trigger each time using `AnimElem = 1 || AnimTime = 0`.  
   
 Examples:  
 ```
@@ -223,27 +223,22 @@ Returns bottom if exprn evaluates to bottom, or if exprn evaluates
 to an element number that is not valid for the current action.  
   
 **Notes:**  
-AnimElemTime will not trigger on the first game-tick of the second or later loop of an animation with a finite looptime. For example, "AnimElemTime(1) = 0" will trigger the first tick a player changes to an animation, but will not trigger on the tick that it loops. You may get it to trigger each time using "AnimElemTime(1) = 0 || AnimTime = 0".  
+AnimElemTime will not trigger on the first game-tick of the second or later loop of an animation with a finite looptime. For example, `AnimElemTime(1) = 0` will trigger the first tick a player changes to an animation, but will not trigger on the tick that it loops. You may get it to trigger each time using `AnimElemTime(1) = 0 || AnimTime = 0`.  
   
 Examples:  
 ```
 trigger1 = AnimElemTime(2) = 0  
-  True on the first game-tick that the player's animation  
-  is on element 2. Is equivalent to saying:  
-  trigger1 = AnimElem = 2  
+; True on the first game-tick that the player's animation is on element 2.  
+; Is equivalent to saying: trigger1 = AnimElem = 2  
   
 trigger1 = AnimElemTime(2) = 4  
-  True 4 game-ticks after the start of the player's  
-  second animation element.  
+; True 4 game-ticks after the start of the player's second animation element.  
   
 trigger1 = AnimElemTime(2) >= 0  
 trigger1 = AnimElemTime(3) < 0  
-  True for the whole of the second element of the player's  
-  animation, assuming there is a third element. If a  
-  third element does not exist, the second line will evaluate  
-  to bottom and hence trigger1 will never trigger. In this case,  
-  the second line should read,  
-  trigger1 = AnimTime <= 0  
+; True for the whole of the second element of the player's animation, assuming there is a third element.  
+; If a  third element does not exist, the second line will evaluate to bottom and hence trigger1 will never trigger.  
+; In this case, the second line should read: trigger1 = AnimTime <= 0  
 ```
   
 ## AnimExist
@@ -369,7 +364,7 @@ none
 Example:  
 ```
 trigger1 = Authorname = "Suika"  
-  Returns true if the character's author is named Suika.  
+; Returns true if the character's author is named Suika.  
 ```
   
 ## BackEdge
@@ -388,7 +383,7 @@ float
 none  
   
 **Notes:**  
-This trigger is equivalent to the expression "ifelse(facing = 1, LeftEdge, RightEdge)".  
+This trigger is equivalent to the expression `ifelse(facing = 1, LeftEdge, RightEdge)`.  
   
 Example:  
 ```
@@ -455,7 +450,7 @@ float
 none  
   
 **Notes:**  
-This trigger is equivalent to the expression "Pos Y - ScreenPos Y + GameHeight".  
+This trigger is equivalent to the expression `Pos Y - ScreenPos Y + GameHeight`.  
   
 Example:  
 ```
@@ -483,10 +478,9 @@ none
   
 **Details:**  
 The home position of the camera is 0, 0.  
-The value of "CameraPos X" increases as the camera moves to the right.  
-The value of "CameraPos Y" decreases as the camera moves upwards.  
+The value of `CameraPos X` increases as the camera moves to the right.  
+The value of `CameraPos Y` decreases as the camera moves upwards.  
 The units of the position returned is in the coordspace of the player.  
-  
   
 Example:  
 ```
@@ -994,7 +988,7 @@ float
 none  
   
 **Notes:**  
-This trigger is equivalent to the expression "ifelse(facing = 1, RightEdge, LeftEdge)".  
+This trigger is equivalent to the expression `ifelse(facing = 1, RightEdge, LeftEdge)`.  
   
 Example:  
 ```
@@ -1253,18 +1247,13 @@ HitDefAttr [oper] value1, value2
 **[oper]**  
 =, !=  
 **value1**  
-A string that has at least one of the letters "S", "C"  
-and "A" for standing, crouching and aerial attacks  
-respectively. For example, "SA" is for standing and  
-aerial attacks.  
+A string that has at least one of the letters "S", "C" and "A" for standing, crouching and aerial attacks respectively. For example, "SA" is for standing and aerial attacks.  
 **value2**  
 A set of 2-character strings, separated by commas.  
 Each 2-character string must be of the form described:  
-The first character is either "N" for "normal", "S" for  
-"special", or "H" for "hyper". The second character must  
-be either "A" for "attack" (a normal hit attack) or "T"  
-for "throw". For example, "NA, ST" is for normal attacks  
-and special throws.  
+The first character is either "N" for "normal", "S" for "special", or "H" for "hyper".  
+The second character must be either "A" for "attack" (a normal hit attack) or "T" for "throw".  
+For example, "NA, ST" is for normal attacks and special throws.  
 Assuming the attribute of the player's HitDef is in the form `arg1, arg2`, then the trigger condition is determined to be true only if arg1 is a subset of value1, AND arg2 is a subset of value2.  
 See the "attr" parameter of the HitDef controller in Appendix B for details.  
   
@@ -1407,7 +1396,7 @@ trigger1 = HitVel X > 0.5
 Returns the ID number of the player.  
 The ID number is unique for every player throughout the course of a match.  
 Any helper that is created during this time will also receive its own unique ID number.  
-This trigger may be useful for getting opponents' ID numbers, to be later used with the "playerID" redirection keyword (see exp docs). Do not confuse playerID with targetID.  
+This trigger may be useful for getting opponents' ID numbers, to be later used with the `playerID` redirection keyword (see exp docs). Do not confuse playerID with targetID.  
   
 **Format:**  
 ID  
@@ -1742,10 +1731,10 @@ Note 2: the values of the four Move\* triggers reset to 0 and stop incrementing 
 Examples:  
 ```
 trigger1 = MoveContact  
-  True if P1's attack did not miss P2.  
+; True if P1's attack did not miss P2.  
   
 trigger1 = MoveContact = 1  
-  True from the time P1's attack came in contact with P2, until just after P1's pausetime wears off.  
+; True from the time P1's attack came in contact with P2, until just after P1's pausetime wears off.  
 ```
   
 ## MoveGuarded
@@ -1797,7 +1786,7 @@ See Details section for MoveContact trigger.
 Example:  
 ```
 trigger1 = MoveHit  
-  True if P1's attack connected successfully with P2.  
+; True if P1's attack connected successfully with P2.  
 ```
   
 ## MoveType
@@ -1851,7 +1840,7 @@ See Details section for MoveContact trigger.
 Example:  
 ```
 trigger1 = MoveReversed  
-  True if P1's attack was reversed by P2.  
+; True if P1's attack was reversed by P2.  
 ```
   
 ## Name
@@ -1877,7 +1866,7 @@ none
 Example:  
 ```
 trigger1 = Name = "Kumquat"  
-  Returns true if the player is named Kumquat.  
+; Returns true if the player is named Kumquat.  
 ```
   
 ## NumEnemy
@@ -2061,7 +2050,7 @@ Examples:
 ```
   
 ## P1Name
-This is an alias for the Name trigger. See "Name".  
+This is an alias for the Name trigger. See `Name`.  
   
 ## P2BodyDist
 Returns the distance of P2 from P1, where P1 is the player, and P2 is his opponent. P2BodyDist is useful in the CMD for cases where P1 has an attack that is different when performed close to P2.  
@@ -2082,15 +2071,8 @@ float
 none  
   
 **Details:**  
-For comparing the Y-distance, P2BodyDist gives the difference in the  
-heights of the players' Y-axes. A negative value means that P2 is  
-above P1.  
-For comparing the X-distance, P2BodyDist gives the  
-X-distance of P2's front from P1's front. So, if the  
-players are standing right next to each other, then  
-P2BodyDist is 0. Remember that you can set the width of  
-the player in "front.width", etc. under [Size] in the  
-player variables.  
+For comparing the Y-distance, P2BodyDist gives the difference in the heights of the players' Y-axes. A negative value means that P2 is above P1.  
+For comparing the X-distance, P2BodyDist gives the X-distance of P2's front from P1's front. So, if the players are standing right next to each other, then P2BodyDist is 0. Remember that you can set the width of the player in "front.width", etc. under [Size] in the player variables.  
 See also P2Dist.  
   
 Example:  
@@ -2129,7 +2111,7 @@ See also P2BodyDist.
 Example:  
 ```
 trigger1 = P2Dist Y <= -12  
-  True if P2 is at least 12 pixels higher up than P1.  
+; True if P2 is at least 12 pixels higher up than P1.  
 ```
   
 ## P2Life
@@ -2140,8 +2122,7 @@ Same as MoveType, except that this returns the opponent's movetype.
   
 ## P2Name
 Same as P1Name, except that this returns the name of the primary opponent (the opponent in versus mode, or the first opponent in team mode).  
-If there is no primary opponent, then p2name = "name" returns 0 no  
-matter what name is specified. Similarly, p2name != "name" will return 1 no matter what name is specified.  
+If there is no primary opponent, then `p2name = "name"` returns 0 no matter what name is specified. Similarly, `p2name != "name"` will return 1 no matter what name is specified.  
   
 ## P2StateNo
 Same as StateNo, except that this returns the opponent's state number.  
@@ -2159,11 +2140,11 @@ has been won.)
   
 ## P3Name
 Same as P1Name, except that this returns the name of the player's teammate, if present.  
-If there is no teammate, then p3name = "name" returns 0 no matter what name is specified. Similarly, p3name != "name" will return 1 no matter what name is specified.  
+If there is no teammate, then `p3name = "name"` returns 0 no matter what name is specified. Similarly, `p3name != "name"` will return 1 no matter what name is specified.  
   
 ## P4Name
 Same as P1Name, except that this returns the name of the secondary opponent, if present.  
-If there is no secondary opponent, then p4name = "name" returns 0 no matter what name is specified. Similarly, p4name != "name" will return 1 no matter what name is specified.  
+If there is no secondary opponent, then `p4name = "name"` returns 0 no matter what name is specified. Similarly, `p4name != "name"` will return 1 no matter what name is specified.  
   
 ## PalNo
 Returns the palette number of the player (i.e., the color scheme chosen for the character during character select.)  
@@ -2189,7 +2170,7 @@ If omitted, the default ordering is:
 Example:  
 ```
 trigger1 = PalNo = 5  
-  Returns true if the current palette number is 5.  
+; Returns true if the current palette number is 5.  
 ```
   
 ## ParentDist
@@ -2240,7 +2221,7 @@ none
   
 ## Pos
 Gets the value of the player's position.  
-You must specify the component that you want to check, eg. "Pos Y" to check the Y-position.  
+You must specify the component that you want to check, eg. `Pos Y` to check the Y-position.  
   
 **Format:**  
 Pos [component]  
@@ -2258,10 +2239,10 @@ float
 none  
   
 **Details:**  
-For "Pos X", the value is relative to the center of the screen (value 0). Negative is left, positive is right.  
+For `Pos X`, the value is relative to the center of the screen (value 0). Negative is left, positive is right.  
 Due to historical reasons, "Pos X" does not return absolute position of the player (i.e. relative to the center of the stage), which may be the more intuitive behavior.  
 To get the absolute position of the player, use `Pos X + CameraPos X`.  
-For "Pos Y", the value is relative to the floor. Negative is higher up, positive is below the floor.  
+For `Pos Y`, the value is relative to the floor. Negative is higher up, positive is below the floor.  
   
 Example:  
 ```
@@ -2287,7 +2268,7 @@ none
 Example:  
 ```
 trigger1 = power >= 1000  
-  True if player has at least 1000 power (level 1).  
+; True if player has at least 1000 power (level 1).  
 ```
   
 ## PowerMax
@@ -2308,11 +2289,11 @@ none
 Example:  
 ```
 trigger1 = power < powermax / 2  
-  True if player has less than half his maximum power.  
+; True if player has less than half his maximum power.  
 ```
   
 ## PlayerIDExist
-Returns 1 if a player with the specified ID number exists, 0 otherwise. This ID number is obtained using the "ID" trigger (see ID). Do not confuse PlayerID with TargetID.  
+Returns 1 if a player with the specified ID number exists, 0 otherwise. This ID number is obtained using the `ID` trigger (see ID). Do not confuse PlayerID with TargetID.  
   
 **Format:**  
 PlayerIDExist(ID_number)  
@@ -2355,8 +2336,7 @@ none
 Example:  
 ```
 trigger1 = PrevStateNo = [200,650]  
-  Returns true if the player's last state number is between 200 and 650,  
-  inclusive.  
+; Returns true if the player's last state number is between 200 and 650, inclusive.  
 ```
   
 ## ProjCancelTime
@@ -2894,8 +2874,7 @@ none
 Example:  
 ```
 trigger1 = stateno = [200,650]  
-  Returns true if the state number is between 200 and 650,  
-  inclusive.  
+; Returns true if the state number is between 200 and 650, inclusive.  
 ```
   
 ## StateType
@@ -2963,7 +2942,7 @@ none
 Example:  
 ```
 trigger1 = StageVar(info.author) = "Suika"  
-  Returns true if the stage author is named "Suika".  
+; Returns true if the stage author is named "Suika".  
 ```
   
 ## SysFVar
@@ -3182,7 +3161,7 @@ float
 none  
   
 **Notes:**  
-This trigger is equivalent to the expression "Pos Y - ScreenPos Y".  
+This trigger is equivalent to the expression `Pos Y - ScreenPos Y`.  
   
 Example:  
 ```
