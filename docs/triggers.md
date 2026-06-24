@@ -236,6 +236,7 @@
 - [Sign (Math) (new)](#sign-math-new)
 - [Sin (math) (old)](#sin-math-old)
 - [SoundVar (new)](#soundvar-new)
+- [SpritePlayerNo (new)](#spriteplayerno-new)
 - [SpriteVar (new)](#spritevar-new)
 - [SprPriority (new)](#sprpriority-new)
 - [StageBackEdgeDist (new)](#stagebackedgedist-new)
@@ -6219,6 +6220,26 @@ Returns the specified sound channel parameter. Use -1 for channelNo to find the 
 ```ini
 var(0) = SoundVar(0, IsPlaying)
 fvar(1) = SoundVar(1, VolumeScale)
+```
+
+---
+
+## SpritePlayerNo (new)
+
+Returns the player number of the owner of the player's current sprite.  
+Normally returns the same number as the player's player number, but when for instance `ChangeAnim2` is used in a custom state, it will return the number of who owns that sprite.  
+
+>Format:  
+>SpritePlayerNo  
+>  
+>Arguments:  
+>none  
+>  
+>Return type:  
+>int
+
+```ini
+trigger1 = Player(SpritePlayerNo), SelfAnimExist(1234)
 ```
 
 ---

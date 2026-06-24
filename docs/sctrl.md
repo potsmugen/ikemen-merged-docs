@@ -4796,11 +4796,14 @@ This state controller allows modifying parameters of a char's Reflection
 >
 >Optional parameters:  
 >anim = *anim_no* (int)  
+>animplayerno = *anim_player_no* (int)  
+>spriteplayerno = *sprite_player_no* (int)  
 >color = *r*, *g*, *b* (int, int, int)  
 >intensity = intensity (int)  
 >offset = *x*, *y* (float, float)  
 >window = *x1*, *y1*, *x2*, *y2* (float, float, float, float)  
 >xshear = xshear (float)  
+>xscale = xscale (float)  
 >yscale = yscale (float)  
 >projection = projection (string)   
 >focallength = focallength (float)
@@ -4836,11 +4839,14 @@ This state controller allows modifying parameters of a char's Shadow
 >
 >Optional parameters:  
 >anim = *anim_no* (int)  
+>animplayerno = *anim_player_no* (int)  
+>spriteplayerno = *sprite_player_no* (int)  
 >color = *r*, *g*, *b* (int, int, int)  
 >intensity = intensity (int)  
 >offset = *x*, *y* (float, float)  
 >window = *x1*, *y1*, *x2*, *y2* (float, float, float, float)  
 >xshear = xshear (float)  
+>xscale = xscale (float)  
 >yscale = yscale (float)  
 >projection = projection (string)   
 >focallength = focallength (float)
