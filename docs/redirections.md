@@ -25,7 +25,7 @@
 
 ---
 
-# Redirections
+# Trigger Redirections
 
 ## enemy (old)
 
