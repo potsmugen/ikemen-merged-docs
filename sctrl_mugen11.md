@@ -53,13 +53,13 @@ For instance, if the red component of the character's palette is denoted *pal_r*
 Valid values are 0-256 for palcolor, 0-255 for palbright and palpostbright components, and any non-negative integer for palcontrast components.  
 The defaults are:  
   
-```  
+```
 palcolor = 256  
 palinvertall = 0  
 palbright = 30, 30, 30  
 palcontrast = 120, 120, 220  
 palpostbright = 0, 0, 0  
-```  
+```
   
 **paladd = *add_r*, *add_g*, *add_b* (int)**  
   
@@ -73,10 +73,10 @@ These effects are applied zero times to the most recent afterimage frame, once t
 Valid values are 0-255 for the paladd components, and any non-negative float value for the palmul multipliers.  
 The defaults are:  
   
-```  
+```
 paladd = 10, 10, 25  
 palmul = 0.65, 0.65, 0.75  
-```  
+```
   
 **timegap = *value* (int)**  
   
@@ -534,12 +534,12 @@ the player's animation will remain unchanged.
   
 Example:  
   
-```  
+```
 ; Change to standing state, and give player control  
 type = ChangeState  
 value = 0  
 ctrl = 1  
-```  
+```
   
 ## ClearClipboard  
   
@@ -595,11 +595,11 @@ The LifeAdd controller is not affected by the player's defense multiplier.
   
 Example:  
   
-```  
+```
 ; All damage the player takes is reduced to half.  
 type = DefenceMulSet  
 value = 0.5  
-```  
+```
   
 ## DestroySelf  
   
@@ -674,7 +674,7 @@ formatting options.
   
 Example:  
   
-```  
+```
 type = DisplayToClipboard  
 text=`The value of var(17) is %d, which is %f%% of 23.\n\t--Kiwi.`  
 params = var(17):=1,var(17)/.230  
@@ -683,7 +683,7 @@ displays the following to the player's clipboard:
   
 The value of var(17) is 1, which is 4.347826% of 23.  
     --Kiwi.  
-```  
+```
   
 ## EnvColor  
   
@@ -995,46 +995,46 @@ In 1.1, the equivalent parameters that replace postype are:
   
 postype = p1  
   
-```  
+```
 space = stage  
 pos = Pos X + CameraPos X, Pos Y  
 facing = facing  
-```  
+```
 postype = p2  
   
-```  
+```
 space = stage  
 pos = (enemynear, Pos X) + CameraPos X, (enemynear, Pos Y)  
 facing = enemynear, facing  
-```  
+```
 postype = front  
   
-```  
+```
 space = screen  
 pos = ifelse(facing = -1, 0, ScreenWidth), 0  
 facing = 1  
-```  
+```
 postype = back  
   
-```  
+```
 space = screen  
 pos = ifelse(facing = 1, 0, ScreenWidth), 0  
 facing = facing  
-```  
+```
 postype = left  
   
-```  
+```
 space = screen  
 pos = 0, 0  
 facing = 1  
-```  
+```
 postype = right  
   
-```  
+```
 space = screen  
 pos = ScreenWidth, 0  
 facing = 1  
-```  
+```
   
 **random = *rand_x*, *rand_y* (int, int)**  
   
@@ -1214,11 +1214,11 @@ none
   
 Example:  
   
-```  
+```
 ; Applies constant acceleration throughout state  
 trigger1 = 1  
 type = Gravity  
-```  
+```
   
 ## Helper  
   
@@ -1450,12 +1450,12 @@ those hit attributes which appear in the HitBy attribute string.
   
 Example:  
   
-```  
+```
 ; Can be hit only by standing normal attacks  
 trigger1 = 1  
 type = HitBy  
 value = S, NA  
-```  
+```
   
 ## HitDef  
   
@@ -2251,7 +2251,7 @@ string.
   
 Example:  
   
-```  
+```
 ; Not hit by anything  
 trigger1 = 1  
 type = NotHitBy  
@@ -2261,7 +2261,7 @@ value = SCA
 trigger1 = 1  
 type = NotHitBy  
 value = , NA, AP  
-```  
+```
   
 ## Null  
   
@@ -2602,7 +2602,7 @@ This parameter is mutually exclusive with pan.
   
 Example:  
   
-```  
+```
 ; Plays back sound 2,0 from the player's SND file  
 type = PlaySnd  
 value = 2,0  
@@ -2610,7 +2610,7 @@ value = 2,0
 ; Plays back sound 5,2 from fight.snd  
 type = PlaySnd  
 value = F5,2  
-```  
+```
   
 Notes:  
   
@@ -2987,13 +2987,13 @@ for a given source pair.
   
 Example:  
   
-```  
+```
 ; All sprites using palette (1,1) will be drawn using palette (1,3)  
 ; instead.  
 type = RemapPal  
 source = 1,1  
 dest = 1,3  
-```  
+```
   
 ## RemoveExplod  
   
@@ -3397,12 +3397,12 @@ target ID will be affected. Defaults to -1 (affects all targets.)
   
 Example:  
   
-```  
+```
 ; Applies constant gravity to all targets  
 type = TargetVelAdd  
 trigger1 = 1  
 y = 0.45  
-```  
+```
   
 ## TargetVelSet  
   
@@ -3458,13 +3458,13 @@ default depends on *trans_type*.
   
 Example:  
   
-```  
+```
 ; Fades the character in, over 256 ticks.  
 type = Trans  
 trigger1 = time &lt; 256  
 trans = add  
 alpha = time, 256-time  
-```  
+```
   
 ## Turn  
   
@@ -3567,12 +3567,12 @@ malfunction of the opponent player.
   
 Example:  
   
-```  
+```
 ;Assign a random number between 0 and 500 to var(5).  
 type = VarRandom  
 v = 5  
 range = 500  
-```  
+```
   
 ## VarRangeSet  
   
@@ -3689,12 +3689,12 @@ Specifies the value to add to the player's y-velocity.
   
 Example:  
   
-```  
+```
 ; Applies constant gravity to the player  
 trigger1 = 1  
 type = VelAdd  
 y = 0.45  
-```  
+```
   
 ## VelMul  
   
@@ -3716,12 +3716,12 @@ Specifies the value to multiply the player's y-velocity with.
   
 Example:  
   
-```  
+```
 ; Applies constant friction to the player  
 trigger1 = 1  
 type = VelMul  
 x = 0.8  
-```  
+```
   
 ## VelSet  
   
