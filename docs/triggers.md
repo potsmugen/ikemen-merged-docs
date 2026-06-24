@@ -1,5 +1,11 @@
+---
+layout: default
+title: Merged Trigger Reference
+---
+
 # Merged Trigger Reference
 
+<div class="toc-wrapper">
 ## Table of Contents
 
 - [Abs (math) (old)](#abs-math-old)
@@ -278,8 +284,11 @@
 - [YAngle (new)](#yangle-new)
 - [ZoomVar (new)](#zoomvar-new)
 
+</div>
+
 ---
 
+<div class="content">
 # Triggers
 
 ## Abs (math) (old)
@@ -7146,3 +7155,5 @@ trigger2 = ZoomVar(pos.x) >= 100
 ```
 
 ---
+
+</div>
