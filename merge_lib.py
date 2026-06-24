@@ -302,16 +302,27 @@ def output_merged(
 ) -> str:
     """
     Output the merged documentation with:
-    - Table of contents (first)
-    - Top sections (moved after TOC, headings kept)
-    - A heading before the alphabetical list (customizable via list_heading)
+    - Frontmatter for Jekyll layout
+    - Table of contents (wrapped in .toc-wrapper)
+    - Top sections
+    - A heading before the alphabetical list (customizable)
+    - Main content wrapped in .content
     """
     if sections_to_skip is None:
         sections_to_skip = []
     if top_sections is None:
         top_sections = []
 
-    lines = [f"# {title}", ""]
+    # ------------------- Frontmatter -------------------
+    lines = [
+        "---",
+        "layout: default",
+        "title: " + title,
+        "---",
+        "",
+        f"# {title}",
+        ""
+    ]
 
     # Find top sections (tag‑insensitive)
     top_keys = {}
@@ -321,13 +332,22 @@ def output_merged(
                 top_keys[top] = k
                 break
 
-    # TOC (skip top sections)
+    # ------------------- TOC (wrapped in .toc-wrapper) -------------------
     toc_skip = list(set(sections_to_skip) | set(top_keys.values()))
     toc = generate_toc_from_sections(merged, toc_skip)
-    if toc:
-        lines.extend(["## Table of Contents", "", toc, "", "---", ""])
 
-    # Output top sections in requested order
+    if toc:
+        lines.append('<div class="toc-wrapper">')
+        lines.append("## Table of Contents")
+        lines.append("")
+        lines.append(toc)
+        lines.append("")
+        lines.append('</div>')
+        lines.append("")
+        lines.append("---")
+        lines.append("")
+
+    # ------------------- Top sections -------------------
     for top in top_sections:
         key = top_keys.get(top)
         if key and key in merged:
@@ -345,9 +365,10 @@ def output_merged(
             lines.append("---")
             lines.append("")
 
-    # Remaining sections with heading before list
+    # ------------------- Main content (wrapped in .content) -------------------
     remaining = [n for n in merged.keys() if n not in sections_to_skip and merged[n]['content'].strip()]
     if remaining:
+        lines.append('<div class="content">')
         lines.append(list_heading)
         lines.append("")
 
@@ -366,5 +387,8 @@ def output_merged(
             lines.append("")
         lines.append("---")
         lines.append("")
+
+    if remaining:
+        lines.append('</div>')   # close .content
 
     return '\n'.join(lines)

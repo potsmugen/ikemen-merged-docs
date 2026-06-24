@@ -1,5 +1,11 @@
+---
+layout: default
+title: Merged State Controller Reference
+---
+
 # Merged State Controller Reference
 
+<div class="toc-wrapper">
 ## Table of Contents
 
 - [AfterImage (old)](#afterimage-old)
@@ -199,6 +205,8 @@
 - [Width (old)](#width-old)
 - [Zoom (changed)](#zoom-changed)
 
+</div>
+
 ---
 
 # About Controllers (old)
@@ -257,6 +265,7 @@ TODO: list of sctrls that can't be redirected.
 
 ---
 
+<div class="content">
 # State Controllers
 
 ## AfterImage (old)
@@ -7842,3 +7851,5 @@ If set to 1, the zoom position is restricted to the stage boundaries. Defaults t
 Countdown timer that controls how long zoom effects are applied, decreasing by 1 every frame. Once it reaches 0, the zoom stops, and the camera resets to its default behavior without any smoothing or zoom effects. Defaults to 1.
 
 ---
+
+</div>
