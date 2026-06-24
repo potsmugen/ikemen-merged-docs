@@ -1,5 +1,11 @@
+---
+layout: default
+title: Merged Trigger Redirection Reference
+---
+
 # Merged Trigger Redirection Reference
 
+<div class="toc-wrapper">
 ## Table of Contents
 
 - [enemy (old)](#enemy-old)
@@ -23,8 +29,11 @@
 - [Target (changed)](#target-changed)
 - [target(ID) (old)](#targetid-old)
 
+</div>
+
 ---
 
+<div class="content">
 # Trigger Redirections
 
 ## enemy (old)
@@ -224,3 +233,5 @@ the corresponding targetID. The targetID is specified in the `ID`
 parameter of a HitDef controller.
 
 ---
+
+</div>

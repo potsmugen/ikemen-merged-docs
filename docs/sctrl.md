@@ -7806,8 +7806,7 @@ When collision box display is enabled, the edge width bar is displayed in orange
   
 **Example:**  
   
-none  
-</p></p></p></p></dl></p></p></p></p></dl></dl></p></dl></p></p></p></p></p></p></p></dl></p></p></p></dl></p></p></p>
+none
 
 ---
 
