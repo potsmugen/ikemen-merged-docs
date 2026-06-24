@@ -292,7 +292,8 @@ def output_merged(
     merged: Dict[str, Dict[str, Set[str]]],
     title: str,
     sections_to_skip: List[str] = None,
-    top_sections: List[str] = None
+    top_sections: List[str] = None,
+    list_heading: str = "# Main List"
 ) -> str:
     if sections_to_skip is None:
         sections_to_skip = []
@@ -336,7 +337,7 @@ def output_merged(
     # Remaining sections with heading before list
     remaining = [n for n in merged.keys() if n not in sections_to_skip and merged[n]['content'].strip()]
     if remaining:
-        lines.append("# State Controller Reference")
+        lines.append(list_heading)   # <-- use the provided heading
         lines.append("")
 
     for name in sorted(merged.keys(), key=get_sort_key):

@@ -74,9 +74,10 @@ def main():
     # --- OUTPUT ---
     output = output_merged(
         merged,
-        "Merged Trigger Reference",
+        title="Merged Trigger Reference",
         sections_to_skip=[],
-        top_sections=[]
+        top_sections=[],
+        list_heading="# Triggers"
     )
 
     output_file = Path("docs/triggers.md")

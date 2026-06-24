@@ -55,9 +55,10 @@ def main():
     # Output with "About" and "New features" placed right after the TOC
     output = output_merged(
         merged,
-        "Merged State Controller Reference",
+        title="Merged State Controller Reference",
         sections_to_skip=skip,
-        top_sections=["About controllers", "New state controller features"]
+        top_sections=["About controllers", "New state controller features"],
+        list_heading="# State Controllers"
     )
 
     output_file = Path("docs/sctrl.md")

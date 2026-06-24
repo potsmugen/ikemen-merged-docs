@@ -106,9 +106,10 @@ def main():
     # Output
     output = output_merged(
         merged,
-        "Merged Trigger Redirection Reference",
+        title="Merged Trigger Redirection Reference",
         sections_to_skip=[],
-        top_sections=[]
+        top_sections=[],
+        list_heading="# Redirections"
     )
 
     output_file = Path("docs/redirections.md")
