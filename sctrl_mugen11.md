@@ -2950,14 +2950,10 @@ The default value for dest is -1,0.
   
 **Notes:**  
   
-Palette mappings are not transitive; i.e. mapping 1,0 to 2,0 and 2,0 to 3,0  
-will not map 1,0 to 3,0.  
+Palette mappings are not transitive; i.e. mapping 1,0 to 2,0 and 2,0 to 3,0 will not map 1,0 to 3,0.  
   
-In 1.1 and newer, each player is allowed up to 8 different palette mappings  
-at the same time.  
-Subsequent calls of RemapPal will fail if the source pair is not already  
-being mapped.  Unused mappings can be removed by setting *dst_pal_grp* to -1  
-for a given source pair.  
+In 1.1 and newer, each player is allowed up to 8 different palette mappings at the same time.  
+Subsequent calls of RemapPal will fail if the source pair is not already being mapped.  Unused mappings can be removed by setting *dst_pal_grp* to -1 for a given source pair.  
   
 Example:  
   
@@ -2981,8 +2977,7 @@ none
   
 **ID = *remove_id* (int)**  
   
-*remove_id* is the ID number of the explods to remove. If omitted,  
-removes all explods owned by the player.  
+*remove_id* is the ID number of the explods to remove. If omitted, removes all explods owned by the player.  
   
 ## ReversalDef  
   
@@ -2994,11 +2989,7 @@ ReversalDefs take the HitDef parameters pausetime, sparkno, hitsound, p1stateno,
   
 **reversal.attr = *attr_string***  
   
-*attr_string* specifies the list of attack attributes that can be  
-reversed by this ReversalDef. It is a standard hit attribute  
-string. For instance,  
-`reversal.attr = SA,NA,SA`
-means stand+air, normal attack, special attack.  
+*attr_string* specifies the list of attack attributes that can be reversed by this ReversalDef. It is a standard hit attribute string. For instance, `reversal.attr = SA,NA,SA` means stand+air, normal attack, special attack.  
   
 **Optional parameters:**  
   
@@ -3006,7 +2997,7 @@ none
   
 **Notes:**  
   
-The sparkxy parameter is treated as an offset to P2's hitdef's sparkxy. The MoveHit trigger can be used to detect if P1 successfully reversed P2.  
+The *sparkxy* parameter is treated as an offset to P2's hitdef's *sparkxy*. The `MoveHit` trigger can be used to detect if P1 successfully reversed P2.  
   
 **Example:**  
   
@@ -3014,7 +3005,9 @@ none
   
 ## ScreenBound  
   
-Specifies whether or not the player's movement should be constrained to the screen or not. Also determines whether the camera should move to follow the player or not. The results of this controller are valid for 1 tick.  
+Specifies whether or not the player's movement should be constrained to the screen or not.  
+Also determines whether the camera should move to follow the player or not.  
+The results of this controller are valid for 1 tick.  
   
 **Required parameters:**  
   
@@ -3024,14 +3017,13 @@ none
   
 **value = *bound_flag* (boolean)**  
   
-If *bound_flag* is 0, the player will be allowed to move off the  
-screen. If 1, the player is constrained within the screen. Defaults to 0 if omitted.  
+If *bound_flag* is 0, the player will be allowed to move off the screen. If 1, the player is constrained within the screen. 
+Defaults to 0 if omitted.  
   
 **movecamera = *move_x_flag*, *move_y_flag* (boolean, boolean)**  
   
-If 1, specifies that camera should pan to follow the player in  
-the x direction and in the y direction, respectively. Defaults to  
-0 in both instances if omitted.  
+If 1, specifies that camera should pan to follow the player in the x direction and in the y direction, respectively.  
+Defaults to 0 in both instances if omitted.  
   
 **Examples:**  
   
@@ -3071,8 +3063,8 @@ none
   
 **statetype = *state_type* (string)**  
   
-Set *state_type* to A for air, C for crouch, S for stand, or L  
-for liedown. Defaults to no change.  
+Set *state_type* to A for air, C for crouch, S for stand, or L for liedown.  
+Defaults to no change.  
   
 **movetype = *move_type* (string)**  
   
@@ -3081,8 +3073,8 @@ Defaults to no change.
   
 **physics = *physics* (string)**  
   
-Set *physics* to A for air, C for crouch, S for stand, or N  
-for none. Defaults to no change.  
+Set *physics* to A for air, C for crouch, S for stand, or N for none.  
+Defaults to no change.  
   
 **Example:**  
   
@@ -3100,10 +3092,8 @@ Specifies the channel number of the sound to pan.
   
 **pan = *p* OR abspan = *p* (int)**  
   
-These parameters cannot both be specified at the same time. p  
-determines the sound offset in pixels from the player (in the  
-case of pan) or from the center of the screen (in the case of  
-abspan). See PlaySnd for a description of the panning parameters.  
+These parameters cannot both be specified at the same time. *p* determines the sound offset in pixels from the player (in the case of *pan*) or from the center of the screen (in the case of *abspan*).  
+See PlaySnd for a description of the panning parameters.  
   
 **Optional parameters:**  
   
@@ -3121,8 +3111,7 @@ Stops any sound which is playing on the specified channel.
   
 **channel = *chan_no* (int)**  
   
-Stops playback of any sound on *chan_no*. If *chan_no* is -1, then all  
-sounds are stopped, including those belonging to other players.  
+Stops playback of any sound on *chan_no*. If *chan_no* is -1, then all sounds are stopped, including those belonging to other players.  
   
 **Optional parameters:**  
   
@@ -3181,15 +3170,12 @@ This is the amount to add to the player's power. Defaults to 0.
   
 **unhittable = *bvalue* (boolean)**  
   
-If set to 1, the player cannot be hit during the SuperPause. Set to  
-0 to disable this. Defaults to 1.  
+If set to 1, the player cannot be hit during the SuperPause. Set to 0 to disable this. Defaults to 1.  
   
 **Notes:**  
   
-If the Pause controller was previously executed, and the action is  
-still paused, executing a SuperPause will preempt the Pause  
-controller's effects. During the SuperPause, the time left until  
-the Pause controller's effects expires will not count down.  
+If the Pause controller was previously executed, and the action is still paused, executing a SuperPause will preempt the Pause controller's effects.  
+During the SuperPause, the time left until the Pause controller's effects expires will not count down.  
   
 **Example:**  
   
@@ -3212,8 +3198,7 @@ Defaults to 1.
   
 **ID = *bind_id* (int)**  
   
-Specifies the desired target ID to bind. Only targets with this  
-target ID will be bound. Defaults to -1 (bind all targets.)  
+Specifies the desired target ID to bind. Only targets with this target ID will be bound. Defaults to -1 (bind all targets).  
   
 **pos = *x_pos*, *y_pos* (float)**  
   
@@ -3232,18 +3217,13 @@ none
   
 **excludeID = *id_no* (int)**  
   
-Any targets with target ID number not equal to id_no will be  
-dropped from the player's target list. Defaults to -1 (drop all  
-targets).  
+Any targets with target ID number not equal to id_no will be dropped from the player's target list. Defaults to -1 (drop all targets).  
   
 **keepone = *keep_flag* (boolean)**  
   
-If *keep_flag* is non-zero, then at most one target is kept on the  
-player's target list. If there are multiple targets whose target  
-ID number is the same as id_no, one will be picked at random and  
-the rest will be dropped. This behavior is useful in throws, to  
-keep from throwing multiple opponents simultaneously. If *keep_flag* is  
-0, then all targets with the appropriate ID number will be kept.  
+If *keep_flag* is non-zero, then at most one target is kept on the player's target list.  
+If there are multiple targets whose target ID number is the same as id_no, one will be picked at random and the rest will be dropped. This behavior is useful in throws, to keep from throwing multiple opponents simultaneously.  
+If *keep_flag* is 0, then all targets with the appropriate ID number will be kept.  
 *keep_flag* defaults to 1.  
   
 **Example:**  
@@ -3258,16 +3238,14 @@ Turns all targets to face a specified direction relative to the player.
   
 **value = *facing_val* (int)**  
   
-If *facing_val* is positive, all targets will turn to face the same  
-direction as the player. If *facing_val* is negative, all targets  
-will turn to face the opposite direction as the player.  
+If *facing_val* is positive, all targets will turn to face the same direction as the player.  
+If *facing_val* is negative, all targets will turn to face the opposite direction as the player.  
   
 **Optional parameters:**  
   
 **ID = *target_id* (int)**  
   
-Specifies the desired target ID to affect. Only targets with this  
-target ID will be affected. Defaults to -1 (affects all targets.)  
+Specifies the desired target ID to affect. Only targets with this target ID will be affected. Defaults to -1 (affects all targets).  
   
 **Example:**  
   
@@ -3287,18 +3265,15 @@ Adds the specified amount to all targets' life, scaled by the targets' defense m
   
 **ID = *target_id* (int)**  
   
-Specifies the desired target ID to affect. Only targets with this  
-target ID will be affected. Defaults to -1 (affects all targets.)  
+Specifies the desired target ID to affect. Only targets with this target ID will be affected. Defaults to -1 (affects all targets).  
   
 **kill = *kill_flag* (boolean)**  
   
-If kill_flag is 0, then the addition will not take any player  
-below 1 life point. Defaults to 1.  
+If kill_flag is 0, then the addition will not take any player below 1 life point. Defaults to 1.  
   
 **absolute = *abs_flag* (boolean)**  
   
-If *abs_flag* is 1, then *add_amt* will not be scaled (i.e. attack and  
-defense multipliers will be ignored). Defaults to 0.  
+If *abs_flag* is 1, then *add_amt* will not be scaled (i.e. attack and defense multipliers will be ignored). Defaults to 0.  
   
 **Example:**  
   
@@ -3318,8 +3293,7 @@ Adds the specified amount to all targets' power.
   
 **ID = *target_id* (int)**  
   
-Specifies the desired target ID to affect. Only targets with this  
-target ID will be affected. Defaults to -1 (affects all targets.)  
+Specifies the desired target ID to affect. Only targets with this target ID will be affected. Defaults to -1 (affects all targets.  
   
 **Example:**  
   
@@ -3339,8 +3313,7 @@ Specifies the number of the state to change the targets to.
   
 **ID = *target_id* (int)**  
   
-Specifies the desired target ID to affect. Only targets with this  
-target ID will be affected. Defaults to -1 (affects all targets.)  
+Specifies the desired target ID to affect. Only targets with this target ID will be affected. Defaults to -1 (affects all targets).  
   
 **Examples:**  
   
@@ -3366,8 +3339,7 @@ Specifies the value to add to the y-velocity of the target.
   
 **ID = *target_id* (int)**  
   
-Specifies the desired target ID to affect. Only targets with this  
-target ID will be affected. Defaults to -1 (affects all targets.)  
+Specifies the desired target ID to affect. Only targets with this target ID will be affected. Defaults to -1 (affects all targets).  
   
 Example:  
   
@@ -3390,7 +3362,7 @@ none
   
 **x = *x_value* (float)**  
   
-Specifies the value to set the x-velocity of the target to  
+Specifies the value to set the x-velocity of the target to.  
   
 **y = *y_value* (float)**  
   
@@ -3398,8 +3370,7 @@ Specifies the value to set the y-velocity of the target to.
   
 **ID = *target_id* (int)**  
   
-Specifies the desired target ID to affect. Only targets with this  
-target ID will be affected. Defaults to -1 (affects all targets.)  
+Specifies the desired target ID to affect. Only targets with this target ID will be affected. Defaults to -1 (affects all targets).  
   
 **Example:**  
   
@@ -3415,20 +3386,18 @@ Overrides the player's animation transparency parameters for current game tick. 
   
 *trans_type* must be one of the following:  
   
-- default  - does nothing  
-- none     - disables transparency  
-- add      - draws with additive transparency (alpha defaults to 256,256)  
-- addalpha - deprecated in 1.1; draws with additive transparency (alpha defaults to 256,0)  
-- add1     - deprecated in 1.1; draws with additive transparency (alpha defaults to 256,128)  
-- sub      - draws with full subtractive transparency (alpha is fixed at 256,256)  
+- default: does nothing  
+- none: disables transparency  
+- add: draws with additive transparency (`alpha` defaults to `256,256`)  
+- addalpha: deprecated in 1.1; draws with additive transparency (`alpha` defaults to `256,0`)  
+- add1: deprecated in 1.1; draws with additive transparency (`alpha` defaults to `256,128`)  
+- sub: draws with full subtractive transparency (`alpha` is fixed at `256,256`)  
   
 **Optional parameters:**  
   
 **alpha = *source_alpha*, *dest_alpha* (int, int)**  
   
-These are the source and destination alpha values for the add  
-trans types. Valid values are from 0 (low) to 256 (high). If omitted,  
-default depends on *trans_type*.  
+These are the source and destination alpha values for the add trans types. Valid values are from 0 (low) to 256 (high). If omitted, default depends on *trans_type*.  
   
 Example:  
   
@@ -3469,8 +3438,7 @@ It must evaluate to an integer between 0 and 59.
   
 **value = *int_expr* (int)**  
   
-*int_expr* specifies the value to add to the int variable indexed by  
-*var_no*.  
+*int_expr* specifies the value to add to the int variable indexed by *var_no*.  
   
 **Required parameters (float version):**  
   
@@ -3481,8 +3449,7 @@ It must evaluate to an integer between 0 and 39.
   
 **value = *float_expr* (float)**  
   
-*float_expr* is the value to add to the float variable indexed by  
-*var_no*.  
+*float_expr* is the value to add to the float variable indexed by *var_no*.  
   
 **Optional parameters:**  
   
@@ -3496,15 +3463,9 @@ fvar(*var_no*) = *float_expr* (float version)
   
 **Notes:**  
   
-Due to historical reasons, note that the alternate VarAdd  
-syntax listed above matches neither the syntax for variable  
-assignment within an expression, nor the syntax for variable  
-addition within an expression.  
+Due to historical reasons, note that the alternate `VarAdd` syntax listed above matches neither the syntax for variable assignment within an expression, nor the syntax for variable addition within an expression.  
   
-If you have placed P2 in a custom state through a successful hit, do  
-not use variable assignment within the custom states. Otherwise, you  
-will overwrite P2's variables, which can cause unintended  
-malfunction of the opponent player.  
+If you have placed P2 in a custom state through a successful hit, do not use variable assignment within the custom states. Otherwise, you will overwrite P2's variables, which can cause unintended malfunction of the opponent player.  
   
 **Example:**  
   
@@ -3518,26 +3479,18 @@ Sets the specified int variable to a random value. Float variables cannot be set
   
 **v = *var_no* (int)**  
   
-*var_no* is the index of the int variable to affect. It must evaluate  
-to an integer between 0 and 59.  
+*var_no* is the index of the int variable to affect. It must evaluate to an integer between 0 and 59.  
   
 **Optional parameters:**  
   
 **range = *least_val*, *greatest_val* (int)**  
   
-*least_val* and *greatest_val* specify the least and greatest values  
-which can be assigned by this controller, respectively. The value  
-assigned to the variable will be a randomly chosen integer from  
-this range.  
-range defaults to 0,1000. If only one argument is specified, that  
-is considered to specify the range 0,(argument).  
+*least_val* and *greatest_val* specify the least and greatest values which can be assigned by this controller, respectively. The value assigned to the variable will be a randomly chosen integer from this range.  
+*range* defaults to `0, 1000`. If only one argument is specified, that is considered to specify the range 0,(argument).  
   
 **Notes:**  
   
-If you have placed P2 in a custom state through a successful hit, do  
-not use variable assignment within the custom states. Otherwise, you  
-will overwrite P2's variables, which can cause unintended  
-malfunction of the opponent player.  
+If you have placed P2 in a custom state through a successful hit, do not use variable assignment within the custom states. Otherwise, you will overwrite P2's variables, which can cause unintended malfunction of the opponent player.  
   
 Example:  
   
@@ -3556,35 +3509,27 @@ Sets a contiguous range of the player's working variables to the same value. Eit
   
 **value = *int_expr* (int)**  
   
-*int_expr* is evaluated once to give the value that is assigned to  
-all int variables in the range.  
+*int_expr* is evaluated once to give the value that is assigned to all int variables in the range.  
   
 **Required parameters (float version):**  
   
 **fvalue = *float_expr* (float)**  
   
-*float_expr* is evaluated once to give the value that is assigned to  
-all float variables in the range.  
+*float_expr* is evaluated once to give the value that is assigned to all float variables in the range.  
   
 **Optional parameters (both versions):**  
   
 **first = *first_idx* (int)**  
   
-Specifies the lower end of the range of variables to set. Defaults  
-to 0 (first variable).  
+Specifies the lower end of the range of variables to set. Defaults to 0 (first variable).  
   
 **last = *last_idx* (int)**  
   
-Specifies the higher end of the range of variables to set.  
-Defaults to 59 for int variables, or 39 for float variables (this  
-is the last available variable in both cases).  
+Specifies the higher end of the range of variables to set. Defaults to 59 for int variables, or 39 for float variables (this is the last available variable in both cases).  
   
 **Notes:**  
   
-If you have placed P2 in a custom state through a successful hit, do  
-not use variable assignment within the custom states. Otherwise, you  
-will overwrite P2's variables, which can cause unintended  
-malfunction of the opponent player.  
+If you have placed P2 in a custom state through a successful hit, do not use variable assignment within the custom states. Otherwise, you will overwrite P2's variables, which can cause unintended malfunction of the opponent player.  
   
 **Example:**  
   
@@ -3630,14 +3575,9 @@ fvar(*var_no*) = *float_expr* (float version)
   
 **Notes:**  
   
-Due to historical reasons, note that the alternate variable  
-assignment syntax listed above does not exactly match the syntax for  
-variable assignment within an expression.  
+Due to historical reasons, note that the alternate variable assignment syntax listed above does not exactly match the syntax for variable assignment within an expression.  
   
-If you have placed P2 in a custom state through a successful hit, do  
-not use variable assignment within the custom states. Otherwise, you  
-will overwrite P2's variables, which can cause unintended  
-malfunction of the opponent player.  
+If you have placed P2 in a custom state through a successful hit, do not use variable assignment within the custom states. Otherwise, you will overwrite P2's variables, which can cause unintended malfunction of the opponent player.  
   
 **Example:**  
   
@@ -3781,4 +3721,3 @@ When collision box display is enabled, the edge width bar is displayed in orange
 **Example:**  
   
 none  
-</p></p></p></p></dl></p></p></p></p></dl></dl></p></dl></p></p></p></p></p></p></p></dl></p></p></p></dl></p></p></p>

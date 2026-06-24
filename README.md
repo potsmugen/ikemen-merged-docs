@@ -1,8 +1,7 @@
 # Ikemen GO Merged Documentation
 
-Automatically generated merged documentation for Ikemen GO.
-
----
+Automatically generated merged documentation for Ikemen GO.  
+Updated daily via GitHub Actions by merging the latest Ikemen GO wiki with a static copy of the M.U.G.E.N 1.1 documentation.
 
 ## Pages
 
@@ -10,14 +9,6 @@ Automatically generated merged documentation for Ikemen GO.
 - [State Controllers](https://potsmugen.github.io/ikemen-merged-docs/sctrl)
 - [Triggers](https://potsmugen.github.io/ikemen-merged-docs/triggers)
 - [Redirections](https://potsmugen.github.io/ikemen-merged-docs/redirections)
-
----
-
-## Automatic Updates
-
-A GitHub Action runs daily, fetches the latest Ikemen GO wiki, merges it with a local static copy of the Mugen 1.1 documentation, and deploys to GitHub Pages.
-
----
 
 ## Sources
 
@@ -29,8 +20,6 @@ Ikemen GO documentation:
 https://github.com/ikemen-engine/Ikemen-GO/wiki  
 Copyright (c) Ikemen GO contributors.  
 
----
+## Notes
 
-## Acknowledgments
-
-The scripts in this repository were developed with the assistance of AI tools.
+This project is an AI-assisted work.
