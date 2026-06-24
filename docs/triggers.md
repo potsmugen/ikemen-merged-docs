@@ -1,11 +1,5 @@
----
-layout: default
-title: Merged Trigger Reference
----
-
 # Merged Trigger Reference
 
-<div class="toc-wrapper">
 ## Table of Contents
 
 - [Abs (math) (old)](#abs-math-old)
@@ -284,11 +278,8 @@ title: Merged Trigger Reference
 - [YAngle (new)](#yangle-new)
 - [ZoomVar (new)](#zoomvar-new)
 
-</div>
-
 ---
 
-<div class="content">
 # Triggers
 
 ## Abs (math) (old)
@@ -330,13 +321,12 @@ float
   
 **Error conditions:**  
 Returns bottom if exprn evaluates to bottom, or if exprn is not in  
-the domain of arccosine (which is `[-1.0,1.0]`).  
+the domain of arccosine (which is `[-1.0, 1.0]`).  
   
 Example:  
 ```
 value = acos(1)  
-  Sets value to the arccosine of 1, which is approximately 0.0  
-  (possibly with some rounding error.)  
+; Sets value to the arccosine of 1, which is approximately 0.0 (possibly with some rounding error.)  
 ```
 
 ---
@@ -513,8 +503,8 @@ trigger1 = Anim = 200
 ## AnimElem (old)
 
 Gets the animation-time elapsed since the start of a specified element of the current animation action. Useful for synchronizing events to elements of an animation action.  
-(reminder: first element of an action is element 1, not 0)  
-AnimElemTime has similar functionality to AnimElem, but can take expressions as its argument.  
+(Reminder: first element of an action is element 1, not 0)  
+`AnimElemTime` has similar functionality to `AnimElem`, but can take expressions as its argument.  
   
 **Format:**  
 - AnimElem = value1  
@@ -566,8 +556,8 @@ trigger1 = AnimElem = 3, < 0
 
 ## AnimElemNo (old)
 
-Returns the number of the animation element in the current action  
-that would be displayed at the specified time. The argument to AnimElemNo represents the time to check, expressed in game ticks, relative to the present.  
+Returns the number of the animation element in the current action that would be displayed at the specified time.  
+The argument to `AnimElemNo` represents the time to check, expressed in game ticks, relative to the present.  
   
 **Format:**  
 AnimElemNo(exprn)  
@@ -611,7 +601,7 @@ trigger1 = AnimElemNo(2) = 4
 ## AnimElemTime (old)
 
 Gets the animation-time elapsed since the start of a specified element of the current animation action. Useful for synchronizing events to elements of an animation action.  
-(reminder: first element of an action is element 1, not 0)  
+(Reminder: first element of an action is element 1, not 0)  
   
 **Format:**  
 AnimElemTime(exprn)  
@@ -741,7 +731,7 @@ trigger1 = Player(AnimPlayerNo), SelfAnimExist(1234)
 ## AnimTime (old)
 
 Gives the difference between the looptime of the current animation action and the player's animation-time. Useful for knowing when the end of the animation has been reached. (Animation-time is the time in game-ticks that the player has spent within the current animation action.)  
-The name may be confusing. Try to think of it as "time from the end of the animation". During the animation, AnimTime will always return a non-positive number.  
+The name may be confusing. Try to think of it as "time from the end of the animation". During the animation, `AnimTime` will always return a non-positive number.  
   
 **Format:**  
 AnimTime  
@@ -782,8 +772,7 @@ Expression to compute the arcsine of (float).
 float  
   
 **Error conditions:**  
-Returns bottom if exprn evaluates to bottom, or if exprn is not in  
-the domain of arcsine (which is `[-1.0,1.0]`).  
+Returns bottom if exprn evaluates to bottom, or if exprn is not in the domain of arcsine (which is `[-1.0, 1.0]`).  
   
 Example:  
 ```
@@ -1286,11 +1275,9 @@ Command [oper] "command_name"
 **[oper]**  
 =, != (other operators not valid)  
 **"command_name" (string)**  
-Name of the command. Commands are defined in the  
-player's CMD file, and are case-sensitive.  
-If the CMD has multiple commands with the same name,  
-then any one of those commands will work. Command names  
-must appear within double quotes.
+Name of the command. Commands are defined in the player's CMD file, and are case-sensitive.  
+If the CMD has multiple commands with the same name, then any one of those commands will work.  
+Command names must appear within double quotes.
   
   
 **Return type:**  
@@ -1336,8 +1323,7 @@ Expression specifying value to return if exp_cond is zero.
 Type of exp_true or exp_false, whichever is returned.  
   
 **Error conditions:**  
-Returns bottom if exp_cond evaluates to bottom, or if exp_true or exp_false  
-(whichever is actually used) evaluates to bottom.  
+Returns bottom if exp_cond evaluates to bottom, or if exp_true or exp_false (whichever is actually used) evaluates to bottom.  
   
 Example:  
 ```
@@ -1385,7 +1371,7 @@ Depends on specified hit parameter. See Details.
 none  
   
 **Details:**  
-The following values of param_name return values specified in the `[Data]` group in the player's constants.  
+The following values of *param_name* return values specified in the `[Data]` group in the player's constants.  
   
 - data.life: Returns value of the "life" parameter. (int)  
 - data.power: Returns value of the "power" parameter. (int)  
@@ -1400,7 +1386,7 @@ The following values of param_name return values specified in the `[Data]` group
 - data.IntPersistIndex: Returns value of the "IntPersistIndex" parameter. (int)  
 - data.FloatPersistIndex: Returns value of the "FloatPersistIndex" parameter. (int)  
   
-The following values of param_name return values specified in the `[Size]` group in the player's constants.  
+The following values of *param_name* return values specified in the `[Size]` group in the player's constants.  
   
 - size.xscale: Returns value of the "xscale" parameter. (float)  
 - size.yscale: Returns value of the "yscale" parameter. (float)  
@@ -1420,7 +1406,7 @@ The following values of param_name return values specified in the `[Size]` group
 - size.draw.offset.x: Returns x-component of the "draw.offset" parameter. (int)  
 - size.draw.offset.y: Returns y-component of the "draw.offset" parameter. (int)  
   
-The following values of param_name return values specified in the `[Velocity]` group in the player's constants.  
+The following values of *param_name* return values specified in the `[Velocity]` group in the player's constants.  
   
 - velocity.walk.fwd.x: Returns value of the "walk.fwd" parameter. (float)  
 - velocity.walk.back.x: Returns value of the "walk.back" parameter. (float)  
@@ -1449,7 +1435,7 @@ The following values of param_name return values specified in the `[Velocity]` g
 - velocity.air.gethit.airrecover.up: Returns value of the "air.gethit.airrecover.up" parameter. (float)  
 - velocity.air.gethit.airrecover.down: Returns value of the "air.gethit.airrecover.down" parameter. (float)  
   
-The following values of param_name return values specified in the `[Movement]` group in the player's constants.  
+The following values of *param_name* return values specified in the `[Movement]` group in the player's constants.  
   
 - movement.airjump.num: Returns value of the "airjump.num" parameter. (int)  
 - movement.airjump.height: Returns value of the "airjump.height" parameter. (int)  
@@ -1603,9 +1589,7 @@ float
 Returns bottom if exprn evaluates to bottom.  
   
 **Notes:**  
-Non-zero position and velocity offset values in common1.cns should use one of  
-the `Const` triggers to maintain consistency with characters from a different  
-coordinate space.  
+Non-zero position and velocity offset values in common1.cns should use one of the `Const` triggers to maintain consistency with characters from a different coordinate space.  
   
 Example:  
 ```
@@ -1638,8 +1622,7 @@ float
 Returns bottom if exprn evaluates to bottom.  
   
 **Notes:**  
-Non-zero position and velocity offset values in common1.cns should use one of the `Const` triggers to maintain consistency with characters from a different  
-coordinate space.  
+Non-zero position and velocity offset values in common1.cns should use one of the `Const` triggers to maintain consistency with characters from a different coordinate space.  
   
 Example:  
 ```
@@ -1999,7 +1982,8 @@ trigger3 = EnvShakeVar(ampl) = -4
 
 ## Exp (math) (old)
 
-Computes the exponential of the argument (e raised to the power of the argument.) This produces slightly more accurate results than the equivalent expression e**(argument).  
+Computes the exponential of the argument (e raised to the power of the argument).  
+This produces slightly more accurate results than the equivalent expression e**(argument).  
   
 **Format:**  
 exp(exprn)  
@@ -2251,8 +2235,7 @@ none
 Example:  
 ```
 trigger1 = FrontEdgeBodyDist < 30  
-; Triggers if the front of the player is within 30 pixels  
-  of the edge of the screen in front of him.  
+; Triggers if the front of the player is within 30 pixels of the edge of the screen in front of him.  
 ```
 
 ---
@@ -2292,16 +2275,14 @@ FVar(exprn)
 **Arguments:**  
 
 **exprn**  
-An expression evaluating to a variable number. Valid numbers  
-at this time are 0-39.
+An expression evaluating to a variable number. Valid numbers at this time are 0-39.
   
   
 **Return type:**  
 float  
   
 **Error conditions:**  
-Returns bottom if exprn evaluates to bottom, or if exprn evaluates  
-to an invalid variable index.  
+Returns bottom if exprn evaluates to bottom, or if exprn evaluates to an invalid variable index.  
   
 Example:  
 ```
@@ -2315,8 +2296,7 @@ trigger1 = FVar(5) = -1.23
 
 Returns the current height of the game space in the player's local coordinate space.  
 The game space is defined as the currently-visible area of the stage in which players interact.  
-The dimensions of the game space at a zoom factor of 1.0 is specified by the  
-GameWidth and GameHeight parameters in mugen.cfg.  
+The dimensions of the game space at a zoom factor of 1.0 is specified by the `GameWidth` and `GameHeight` parameters in mugen.cfg.  
   
 **Format:**  
 GameHeight  
@@ -2543,8 +2523,7 @@ none
 - hitcount: Returns the number of hits taken by the player in current combo. (int)  
 - fallcount: Returns the number of times player has hit the ground in the current combo. (int)  
 - hitshaketime: Returns time player is "frozen" during the hit. This number counts down by 1 for each game tick, and stops when it reaches zero. (int)  
-- hittime: Returns time before player regains control and returns to an idle state after being hit.  
-This counts down by 1 per game tick, as long as hitshaketime (see above) is greater than 0. It stops counting down when the value reaches -1. (int) `GetHitVar(hittime) < 0` is equivalent to the `HitOver` trigger.  
+- hittime: Returns time before player regains control and returns to an idle state after being hit. This counts down by 1 per game tick, as long as hitshaketime (see above) is greater than 0. It stops counting down when the value reaches -1. (int) `GetHitVar(hittime) < 0` is equivalent to the `HitOver` trigger.  
 - slidetime: Returns time that player slides backwards (on the ground) after the hit. (int)  
 - ctrltime: Returns time before player regains control after guarding the hit. (int)  
 - recovertime: Returns time before player gets up from liedown state. This number counts down to 0 for each game tick, and will count down faster if buttons are hit. (int)  
@@ -7155,5 +7134,3 @@ trigger2 = ZoomVar(pos.x) >= 100
 ```
 
 ---
-
-</div>

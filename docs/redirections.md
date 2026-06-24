@@ -1,11 +1,5 @@
----
-layout: default
-title: Merged Trigger Redirection Reference
----
-
 # Merged Trigger Redirection Reference
 
-<div class="toc-wrapper">
 ## Table of Contents
 
 - [enemy (old)](#enemy-old)
@@ -29,11 +23,8 @@ title: Merged Trigger Redirection Reference
 - [Target (changed)](#target-changed)
 - [target(ID) (old)](#targetid-old)
 
-</div>
-
 ---
 
-<div class="content">
 # Trigger Redirections
 
 ## enemy (old)
@@ -66,8 +57,7 @@ The trigger is redirected to the n'th-nearest opponent.
 
 ## helper (old)
 
-Redirects the trigger to the first helper found. See the related  
-trigger `NumHelper` in the trigger documentation.
+Redirects the trigger to the first helper found. See the related trigger `NumHelper` in the trigger documentation.
 
 ---
 
@@ -86,8 +76,7 @@ trigger1 = Helper(1005, 1), MoveType = A; The second helper with ID 1005
 
 ## helper(ID) (old)
 
-ID should be a well-formed expression that evaluates to a positive  
-integer. The trigger is then redirected to a helper with the  
+ID should be a well-formed expression that evaluates to a positive integer. The trigger is then redirected to a helper with the  
 corresponding ID number.
 
 ---
@@ -227,11 +216,7 @@ trigger1 = Target(-1, 1), Alive; The second target with any ID
 
 ## target(ID) (old)
 
-ID should be a well-formed expression that evaluates to a non-  
-negative integer. The trigger is then redirected to a target with  
-the corresponding targetID. The targetID is specified in the `ID`  
-parameter of a HitDef controller.
+`ID` should be a well-formed expression that evaluates to a non-negative integer. The trigger is then redirected to a target with the corresponding targetID.  
+The targetID is specified in the `ID` parameter of a HitDef controller.
 
 ---
-
-</div>
