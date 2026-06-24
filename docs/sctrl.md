@@ -259,7 +259,7 @@ TODO: list of sctrls that can't be redirected.
 
 ---
 
-# State Controller Reference
+# State Controllers
 
 ## AfterImage (old)
 
@@ -308,13 +308,13 @@ For instance, if the red component of the character's palette is denoted *pal_r*
 Valid values are 0-256 for palcolor, 0-255 for palbright and palpostbright components, and any non-negative integer for palcontrast components.  
 The defaults are:  
   
-```  
+```
 palcolor = 256  
 palinvertall = 0  
 palbright = 30, 30, 30  
 palcontrast = 120, 120, 220  
 palpostbright = 0, 0, 0  
-```  
+```
   
 **paladd = *add_r*, *add_g*, *add_b* (int)**  
   
@@ -328,10 +328,10 @@ These effects are applied zero times to the most recent afterimage frame, once t
 Valid values are 0-255 for the paladd components, and any non-negative float value for the palmul multipliers.  
 The defaults are:  
   
-```  
+```
 paladd = 10, 10, 25  
 palmul = 0.65, 0.65, 0.75  
-```  
+```
   
 **timegap = *value* (int)**  
   
@@ -382,8 +382,7 @@ Known bugs: If the timegap parameter in the originating AfterImage controller is
   
 **time = *new_duration* (int)**  
   
-Sets the new number of ticks that the afterimages will be  
-displayed before being removed.  
+Sets the new number of ticks that the afterimages will be displayed before being removed.  
   
 **Alternate syntax:**  
   
@@ -662,20 +661,15 @@ The flag name can be one of the following:
   
 **intro**  
   
-Tells MUGEN that the character is currently performing his intro  
-pose. Must be asserted on every tick while the intro pose is  
-being performed.  
+Tells MUGEN that the character is currently performing his intro pose. Must be asserted on every tick while the intro pose is being performed.  
   
 **invisible**  
   
-Turns the character invisible while asserted. Does not affect  
-display of afterimages.  
+Turns the character invisible while asserted. Does not affect display of afterimages.  
   
 **roundnotover**  
   
-Tells MUGEN that the character is currently performing his win  
-pose. Should be asserted on every tick while the win pose is being  
-performed.  
+Tells MUGEN that the character is currently performing his win pose. Should be asserted on every tick while the win pose is being performed.  
   
 **nobardisplay**  
   
@@ -703,25 +697,19 @@ While asserted, disables air guard for the character.
   
 **noautoturn**  
   
-While asserted, keeps the character from automatically turning  
-to face the opponent.  
+While asserted, keeps the character from automatically turning to face the opponent.  
   
 **nojugglecheck**  
   
-While asserted, disables juggle checking. P2 can be juggled  
-regardless of juggle points.  
+While asserted, disables juggle checking. P2 can be juggled regardless of juggle points.  
   
 **nokosnd**  
   
-Suppresses playback of sound 11, 0 (the KO sound) for players  
-who are knocked out. For players whose KO sound echoes, nokosnd  
-must be asserted for 50 or more ticks after the player is KOed  
-in order to suppress all echoes.  
+Suppresses playback of sound 11, 0 (the KO sound) for players who are knocked out. For players whose KO sound echoes, nokosnd must be asserted for 50 or more ticks after the player is KOed in order to suppress all echoes.  
   
 **nokoslow**  
   
-While asserted, keeps MUGEN from showing the end of the round in  
-slow motion.  
+While asserted, keeps MUGEN from showing the end of the round in slow motion.  
   
 **noshadow**  
   
@@ -737,20 +725,15 @@ While asserted, pauses playback of background music.
   
 **nowalk**  
   
-While asserted, the player cannot enter his walk states, even if  
-he has control. Use to prevent run states from canceling into  
-walking.  
+While asserted, the player cannot enter his walk states, even if he has control. Use to prevent run states from canceling into walking.  
   
 **timerfreeze**  
   
-While asserted, keeps the round timer from counting down. Useful  
-to keep the round from timing over in the middle of a splash  
-screen.  
+While asserted, keeps the round timer from counting down. Useful to keep the round from timing over in the middle of a splash screen.  
   
 **unguardable**  
   
-While asserted, all the asserting player's HitDefs become  
-unblockable, i.e., their guardflags are ignored.  
+While asserted, all the asserting player's HitDefs become unblockable, i.e., their guardflags are ignored.  
   
 **Example:**  
   
@@ -1078,9 +1061,8 @@ While asserted, the winner announcement on round end will be skipped.
 
 ## AttackDist (old)
 
-Changes the value of the guard.dist parameter for the player's current HitDef. The guard.dist is the x-distance from P1 in which P2 will go  
-into a guard state if P2 is holding the direction away from P1.  
-The effect of guard.dist only takes effect when P1 has movetype = A.  
+Changes the value of the guard.dist parameter for the player's current HitDef. The guard.dist is the x-distance from P1 in which P2 will go into a guard state if P2 is holding the direction away from P1.  
+The effect of guard.dist only takes effect when P1 has `movetype = A`.  
   
 **Required parameters:**  
   
@@ -1245,30 +1227,24 @@ If the player is a helper, binds the player to a specified position relative to 
 none  
   
 **Optional parameters:**  
-  
-**time = *bind_time* (int)**  
+*time = *bind_time* (int)*  
   
 Specify number of ticks that this binding should be effective.  
 Defaults to 1.  
   
-**facing = *facing_flag* (int)**  
+*facing = *facing_flag* (int)*  
   
-If *facing_flag* is -1, makes the player always face the opposite  
-direction from its parent during the binding time. If *facing_flag *  
-is 1, makes the player always face the same direction as its  
-parent during the binding time. If *facing_flag* is 0, the player  
-will not turn regardless of what its parent does. Defaults to 0.  
+If *facing_flag* is -1, makes the player always face the opposite direction from its parent during the binding time.  
+If *facing_flag* is 1, makes the player always face the same direction as its parent during the binding time.  
+If *facing_flag* is 0, the player will not turn regardless of what its parent does. Defaults to 0.  
   
 **pos = *pos_x* (float), *pos_y* (float)**  
   
-*pos_x* and *pos_y* specify the offsets (from the parent's axis) to  
-bind to. Defaults to 0, 0.  
+*pos_x* and *pos_y* specify the offsets (from the parent's axis) to bind to. Defaults to `0, 0`.  
   
 **Notes:**  
   
-If the player's parent is destroyed (for example, if it is a  
-helper, and executes DestroySelf), then the effect of  
-BindToParent is terminated.  
+If the player's parent is destroyed (for example, if it is a helper, and executes DestroySelf), then the effect of BindToParent is terminated.  
   
 **Example:**  
   
@@ -1293,16 +1269,14 @@ Defaults to 1.
   
 **facing = *facing_flag* (int)**  
   
-If *facing_flag* is -1, makes the player always face the opposite  
-direction from its root during the binding time. If *facing_flag*  
-is 1, makes the player always face the same direction as its  
-root during the binding time. If *facing_flag* is 0, the player  
-will not turn regardless of what its root does. Defaults to 0.  
+If *facing_flag* is -1, makes the player always face the opposite direction from its root during the binding time.  
+If *facing_flag* is 1, makes the player always face the same direction as its root during the binding time.  
+If *facing_flag* is 0, the player will not turn regardless of what its root does. Defaults to 0.  
   
 **pos = *pos_x* (float), *pos_y* (float)**  
   
 *pos_x* and *pos_y* specify the offsets (from the root's axis) to  
-bind to. Defaults to 0, 0.  
+bind to. Defaults to `0, 0`.  
   
 **Notes:**  
   
@@ -1508,7 +1482,7 @@ the player's animation will remain unchanged.
   
 Example:  
   
-```  
+```
 ; Change to standing state, and give player control  
 type = ChangeState  
 value = 0  
@@ -1584,7 +1558,7 @@ The LifeAdd controller is not affected by the player's defense multiplier.
   
 Example:  
   
-```  
+```
 ; All damage the player takes is reduced to half.  
 type = DefenceMulSet  
 value = 0.5  
@@ -1814,7 +1788,7 @@ formatting options.
   
 Example:  
   
-```  
+```
 type = DisplayToClipboard  
 text=`The value of var(17) is %d, which is %f%% of 23.\n\t--Kiwi.`  
 params = var(17):=1,var(17)/.230  
@@ -2232,46 +2206,46 @@ In 1.1, the equivalent parameters that replace postype are:
   
 postype = p1  
   
-```  
+```
 space = stage  
 pos = Pos X + CameraPos X, Pos Y  
 facing = facing  
-```  
+```
 postype = p2  
   
-```  
+```
 space = stage  
 pos = (enemynear, Pos X) + CameraPos X, (enemynear, Pos Y)  
 facing = enemynear, facing  
-```  
+```
 postype = front  
   
-```  
+```
 space = screen  
 pos = ifelse(facing = -1, 0, ScreenWidth), 0  
 facing = 1  
-```  
+```
 postype = back  
   
-```  
+```
 space = screen  
 pos = ifelse(facing = 1, 0, ScreenWidth), 0  
 facing = facing  
-```  
+```
 postype = left  
   
-```  
+```
 space = screen  
 pos = 0, 0  
 facing = 1  
-```  
+```
 postype = right  
   
-```  
+```
 space = screen  
 pos = ScreenWidth, 0  
 facing = 1  
-```  
+```
   
 **random = *rand_x*, *rand_y* (int, int)**  
   
@@ -2715,7 +2689,7 @@ sprites. Defaults to 0 (draw over characters).
 **pos = *x_pos*, *y_pos* (float)**  
   
 Specifies the position to display the animation at, relative to  
-the player axis. Defaults to 0, 0.  
+the player axis. Defaults to `0, 0`.  
   
 **random = *rand_amt* (int)**  
   
@@ -2758,7 +2732,7 @@ none
   
 Example:  
   
-```  
+```
 ; Applies constant acceleration throughout state  
 trigger1 = 1  
 type = Gravity  
@@ -3141,7 +3115,7 @@ those hit attributes which appear in the HitBy attribute string.
   
 Example:  
   
-```  
+```
 ; Can be hit only by standing normal attacks  
 trigger1 = 1  
 type = HitBy  
@@ -4406,7 +4380,7 @@ none
 **pos = *x_pos*, *y_pos* (int)**  
   
 Specifies the position that the dust should be drawn at, relative  
-to the player's axis. Defaults to 0, 0.  
+to the player's axis. Defaults to `0, 0`.  
   
 **pos2 = *x_pos*, *y_pos* (float)**  
   
@@ -5156,7 +5130,7 @@ string.
   
 Example:  
   
-```  
+```
 ; Not hit by anything  
 trigger1 = 1  
 type = NotHitBy  
@@ -5691,7 +5665,7 @@ This parameter is mutually exclusive with pan.
   
 Example:  
   
-```  
+```
 ; Plays back sound 2,0 from the player's SND file  
 type = PlaySnd  
 value = 2,0  
@@ -5699,7 +5673,7 @@ value = 2,0
 ; Plays back sound 5,2 from fight.snd  
 type = PlaySnd  
 value = F5,2  
-```  
+```
   
 Notes:  
   
@@ -6262,7 +6236,7 @@ for a given source pair.
   
 Example:  
   
-```  
+```
 ; All sprites using palette (1,1) will be drawn using palette (1,3)  
 ; instead.  
 type = RemapPal  
@@ -6773,7 +6747,7 @@ The default is -1, which means no sound is played. If you prepend `S` to *snd_gr
     
 **pos = *x_pos*, *y_pos* (float)**  
   
-Specifies the offset (from the player axis) at which the super anim is to be displayed. Defaults to 0, 0.  
+Specifies the offset (from the player axis) at which the super anim is to be displayed. Defaults to `0, 0`.  
   
 **darken = *bvalue* (boolean)**  
   
@@ -7198,7 +7172,7 @@ target ID will be affected. Defaults to -1 (affects all targets.)
   
 Example:  
   
-```  
+```
 ; Applies constant gravity to all targets  
 type = TargetVelAdd  
 trigger1 = 1  
@@ -7394,7 +7368,7 @@ default depends on *trans_type*.
   
 Example:  
   
-```  
+```
 ; Fades the character in, over 256 ticks.  
 type = Trans  
 trigger1 = time &lt; 256  
@@ -7572,7 +7546,7 @@ malfunction of the opponent player.
   
 Example:  
   
-```  
+```
 ;Assign a random number between 0 and 500 to var(5).  
 type = VarRandom  
 v = 5  
@@ -7700,7 +7674,7 @@ Specifies the value to add to the player's y-velocity.
   
 Example:  
   
-```  
+```
 ; Applies constant gravity to the player  
 trigger1 = 1  
 type = VelAdd  
@@ -7729,7 +7703,7 @@ Specifies the value to multiply the player's y-velocity with.
   
 Example:  
   
-```  
+```
 ; Applies constant friction to the player  
 trigger1 = 1  
 type = VelMul  
@@ -7806,28 +7780,22 @@ none
   
 Sets the player's edge width in front and behind. Edge width  
 determines how close the player can get to the edge of the screen.  
-These parameters default to 0, 0 if omitted.  
+These parameters default to `0, 0` if omitted.  
   
 **player = *playwidth_front*, *playwidth_back* (int, int)**  
   
-Sets the player width in front and behind. Player width determines  
-how close the player can get to other players. These parameters  
-default to 0, 0 if omitted.  
+Sets the player width in front and behind.  
+Player width determines how close the player can get to other players. These parameters default to `0, 0` if omitted.  
   
 **Alternate syntax:**  
   
 **value = *width_front*, *width_back* (int, int)**  
   
-This is a shorthand syntax for setting both edge width and player  
-width simultaneously. This may only be used if the edge and player  
-parameters are not specified.  
+This is a shorthand syntax for setting both edge width and player width simultaneously. This may only be used if the edge and player parameters are not specified.  
   
 **Notes:**  
   
-When collision box display is enabled, the edge width bar is  
-displayed in orange, and the player width bar is displayed in  
-yellow. Where they overlap, the overlapping region is displayed in  
-bright yellow.  
+When collision box display is enabled, the edge width bar is displayed in orange, and the player width bar is displayed in yellow. Where they overlap, the overlapping region is displayed in bright yellow.  
   
 **Example:**  
   

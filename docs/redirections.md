@@ -25,7 +25,7 @@
 
 ---
 
-# State Controller Reference
+# Redirections
 
 ## enemy (old)
 
