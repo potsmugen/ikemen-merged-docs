@@ -16,10 +16,10 @@ jobs:
 
     steps:
       - name: Checkout main repo
-        uses: actions/checkout@v4.2.2  # Updated to latest v4 patch
+        uses: actions/checkout@v4.2.2
 
       - name: Set up Python
-        uses: actions/setup-python@v5.3.0  # Updated to latest v5 patch
+        uses: actions/setup-python@v5.3.0
 
       - name: Install dependencies
         run: pip install requests
@@ -33,12 +33,22 @@ jobs:
       - name: Generate redirections
         run: python merge_redirections.py
 
-      - name: Recreate index page (Home)
+      - name: Check for content changes (excluding index.md)
+        id: check
+        run: |
+          if git status --porcelain docs/ | grep -v "docs/index.md" | grep -q .; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Recreate index page (Home) with timestamp
+        if: steps.check.outputs.changed == 'true'
         run: |
           cat > docs/index.md << 'EOF'
           # Ikemen GO Merged Documentation
 
-          The documentation in this page is obtained by automatically merging the Ikemen GO wiki with the Mugen 1.1 documentation.
+          The documentation in this page is obtained by automatically merging the Ikemen GO wiki with the M.U.G.E.N 1.1 documentation.
 
           ## Pages
 
@@ -50,14 +60,14 @@ jobs:
 
           *Updated daily via GitHub Actions.*  
           EOF
-          
-          # Append the current UTC timestamp to the bottom of the file
+
           echo "*Last updated: $(date -u +'%Y-%m-%d %H:%M:%S UTC')*" >> docs/index.md
 
       - name: Commit and push changes
+        if: steps.check.outputs.changed == 'true'
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add docs/
-          git diff --staged --quiet || git commit -m "docs: auto-update Pages [skip ci]"
+          git commit -m "docs: auto-update Pages [skip ci]"
           git push
