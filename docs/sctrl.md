@@ -2232,7 +2232,7 @@ Both arg1 and arg2 default to 0 if omitted.
   
 **supermove = *bvalue* (boolean)**  
   
-~~This parameter is deprecated -- use supermovetime parameter instead~~  
+*This parameter is deprecated; use supermovetime parameter instead.*  
 Set supermove = 1 to have the explod persist until the end of a super pause, regardless of the value of removetime. Defaults to 0.  
   
 **Notes:**  
@@ -3858,11 +3858,6 @@ This parameter prevents a hit from happening if the enemy lacks a particular typ
 Note: All Mugen characters were created on the assumption that lacking `Clsn2` makes them invulnerable. Therefore, if a character is designed for compatibility with other Mugen characters, this parameter should be used when checking hits against other types of collision boxes.  
 
 
-### p2sprpriority (nightly build only)
-
-See `p1sprpriority`.
-
-
 ### redlife
 
 >redlife = *hit_value*, *guard_value* (int)  
@@ -4262,7 +4257,7 @@ path = "kfm.gob"
 
 ## MakeDust (old)
 
-~~This controller is deprecated; use the Explod controller.~~  
+*This controller is deprecated; use the Explod controller.*  
   
 Creates dust effects.  
   
