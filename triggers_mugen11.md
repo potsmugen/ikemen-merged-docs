@@ -140,7 +140,6 @@ Trigger in Format 1 is true if the player's animation is at the start of the ele
 In other words, if value1 is equal to n, it is true on the first game-tick of the nth element of the animation.  
 Trigger in Format 2 compares the player's animation-time to `t+value2`, where `t` is time of the start of the element number specified by `value1`.  
   
-  
 **Notes:**  
 AnimElem will not trigger on the first game-tick of the second or later loop of an animation with a finite looptime.  
 For example, `AnimElem = 1` will trigger the first tick a player changes to an animation, but will not trigger on the tick that it loops. You may get it to trigger each time using `AnimElem = 1 || AnimTime = 0`.  
@@ -1041,8 +1040,8 @@ FVar(exprn)
 **Arguments:**  
 
 **exprn**  
-An expression evaluating to a variable number. Valid numbers at this time are 0-39.
-  
+An expression evaluating to a variable number.  
+~~Valid numbers at this time are 0-39.~~  
   
 **Return type:**  
 float  
@@ -1077,7 +1076,6 @@ none
 GameWidth and GameHeight scale inversely with the zoom factor of the camera.  
 For example, if the camera zoom factor is 0.5, the values returned by GameWidth and GameHeight will be double that of at zoom factor 1.  
 ScreenWidth and ScreenHeight are the equivalent triggers that are not affected by the camera zoom factor.  
-  
   
 Example:  
 ```
@@ -1714,7 +1712,6 @@ After contact, MoveContact's return value will increase by 1 for each game tick 
 The values of MoveGuarded, MoveHit and MoveReversed increment in the same fashion.  
 Note 1: the values of MoveContact, MoveGuarded, MoveHit and MoveReversed are set simultaneously. For example, if one HitDef in a move hits successfully, MoveHit will return non-zero. If a following HitDef in the same move is guarded, MoveGuarded will return non-zero, and the other three triggers will return 0.  
 Note 2: the values of the four Move\* triggers reset to 0 and stop incrementing after a state transition. See `movehitpersist` parameter for StateDefs (CNS docs) for how to override this behavior.  
-  
   
 Examples:  
 ```
@@ -2392,7 +2389,6 @@ The first form of ProjContact shown above is only valid for one tick after conta
 For the second form, ProjContact returns true if the projectile made contact n ticks ago, where n is a nonnegative number satisfying the relation "n [oper] value2".  
 Specifying an ID number of 0 gives the same behavior as if the ID number is omitted (check all projectiles).  
   
-  
 Examples:  
 ```
 1. trigger1 = ProjContact1234 = 1  
@@ -2538,7 +2534,6 @@ ProjHit will trigger once for each hit of the projectile, so a multi-hit project
 The first form of ProjHit shown above is only valid for one tick after hit, unlike MoveHit.  
 For the second form, ProjHit returns true if the projectile hit n ticks ago, where n is a nonnegative number satisfying the relation "n [oper] value2".  
 Specifying an ID number of 0 gives the same behavior as if the ID number is omitted (check all projectiles).  
-  
   
 Examples:  
 ```
@@ -2696,10 +2691,8 @@ Example:
 trigger1 = RoundsExisted = 0  
 trigger1 = TeamMode = Turns  
 trigger1 = RoundNo > 0  
-; Triggers if the player has just entered a Turns mode team match  
-  after the first round. You can use this example with a  
-  ChangeState controller to switch to an intro state by  
-  overriding the Initialize state (state 5900).  
+; Triggers if the player has just entered a Turns mode team match after the first round.
+; You can use this example with a ChangeState controller to switch to an intro state by overriding the Initialize state (state 5900).  
 ```
   
 ## RoundState
@@ -2753,7 +2746,6 @@ none
 **Details:**  
 For `ScreenPos X`, the value is relative to the left of the screen (value 0). Negative is left, positive is right.  
 For `ScreenPos Y`, the value is relative to the top of the screen. Negative is above the screen, positive is downward.  
-  
   
 Example:  
 ```
@@ -2944,8 +2936,8 @@ SysFVar(exprn)
 **Arguments:**  
 
 **exprn**  
-An expression evaluating to a variable number. Valid numbers  
-at this time are 0-4.
+An expression evaluating to a variable number.  
+~~Valid numbers at this time are 0-4.~~  
   
 **Return type:**  
 float  
@@ -2971,9 +2963,8 @@ SysVar(exprn)
 **Arguments:**  
 
 **exprn**  
-An expression evaluating to a variable number. Valid numbers  
-at this time are 0-4.
-  
+An expression evaluating to a variable number.  
+~~Valid numbers at this time are 0-4.~~  
   
 **Return type:**  
 int  
@@ -2989,7 +2980,7 @@ trigger1 = SysVar(0) = -34
 ```
   
 ## Tan (math)
-Computes the tangent of the specified argument (in radians.)  
+Computes the tangent of the specified argument (in radians).  
   
 **Format:**  
 tan(exprn)  
@@ -3191,8 +3182,8 @@ Var(exprn)
 **Arguments:**  
 
 **exprn**  
-An expression evaluating to a variable number. Valid numbers at this time are 0-59.
-  
+An expression evaluating to a variable number.  
+~~Valid numbers at this time are 0-59.~~  
   
 **Return type:**  
 int  
