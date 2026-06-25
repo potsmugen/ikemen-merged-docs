@@ -2089,32 +2089,26 @@ Defaults to 0.
   
 **sprpriority = *pr* (int)**  
   
-*pr* specifies the drawing priority for the explod. Animations  
-with higher priority get drawn over animations with lesser  
-priority. For instances, setting sprpriority = -3 will cause the  
-explod to be drawn under most characters and other explods, which  
-usually have sprpriority &gt;= -2.  
+*pr* specifies the drawing priority for the explod.  
+Animations with higher priority get drawn over animations with lesser priority.  
+For instance, setting sprpriority = -3 will cause the explod to be drawn under most characters and other explods, which usually have sprpriority >= -2.  
 Defaults to 0 if omitted.  
   
 **ontop = *bvalue* (boolean)**  
   
-Set ontop = 1 to have the explod drawn over all other sprites and  
-background layers. This parameter has precedence over sprpriority.  
+Set ontop = 1 to have the explod drawn over all other sprites and background layers. This parameter has precedence over sprpriority.  
 Defaults to 0.  
   
 **shadow = *shadow* (int)**  
   
-If *shadow* is not 0, a shadow will be drawn for the explod,  
-else no shadow will be drawn.  Defaults to 0.  
+If *shadow* is not 0, a shadow will be drawn for the explod, else no shadow will be drawn. Defaults to 0.  
   
 **ownpal = *ownpal_flag* (int)**  
   
-If *ownpal_flag* is 0, the explod color will be affected by subsequent  
-execution of the player's PalFX and RemapPal controllers. This  
-is normally the default.  
+If *ownpal_flag* is 0, the explod color will be affected by subsequent execution of the player's PalFX and RemapPal controllers.  
+This is normally the default.  
   
-If *ownpal_flag* is 1, the explod color will not be affected by subsequent  
-execution of the player's PalFX and RemapPal controllers.  
+If *ownpal_flag* is 1, the explod color will not be affected by subsequent execution of the player's PalFX and RemapPal controllers.  
 This is the default if the anim is from fightfx.air.  
   
 **remappal = *dst_pal_grp*, *dst_pal_item* (int, int)**  
@@ -2127,14 +2121,11 @@ Defaults to -1, 0.
   
 **removeongethit = *bvalue* (boolean)**  
   
-Setting this to 1 will cause the explod removed if the player gets  
-hit. Defaults to 0.  
+Setting this to 1 will cause the explod removed if the player gets hit. Defaults to 0.  
   
 **ignorehitpause = *bvalue* (boolean)**  
   
-If this is 1, the explod will be animated independently of the  
-player that created it. If set to 0, it will not be updated when  
-the player is in hitpause. Defaults to 1.  
+If this is 1, the explod will be animated independently of the player that created it. If set to 0, it will not be updated when the player is in hitpause. Defaults to 1.  
   
 **trans = *trans_type* (string)**  
   
@@ -2160,45 +2151,32 @@ Interprets pos relative to p2's axis. A positive *off_x* is toward the front of 
   
 **front**  
   
-Interprets *off_x* relative to the edge of the screen that p1 is  
-facing toward, and *off_y* relative to the top of the screen. A  
-positive *off_x* is to the right of the screen,  
-whereas a negative *off_x* is toward the left.  
+Interprets *off_x* relative to the edge of the screen that p1 is facing toward, and *off_y* relative to the top of the screen.  
+A positive *off_x* is to the right of the screen, whereas a negative *off_x* is toward the left.  
   
 **back**  
   
-Interprets *off_x* relative to the edge of the screen that p1 is  
-facing away from, and *off_y* relative to the top of the screen. A  
-positive *off_x* is toward the center of the screen, whereas a  
-negative *off_x* is away from the center.  
-For historical reasons, the offset behavior is inconsistent with  
-postype = front.  
+Interprets *off_x* relative to the edge of the screen that p1 is facing away from, and *off_y* relative to the top of the screen.  
+A positive *off_x* is toward the center of the screen, whereas a negative *off_x* is away from the center.  
+For historical reasons, the offset behavior is inconsistent with postype = front.  
   
 **left**  
   
-Interprets *off_x* and *off_y* relative to the upper-left corner of  
-the screen. A positive *off_x* is toward the right of the  
-screen.  
+Interprets *off_x* and *off_y* relative to the upper-left corner of the screen. A positive *off_x* is toward the right of the screen.  
   
 **right**  
   
-Interprets *off_x* and *off_y* relative to the upper-right corner of  
-the screen. A positive *off_x* is toward the right of the  
-screen.  
+Interprets *off_x* and *off_y* relative to the upper-right corner of the screen. A positive *off_x* is toward the right of the screen.  
   
 **none**  
   
 Interprets *off_x* and *off_y* as an absolute position.  
-This is the default value for postype for characters with a mugenversion  
-of 1.1 or higher.  
+This is the default value for postype for characters with a mugenversion of 1.1 or higher.  
   
 The use of p1 or p2 postype will create an explod in stage space.  
-The use of front, back, left or right postype will create an explod in  
-screen space.  
+The use of front, back, left or right postype will create an explod in screen space.  
   
-The postype parameter has been deprecated in 1.1, with its functionality  
-replaced by a combination of the space and bindID parameters, as well as  
-the ScreenWidth, ScreenHeight, and various Edge triggers.  
+The postype parameter has been deprecated in 1.1, with its functionality replaced by a combination of the space and bindID parameters, as well as the ScreenWidth, ScreenHeight, and various Edge triggers.  
   
 In 1.1, the equivalent parameters that replace postype are:  
   
@@ -2247,31 +2225,22 @@ facing = 1
   
 **random = *rand_x*, *rand_y* (int, int)**  
   
-Causes the explod's bind point to be displaced by a random amount  
-when created. *rand_x* specifies the displacement range in the x  
-direction, and *rand_y* specifies the displacement range in the y  
-direction. For instance, if pos = 0, 0 and random = 40,80, then the  
-explod's x location will be a random number between -20 and 19,  
-and its y location will be a random number between -40 and 39.  
+Causes the explod's bind point to be displaced by a random amount when created.  
+*rand_x* specifies the displacement range in the x direction, and *rand_y* specifies the displacement range in the y direction.  
+For instance, if pos = 0, 0 and random = 40,80, then the explod's x location will be a random number between -20 and 19, and its y location will be a random number between -40 and 39.  
 Both arg1 and arg2 default to 0 if omitted.  
   
 **supermove = *bvalue* (boolean)**  
   
-<strong>This parameter is deprecated -- use supermovetime parameter instead</strong>  
-Set supermove = 1 to have the explod persist until the end of a  
-super pause, regardless of the value of removetime. Defaults to 0.  
+~~This parameter is deprecated -- use supermovetime parameter instead~~  
+Set supermove = 1 to have the explod persist until the end of a super pause, regardless of the value of removetime. Defaults to 0.  
   
 **Notes:**  
   
-The position of an explod that is bound to a player is determined only after  
-all player updates have completed (compared to helpers, which are created  
-relative to the player's immediate position when the controller was executed).  
-This behavior is necessary to make explods bind properly to the player's  
-screen position.  
+The position of an explod that is bound to a player is determined only after all player updates have completed (compared to helpers, which are created relative to the player's immediate position when the controller was executed).  
+This behavior is necessary to make explods bind properly to the player's screen position.  
   
-For example, assume the player has an x velocity of 5 and a position of (160, 0).  
-If an explod is created with an offset of 0, 0 relative to p1, then the explod's  
-actual screen position will be 165,0.
+For example, assume the player has an x velocity of 5 and a position of (160, 0). If an explod is created with an offset of 0, 0 relative to p1, then the explod's actual screen position will be 165,0.
 
 ---
 
@@ -2591,8 +2560,8 @@ See common1.cns.
 
 ## ForceFeedback (old)
 
-Creates force feedback for supported force feedback devices. <strong>This controller is not implemented in MUGEN 1.0.</strong>  
-  
+Creates force feedback for supported force feedback devices.  
+This controller is not implemented in MUGEN 1.0.  
 Parameters to the ForceFeedback controller may not be specified using arithmetic expressions. It is an exception in this regard.  
   
 **Required parameters:**  
@@ -2603,12 +2572,10 @@ none
   
 **waveform = *wave_type* (string)**  
   
-Valid waveforms are `sine`, `square`, `sinesquare`, and `off`. For  
-the Dual Shock controller, a sine waveform corresponds to the  
-large rumble motor, and a square waveform corresponds to the  
-smaller buzzer motor. sinesquare, of course, corresponds to both  
-motors simultaneously. Use `off` to turn off any force feedback  
-that is currently executing. waveform defaults to sine.  
+Valid waveforms are `sine`, `square`, `sinesquare`, and `off`.  
+For the Dual Shock controller, a sine waveform corresponds to the large rumble motor, and a square waveform corresponds to the smaller buzzer motor. sinesquare, of course, corresponds to both motors simultaneously.  
+Use `off` to turn off any force feedback that is currently executing.  
+waveform defaults to sine.  
   
 **time = *duration* (integer constant)**  
   
@@ -2617,27 +2584,19 @@ Defaults to 60.
   
 **freq = *start* (integer constant), *d1*, *d2*, *d3* (float constants)**  
   
-Force feedback frequency varies between 0 and 255. The formula  
-used to determine force feedback frequency is  
-start + *d1* * t + *d2* * t ** 2 + *d3* * t ** 3  
-where t represents the number of ticks elapsed since the force  
-feedback was initiated. Defaults to  
-freq = 128,0, 0, 0.  
+Force feedback frequency varies between 0 and 255.  
+The formula used to determine force feedback frequency is `start + *d1* * t + *d2* * t ** 2 + *d3* * t ** 3` where t represents the number of ticks elapsed since the force feedback was initiated. Defaults to `freq = 128, 0, 0, 0`.  
 Currently, the frequency parameter is completely ignored.  
   
 **ampl = *start* (integer constant), *d1*, *d2*, *d3* (float constants)**  
   
-Force feedback amplitude varies between 0 and 255. The formula  
-used to determine force feedback frequency is  
-start + *d1* * t + *d2* * t ** 2 + *d3* * t ** 3  
-where t represents the number of ticks elapsed since the force  
-feedback was initiated. Defaults to  
-ampl = 128,0, 0, 0  
+Force feedback amplitude varies between 0 and 255.  
+The formula used to determine force feedback frequency is `start + *d1* * t + *d2* * t ** 2 + *d3* * t ** 3`, where t represents the number of ticks elapsed since the force feedback was initiated.  
+Defaults to `ampl = 128,0, 0, 0`  
   
 **self = *self_flag* (boolean constant)**  
   
-If *self_flag* is 1, then P1's pad will vibrate. If self is 0, then P2's  
-pad will vibrate. Defaults to 1.  
+If *self_flag* is 1, then P1's pad will vibrate. If self is 0, then P2's pad will vibrate. Defaults to 1.  
   
 **Example:**  
   
@@ -2676,24 +2635,19 @@ none
   
 **value = *anim_no* (int)**  
   
-Specifies the animation number (from fightfx) of the animation to  
-play. Defaults to 0.  
+Specifies the animation number (from fightfx) of the animation to play. Defaults to 0.  
   
 **under = *under_flag* (int)**  
   
-If *under_flag* is 1, the animation is drawn behind the character  
-sprites. Defaults to 0 (draw over characters).  
+If *under_flag* is 1, the animation is drawn behind the character sprites. Defaults to 0 (draw over characters).  
   
 **pos = *x_pos*, *y_pos* (float)**  
   
-Specifies the position to display the animation at, relative to  
-the player axis. Defaults to `0, 0`.  
+Specifies the position to display the animation at, relative to the player axis. Defaults to `0, 0`.  
   
 **random = *rand_amt* (int)**  
   
-The position of the animation will be displaced in the x and y  
-directions by (different) random amounts. The displacement can be  
-as large as half of rand_amt. Defaults to 0.  
+The position of the animation will be displaced in the x and y directions by (different) random amounts. The displacement can be as large as half of rand_amt. Defaults to 0.  
   
 **Example:**  
   
@@ -2813,15 +2767,12 @@ none
   
 **helpertype = *type_string* (string)**  
   
-<strong>This parameter is deprecated; player-type helpers are not supported.</strong>  
+~~This parameter is deprecated; player-type helpers are not supported.~~  
 If helpertype = normal, then the helper will be allowed to move off the edge of the screen. Furthermore, the camera will not move to try to keep the helper on screen. If helpertype = player, then the helper will be constrained to the screen and will be followed by the camera, just like a normal player. Defaults to normal. If you plan to use a helper for camera manipulation, do not use a player-type helper; instead use the ScreenBound controller in a normal helper with the `movecamera` parameter.  
   
 **name = `*name_string*` (string)**  
   
-Specifies a name for this helper, which must be enclosed in double  
-quotes. If omitted, the name defaults to `&lt;parent&gt;'s helper`,  
-where &lt;parent&gt; represents the name of the player creating the  
-helper.  
+Specifies a name for this helper, which must be enclosed in double quotes. If omitted, the name defaults to `parent's helper`, where "parent" represents the name of the player creating the helper.  
   
 **ID = *id_no* (int)**  
   
@@ -2829,14 +2780,12 @@ Sets an ID number to refer to this helper by. Defaults to 0.
   
 **pos = *off_x*, *off_y* (float)**  
   
-Specifies the x and y offsets to create this helper at. The  
-precise meaning of these parameters is dependent on the postype.  
+Specifies the x and y offsets to create this helper at. The precise meaning of these parameters is dependent on the postype.  
 Defaults to `0, 0`.  
   
 **postype = *postype_string* (string)**  
   
-*postype_string* specifies the postype -- how to interpret the pos  
-parameters.  
+*postype_string* specifies the postype -- how to interpret the pos parameters.  
 In all cases, a positive y offset means a downward displacement.  
 In all cases, *off_y* is relative to the position of the player.  
   
@@ -2844,51 +2793,36 @@ Valid values for *postype_string* are the following:
   
 **p1**  
   
-Interprets offset relative to p1's axis. A positive *off_x* is  
-toward the front of p1. This is the default value for postype.  
+Interprets offset relative to p1's axis. A positive *off_x* is toward the front of p1. This is the default value for postype.  
   
 **p2**  
   
-Interprets offset relative to p2's axis. A positive *off_x* is  
-toward the front of p2.  If p2 does not exist, the position is  
-calculated with respect to p1 and a warning is logged.  
+Interprets offset relative to p2's axis. A positive *off_x* is toward the front of p2. If p2 does not exist, the position is calculated with respect to p1 and a warning is logged.  
   
 **front**  
   
-Interprets *off_x* relative to the edge of the screen that p1 is  
-facing toward. A positive *off_x*  
-is away from the center of the screen, whereas a  
-negative *off_x* is toward the center.  
+Interprets *off_x* relative to the edge of the screen that p1 is facing toward.  
+A positive *off_x* is away from the center of the screen, whereas a negative *off_x* is toward the center.  
   
 **back**  
   
-Interprets *off_x* relative to the edge of the screen that p1 is  
-facing away from. A positive *off_x*  
-is toward the center of the screen, whereas a  
-negative *off_x* is away from the center.  
+Interprets *off_x* relative to the edge of the screen that p1 is facing away from.  
+A positive *off_x* is toward the center of the screen, whereas a negative *off_x* is away from the center.  
   
 **left**  
   
-Interprets *off_x* relative to the left edge of  
-the screen. A positive *off_x* is toward the right of the  
-screen.  
+Interprets *off_x* relative to the left edge of the screen. A positive *off_x* is toward the right of the screen.  
   
 **right**  
   
-Interprets *off_x* relative to the right edge of  
-the screen. A positive *off_x* is toward the right of the  
-screen.  
+Interprets *off_x* relative to the right edge of the screen. A positive *off_x* is toward the right of the screen.  
   
 **facing = *facing* (int)**  
   
-If postype is left or right, setting *facing* to 1 will make the  
-helper face the right, and a value of -1 makes the helper face  
-left.  
-For all other values of postype except p2, if *facing* is 1, the  
-helper will face the same direction as the player. If *facing* is  
--1, the helper will face the opposite direction.  
-In the case of postype = p2, *facing* has the same effect as above,  
-except it is with respect to p2's facing. Defaults to 1.  
+If postype is left or right, setting *facing* to 1 will make the helper face the right, and a value of -1 makes the helper face left.  
+For all other values of postype except p2, if *facing* is 1, the helper will face the same direction as the player. If *facing* is -1, the helper will face the opposite direction.  
+In the case of postype = p2, *facing* has the same effect as above, except it is with respect to p2's facing.  
+Defaults to 1.  
   
 **stateno = *start_state* (int)**  
   
@@ -2897,20 +2831,15 @@ Defaults to 0.
   
 **keyctrl = *ctrl_flag* (boolean)**  
   
-If *ctrl_flag* is 1, then the helper is able to read command input from  
-the player (e.g., the keyboard or joystick). Also, the helper will  
-inherit its root's State -1. If *ctrl_flag* is 0, then the helper does  
-not have access to command input, and does not inherit State -1.  
+If *ctrl_flag* is 1, then the helper is able to read command input from the player (e.g., the keyboard or joystick). Also, the helper will inherit its root's State -1.  
+If *ctrl_flag* is 0, then the helper does not have access to command input, and does not inherit State -1.  
 The default value of *ctrl_flag* is 0.  
   
 **ownpal = *ownpal_flag* (boolean)**  
   
-If *ownpal_flag* is 0, the helper will be affected by subsequent  
-execution of its parent's PalFX and RemapPal controllers. This  
-is the default.  
+If *ownpal_flag* is 0, the helper will be affected by subsequent execution of its parent's PalFX and RemapPal controllers. This is the default.  
   
-If *ownpal_flag* is 1, the helper will receive its own working palette  
-which is independent of its parent's.  
+If *ownpal_flag* is 1, the helper will receive its own working palette which is independent of its parent's.  
   
 **remappal = *dst_pal_grp*, *dst_pal_item* (int, int)**  
   
@@ -2921,13 +2850,13 @@ Defaults to -1, 0.
   
 **supermovetime = *move_time* (int)**  
   
-Specifies the number of ticks that the helper should be  
-unfrozen during a SuperPause. Defaults to 0.  
+Specifies the number of ticks that the helper should be unfrozen during a SuperPause.  
+Defaults to 0.  
   
 **pausemovetime = *move_time* (int)**  
   
-Determines the number of ticks that the helper should be  
-unfrozen during a Pause. Defaults to 0.  
+Determines the number of ticks that the helper should be unfrozen during a Pause.  
+Defaults to 0.  
   
 **size.xscale (float)**  
   
@@ -2971,9 +2900,8 @@ See below.
   
 **size.shadowoffset (int)**  
   
-These parameters have the same meaning as the corresponding  
-parameters in the root's CNS file. You can specify one or more of  
-these parameters to change it to a value suitable for this helper.  
+These parameters have the same meaning as the corresponding parameters in the root's CNS file.  
+You can specify one or more of these parameters to change it to a value suitable for this helper.  
 Otherwise, they default to the values inherited from the parent.  
   
 **Example:**  
@@ -3068,8 +2996,7 @@ Adds to the current combo counter.
   
 **value = *add_count* (int)**  
   
-*add_count* specifies the number of hits to add to the current  
-combo counter.  
+*add_count* specifies the number of hits to add to the current combo counter.  
   
 **Optional parameters:**  
   
@@ -3096,20 +3023,15 @@ should be a standard hit attribute string.  See Details.
   
 **time = *effective_time* (int)**  
   
-Specifies the number of game ticks that these HitBy attributes  
-should be effective for. Defaults to 1.  
+Specifies the number of game ticks that these HitBy attributes should be effective for. Defaults to 1.  
   
 **Details:**  
   
-The player has two hit attribute slots, which can be set using the  
-value or value2 parameters to the HitBy controller. These slots can  
-also be set by the NotHitBy controller. When a slot is set, it gets  
-a timer (the effective time) which counts down toward zero. If the  
-timer has not yet reached zero, the slot is considered to be active.  
-The player can be hit by a HitDef only if that HitDef's attribute  
-appears in all currently active slots.  
-Using the HitBy controller sets the specified slot to contain only  
-those hit attributes which appear in the HitBy attribute string.  
+The player has two hit attribute slots, which can be set using the value or value2 parameters to the HitBy controller.  
+These slots can also be set by the NotHitBy controller.  
+When a slot is set, it gets a timer (the effective time) which counts down toward zero. If the timer has not yet reached zero, the slot is considered to be active.  
+The player can be hit by a HitDef only if that HitDef's attribute appears in all currently active slots.  
+Using the HitBy controller sets the specified slot to contain only those hit attributes which appear in the HitBy attribute string.  
   
 Example:  
   
@@ -3194,7 +3116,9 @@ Using this parameter limits vulnerability to a specific player ID.
 
 ## HitDef (old)
 
-Defines a single hit of the player's attack. If the player's Clsn1 box (red) comes in contact with his opponent's Clsn2 box (blue), and the HitDef was define on or before that particular point in time, then the specified effect will be applied. This is one of the more complex, but most commonly-used controllers.  
+Defines a single hit of the player's attack.  
+If the player's Clsn1 box (red) comes in contact with his opponent's Clsn2 box (blue), and the HitDef was define on or before that particular point in time, then the specified effect will be applied.  
+This is one of the more complex, but most commonly-used controllers.  
 A single HitDef is valid only for a single hit. To make a move hit several times, you must trigger more than one HitDef during the attack.  
   
 **Required parameters:**  
@@ -3413,48 +3337,38 @@ Defaults to `0, 0` if omitted.
   
 **airguard.velocity = *x_velocity*, *y_velocity* (float float)**  
   
-Velocity to give P2 if P2 guards the hit in the air. Defaults  
-to *x_velocity* * 1.5, *y_velocity* / 2, where *x_velocity* and *y_velocity*  
+Velocity to give P2 if P2 guards the hit in the air. Defaults to *x_velocity* \* 1.5, *y_velocity* / 2, where *x_velocity* and *y_velocity*  
 are values of the `air.velocity` parameter.  
   
 **ground.cornerpush.veloff = *x_velocity* (float)**  
   
-Determines the additional velocity (velocity offset) to impart to  
-the player if he lands a ground hit in the corner. Setting this  
-to a higher value will cause the player to be `pushed back` farther  
-out of the corner. If omitted, default value depends on the attr  
-parameter. If arg1 of attr is `A`, default value is 0. Otherwise,  
-defaults to 1.3 * guard.velocity.  
+Determines the additional velocity (velocity offset) to impart to the player if he lands a ground hit in the corner.  
+Setting this to a higher value will cause the player to be pushed back farther out of the corner.  
+If omitted, default value depends on the attr parameter. If arg1 of attr is `A`, default value is 0. Otherwise, defaults to 1.3 \* guard.velocity.  
   
 **air.cornerpush.veloff = *x_velocity* (float)**  
   
-Determines the additional velocity (velocity offset) to impart to  
-the player if he lands a hit to an aerial opponent in the corner.  
-Setting this to a higher value will cause the player to be `pushed  
-back` farther out of the corner. Defaults to  
-ground.cornerpush.veloff if omitted.  
+Determines the additional velocity (velocity offset) to impart to the player if he lands a hit to an aerial opponent in the corner.  
+Setting this to a higher value will cause the player to be pushed back farther out of the corner.  
+Defaults to ground.cornerpush.veloff if omitted.  
   
 **down.cornerpush.veloff = *x_velocity* (float)**  
   
-Determines the additional velocity (velocity offset) to impart to  
-the player if he lands a hit on a downed opponent in the corner.  
-Setting this to a higher value will cause the player to be `pushed  
-back` farther out of the corner. Defaults to  
-ground.cornerpush.veloff if omitted.  
+Determines the additional velocity (velocity offset) to impart to the player if he lands a hit on a downed opponent in the corner.  
+Setting this to a higher value will cause the player to be pushed back farther out of the corner.  
+Defaults to ground.cornerpush.veloff if omitted.  
   
 **guard.cornerpush.veloff = *x_velocity* (float)**  
   
-Determines the additional velocity (velocity offset) to impart to  
-the player if his hit is guarded in the corner. Setting this  
-to a higher value will cause the player to be `pushed back` farther  
-out of the corner. Defaults to ground.cornerpush.veloff if omitted.  
+Determines the additional velocity (velocity offset) to impart to the player if his hit is guarded in the corner.  
+Setting this to a higher value will cause the player to be pushed back farther out of the corner.  
+Defaults to ground.cornerpush.veloff if omitted.  
   
 **airguard.cornerpush.veloff = *x_velocity* (float)**  
   
-Determines the additional velocity (velocity offset) to impart to  
-the player if his hit is guarded in the corner. Setting this  
-to a higher value will cause the player to be `pushed back` farther  
-out of the corner. Defaults to guard.cornerpush.veloff if omitted.  
+Determines the additional velocity (velocity offset) to impart to the player if his hit is guarded in the corner.  
+Setting this to a higher value will cause the player to be `pushed back` farther out of the corner.  
+Defaults to guard.cornerpush.veloff if omitted.  
   
 **airguard.ctrltime = *ctrl_time* (int)**  
   
@@ -3463,10 +3377,10 @@ Defaults to the same value as `guard.ctrltime` if omitted.
   
 **air.juggle = *juggle_points* (int)**  
   
-The amount of additional juggle points the hit requires. Not to be  
-confused with the `juggle` parameter in the StateDef.  
-You typically do not need this parameter, except for HitDefs of  
-projectiles. Defaults to 0 if omitted.  
+The amount of additional juggle points the hit requires.  
+Not to be confused with the `juggle` parameter in the StateDef.  
+You typically do not need this parameter, except for HitDefs of projectiles.  
+Defaults to 0 if omitted.  
   
 **mindist = *x_pos*, *y_pos* (int, int)**  
   
@@ -3474,22 +3388,25 @@ See below.
   
 **maxdist = *x_pos*, *y_pos* (int, int)**  
   
-These let you control the minimum and maximum distance of P2  
-relative to P1, after P2 has been hit. These parameters are not  
-commonly used.  
+These let you control the minimum and maximum distance of P2 relative to P1, after P2 has been hit. These parameters are not commonly used.  
 Defaults to no change in P2's position if omitted.  
   
 **snap = *x_pos*, *y_pos* (int, int)**  
   
-This moves P2 to the specified position relative to P1 if hit. This parameter is not normally used. If you want to snap P2 to a particular position for a throw, it is recommended you use a `TargetBind` controller in P1's throwing state instead. Defaults to no change in P2's position if omitted.  
+This moves P2 to the specified position relative to P1 if hit.  
+This parameter is not normally used. If you want to snap P2 to a particular position for a throw, it is recommended you use a `TargetBind` controller in P1's throwing state instead.  
+Defaults to no change in P2's position if omitted.  
   
 **p1sprpriority = *drawing_priority* (int)**  
   
-This is the drawing priority of P1's sprite if the move hits or is guarded by P2. Together with the p2sprpriority parameter, it controls whether or not P1 is drawn in front of or behind P2. The default value is 1.  
+This is the drawing priority of P1's sprite if the move hits or is guarded by P2.  
+Together with the p2sprpriority parameter, it controls whether or not P1 is drawn in front of or behind P2.  
+The default value is 1.  
   
 **p2sprpriority = *drawing_priority* (int)**  
   
-This is the drawing priority of P2's sprite if the move hits or is guarded by P2. The default value is 0.  
+This is the drawing priority of P2's sprite if the move hits or is guarded by P2.  
+The default value is 0.  
   
 **p1facing = *facing* (int)**  
   
@@ -3498,56 +3415,57 @@ The default value is no change in where P1 is facing.
   
 **p1getp2facing = *facing* (int)**  
   
-Set to 1 to have P1 face in the same direction as P2 is facing  
-after the hit connects, and -1 to have P1 face the opposite  
-direction from P2. Defaults to 0 (no change). If nonzero, this  
-parameter takes precedence over p1facing.  
+Set to 1 to have P1 face in the same direction as P2 is facing after the hit connects, and -1 to have P1 face the opposite direction from P2. Defaults to 0 (no change).  
+If nonzero, this parameter takes precedence over p1facing.  
   
 **p2facing = *facing* (int)**  
   
-Set to 1 to make P2 face the same direction as P1 if the hit  
-is successful, -1 to make P2 face away.  
+Set to 1 to make P2 face the same direction as P1 if the hit is successful, -1 to make P2 face away.  
 The default value is 0, no change in where P2 is facing.  
   
 **p1stateno = *state_no* (int)**  
   
-This is the number of the state to set P1 to if the hit is successful. The state must be an attack state (movetype = A) for at least 1 tick. Used mainly for throws. Defaults to -1, no change.  
+This is the number of the state to set P1 to if the hit is successful.  
+The state must be an attack state (movetype = A) for at least 1 tick. Used mainly for throws.  
+Defaults to -1, no change.  
   
 **p2stateno = *state_no* (int)**  
   
-This is the number of the state to set P2 to if the hit is successful. P2 will get P1's state and animation data. P2 will retain P1's states and animation data until P2 is hit, or a SelfState controller is used to return P2 to his own states. The state must be a get-hit state (movetype = H) for at least 1 tick. Used mainly for throws; can also be used for custom hit reactions. Defaults to -1, no change.  
+This is the number of the state to set P2 to if the hit is successful.  
+P2 will get P1's state and animation data. P2 will retain P1's states and animation data until P2 is hit, or a SelfState controller is used to return P2 to his own states.  
+The state must be a get-hit state (movetype = H) for at least 1 tick. Used mainly for throws; can also be used for custom hit reactions.  
+Defaults to -1, no change.  
   
 **p2getp1state = *bvalue* (boolean)**  
   
-Set to 0 to prevent P2 from getting P1's state and animation  
-data, in case you do not want that default behaviour of the  
-`p2stateno` parameter. Defaults to 1 if the `p2stateno`  
-parameter is used. Ignored otherwise.  
+Set to 0 to prevent P2 from getting P1's state and animation data, in case you do not want that default behaviour of the `p2stateno` parameter.  
+Defaults to 1 if the `p2stateno` parameter is used. Ignored otherwise.  
   
 **forcestand = *bvalue* (boolean)**  
   
-Set to 1 to force P2 to a standing state-type if the hit is successful, and P2 is in a crouching state. Has no effect if P2 is in an air state. Normally defaults to 0, but if the y_velocity of the `ground.velocity` parameter is non-zero, it defaults to 1.  
+Set to 1 to force P2 to a standing state-type if the hit is successful, and P2 is in a crouching state.  
+Has no effect if P2 is in an air state.  
+Normally defaults to 0, but if the y_velocity of the `ground.velocity` parameter is non-zero, it defaults to 1.  
   
 **fall = *bvalue* (boolean)**  
   
-Set to 1 if you want P2 to go into a `fall` state (where  
-P2 hits the ground without regaining control in the air).  
-Use if you want a move to `knock down` P2. Defaults to 0.  
+Set to 1 if you want P2 to go into a `fall` state (where P2 hits the ground without regaining control in the air).  
+Use if you want a move to `knock down` P2.  
+Defaults to 0.  
   
 **fall.xvelocity = *x_velocity* (float)**  
   
-This is the x-velocity that P2 gets when bouncing off the ground  
-in the `fall` state. Defaults to no change if omitted.  
+This is the x-velocity that P2 gets when bouncing off the ground in the `fall` state.  
+Defaults to no change if omitted.  
   
 **fall.yvelocity = *y_velocity* (float)**  
   
-This is the y-velocity that P2 gets when bouncing off the ground  
-in the `fall` state. Defaults to -4.5 in 240p, -9 in 480p, -18 in 720p.  
+This is the y-velocity that P2 gets when bouncing off the ground in the `fall` state. Defaults to -4.5 in 240p, -9 in 480p, -18 in 720p.  
   
 **fall.recover = *bvalue* (boolean)**  
   
-Set to 0 if you do not want P2 to be able to recover from the  
-`fall` state. Defaults to 1 if omitted (can recover).  
+Set to 0 if you do not want P2 to be able to recover from the `fall` state.  
+Defaults to 1 if omitted (can recover).  
   
 **fall.recovertime = *recover_time* (int)**  
   
@@ -3555,8 +3473,7 @@ This is the time that must pass before P2 is able to recover from the `fall` sta
   
 **fall.damage = *damage_amt* (int)**  
   
-Indicates the amount of damage to deal when P2 hits the ground  
-out of a falling state. Defaults to 0 if omitted.  
+Indicates the amount of damage to deal when P2 hits the ground out of a falling state. Defaults to 0 if omitted.  
   
 **air.fall = *bvalue* (boolean)**  
   
@@ -3569,16 +3486,12 @@ Set to 1 to force P2 out of a `fall` state, if he is in one. This parameter has 
 **down.velocity = *x_velocity*, *y_velocity* (float, float)**  
   
 This is the velocity to assign P2 if P2 is hit while lying down.  
-If the *y_velocity* is non-zero, P2 will be hit into the air. If  
-it is zero, then P2 will slide back on the ground.  
-Defaults to the same values as the `air.velocity` parameter if  
-omitted.  
+If the *y_velocity* is non-zero, P2 will be hit into the air. If it is zero, then P2 will slide back on the ground.  
+Defaults to the same values as the `air.velocity` parameter if omitted.  
   
 **down.hittime = *hit_time* (int)**  
   
-This is the time that P2 will slide back for if P2 is hit while  
-lying down. This parameter is ignored if the *y_velocity* is non-  
-zero for the `down.velocity` parameter.  
+This is the time that P2 will slide back for if P2 is hit while lying down. This parameter is ignored if the *y_velocity* is non-zero for the `down.velocity` parameter.  
   
 **down.bounce = *bvalue* (boolean)**  
   
@@ -3586,55 +3499,43 @@ Set to 1 if you want P2 to bounce off the ground one time (using the fall.xveloc
   
 **id = *id_number* (int)**  
   
-Idetifier for the hit. Used for chain moves. You can use this number to  
-later detect if a player was last hit by this particular HitDef.  
-This number is called the targetID. It is used in controllers  
-such as TargetBind, or in the target(ID) redirection keyword.  
-Valid values are all values &gt;= 1. If omitted, defaults to 0 (no  
-ID). TargetID is not to be confused with PlayerID.  
+Idetifier for the hit. Used for chain moves. You can use this number to later detect if a player was last hit by this particular HitDef.  
+This number is called the targetID. It is used in controllers such as TargetBind, or in the target(ID) redirection keyword.  
+Valid values are all values >= 1. If omitted, defaults to 0 (no ID). TargetID is not to be confused with PlayerID.  
   
 **chainID = *id_number* (int)**  
   
-Main use of this is for chain moves. If P2 was last hit by a  
-move by P1 with this ID, only then can he be hit by the HitDef  
-with this chainID. You can use this in the following parts of a  
-chain move. Note that chain moves are still possible even without  
-the use of the `id` and `chainid` parameters. Valid values are  
-all values &gt;= 1. If omitted, defaults to -1 (chain from any hit).  
+Main use of this is for chain moves. If P2 was last hit by a move by P1 with this ID, only then can he be hit by the HitDef with this chainID. You can use this in the following parts of a  
+chain move. Note that chain moves are still possible even without the use of the `id` and `chainid` parameters.  
+Valid values are all values >= 1.  
+If omitted, defaults to -1 (chain from any hit).  
   
 **nochainID = *nochain_1*, *nochain_2* (int)**  
   
-nochainID specifies up to 2 ID numbers of hits which cannot  
-be chained into this hit. If these are -1 (the default), then  
-chaining is not explicitly disabled for any hit ID numbers.  
-nochain_2 can be omitted. Except for -1, the values specified  
-must not coincide with the value for chainID. This parameter  
-has no effect if P2 is hit by a third party between P1's  
-previous HitDef and the current HitDef.  
+nochainID specifies up to 2 ID numbers of hits which cannot be chained into this hit. If these are -1 (the default), then chaining is not explicitly disabled for any hit ID numbers.  
+nochain_2 can be omitted. Except for -1, the values specified must not coincide with the value for chainID.  
+This parameter has no effect if P2 is hit by a third party between P1's previous HitDef and the current HitDef.  
   
 **hitonce = *hitonce_flag* (boolean)**  
   
-If set to 1, the HitDef only affects one opponent. If the hit is successful, all other targets will be dropped. Normally defaults to 0. The exception is if the `attr` parameter is a throw type, which makes it default to 1.  
+If set to 1, the HitDef only affects one opponent. If the hit is successful, all other targets will be dropped.  
+Normally defaults to 0. The exception is if the `attr` parameter is a throw type, which makes it default to 1.  
   
 **kill = *bvalue* (boolean)**  
   
-Set to 0 if this hit should not be able to KO the opponent when  
-the hit is successful. Defaults to 1.  
+Set to 0 if this hit should not be able to KO the opponent when the hit is successful. Defaults to 1.  
   
 **guard.kill = *bvalue* (boolean)**  
   
-Set to 0 if this hit should not be able to KO the opponent when  
-the hit is guarded. Defaults to 1.  
+Set to 0 if this hit should not be able to KO the opponent when the hit is guarded. Defaults to 1.  
   
 **fall.kill = *bvalue* (boolean)**  
   
-Set to 0 to prevent this attack from KO'ing the opponent  
-when he falls on the ground (see fall.damage). Defaults to 1.  
+Set to 0 to prevent this attack from KO'ing the opponent when he falls on the ground (see fall.damage). Defaults to 1.  
   
 **numhits = *hit_count* (int)**  
   
-*hit_count* indicates how many hits this hitdef should add to the  
-combo counter. Must be 0 or greater. Defaults to 1.  
+*hit_count* indicates how many hits this hitdef should add to the combo counter. Must be 0 or greater. Defaults to 1.  
   
 **getpower = *p1power*, *p1gpower* (int, int)**  
   
@@ -3661,10 +3562,8 @@ See below.
   
 **palfx.add = *r2*, *g2*, *b2* (int, int, int)**  
   
-If included, this allows for palette effects on P2 if the hit is  
-successful. *palfx_time* is the time in game-ticks to apply palette  
-effects on P2. *palfx_time* is 0 by default (no effect). The rest  
-of the parameters are the same as in the PalFX controller.  
+If included, this allows for palette effects on P2 if the hit is successful.  
+*palfx_time* is the time in game-ticks to apply palette effects on P2. *palfx_time* is 0 by default (no effect). The rest of the parameters are the same as in the PalFX controller.  
   
 **envshake.time = *envshake_time* (int)**  
   
@@ -3704,9 +3603,7 @@ applied only when P2 hits the ground.
   
 **Notes:**  
   
-The behavior of HitDef is undefined when executed from a  
-[Statedef -2] block while the player has another player's  
-state and animation data.  
+The behavior of HitDef is undefined when executed from a [Statedef -2] block while the player has another player's state and animation data.  
   
 **Example:**  
   
@@ -4193,7 +4090,7 @@ If set to 1, the character will override a hit without changing states at all.
 
 ## HitVelSet (old)
 
-<strong>This controller is deprecated.</strong>  
+~~This controller is deprecated.~~  
   
 When the player has been hit, sets the desired components of the player's velocity to the appropriate gethit velocities.  
   
@@ -4365,7 +4262,7 @@ path = "kfm.gob"
 
 ## MakeDust (old)
 
-<strong>This controller is deprecated; use the Explod controller.</strong>  
+~~This controller is deprecated; use the Explod controller.~~  
   
 Creates dust effects.  
   
@@ -5256,26 +5153,16 @@ See below.
   
 **mul = *mul_r*, *mul_g*, *mul_b* (int, int, int)**  
   
-Each add component is added to the appropriate component of the  
-player's palette, and the result is multiplied by the appropriate  
-mul component divided by 256. For instance, if *pal_r* is the  
-red component of the character's original palette, then the new  
-red component is (*pal_r* + *add_r*) * *mul_r* / 256. The values for mul  
-must be &gt;= 0.  
-The defaults for these parameters are for no change,  
-i.e. add = 0, 0, 0 and mul = 256,256,256.  
+Each add component is added to the appropriate component of the player's palette, and the result is multiplied by the appropriate mul component divided by 256.  
+For instance, if *pal_r* is the red component of the character's original palette, then the new red component is (*pal_r* + *add_r*) \* *mul_r* / 256.  
+The values for mul must be >= 0.  
+The defaults for these parameters are for no change, i.e. add = 0, 0, 0 and mul = 256,256,256.  
   
 **sinadd = ampl_r, ampl_g, ampl_b, period (int, int, int, int)**  
   
-Creates an additional sine-wave palette addition effect. Period  
-specifies the period of the sine wave in game ticks, and the  
-amplitude parameters control the amplitude of the sine wave for  
-the respective components. For instance, if t represents the  
-number of ticks elapsed since the activation of the PalFX  
-controller, and *pal_r* is the red component of the character's  
-original palette, then the red component of the character's  
-palette at time t is  
-(*pal_r* + *add_r* + *ampl_r* * sin(2 * pi * t / *period*)) * *mul_r* / 256.  
+Creates an additional sine-wave palette addition effect.  
+Period specifies the period of the sine wave in game ticks, and the amplitude parameters control the amplitude of the sine wave for the respective components.  
+For instance, if t represents the number of ticks elapsed since the activation of the PalFX controller, and *pal_r* is the red component of the character's original palette, then the red component of the character's palette at time t is (*pal_r* + *add_r* + *ampl_r* \* sin(2 \* pi \* t / *period*)) \* *mul_r* / 256.  
   
 **invertall = *bvalue* (bool)**  
   
@@ -5650,8 +5537,8 @@ over and over. Defaults to 0.
 **pan = *p* (int)**  
   
 This is the positional offset of the sound, measured in pixels.  
-If *p* &gt; 0, then the sound is offset to the front of the player.  
-If *p* &lt; 0, then sound is offset to the back.  
+If *p* > 0, then the sound is offset to the front of the player.  
+If *p* < 0, then sound is offset to the back.  
 Defaults to 0.  
 This parameter is mutually exclusive with abspan.  
   
@@ -6720,8 +6607,8 @@ SuperPause accepts all optional parameters that the Pause controller does. In ad
   
 **time = *pause_time* (int)**  
   
-Specifies the number of ticks that the pause should last. Default  
-is 30 ticks (half a second at default speed).  
+Specifies the number of ticks that the pause should last.  
+Default is 30 ticks (half a second at default speed).  
   
 **anim = *anim_no* (int)**  
   
@@ -6745,7 +6632,7 @@ Set this to 0 to disable this effect. The default value is 1.
   
 This is the amount in which to temporarily multiply the defence of any targets the player has. This is used to make chaining into supers less damaging.  
 Setting this at 1 will make no changes to the targets' defence.
-0 is a special value that will set the defence to the number set in Super.TargetDefenceMul in the `[Rules]` section of `mugen.cfg`.  
+0 is a special value that will set the defence to the number set in Super.TargetDefenceMul in the [Rules] section of `mugen.cfg`.  
 The default value is 0.  
 Valid values are all positive numbers, including zero.  
   
@@ -7338,7 +7225,7 @@ Example:
 ```
 ; Fades the character in, over 256 ticks.  
 type = Trans  
-trigger1 = time &lt; 256  
+trigger1 = time < 256  
 trans = add  
 alpha = time, 256-time  
 ```

@@ -1,6 +1,6 @@
 # Ikemen GO Merged Documentation
 
-The documentation in this page is obtained by automatically merging the Ikemen GO wiki with the Mugen 1.1 documentation.
+The documentation in this page is obtained by automatically merging the Ikemen GO wiki with the M.U.G.E.N 1.1 documentation.
 
 ## Pages
 
@@ -11,4 +11,4 @@ The documentation in this page is obtained by automatically merging the Ikemen G
 ---
 
 *Updated daily via GitHub Actions.*  
-*Last updated: 2026-06-25 03:36:52 UTC*
+*Last updated: 2026-06-25 05:52:26 UTC*
