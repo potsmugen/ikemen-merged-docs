@@ -997,7 +997,7 @@ Both arg1 and arg2 default to 0 if omitted.
   
 **supermove = *bvalue* (boolean)**  
   
-~~This parameter is deprecated -- use supermovetime parameter instead~~  
+*This parameter is deprecated; use supermovetime parameter instead.*  
 Set supermove = 1 to have the explod persist until the end of a super pause, regardless of the value of removetime. Defaults to 0.  
   
 **Notes:**  
@@ -2036,7 +2036,7 @@ none
   
 ## MakeDust  
   
-~~This controller is deprecated; use the Explod controller.~~  
+*This controller is deprecated; use the Explod controller.*  
   
 Creates dust effects.  
   
