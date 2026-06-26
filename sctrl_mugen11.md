@@ -506,7 +506,7 @@ flag to. 0 for no control, nonzero for control.
 This is the action number to switch to. If omitted,  
 the player's animation will remain unchanged.  
   
-Example:  
+**Example:**  
   
 ```
 ; Change to standing state, and give player control  
@@ -567,7 +567,7 @@ none
   
 The LifeAdd controller is not affected by the player's defense multiplier.  
   
-Example:  
+**Example:**  
   
 ```
 ; All damage the player takes is reduced to half.  
@@ -646,7 +646,7 @@ parameter actually provided, then the actual value of the parameter
 will be shown in an appropriate form for that type, using default  
 formatting options.  
   
-Example:  
+**Example:**  
   
 ```
 type = DisplayToClipboard  
@@ -1140,7 +1140,7 @@ none
   
 none  
   
-Example:  
+**Example:**  
   
 ```
 ; Applies constant acceleration throughout state  
@@ -1344,7 +1344,7 @@ When a slot is set, it gets a timer (the effective time) which counts down towar
 The player can be hit by a HitDef only if that HitDef's attribute appears in all currently active slots.  
 Using the HitBy controller sets the specified slot to contain only those hit attributes which appear in the HitBy attribute string.  
   
-Example:  
+**Example:**  
   
 ```
 ; Can be hit only by standing normal attacks  
@@ -2120,7 +2120,7 @@ Using the NotHitBy controller sets the specified slot to contain all
 hit attributes except those specified in the NotHitBy attribute  
 string.  
   
-Example:  
+**Example:**  
   
 ```
 ; Not hit by anything  
@@ -2461,7 +2461,7 @@ Like pan, except the sound is panned from the center of the
 screen, not from the player's position.  
 This parameter is mutually exclusive with pan.  
   
-Example:  
+**Example:**  
   
 ```
 ; Plays back sound 2,0 from the player's SND file  
@@ -2842,7 +2842,7 @@ Palette mappings are not transitive; i.e. mapping 1,0 to 2,0 and 2,0 to 3,0 will
 In 1.1 and newer, each player is allowed up to 8 different palette mappings at the same time.  
 Subsequent calls of RemapPal will fail if the source pair is not already being mapped.  Unused mappings can be removed by setting *dst_pal_grp* to -1 for a given source pair.  
   
-Example:  
+**Example:**  
   
 ```
 ; All sprites using palette (1,1) will be drawn using palette (1,3)  
@@ -2912,7 +2912,7 @@ Defaults to 0 if omitted.
 If 1, specifies that camera should pan to follow the player in the x direction and in the y direction, respectively.  
 Defaults to 0 in both instances if omitted.  
   
-**Examples:**  
+**Example:**  
   
 none  
   
@@ -3202,7 +3202,7 @@ Specifies the number of the state to change the targets to.
   
 Specifies the desired target ID to affect. Only targets with this target ID will be affected. Defaults to -1 (affects all targets).  
   
-**Examples:**  
+**Example:**  
   
 none  
   
@@ -3228,7 +3228,7 @@ Specifies the value to add to the y-velocity of the target.
   
 Specifies the desired target ID to affect. Only targets with this target ID will be affected. Defaults to -1 (affects all targets).  
   
-Example:  
+**Example:**  
   
 ```
 ; Applies constant gravity to all targets  
@@ -3286,7 +3286,7 @@ Overrides the player's animation transparency parameters for current game tick. 
   
 These are the source and destination alpha values for the add trans types. Valid values are from 0 (low) to 256 (high). If omitted, default depends on *trans_type*.  
   
-Example:  
+**Example:**  
   
 ```
 ; Fades the character in, over 256 ticks.  
@@ -3379,7 +3379,7 @@ Sets the specified int variable to a random value. Float variables cannot be set
   
 If you have placed P2 in a custom state through a successful hit, do not use variable assignment within the custom states. Otherwise, you will overwrite P2's variables, which can cause unintended malfunction of the opponent player.  
   
-Example:  
+**Example:**  
   
 ```
 ;Assign a random number between 0 and 500 to var(5).  
@@ -3488,7 +3488,7 @@ Specifies the value to add to the player's x-velocity.
   
 Specifies the value to add to the player's y-velocity.  
   
-Example:  
+**Example:**  
   
 ```
 ; Applies constant gravity to the player  
@@ -3515,7 +3515,7 @@ Specifies the value to multiply the player's x-velocity with.
   
 Specifies the value to multiply the player's y-velocity with.  
   
-Example:  
+**Example:**  
   
 ```
 ; Applies constant friction to the player  
