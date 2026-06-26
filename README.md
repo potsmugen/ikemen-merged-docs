@@ -3,12 +3,10 @@
 Automatically generated merged documentation for Ikemen GO.  
 Updated daily via GitHub Actions by merging the latest Ikemen GO wiki with a static copy of the M.U.G.E.N 1.1 documentation.
 
-## Pages
+## How to use
 
-- [Home](https://potsmugen.github.io/ikemen-merged-docs/)
-- [State Controllers](https://potsmugen.github.io/ikemen-merged-docs/sctrl)
-- [Triggers](https://potsmugen.github.io/ikemen-merged-docs/triggers)
-- [Redirections](https://potsmugen.github.io/ikemen-merged-docs/redirections)
+The latest documentation is published to GitHub Pages:  
+https://potsmugen.github.io/ikemen-merged-docs/
 
 ## Sources
 
