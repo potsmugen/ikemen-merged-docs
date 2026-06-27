@@ -57,7 +57,7 @@ def main():
     print("=" * 60, file=sys.stderr)
 
     # 1. M.U.G.E.N redirections
-    mugen_file = Path("redirections_mugen11.md")
+    mugen_file = Path("static/redirections_mugen11.md")
     if not mugen_file.exists():
         print(f"ERROR: {mugen_file} not found", file=sys.stderr)
         sys.exit(1)

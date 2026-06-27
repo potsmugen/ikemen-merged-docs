@@ -14,7 +14,7 @@ def main():
     print("MERGED TRIGGERS", file=sys.stderr)
     print("=" * 60, file=sys.stderr)
 
-    mugen_file = Path("triggers_mugen11.md")
+    mugen_file = Path("static/triggers_mugen11.md")
     if not mugen_file.exists():
         print(f"ERROR: {mugen_file} not found", file=sys.stderr)
         sys.exit(1)

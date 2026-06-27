@@ -30,4 +30,4 @@ Copyright (c) Ikemen GO contributors.
 ---
 
 *Updates checked daily via GitHub Actions.*  
-*Last updated: {{ site.time | date: "%Y-%m-%d %H:%M:%S %Z" }}*
+*Last updated: TIMESTAMP_PLACEHOLDER*
