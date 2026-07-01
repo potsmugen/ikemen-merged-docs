@@ -7640,7 +7640,9 @@ Like the `lag` parameter, but it applies after the Zoom effect ends.
 
 ### Lag
 
-Controls the smoothing effect for camera position and scale transitions during zoom, with smaller values leading to quicker adjustments and larger values causing more gradual changes. Valid values are between 0 and 1. Defaults to 0, which makes the camera snap instantly.
+Controls the smoothing effect for camera position and scale transitions during zoom, with smaller values leading to quicker adjustments and larger values causing more gradual changes.  
+Valid values are between 0 and 1, where 0 snaps the camera instantly and 1 delays the zoom effect indefinitely.  
+Defaults to 0.
 
 
 ### Pos
