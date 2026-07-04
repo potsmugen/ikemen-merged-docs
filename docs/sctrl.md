@@ -271,7 +271,8 @@ none
   
 **time = *duration* (int)**  
   
-Specifies the number of ticks that the afterimages should be displayed for. Set to -1 to display indefinitely. Defaults to 1.  
+Specifies the number of ticks that the afterimages should be displayed for. Set to -1 to display indefinitely.  
+Defaults to 1.  
   
 **length = *no_of_frames* (int)**  
   
@@ -1234,11 +1235,13 @@ Defaults to 1.
   
 If *facing_flag* is -1, makes the player always face the opposite direction from its parent during the binding time.  
 If *facing_flag* is 1, makes the player always face the same direction as its parent during the binding time.  
-If *facing_flag* is 0, the player will not turn regardless of what its parent does. Defaults to 0.  
+If *facing_flag* is 0, the player will not turn regardless of what its parent does.  
+Defaults to 0.  
   
 **pos = *pos_x* (float), *pos_y* (float)**  
   
-*pos_x* and *pos_y* specify the offsets (from the parent's axis) to bind to. Defaults to `0, 0`.  
+*pos_x* and *pos_y* specify the offsets (from the parent's axis) to bind to.  
+Defaults to `0, 0`.  
   
 **Notes:**  
   
@@ -1269,12 +1272,14 @@ Defaults to 1.
   
 If *facing_flag* is -1, makes the player always face the opposite direction from its root during the binding time.  
 If *facing_flag* is 1, makes the player always face the same direction as its root during the binding time.  
-If *facing_flag* is 0, the player will not turn regardless of what its root does. Defaults to 0.  
+If *facing_flag* is 0, the player will not turn regardless of what its root does.  
+Defaults to 0.  
   
 **pos = *pos_x* (float), *pos_y* (float)**  
   
 *pos_x* and *pos_y* specify the offsets (from the root's axis) to  
-bind to. Defaults to `0, 0`.  
+bind to.  
+Defaults to `0, 0`.  
   
 **Notes:**  
   
@@ -1304,7 +1309,8 @@ Defaults to 1.
   
 **ID = *bind_id* (int)**  
   
-Specifies ID number of the target to bind to. Defaults to -1 (pick  
+Specifies ID number of the target to bind to.  
+Defaults to -1 (pick  
 any target).  
   
 **pos = *pos_x* (float), *pos_y* (float), *postype* (string)**  
@@ -1849,7 +1855,8 @@ environment color. The default is 255,255,255 (pure white).
 **time = *effective_time* (int)**  
   
 Specifies how many ticks the environment color should be  
-displayed. Defaults to 1 tick. Set to -1 to have the EnvColor  
+displayed.  
+Defaults to 1 tick. Set to -1 to have the EnvColor  
 persist indefinitely.  
   
 **under = *under_flag* (int)**  
@@ -1880,13 +1887,15 @@ Specifies the number of ticks to shake the screen for.
 **freq = *shake_speed* (float)**  
   
 *shake_speed* is a float between 0 (slow shake) to 180 (fast  
-shake). Defaults to 60.  
+shake).  
+Defaults to 60.  
   
 **ampl = *shake_amplitude* (int)**  
   
 The larger the amplitude, the farther the screen shakes up and  
 down. A negative amplitude means that the screen will shake down  
-first. Defaults to -4 in 240p, -8 in 480p, -16 in 720p.  
+first.  
+Defaults to -4 in 240p, -8 in 480p, -16 in 720p.  
   
 **phase = *phase_offset* (float)**  
   
@@ -1969,16 +1978,15 @@ The Explod controller is a flexible tool for displaying animations such as spark
   
 **anim = *[F]anim_no* (int)**  
   
-*anim_no* specifies the number of the animation to play back. The  
-'F' prefix is optional: if included, then the animation is played  
-back from fightfx.air.  
+*anim_no* specifies the number of the animation to play back.  
+The 'F' prefix is optional: if included, then the animation is played back from fightfx.air.  
   
 **Optional parameters:**  
   
 **ID = *id_no* (int)**  
   
-*id_no* specifies an ID number for this explod. Used to identify particular explods in  
-triggers and controllers that affect explods.  
+*id_no* specifies an ID number for this explod.  
+Used to identify particular explods in triggers and controllers that affect explods.  
   
 **space = *space* (string)**  
   
@@ -1987,41 +1995,36 @@ Valid values for *space* are:
   
 **screen**  
   
-This coordinate space maps to the screen.  The upper-left corner is  
-0, 0 and the lower-right corner is ScreenWidth,ScreenHeight (refer to the  
-triggers with these names).  Explods created in screen space are not  
-affected by camera movement or zoom.  
+This coordinate space maps to the screen.  
+The upper-left corner is `0, 0` and the lower-right corner is `ScreenWidth, ScreenHeight` (refer to the triggers with these names).  
+Explods created in screen space are not affected by camera movement or zoom.  
   
 **stage**  
   
 This coordinate space maps to the stage space in which players reside.  
-0, 0 is the center of the stage at ground level.  
+`0, 0` is the center of the stage at ground level.  
 Explods created in screen space are affected by camera movement and zoom.  
 This is the default.  
   
 **pos = *off_x*, *off_y* (float, float)**  
   
-If the explod is not bound, *off_x* and *off_y* specify the position at  
-which to create the explod.  
-If the explod is bound, *off_x* and *off_y* specify the offset from the  
-object to which the explod is bound to.  
+If the explod is not bound, *off_x* and *off_y* specify the position at which to create the explod.  
+If the explod is bound, *off_x* and *off_y* specify the offset from the object to which the explod is bound to.  
   
 **facing = *facing* (int)**  
   
-Set *facing* to 1 to have the explod face in the same direction as  
-the positive *off_x*, and -1 to have the explod face in the opposite  
-direction. Defaults to 1.  
+Set *facing* to 1 to have the explod face in the same direction as the positive *off_x*, and -1 to have the explod face in the opposite direction.  
+Defaults to 1.  
   
 **vfacing = *vfacing* (int)**  
   
-Set *vfacing* to -1 to have the explod display vertically flipped,  
-or 1 to have the explod display vertically unflipped. Defaults to  
-1.  
+Set *vfacing* to -1 to have the explod display vertically flipped, or 1 to have the explod display vertically unflipped.  
+Defaults to 1.  
   
 **bindID = *bind_id* (int)**  
   
-ID number of a player or helper to bind to.  The position of a bound  
-explod is relative to the object that it is bound to.  
+ID number of a player or helper to bind to.  
+The position of a bound explod is relative to the object that it is bound to.  
 Special values are -1 (bind to any single player) and -2 (do not bind).  
 Defaults to -2.  The bindtime parameter is required if bindID is not -2.  
 Screen space explods cannot be bound.  
@@ -2029,11 +2032,8 @@ Screen space explods cannot be bound.
 **bindtime = *bind_time* (int)**  
   
 Specifies the number of game ticks to keep the explod bound.  
-After the bindtime has expired, the explod will be  
-explod will no longer be bound to the bind point, and will  
-maintain its position (unless affected by the vel or accel  
-parameters). If *bind_time* is -1, then the explod will be bound  
-until the explod is removed or another controller affects the bindtime.  
+After the bindtime has expired, the explod will be explod will no longer be bound to the bind point, and will maintain its position (unless affected by the vel or accel parameters).  
+If *bind_time* is -1, then the explod will be bound until the explod is removed or another controller affects the bindtime.  
   
 **vel = *x_vel*, *y_vel* (float, float)**  
   
@@ -2043,34 +2043,30 @@ These default to 0 if omitted.
   
 **accel = *x_accel*, *y_accel* (float, float)**  
   
-Specifies X and Y acceleration components for the explod. These  
-default to 0.  
+Specifies X and Y acceleration components for the explod. These default to 0.  
   
 **removetime = *rem_time* (int)**  
   
-If *rem_time* is positive, the explod will be removed after having  
-been displayed for that number of game ticks. If *rem_time* is -1,  
-the explod will be displayed indefinitely. If *rem_time* is -2,  
-the explod will be removed when its animtime reaches 0. The  
-default value is -2.  
+If *rem_time* is positive, the explod will be removed after having been displayed for that number of game ticks.  
+If *rem_time* is -1, the explod will be displayed indefinitely.  
+If *rem_time* is -2, the explod will be removed when its animtime reaches 0.  
+The default value is -2.  
   
 **supermovetime = *move_time* (int)**  
   
-Specifies the number of ticks that the explod will be  
-unfrozen during a SuperPause. Used where you want the  
-explod to be animated during a SuperPause, such as for custom  
-super sparks. Defaults to 0.  
+Specifies the number of ticks that the explod will be unfrozen during a SuperPause.  
+Used where you want the explod to be animated during a SuperPause, such as for custom super sparks.  
+Defaults to 0.  
   
 **pausemovetime = *move_time* (int)**  
   
-Specifies the number of ticks that the explod should be  
-unfrozen during a Pause. Defaults to 0.  
+Specifies the number of ticks that the explod should be unfrozen during a Pause.  
+Defaults to 0.  
   
 **scale = *x_scale*, *y_scale* (float, float)**  
   
-*x_scale* and *y_scale* specify the scaling factors to apply to the  
-explod in the horizontal and vertical directions. Both default to  
-1 (no scaling) if omitted.  
+*x_scale* and *y_scale* specify the scaling factors to apply to the explod in the horizontal and vertical directions.  
+Both default to 1 (no scaling) if omitted.  
   
 **angle = *angle* (float)**  
   
@@ -2091,17 +2087,19 @@ Defaults to 0.
   
 *pr* specifies the drawing priority for the explod.  
 Animations with higher priority get drawn over animations with lesser priority.  
-For instance, setting sprpriority = -3 will cause the explod to be drawn under most characters and other explods, which usually have sprpriority >= -2.  
+For instance, setting `sprpriority = -3` will cause the explod to be drawn under most characters and other explods, which usually have `sprpriority >= -2`.  
 Defaults to 0 if omitted.  
   
 **ontop = *bvalue* (boolean)**  
   
-Set ontop = 1 to have the explod drawn over all other sprites and background layers. This parameter has precedence over sprpriority.  
+Set `ontop = 1` to have the explod drawn over all other sprites and background layers.  
+This parameter has precedence over sprpriority.  
 Defaults to 0.  
   
 **shadow = *shadow* (int)**  
   
-If *shadow* is not 0, a shadow will be drawn for the explod, else no shadow will be drawn. Defaults to 0.  
+If *shadow* is not 0, a shadow will be drawn for the explod, else no shadow will be drawn.  
+Defaults to 0.  
   
 **ownpal = *ownpal_flag* (int)**  
   
@@ -2114,18 +2112,19 @@ This is the default if the anim is from fightfx.air.
 **remappal = *dst_pal_grp*, *dst_pal_item* (int, int)**  
   
 Forces a palette remap of the explod's indexed-color sprites to the specified palette.  
-This parameter is used only if *ownpal_flag* is non-zero and a fight.def  
-anim is not used.  
+This parameter is used only if *ownpal_flag* is non-zero and a fight.def anim is not used.  
 If *dst_pal_grp* is -1, this parameter will be ignored.  
 Defaults to -1, 0.  
   
 **removeongethit = *bvalue* (boolean)**  
   
-Setting this to 1 will cause the explod removed if the player gets hit. Defaults to 0.  
+Setting this to 1 will cause the explod removed if the player gets hit.  
+Defaults to 0.  
   
 **ignorehitpause = *bvalue* (boolean)**  
   
-If this is 1, the explod will be animated independently of the player that created it. If set to 0, it will not be updated when the player is in hitpause. Defaults to 1.  
+If this is 1, the explod will be animated independently of the player that created it. If set to 0, it will not be updated when the player is in hitpause.  
+Defaults to 1.  
   
 **trans = *trans_type* (string)**  
   
@@ -2143,7 +2142,7 @@ Valid values for *postype_string* are the following:
 **p1**  
   
 Interprets pos relative to p1's axis. A positive *off_x* is toward the front of p1.  
-This is the default value for postype for characters with a mugenversion of 1.0 or less.  
+This is the default value for postype for characters with a `mugenversion` of 1.0 or less.  
   
 **p2**  
   
@@ -2162,16 +2161,18 @@ For historical reasons, the offset behavior is inconsistent with postype = front
   
 **left**  
   
-Interprets *off_x* and *off_y* relative to the upper-left corner of the screen. A positive *off_x* is toward the right of the screen.  
+Interprets *off_x* and *off_y* relative to the upper-left corner of the screen.  
+A positive *off_x* is toward the right of the screen.  
   
 **right**  
   
-Interprets *off_x* and *off_y* relative to the upper-right corner of the screen. A positive *off_x* is toward the right of the screen.  
+Interprets *off_x* and *off_y* relative to the upper-right corner of the screen.  
+A positive *off_x* is toward the right of the screen.  
   
 **none**  
   
 Interprets *off_x* and *off_y* as an absolute position.  
-This is the default value for postype for characters with a mugenversion of 1.1 or higher.  
+This is the default value for postype for characters with a `mugenversion` of 1.1 or higher.  
   
 The use of p1 or p2 postype will create an explod in stage space.  
 The use of front, back, left or right postype will create an explod in screen space.  
@@ -2233,7 +2234,8 @@ Both arg1 and arg2 default to 0 if omitted.
 **supermove = *bvalue* (boolean)**  
   
 *This parameter is deprecated; use supermovetime parameter instead.*  
-Set supermove = 1 to have the explod persist until the end of a super pause, regardless of the value of removetime. Defaults to 0.  
+Set supermove = 1 to have the explod persist until the end of a super pause, regardless of the value of removetime.  
+Defaults to 0.  
   
 **Notes:**  
   
@@ -2519,16 +2521,15 @@ none
   
 **ID = *id_no* (int)**  
   
-Only explods with ID number equal to *id_no* will have their  
-position binding affected. Set ID to -1 to affect the binding of  
-all explods. The default value is -1.  
+Only explods with ID number equal to *id_no* will have their position binding affected.  
+Set ID to -1 to affect the binding of all explods.  
+The default value is -1.  
   
 **time = *binding_time* (int)**  
   
-Specifies the number of ticks for which the explods should be  
-bound to their binding points (defined at the time the explods  
-were created.) Defaults to 1 tick. A time of -1 binds the explods  
-indefinitely or until another controller changes the bindtime.  
+Specifies the number of ticks for which the explods should be bound to their binding points (defined at the time the explods were created).  
+A time of -1 binds the explods indefinitely or until another controller changes the bindtime.  
+Defaults to 1 tick.  
   
 **Alternate syntax:**  
   
@@ -2585,7 +2586,8 @@ Defaults to 60.
 **freq = *start* (integer constant), *d1*, *d2*, *d3* (float constants)**  
   
 Force feedback frequency varies between 0 and 255.  
-The formula used to determine force feedback frequency is `start + *d1* * t + *d2* * t ** 2 + *d3* * t ** 3` where t represents the number of ticks elapsed since the force feedback was initiated. Defaults to `freq = 128, 0, 0, 0`.  
+The formula used to determine force feedback frequency is `start + *d1* * t + *d2* * t ** 2 + *d3* * t ** 3` where t represents the number of ticks elapsed since the force feedback was initiated.  
+Defaults to `freq = 128, 0, 0, 0`.  
 Currently, the frequency parameter is completely ignored.  
   
 **ampl = *start* (integer constant), *d1*, *d2*, *d3* (float constants)**  
@@ -2596,7 +2598,8 @@ Defaults to `ampl = 128,0, 0, 0`
   
 **self = *self_flag* (boolean constant)**  
   
-If *self_flag* is 1, then P1's pad will vibrate. If self is 0, then P2's pad will vibrate. Defaults to 1.  
+If *self_flag* is 1, then P1's pad will vibrate. If self is 0, then P2's pad will vibrate.  
+Defaults to 1.  
   
 **Example:**  
   
@@ -2635,19 +2638,23 @@ none
   
 **value = *anim_no* (int)**  
   
-Specifies the animation number (from fightfx) of the animation to play. Defaults to 0.  
+Specifies the animation number (from fightfx) of the animation to play.  
+Defaults to 0.  
   
 **under = *under_flag* (int)**  
   
-If *under_flag* is 1, the animation is drawn behind the character sprites. Defaults to 0 (draw over characters).  
+If *under_flag* is 1, the animation is drawn behind the character sprites.  
+Defaults to 0 (draw over characters).  
   
 **pos = *x_pos*, *y_pos* (float)**  
   
-Specifies the position to display the animation at, relative to the player axis. Defaults to `0, 0`.  
+Specifies the position to display the animation at, relative to the player axis.  
+Defaults to `0, 0`.  
   
 **random = *rand_amt* (int)**  
   
-The position of the animation will be displaced in the x and y directions by (different) random amounts. The displacement can be as large as half of rand_amt. Defaults to 0.  
+The position of the animation will be displaced in the x and y directions by (different) random amounts. The displacement can be as large as half of rand_amt.  
+Defaults to 0.  
   
 **Example:**  
   
@@ -2768,7 +2775,8 @@ none
 **helpertype = *type_string* (string)**  
   
 ~~This parameter is deprecated; player-type helpers are not supported.~~  
-If helpertype = normal, then the helper will be allowed to move off the edge of the screen. Furthermore, the camera will not move to try to keep the helper on screen. If helpertype = player, then the helper will be constrained to the screen and will be followed by the camera, just like a normal player. Defaults to normal. If you plan to use a helper for camera manipulation, do not use a player-type helper; instead use the ScreenBound controller in a normal helper with the `movecamera` parameter.  
+If helpertype = normal, then the helper will be allowed to move off the edge of the screen. Furthermore, the camera will not move to try to keep the helper on screen. If helpertype = player, then the helper will be constrained to the screen and will be followed by the camera, just like a normal player.  
+Defaults to normal. If you plan to use a helper for camera manipulation, do not use a player-type helper; instead use the ScreenBound controller in a normal helper with the `movecamera` parameter.  
   
 **name = `*name_string*` (string)**  
   
@@ -2776,7 +2784,8 @@ Specifies a name for this helper, which must be enclosed in double quotes. If om
   
 **ID = *id_no* (int)**  
   
-Sets an ID number to refer to this helper by. Defaults to 0.  
+Sets an ID number to refer to this helper by.  
+Defaults to 0.  
   
 **pos = *off_x*, *off_y* (float)**  
   
@@ -3023,7 +3032,8 @@ should be a standard hit attribute string.  See Details.
   
 **time = *effective_time* (int)**  
   
-Specifies the number of game ticks that these HitBy attributes should be effective for. Defaults to 1.  
+Specifies the number of game ticks that these HitBy attributes should be effective for.  
+Defaults to 1.  
   
 **Details:**  
   
@@ -3168,32 +3178,24 @@ is E.
   
 **animtype = *anim_type* (string)**  
   
-This refers to the type of animation that P2 will go into when hit  
-by the attack. Choose from `light`, `medium`, `hard`, `back`, `up`,  
-or `diagup`.  
-The first three are self-explanatory. `Back` is the  
-animation where P2 is knocked off her feet. `Up` should be used  
-when the character is knocked straight up in the air (for instance,  
-by an uppercut), and `DiagUp` should be used when the character is  
-knocked up and backwards in the air, eventually landing on his  
-head.  
+This refers to the type of animation that P2 will go into when hit by the attack. Choose from `light`, `medium`, `hard`, `back`, `up`, or `diagup`.  
+The first three are self-explanatory. `Back` is the animation where P2 is knocked off her feet. `Up` should be used when the character is knocked straight up in the air (for instance, by an uppercut), and `DiagUp` should be used when the character is knocked up and backwards in the air, eventually landing on his head.  
 The default is `Light`.  
   
 **air.animtype = *anim_type* (string)**  
   
-Similar to the `animtype` parameter, this is the animtype to set  
-P2 to if P2 is in the air, instead of on the ground. Defaults to  
-the same value as the `animtype` parameter if omitted.  
+Similar to the `animtype` parameter, this is the animtype to set P2 to if P2 is in the air, instead of on the ground.  
+Defaults to the same value as the `animtype` parameter if omitted.  
   
 **fall.animtype = *anim_type* (string)**  
   
-Similar to the `animtype` parameter, this is the animtype to set  
-P2 to if P2 is hit while falling. Defaults to Up if air.animtype  
-is Up, or Back otherwise.  
+Similar to the `animtype` parameter, this is the animtype to set P2 to if P2 is hit while falling.  
+Defaults to `Up` if air.animtype is `Up`, or `Back` otherwise.  
   
 **priority = *hit_prior* (int), *hit_type* (string)**  
   
-Specifies the priority for this hit. Hits with higher priorities take precedence over hits with lower priorities. Valid values for *hit_prior* are 1-7. Defaults to 4.  
+Specifies the priority for this hit. Hits with higher priorities take precedence over hits with lower priorities. Valid values for *hit_prior* are 1-7.  
+Defaults to 4.  
   
 *hit_type*, if specified, gives the priority class of the hit. Valid priority classes are Dodge, Hit, and Miss. The priority class determines the tiebreaking behavior when P1 and P2 hit each other simultaneously with equal priorities. The behavior for P1 vs. P2 is as follows:  
   
@@ -3208,9 +3210,8 @@ In the case of a no-hit tie, the respective HitDefs stay enabled. `Miss` or `Dod
   
 **damage = *hit_damage*, *guard_damage* (int, int)**  
   
-*hit_damage* is the damage that P2 takes when hit by P2. The  
-optional *guard_damage* parameter is the damage taken by P2 if the  
-hit is guarded. Both default to zero if omitted.  
+*hit_damage* is the damage that P2 takes when hit by P2. The optional *guard_damage* parameter is the damage taken by P2 if the hit is guarded.  
+Both default to zero if omitted.  
   
 **pausetime = *p1_pausetime*, *p2_shaketime* (int, int)**  
   
@@ -3226,22 +3227,20 @@ Defaults to the same values as the `pausetime` parameter if omitted.
   
 **sparkno = *action_no* (int)**  
   
-This is the action number of the spark to display if the hit  
-is successful. To play a spark out of the player's .AIR file,  
-precede the action number with an S, e.g. `sparkno = S10`.  
-Defaults to the value set in the player variables if omitted.  
+This is the action number of the spark to display if the hit is successful.  
+To play a spark out of the player's .AIR file, precede the action number with an S, e.g. `sparkno = S10`.  
+Defaults to the value set in the player's constants if omitted.  
   
 **guard.sparkno = *action_no* (int)**  
   
-This is the action number of the spark to display if the hit  
-was guarded. To play a spark out of the player's .AIR file,  
-precede the action number with an S.  
-Defaults to the value set in the player variables if omitted.  
+This is the action number of the spark to display if the hit was guarded.  
+To play a spark out of the player's .AIR file, precede the action number with an S.  
+Defaults to the value set in the player's constants if omitted.  
   
 **sparkxy = *spark_x*, *spark_y* (int, int)**  
   
 This is where to make the hit/guard spark.  
-*spark_x* is a coordinate relative to the front of P2. A negative value makes the spark deeper inside P2. `Front` refers to the x-position at P2's axis offset towards P1 by the corresponding width value in the [Size] group in P2's player variables.  
+*spark_x* is a coordinate relative to the front of P2. A negative value makes the spark deeper inside P2. `Front` refers to the x-position at P2's axis offset towards P1 by the corresponding width value in the [Size] group in P2's player constants.  
 *spark_y* is relative to P1. A negative value makes a spark higher up. You can use a tool like AirView to determine this value by positioning the cursor at the `attack spot` and reading off the value of the y-position.  
 Defaults to `0, 0` if omitted.  
   
@@ -3250,13 +3249,13 @@ Defaults to `0, 0` if omitted.
 This is the sound to play on hit (from common.snd).  
 The included fight.snd lets you choose from 5,0 (light hit sound) through to 5,4 (painful whack).  
 To play a sound from the player's own SND file, precede the first number with an `S`. For example, `hitsound = S1,0`.  
-Defaults to the value set in the player variables if omitted.  
+Defaults to the value set in the player constants if omitted.  
   
 **guardsound = *snd_grp*, *snd_item* (int, int)**  
   
 This is the sound to play on guard (from common.snd).  
 Only 6,0 is available at this time. To play a sound from the player's own SND file, precede the first number with an `S`. There is no facility to play a sound from the opponent's SND file.  
-Defaults to the value set in the player variables if omitted.  
+Defaults to the value set in the player constants if omitted.  
   
 **ground.type = *attack_type* (string)**  
   
@@ -3266,51 +3265,52 @@ This is the kind of attack if P2 is on the ground. Choose from:
 - `Trip`: for low sweep attacks. If you use `Trip` type, the ground.velocity parameter should have a non-zero y-velocity, and the fall parameter should be set to 1. A tripped opponent does not bounce upon falling on the ground.  
 - `None`: for attacks that do nothing besides pause P1 and P2 for the duration in the pausetime parameter.  
   
-If P2 is hit from behind, `High` will be displayed as `Low` and vice-versa. P2's animation for `High` and `Low` types will be superseded if the AnimType parameter is `Back`. Defaults to `High` if omitted.  
+If P2 is hit from behind, `High` will be displayed as `Low` and vice-versa. P2's animation for `High` and `Low` types will be superseded if the AnimType parameter is `Back`.  
+Defaults to `High` if omitted.  
   
 **air.type = *attack_type* (string)**  
   
-This is the kind of attack if P2 is in the air. Defaults to the  
-same value as `ground.type` if omitted.  
+This is the kind of attack if P2 is in the air.  
+Defaults to the same value as `ground.type` if omitted.  
   
 **ground.slidetime = *slide_time* (int)**  
   
-This is the time in game-ticks that P2 will slide back for after  
-being hit (this time does not include the pausetime for P2).  
+This is the time in game-ticks that P2 will slide back for after being hit (this time does not include the pausetime for P2).  
 Applicable only to hits that keep P2 on the ground.  
 Defaults to 0 if omitted.  
   
 **guard.slidetime = *slide_time* (int)**  
   
-Same as `ground.slidetime`, but this is the value if P2 guards the  
-hit. Defaults to same value as `guard.hittime`.  
+Same as `ground.slidetime`, but this is the value if P2 guards the hit.  
+Defaults to same value as `guard.hittime`.  
   
 **ground.hittime = *hit_time* (int)**  
   
-Time that P2 stays in the hit state after being hit. Adjust this value carefully, to make combos possible. Applicable only to hits that keep P2 on the ground. Defaults to 0 if omitted.  
+Time that P2 stays in the hit state after being hit.  
+Adjust this value carefully, to make combos possible. Applicable only to hits that keep P2 on the ground.  
+Defaults to 0 if omitted.  
   
 **guard.hittime = *hit_time* (int)**  
   
-Same as `ground.hittime`, but this is the value if P2 guards the  
-hit. Defaults to same value as `ground.hittime`.  
+Same as `ground.hittime`, but this is the value if P2 guards the hit.  
+Defaults to same value as `ground.hittime`.  
   
 **air.hittime = *hit_time* (int)**  
   
-Time that p2 stays in the hit state after being hit in or into the  
-air, before being able to guard again. This parameter has no effect  
-if the `fall` parameter is set to 1. Defaults to 20 if omitted.  
+Time that p2 stays in the hit state after being hit in or into the air, before being able to guard again.  
+This parameter has no effect if the `fall` parameter is set to 1.  
+Defaults to 20 if omitted.  
   
 **guard.ctrltime = *ctrl_time* (int)**  
   
-This is the time before p2 regains control in the ground guard  
-state. Defaults to the same value as `guard.slidetime` if omitted.  
+This is the time before p2 regains control in the ground guard state.  
+Defaults to the same value as `guard.slidetime` if omitted.  
   
 **guard.dist = *x_dist* (int)**  
   
-This is the x-distance from P1 in which P2 will go into a guard  
-state if P2 is holding the direction away from P1. Defaults to  
-the value in the player variables if omitted. You normally do  
-not need to use this parameter.  
+This is the x-distance from P1 in which P2 will go into a guard state if P2 is holding the direction away from P1.  
+Defaults to the value in the player constants if omitted.  
+You normally do not need to use this parameter.  
   
 **yaccel = *accel* (float)**  
   
@@ -3337,7 +3337,8 @@ Defaults to `0, 0` if omitted.
   
 **airguard.velocity = *x_velocity*, *y_velocity* (float float)**  
   
-Velocity to give P2 if P2 guards the hit in the air. Defaults to *x_velocity* \* 1.5, *y_velocity* / 2, where *x_velocity* and *y_velocity*  
+Velocity to give P2 if P2 guards the hit in the air.  
+Defaults to *x_velocity* \* 1.5, *y_velocity* / 2, where *x_velocity* and *y_velocity*  
 are values of the `air.velocity` parameter.  
   
 **ground.cornerpush.veloff = *x_velocity* (float)**  
@@ -3415,7 +3416,8 @@ The default value is no change in where P1 is facing.
   
 **p1getp2facing = *facing* (int)**  
   
-Set to 1 to have P1 face in the same direction as P2 is facing after the hit connects, and -1 to have P1 face the opposite direction from P2. Defaults to 0 (no change).  
+Set to 1 to have P1 face in the same direction as P2 is facing after the hit connects, and -1 to have P1 face the opposite direction from P2.  
+Defaults to 0 (no change).  
 If nonzero, this parameter takes precedence over p1facing.  
   
 **p2facing = *facing* (int)**  
@@ -3460,7 +3462,8 @@ Defaults to no change if omitted.
   
 **fall.yvelocity = *y_velocity* (float)**  
   
-This is the y-velocity that P2 gets when bouncing off the ground in the `fall` state. Defaults to -4.5 in 240p, -9 in 480p, -18 in 720p.  
+This is the y-velocity that P2 gets when bouncing off the ground in the `fall` state.  
+Defaults to -4.5 in 240p, -9 in 480p, -18 in 720p.  
   
 **fall.recover = *bvalue* (boolean)**  
   
@@ -3469,19 +3472,23 @@ Defaults to 1 if omitted (can recover).
   
 **fall.recovertime = *recover_time* (int)**  
   
-This is the time that must pass before P2 is able to recover from the `fall` state by inputting his recovery command. Does not include the time that P2 is paused for while shaking from the hit. Defaults to 4 if omitted.  
+This is the time that must pass before P2 is able to recover from the `fall` state by inputting his recovery command. Does not include the time that P2 is paused for while shaking from the hit.  
+Defaults to 4 if omitted.  
   
 **fall.damage = *damage_amt* (int)**  
   
-Indicates the amount of damage to deal when P2 hits the ground out of a falling state. Defaults to 0 if omitted.  
+Indicates the amount of damage to deal when P2 hits the ground out of a falling state.  
+Defaults to 0 if omitted.  
   
 **air.fall = *bvalue* (boolean)**  
   
-Set to 1 if you want P2 to go into a `fall` state (where P2 hits the ground without regaining control in the air) if hit while P2 is in the air. Defaults to the same value as fall.  
+Set to 1 if you want P2 to go into a `fall` state (where P2 hits the ground without regaining control in the air) if hit while P2 is in the air.  
+Defaults to the same value as fall.  
   
 **forcenofall = *bvalue* (boolean)**  
   
-Set to 1 to force P2 out of a `fall` state, if he is in one. This parameter has no effect on P2 if he is not in a `fall` state. This parameter is ignored if the `fall` parameter is set to 1. Defaults to 0 if omitted.  
+Set to 1 to force P2 out of a `fall` state, if he is in one. This parameter has no effect on P2 if he is not in a `fall` state. This parameter is ignored if the `fall` parameter is set to 1.  
+Defaults to 0 if omitted.  
   
 **down.velocity = *x_velocity*, *y_velocity* (float, float)**  
   
@@ -3495,7 +3502,8 @@ This is the time that P2 will slide back for if P2 is hit while lying down. This
   
 **down.bounce = *bvalue* (boolean)**  
   
-Set to 1 if you want P2 to bounce off the ground one time (using the fall.xvelocity and fall.yvelocity values) after hitting the ground from the hit. This parameter is ignored if the *y_velocity* is zero for the `down.velocity` parameter. Defaults to 0 if omitted (P2 hits the ground and stays there).  
+Set to 1 if you want P2 to bounce off the ground one time (using the fall.xvelocity and fall.yvelocity values) after hitting the ground from the hit. This parameter is ignored if the *y_velocity* is zero for the `down.velocity` parameter.  
+Defaults to 0 if omitted (P2 hits the ground and stays there).  
   
 **id = *id_number* (int)**  
   
@@ -3523,19 +3531,23 @@ Normally defaults to 0. The exception is if the `attr` parameter is a throw type
   
 **kill = *bvalue* (boolean)**  
   
-Set to 0 if this hit should not be able to KO the opponent when the hit is successful. Defaults to 1.  
+Set to 0 if this hit should not be able to KO the opponent when the hit is successful.  
+Defaults to 1.  
   
 **guard.kill = *bvalue* (boolean)**  
   
-Set to 0 if this hit should not be able to KO the opponent when the hit is guarded. Defaults to 1.  
+Set to 0 if this hit should not be able to KO the opponent when the hit is guarded.  
+Defaults to 1.  
   
 **fall.kill = *bvalue* (boolean)**  
   
-Set to 0 to prevent this attack from KO'ing the opponent when he falls on the ground (see fall.damage). Defaults to 1.  
+Set to 0 to prevent this attack from KO'ing the opponent when he falls on the ground (see fall.damage).  
+Defaults to 1.  
   
 **numhits = *hit_count* (int)**  
   
-*hit_count* indicates how many hits this hitdef should add to the combo counter. Must be 0 or greater. Defaults to 1.  
+*hit_count* indicates how many hits this hitdef should add to the combo counter. Must be 0 or greater.  
+Defaults to 1.  
   
 **getpower = *p1power*, *p1gpower* (int, int)**  
   
@@ -3956,7 +3968,8 @@ none
   
 If *fallset_flag* is -1, then this controller does not change  
 whether the player will fall or not. A *fallset_flag* of 0 means that  
-the player should not fall, and a 1 means that he should. Defaults  
+the player should not fall, and a 1 means that he should.  
+Defaults  
 to -1.  
   
 **xvel = *x_velocity* (float)**  
@@ -4018,7 +4031,8 @@ Defaults to 0 if omitted.
   
 **time = *effective_time* (int)**  
   
-Specifies how long this hit override should be active. Defaults to  
+Specifies how long this hit override should be active.  
+Defaults to  
 1 (one tick). Set this to -1 to have this override last until  
 overwritten by another one.  
   
@@ -4026,7 +4040,8 @@ overwritten by another one.
   
 If set to 1, the player's gethit variables will be set as if he was  
 in an aerial state when hit. Useful if you want to force the player  
-to fall down from any hit. Defaults to 0 if omitted.  
+to fall down from any hit.  
+Defaults to 0 if omitted.  
   
 **Notes:**  
   
@@ -4140,12 +4155,14 @@ Specifies amount of life to add to the player's life bar.
 **kill = *kill_flag* (int)**  
   
 If *kill_flag* is 0, then the addition will not take the player  
-below 1 life point. Defaults to 1.  
+below 1 life point.  
+Defaults to 1.  
   
 **absolute = *abs_flag* (int)**  
   
 If *abs_flag* is 1, then exactly *add_amt* is added to the player's  
-life (the defense multiplier is ignored). Defaults to 0.  
+life (the defense multiplier is ignored).  
+Defaults to 0.  
   
 **Example:**  
   
@@ -4270,7 +4287,8 @@ none
 **pos = *x_pos*, *y_pos* (int)**  
   
 Specifies the position that the dust should be drawn at, relative  
-to the player's axis. Defaults to `0, 0`.  
+to the player's axis.  
+Defaults to `0, 0`.  
   
 **pos2 = *x_pos*, *y_pos* (float)**  
   
@@ -5003,7 +5021,8 @@ should be a standard hit attribute string. See details.
 **time = *effective_time* (int)**  
   
 Specifies the number of game ticks that these NotHitBy attributes  
-should be effective for. Defaults to 1.  
+should be effective for.  
+Defaults to 1.  
   
 **Details:**  
   
@@ -5074,8 +5093,7 @@ See below.
   
 **y = *y_val* (float)**  
   
-Specifies the x and y offsets, respectively. You can specify one  
-or both of the optional parameters.  
+Specifies the x and y offsets, respectively. You can specify one or both of the optional parameters.  
   
 **Example:**  
   
@@ -5128,7 +5146,8 @@ overrideClsn{group: Clsn2; index = -1; rect = 0, 0, 0, 0}
 
 ## PalFX (old)
 
-Applies temporary effects the player's palette. These will also affect the palette of any explods and helpers the player owns, unless they have set ownpal to a nonzero value.  
+Applies temporary effects the player's palette.  
+These will also affect the palette of any explods and helpers the player owns, unless they have set `ownpal` to a nonzero value.  
   
 **Required parameters:**  
   
@@ -5138,8 +5157,8 @@ none
   
 **time = *duration* (int)**  
   
-Specifies the number of ticks that the palette effects should  
-last. Specify -1 to have the palette effects last indefinitely.  
+Specifies the number of ticks that the palette effects should last.  
+Specify -1 to have the palette effects last indefinitely.  
 Specify 0 to stop any ongoing palette effects.  
   
 **add = *add_r*, *add_g*, *add_b* (int, int, int)**  
@@ -5161,18 +5180,19 @@ For instance, if t represents the number of ticks elapsed since the activation o
   
 **invertall = *bvalue* (bool)**  
   
-If *bvalue* is non-zero, then the colors in the palette will be  
-inverted, creating a `film negative` effect. Color inversion  
-is applied before effects of add and mul. bvalue defaults to 0.  
+If *bvalue* is non-zero, then the colors in the palette will be inverted, creating a `film negative` effect.  
+Color inversion is applied before effects of add and mul.  
+*bvalue* defaults to 0.  
   
 **color = *value* (int)**  
   
-This affects the color level of the palette. If value is 0,  
-the palette will be greyscale. If *value* is 256, there is no  
-change in palette. Values in between will have an intermediate  
-effect. This parameter's effects are applied before invertall,  
-add and mul. Values must be in range 0 to 256. Default value is  
-256.  
+This affects the color level of the palette.  
+If value is 0, the palette will be greyscale.  
+If *value* is 256, there is no change in palette.  
+Values in between will have an intermediate effect.  
+This parameter's effects are applied before invertall, add and mul.  
+Values must be in range 0 to 256.  
+Default value is 256.  
   
 **Example:**  
   
@@ -5250,7 +5270,8 @@ If the player is a helper, sets value to parent's map. If the player is not a he
 
 ## ParentVarAdd (old)
 
-If the player is a helper, adds to one of the player's parent's working variables. Either a float variable or an int variable can be added to by this controller. If the player is not a helper, this controller does nothing.  
+If the player is a helper, adds to one of the player's parent's working variables. Either a float variable or an int variable can be added to by this controller.  
+If the player is not a helper, this controller does nothing.  
   
 **Required parameters (int version):**  
   
@@ -5286,19 +5307,11 @@ fvar(*var_no*) = *float_expr* (float version)
   
 **Notes:**  
   
-Due to historical reasons, note that the alternate VarAdd  
-syntax listed above matches neither the syntax for variable  
-assignment within an expression, nor the syntax for variable  
-addition within an expression.  
+Due to historical reasons, note that the alternate `VarAdd` syntax listed above matches neither the syntax for variable assignment within an expression, nor the syntax for variable addition within an expression.  
   
-If you have placed P2 in a custom state through a successful hit, do  
-not use variable assignment within the custom states. Otherwise, you  
-will overwrite P2's parent's variables, which can cause unintended  
-malfunction of the opponent player.  
+If you have placed P2 in a custom state through a successful hit, do not use variable assignment within the custom states. Otherwise, you will overwrite P2's parent's variables, which can cause unintended malfunction of the opponent player.  
   
-**Warning:  System variables (sysvar, sysfvar) cannot be used within this**  
-  
-controller.  
+**Warning:  System variables (sysvar, sysfvar) cannot be used within this controller.**  
   
 **Example:**  
   
@@ -5308,7 +5321,8 @@ none
 
 ## ParentVarSet (old)
 
-If the player is a helper, sets one of the parent's working variables. Either a float variable or an int variable can be set by this controller. Does nothing if the player is not a helper.  
+If the player is a helper, sets one of the parent's working variables. Either a float variable or an int variable can be set by this controller.  
+Does nothing if the player is not a helper.  
   
 **Required parameters (int version):**  
   
@@ -5318,8 +5332,7 @@ If the player is a helper, sets one of the parent's working variables. Either a 
   
 **value = *int_expr* (int)**  
   
-*int_expr* is the value to assign to the int variable indicated by  
-*var_no*.  
+*int_expr* is the value to assign to the int variable indicated by *var_no*.  
   
 **Required parameters (float version):**  
   
@@ -5329,8 +5342,7 @@ If the player is a helper, sets one of the parent's working variables. Either a 
   
 **value = *float_expr* (float)**  
   
-*float_expr* is the value to assign to the float variable indexed by  
-*var_no*.  
+*float_expr* is the value to assign to the float variable indexed by *var_no*.  
   
 **Optional parameters:**  
   
@@ -5344,18 +5356,11 @@ fvar(*var_no*) = *float_expr* (float version)
   
 **Notes:**  
   
-Due to historical reasons, note that the alternate variable  
-assignment syntax listed above does not exactly match the syntax for  
-variable assignment within an expression.  
+Due to historical reasons, note that the alternate variable assignment syntax listed above does not exactly match the syntax for variable assignment within an expression.  
   
-If you have placed P2 in a custom state through a successful hit, do  
-not use variable assignment within the custom states. Otherwise, you  
-will overwrite P2's parent's variables, which can cause unintended  
-malfunction of the opponent player.  
+If you have placed P2 in a custom state through a successful hit, do not use variable assignment within the custom states. Otherwise, you will overwrite P2's parent's variables, which can cause unintended malfunction of the opponent player.  
   
-**Warning:  System variables (sysvar, sysfvar) cannot be used within this**  
-  
-controller.  
+**Warning:  System variables (sysvar, sysfvar) cannot be used within this controller.**  
   
 **Example:**  
   
@@ -5372,33 +5377,35 @@ Pauses the game for the specified amount of time. Player and background updates 
 **time = *t* (int)**  
   
 This is the number of game ticks to pause for.  
-Valid values for *t* are all positive numbers, starting  
-from 0.  
+Valid values for *t* are all positive numbers, starting from 0.  
   
 **Optional parameters:**  
   
 **endcmdbuftime = *bt* (int)**  
   
-This is the number of ticks during the end of the pause in which the player's move commands will be buffered. Buffered commands will be detected by the `command` trigger immediately after the pause ends. The buffering applies only to players who are unable to move during the pause (see movetime parameter). Valid values for endcmdbuftime are from 0 to *t*, where *t* is the value of the time parameter. Defaults to 0.  
+This is the number of ticks during the end of the pause in which the player's move commands will be buffered.  
+Buffered commands will be detected by the `command` trigger immediately after the pause ends.  
+The buffering applies only to players who are unable to move during the pause (see movetime parameter).  
+Valid values for endcmdbuftime are from 0 to *t*, where *t* is the value of the time parameter.  
+Defaults to 0.  
   
 **movetime = *mt* (int)**  
   
-This is the number of ticks during the start of the pause in which  
-the player is allowed to move. Collision detection is carried out  
-during this time, so it is possible to hit other players.  
-Valid values for *mt* are from 0 to *t*, where *t* is the value of  
-the time parameter. Defaults to 0.  
+This is the number of ticks during the start of the pause in which the player is allowed to move.  
+Collision detection is carried out during this time, so it is possible to hit other players.  
+Valid values for *mt* are from 0 to *t*, where *t* is the value of the time parameter.  
+Defaults to 0.  
   
 **pausebg = *p* (boolean)**  
   
-If set to 1, the background is stopped during the pause. If 0, the background continues updating during the pause. Defaults to 1.  
+If set to 1, the background is stopped during the pause.  
+If 0, the background continues updating during the pause.  
+Defaults to 1.  
   
 **Notes:**  
   
-Executing a Pause controller during the pausetime of another  
-will cancel out the effect of the previous Pause controller.  
-Executing a Pause during a superpause will delay the effects  
-of the pause until after the superpause has ended.  
+Executing a Pause controller during the pausetime of another will cancel out the effect of the previous Pause controller.  
+Executing a Pause during a superpause will delay the effects of the pause until after the superpause has ended.  
   
 **Example:**  
   
@@ -5442,14 +5449,15 @@ Plays back a music. Supported file formats: *mp3*, *ogg*, *wav*.
 
 ## PlayerPush (old)
 
-Disables the player's push checking for one tick. Push checking keeps players from overlapping one another. By temporarily disabling push checking, dodge-type moves in which the player passes through another (but can still be hit) can be implemented.  
+Disables the player's push checking for one tick.  
+Push checking keeps players from overlapping one another.  
+By temporarily disabling push checking, dodge-type moves in which the player passes through another (but can still be hit) can be implemented.  
   
 **Required parameters:**  
   
 **value = *push_flag* (boolean)**  
   
-If *push_flag* is nonzero, then push checking is enabled. If  
-*push_flag* is zero, then push checking is disabled.  
+If *push_flag* is nonzero, then push checking is enabled. If *push_flag* is zero, then push checking is disabled.  
   
 **Optional parameters:**  
   
@@ -5486,48 +5494,39 @@ Plays back a sound.
   
 **value = *group_no*, *sound_no* (int, int)**  
   
-*group_no* and *sound_no* correspond to the identifying pair  
-that you assigned each sound in the player's snd file.  
-To play back a sound from `common.snd`, precede group_no  
-with an `F`.  
+*group_no* and *sound_no* correspond to the identifying pair that you assigned each sound in the player's snd file.  
+To play back a sound from `common.snd`, precede group_no with an `F`.  
   
 **Optional parameters:**  
   
 **volumescale = *volume_scale* (float)**  
   
-*volume_scale* controls the volume of the sound. A value of 100  
-specifies 100% volume, 50 for 50%, and so on. Valid values are from  
-0 to 100. Defaults to 100.  
+*volume_scale* controls the volume of the sound. A value of 100 specifies 100% volume, 50 for 50%, and so on.  
+Valid values are from 0 to 100.  
+Defaults to 100.  
   
 **channel = *channel_no* (int)**  
   
-*channel_no* specifies which of the player's sound channels  
-the sound should play on. Only one voice may play on a particular  
-channel at a time. For example, if you play a sound on channel 2,  
-then play any sound on the same channel before the first sound is  
-done, then by default the first sound is stopped as the second one  
-plays. 0 is a special channel reserved for player voices. Channel  
-0 voices are stopped when the player is hit. It's recommended you  
-play your character's voice sounds on channel 0.  
-If omitted, *channel_no* defaults to -1, meaning the sound will play  
-on any free channel.  
+*channel_no* specifies which of the player's sound channels the sound should play on.  
+Only one voice may play on a particular channel at a time.  
+For example, if you play a sound on channel 2, then play any sound on the same channel before the first sound is done, then by default the first sound is stopped as the second one plays.  
+0 is a special channel reserved for player voices. Channel 0 voices are stopped when the player is hit. It's recommended you play your character's voice sounds on channel 0.  
+If omitted, *channel_no* defaults to -1, meaning the sound will play on any free channel.  
   
 **lowpriority = *pr* (int)**  
   
-This is only valid if the channel is not -1. If *pr* is nonzero,  
-then a sound currently playing on this sound's channel (from a  
-previous PlaySnd call) cannot be interrupted by this sound.  
+This is only valid if the channel is not -1.  
+If *pr* is nonzero, then a sound currently playing on this sound's channel (from a previous PlaySnd call) cannot be interrupted by this sound.  
   
 **freqmul = *f* (float)**  
   
-The sound frequency will be multiplied by *f*. For example. Setting *f* to 1.1  
-will result in a higher-pitched sound. Defaults to 1.0 (no change  
-in frequency).  
+The sound frequency will be multiplied by *f*. For example. Setting *f* to 1.1 will result in a higher-pitched sound.  
+Defaults to 1.0 (no change in frequency).  
   
 **loop = *loop_flag* (int)**  
   
-Set *loop_flag* to a nonzero value to have the sound sample loop  
-over and over. Defaults to 0.  
+Set *loop_flag* to a nonzero value to have the sound sample loop over and over.  
+Defaults to 0.  
   
 **pan = *p* (int)**  
   
@@ -5539,8 +5538,7 @@ This parameter is mutually exclusive with abspan.
   
 **abspan = *p* (int)**  
   
-Like pan, except the sound is panned from the center of the  
-screen, not from the player's position.  
+Like pan, except the sound is panned from the center of the screen, not from the player's position.  
 This parameter is mutually exclusive with pan.  
   
 **Example:**  
@@ -5609,8 +5607,9 @@ This parameter makes the sound be interrupted if the player changes states.
 
 ## PosAdd (old)
 
-Offsets the player's position by the specified amounts. The X coordinate is relative to the player's axis, with positive values moving in the direction that the player is facing. The Y coordinate  
-is relative to the player's axis, with negative values moving up.  
+Offsets the player's position by the specified amounts.  
+The X coordinate is relative to the player's axis, with positive values moving in the direction that the player is facing.  
+The Y coordinate is relative to the player's axis, with negative values moving up.  
   
 **Required parameters:**  
   
@@ -5620,11 +5619,13 @@ none
   
 **x = *x_value* (float)**  
   
-Moves the player *x_value* pixels forward. Defaults to 0.  
+Moves the player *x_value* pixels forward.  
+Defaults to 0.  
   
 **y = *y_value* (float)**  
   
-Moves the player *y_value* pixels downwards. Defaults to 0.  
+Moves the player *y_value* pixels downwards.  
+Defaults to 0.  
   
 **Example:**  
   
@@ -5644,8 +5645,8 @@ none
   
 **value = *freeze_flag* (boolean)**  
   
-If *freeze_flag* is non-zero, the player's position will be frozen,  
-else it will not be. Defaults to 1.  
+If *freeze_flag* is non-zero, the player's position will be frozen, else it will not be.  
+Defaults to 1.  
   
 **Example:**  
   
@@ -5655,7 +5656,9 @@ none
 
 ## PosSet (old)
 
-Sets the player's position to the specified coordinates. The X coordinate is relative to the center of the screen, with positive values moving right. The Y coordinate is relative to the floor, with negative values moving up.  
+Sets the player's position to the specified coordinates.  
+The X coordinate is relative to the center of the screen, with positive values moving right.  
+The Y coordinate is relative to the floor, with negative values moving up.  
   
 **Required parameters:**  
   
@@ -5750,7 +5753,9 @@ params = var(17):=1,var(17)/.230
 
 ## Projectile (old)
 
-Creates a projectile for the player. The Projectile controller takes all the parameters of the HitDef controller, which control the HitDef for the projectile. In addition, Projectile has the following additional parameters:  
+Creates a projectile for the player.  
+The Projectile controller takes all the parameters of the HitDef controller, which control the HitDef for the projectile.  
+In addition, Projectile has the following additional parameters:  
   
 **Required parameters:**  
   
@@ -5760,130 +5765,118 @@ none
   
 **ProjID = *id_no* (int)**  
   
-Specifies an ID number to refer to this projectile by. Should be  
-positive, if specified.  
+Specifies an ID number to refer to this projectile by.  
+Should be positive, if specified.  
   
 **projanim = *anim_no* (int)**  
   
-Specifies the animation action number to use for the projectile's  
-animation. Defaults to 0 if omitted.  
+Specifies the animation action number to use for the projectile's animation.  
+Defaults to 0 if omitted.  
   
 **projhitanim = *anim_no* (int)**  
   
-Specifies the animation action number to play when the projectile  
-hits the opponent. Defaults to -1 (no change in animation) if  
-omitted.  
+Specifies the animation action number to play when the projectile hits the opponent.  
+Defaults to -1 (no change in animation) if omitted.  
   
 **projremanim = *anim_no* (int)**  
   
-Specifies the animation action number to play when the projectile  
-is removed (due to its time expiring or hitting the its removal  
-boundaries, etc.) If omitted, projhitanim is used instead.  
+Specifies the animation action number to play when the projectile is removed (due to its time expiring or hitting the its removal boundaries, etc).  
+If omitted, projhitanim is used instead.  
   
 **projcancelanim = *anim_no* (int)**  
   
-Specifies the animation action number to play when the projectile  
-is cancelled by hitting another projectile. If omitted,  
-projremanim is used instead.  
+Specifies the animation action number to play when the projectile is cancelled by hitting another projectile.  
+If omitted, projremanim is used instead.  
   
 **projscale = *x_scale*, *y_scale* (float, float)**  
   
-Specifies the scale factor of the projectile. The final scale of  
-the projectile is affected by both this parameter and the  
-`proj.doscale` parameter in the [Size] group of p1's constants  
-file. Defaults to 1,1 (normal size) if omitted.  
+Specifies the scale factor of the projectile.  
+The final scale of the projectile is affected by both this parameter and the `proj.doscale` parameter in the [Size] group of p1's constants file.  
+Defaults to `1, 1` (normal size) if omitted.  
   
 **projremove = *remove_flag* (boolean)**  
   
-Set to a non-zero value to have the projectile be removed after it  
-hits, or to 0 to disable this behavior. Defaults to 1.  
+Set to a non-zero value to have the projectile be removed after it hits, or to 0 to disable this behavior.  
+Defaults to 1.  
   
 **projremovetime = *remove_time* (int)**  
   
-Specifies the number of ticks after which the projectile should be  
-removed from the screen. If -1, the projectile will not be removed.  
+Specifies the number of ticks after which the projectile should be removed from the screen. If -1, the projectile will not be removed.  
 Defaults to -1.  
   
 **velocity = *x_vel*, *y_vel* (float, float)**  
   
-Specifies the initial x and y velocities for the projectile to  
-travel at. Defaults to `0, 0` if omitted.  
+Specifies the initial x and y velocities for the projectile to travel at.  
+Defaults to `0, 0` if omitted.  
   
 **remvelocity = *x_vel*, *y_vel* (float, float)**  
   
-Specifies the x and y velocities at which the projectile should  
-travel while being removed. Defaults to `0, 0` if omitted.  
+Specifies the x and y velocities at which the projectile should travel while being removed.  
+Defaults to `0, 0` if omitted.  
   
 **accel = *x_accel*, *y_accel* (float, float)**  
   
-Specifies the acceleration to apply to the projectile in the x and  
-y directions. Defaults to `0, 0` if omitted.  
+Specifies the acceleration to apply to the projectile in the x and y directions.  
+Defaults to `0, 0` if omitted.  
   
 **velmul = *x_mul*, *y_mul* (float, float)**  
   
-Specifies x and y velocity multipliers. The projectile's velocity  
-is multiplied by these multipliers on every tick. The multipliers  
-default to 1 if omitted.  
+Specifies x and y velocity multipliers.  
+The projectile's velocity is multiplied by these multipliers on every tick.  
+The multipliers default to 1 if omitted.  
   
 **projhits = *num_hits* (int)**  
   
-Specifies the number of hits that the projectile can impart on  
-an opponent before it is removed. Defaults to 1.  
+Specifies the number of hits that the projectile can impart on an opponent before it is removed.  
+Defaults to 1.  
   
 **projmisstime = *miss_time* (int)**  
   
-If the projectile is configured for multiple hits, *miss_time* specifies the number  
-of ticks after each hit before the projectile can hit again. Defaults to 0.  
+If the projectile is configured for multiple hits, *miss_time* specifies the number of ticks after each hit before the projectile can hit again.  
+Defaults to 0.  
   
 **projpriority = *proj_priority* (int)**  
   
-Specifies the projectile priority. If the projectile collides with  
-another projectile of equal priority, they will cancel. If it  
-collides with another of lower priority, it will cancel the lower-  
-priority projectile, and the higher-priority one will have its  
-priority decreased by 1.  
+Specifies the projectile priority.  
+If the projectile collides with another projectile of equal priority, they will cancel.  
+If it collides with another of lower priority, it will cancel the lower-priority projectile, and the higher-priority one will have its priority decreased by 1.  
 Defaults to 1.  
   
 **projsprpriority = *priority* (int)**  
   
-Specifies the sprite priority of the projectile. Higher-priority  
-sprites are drawn on top of lower-priority sprites. Defaults to 3.  
+Specifies the sprite priority of the projectile.  
+Higher-priority sprites are drawn on top of lower-priority sprites.  
+Defaults to 3.  
   
 **projedgebound = *value* (int)**  
   
-Specifies the distance off the edge of the screen before  
-the projectile is automatically removed. Units are in pixels.  
+Specifies the distance off the edge of the screen before the projectile is automatically removed. Units are in pixels.  
 Defaults to 40 in 240p, 80 in 480p, 160 in 720p.  
   
 **projstagebound = *value* (int)**  
   
-Specifies the greatest distance the projectile can travel off the  
-edge of the stage before being it is automatically removed.  
+Specifies the greatest distance the projectile can travel off the edge of the stage before being it is automatically removed.  
 Defaults to 40 in 240p, 80 in 480p, 160 in 720p.  
   
 **projheightbound = *lowbound*, *highbound* (int, int)**  
   
-Specifies the least and greatest y values the projectile is  
-allowed to reach. If the projectile leaves these boundaries, it is  
-automatically removed. Note: since y values decrease with increasing height on  
-the screen, lowbound actually specifies the greatest height the  
-projectile can attain.  
+Specifies the least and greatest y values the projectile is allowed to reach.  
+If the projectile leaves these boundaries, it is automatically removed.  
+Note: since y values decrease with increasing height on the screen, lowbound actually specifies the greatest height the projectile can attain.  
 *lowbound* defaults to -240 in 240p, -480 in 480p, -960 in 720p.  
 *highbound* defaults to 1 in 240p, 2 in 480p, 4 in 720p.  
   
 **offset = *off_x*, *off_y* (int, int)**  
   
-Specifies the x and y offsets at which the projectile should be  
-created. Both parameters default to 0 if omitted.  
-Projectiles are always created facing the same direction as  
-the player.  *off_x* is in relation to the direction the projectile  
-is facing.  
+Specifies the x and y offsets at which the projectile should be created.  
+Both parameters default to 0 if omitted.  
+Projectiles are always created facing the same direction as the player.  
+*off_x* is in relation to the direction the projectile is facing.  
 The exact behavior of the offset parameters is dependent on the postype.  
   
 **postype = *postype_string* (string)**  
   
-*postype_string* specifies the postype -- how to interpret the pos  
-parameters.  
+*postype_string* specifies the postype -- how to interpret the pos parameters.  
 In all cases, a positive y offset means a downward displacement.  
 In all cases, *off_y* is relative to the position of the player.  
   
@@ -5891,65 +5884,61 @@ Valid values for *postype_string* are the following:
   
 **p1**  
   
-Interprets offset relative to p1's axis. A positive *off_x* is  
-toward the front of p1. This is the default value for postype.  
+Interprets offset relative to p1's axis.  
+A positive *off_x* is toward the front of p1. This is the default value for postype.  
   
 **p2**  
   
-Interprets offset relative to p2's axis. A positive *off_x* is  
-toward the front of p1.  If p2 does not exist, the position is  
-calculated with respect to p1 and a warning is logged.  
+Interprets offset relative to p2's axis.  
+A positive *off_x* is toward the front of p1.  If p2 does not exist, the position is calculated with respect to p1 and a warning is logged.  
   
 **front**  
   
-Interprets *off_x* relative to the edge of the screen that p1 is  
-facing toward. A positive *off_x* is toward the front of p1.  
+Interprets *off_x* relative to the edge of the screen that p1 is facing toward.  
+A positive *off_x* is toward the front of p1.  
   
 **back**  
   
-Interprets *off_x* relative to the edge of the screen that p1 is  
-facing away from. A positive *off_x* is toward the front of p1.  
+Interprets *off_x* relative to the edge of the screen that p1 is facing away from.  
+A positive *off_x* is toward the front of p1.  
   
 **left**  
   
-Interprets *off_x* relative to the left edge of  
-the screen. A positive *off_x* is toward the front of p1.  
+Interprets *off_x* relative to the left edge of the screen.  
+A positive *off_x* is toward the front of p1.  
   
 **right**  
   
-Interprets *off_x* relative to the right edge of  
-the screen. A positive *off_x* is toward the front of p1.  
+Interprets *off_x* relative to the right edge of the screen.  
+A positive *off_x* is toward the front of p1.  
   
 **projshadow = *shadow* (int)**  
   
-If *shadow* is not 0, a shadow will be drawn for the explod,  
-else no shadow will be drawn.  Defaults to 0.  
+If *shadow* is not 0, a shadow will be drawn for the explod, else no shadow will be drawn.  
+Defaults to 0.  
   
 **supermovetime = *move_time* (int)**  
   
-Specifies the number of ticks that the projectile will be  
-unfrozen during a SuperPause. Defaults to 0.  
+Specifies the number of ticks that the projectile will be unfrozen during a SuperPause.  
+Defaults to 0.  
   
 **pausemovetime = *move_time* (int)**  
   
-Specifies the number of ticks that the projectile will be  
-unfrozen during a Pause. Defaults to 0.  
+Specifies the number of ticks that the projectile will be unfrozen during a Pause.  
+Defaults to 0.  
   
 **ownpal = *ownpal_flag* (boolean)**  
   
-If *ownpal_flag* is 0, the projectile will be affected by subsequent  
-execution of its owner's PalFX and RemapPal controllers. This  
-is the default.  
+If *ownpal_flag* is 0, the projectile will be affected by subsequent execution of its owner's PalFX and RemapPal controllers. This is the default.  
   
-If *ownpal_flag* is 1, the projectile will not be affected by its  
-owner's PalFX and RemapPal controllers.  
+If *ownpal_flag* is 1, the projectile will not be affected by its owner's PalFX and RemapPal controllers.  
   
 **remappal = *dst_pal_grp*, *dst_pal_item* (int, int)**  
   
 Forces a palette remap of the projectile's indexed-color sprites to the specified palette.  
 This parameter is used only if *ownpal_flag* is non-zero.  
 If *dst_pal_grp* is -1, this parameter will be ignored.  
-Defaults to -1, 0.  
+Defaults to `-1, 0`.  
   
 **afterimage.time = *aftimg_time* (int)**  
   
@@ -5962,16 +5951,13 @@ See below.
 **afterimage....**  
   
 If included, these parameters add afterimage effects to the projectile.  
-The parameters are the same as in the AfterImage controller,  
-except these are all prepended with `afterimage.`  
+The parameters are the same as in the AfterImage controller, except these are all prepended with `afterimage.`  
   
 **Notes:**  
   
 All projectiles created by helpers immediately become owned by the root.  
   
-The behavior of a projectile's HitDef is undefined when executed from a  
-[Statedef -2] block while the player has another player's  
-state and animation data.  
+The behavior of a projectile's HitDef is undefined when executed from a [Statedef -2] block while the player has another player's state and animation data.  
   
 **Example:**  
   
@@ -6190,7 +6176,9 @@ ID = 10
 
 ## ReversalDef (old)
 
-Defines a reversal. If one of P2's Clns1 boxes comes in contact with one of P1's Clsn1 boxes and a ReversalDef is active, then P1 will reverse P2's attack. Use with p1stateno (and optionally p2stateno) for creating reversal attacks.  
+Defines a reversal.  
+If one of P2's Clns1 boxes comes in contact with one of P1's Clsn1 boxes and a ReversalDef is active, then P1 will reverse P2's attack.  
+Use with p1stateno (and optionally p2stateno) for creating reversal attacks.  
   
 ReversalDefs take the HitDef parameters pausetime, sparkno, hitsound, p1stateno, and p2stateno, plus:  
   
@@ -6616,7 +6604,8 @@ The default is -1, which means no sound is played. If you prepend `S` to *snd_gr
     
 **pos = *x_pos*, *y_pos* (float)**  
   
-Specifies the offset (from the player axis) at which the super anim is to be displayed. Defaults to `0, 0`.  
+Specifies the offset (from the player axis) at which the super anim is to be displayed.  
+Defaults to `0, 0`.  
   
 **darken = *bvalue* (boolean)**  
   
@@ -6633,11 +6622,13 @@ Valid values are all positive numbers, including zero.
   
 **poweradd = *value* (int)**  
   
-This is the amount to add to the player's power. Defaults to 0.  
+This is the amount to add to the player's power.  
+Defaults to 0.  
   
 **unhittable = *bvalue* (boolean)**  
   
-If set to 1, the player cannot be hit during the SuperPause. Set to 0 to disable this. Defaults to 1.  
+If set to 1, the player cannot be hit during the SuperPause. Set to 0 to disable this.  
+Defaults to 1.  
   
 **Notes:**  
   
@@ -6756,7 +6747,8 @@ Defaults to 1.
   
 **ID = *bind_id* (int)**  
   
-Specifies the desired target ID to bind. Only targets with this target ID will be bound. Defaults to -1 (bind all targets).  
+Specifies the desired target ID to bind. Only targets with this target ID will be bound.  
+Defaults to -1 (bind all targets).  
   
 **pos = *x_pos*, *y_pos* (float)**  
   
@@ -6806,7 +6798,8 @@ none
   
 **excludeID = *id_no* (int)**  
   
-Any targets with target ID number not equal to id_no will be dropped from the player's target list. Defaults to -1 (drop all targets).  
+Any targets with target ID number not equal to id_no will be dropped from the player's target list.  
+Defaults to -1 (drop all targets).  
   
 **keepone = *keep_flag* (boolean)**  
   
@@ -6836,7 +6829,8 @@ If *facing_val* is negative, all targets will turn to face the opposite directio
   
 **ID = *target_id* (int)**  
   
-Specifies the desired target ID to affect. Only targets with this target ID will be affected. Defaults to -1 (affects all targets).  
+Specifies the desired target ID to affect. Only targets with this target ID will be affected.  
+Defaults to -1 (affects all targets).  
   
 **Example:**  
   
@@ -6880,15 +6874,18 @@ Adds the specified amount to all targets' life, scaled by the targets' defense m
   
 **ID = *target_id* (int)**  
   
-Specifies the desired target ID to affect. Only targets with this target ID will be affected. Defaults to -1 (affects all targets).  
+Specifies the desired target ID to affect. Only targets with this target ID will be affected.  
+Defaults to -1 (affects all targets).  
   
 **kill = *kill_flag* (boolean)**  
   
-If kill_flag is 0, then the addition will not take any player below 1 life point. Defaults to 1.  
+If kill_flag is 0, then the addition will not take any player below 1 life point.  
+Defaults to 1.  
   
 **absolute = *abs_flag* (boolean)**  
   
-If *abs_flag* is 1, then *add_amt* will not be scaled (i.e. attack and defense multipliers will be ignored). Defaults to 0.  
+If *abs_flag* is 1, then *add_amt* will not be scaled (i.e. attack and defense multipliers will be ignored).  
+Defaults to 0.  
   
 **Example:**  
   
@@ -6923,7 +6920,8 @@ Adds the specified amount to all targets' power.
   
 **ID = *target_id* (int)**  
   
-Specifies the desired target ID to affect. Only targets with this target ID will be affected. Defaults to -1 (affects all targets.  
+Specifies the desired target ID to affect. Only targets with this target ID will be affected.  
+Defaults to -1 (affects all targets.  
   
 **Example:**  
   
@@ -6984,7 +6982,8 @@ Specifies the number of the state to change the targets to.
   
 **ID = *target_id* (int)**  
   
-Specifies the desired target ID to affect. Only targets with this target ID will be affected. Defaults to -1 (affects all targets).  
+Specifies the desired target ID to affect. Only targets with this target ID will be affected.  
+Defaults to -1 (affects all targets).  
   
 **Example:**  
   
@@ -7020,7 +7019,8 @@ Specifies the value to add to the y-velocity of the target.
   
 **ID = *target_id* (int)**  
   
-Specifies the desired target ID to affect. Only targets with this target ID will be affected. Defaults to -1 (affects all targets).  
+Specifies the desired target ID to affect. Only targets with this target ID will be affected.  
+Defaults to -1 (affects all targets).  
   
 **Example:**  
   
@@ -7068,7 +7068,8 @@ Specifies the value to set the y-velocity of the target to.
   
 **ID = *target_id* (int)**  
   
-Specifies the desired target ID to affect. Only targets with this target ID will be affected. Defaults to -1 (affects all targets).  
+Specifies the desired target ID to affect. Only targets with this target ID will be affected.  
+Defaults to -1 (affects all targets).  
   
 **Example:**  
   
@@ -7408,11 +7409,13 @@ Sets a contiguous range of the player's working variables to the same value. Eit
   
 **first = *first_idx* (int)**  
   
-Specifies the lower end of the range of variables to set. Defaults to 0 (first variable).  
+Specifies the lower end of the range of variables to set.  
+Defaults to 0 (first variable).  
   
 **last = *last_idx* (int)**  
   
-Specifies the higher end of the range of variables to set. Defaults to 59 for int variables, or 39 for float variables (this is the last available variable in both cases).  
+Specifies the higher end of the range of variables to set.  
+Defaults to 59 for int variables, or 39 for float variables (this is the last available variable in both cases).  
   
 **Notes:**  
   
