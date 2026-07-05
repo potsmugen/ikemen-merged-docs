@@ -6,6 +6,7 @@
 - [enemy(n) (old)](#enemyn-old)
 - [enemyNear (old)](#enemynear-old)
 - [enemyNear(n) (old)](#enemynearn-old)
+- [Example: (new)](#example-new)
 - [helper (old)](#helper-old)
 - [Helper (changed)](#helper-changed)
 - [helper(ID) (old)](#helperid-old)
@@ -55,6 +56,15 @@ The trigger is redirected to the n'th-nearest opponent.
 
 ---
 
+## Example: (new)
+
+**Example:**  
+```ini
+trigger1 = StateOwner,AILevel
+```
+
+---
+
 ## helper (old)
 
 Redirects the trigger to the first helper found. See the related trigger `NumHelper` in the trigger documentation.
@@ -85,19 +95,7 @@ corresponding ID number.
 
 Redirects the trigger to the helper entity by index.
 
-Each helper is assigned an index according to their position among the total number of helpers a player has. These indexes begin at 1, with index 0 being a special case that represents the `root` player. A player with 5 helpers, for instance, will have helpers with indexes 1 through 5.  
-
-```ini
-trigger1 = NumHelper >= 2
-trigger1 = HelperIndex(2), MoveType = A
-```
-Nightly build:
-
-In the nightly build, the trigger has been refactored, now it takes redirections into account, allowing the return of a helper's helpers. The old usage still works if the trigger is called from the **Root**. If you need the same result but the call comes from a helper, use: **Root, HelperIndex(1)**.
-```ini
-trigger1 = HelperIndexExist(2)
-trigger1 = HelperIndex(2), MoveType = A
-```
+Each helper is assigned an index according to their position among the total number of helpers a player has. These indexes begin at 1, with index 0 being a special case that represents the `root` player. A player with 5 helpers, for instance, will have helpers with indexes 1 through 5.
 
 ---
 
@@ -112,11 +110,7 @@ The "P2" enemy has some notable properties:
 
 All of these properties make `P2` the optimal enemy redirection in most cases.  
 
-Note: This redirection should not be mistaken for "Player(2)", which is always player number 2.  
-
-```ini
-trigger1 = P2, DizzyPoints <= 100
-```
+Note: This redirection should not be mistaken for "Player(2)", which is always player number 2.
 
 ---
 
@@ -143,11 +137,6 @@ The trigger is redirected to the n'th partner.
 
 Redirects a trigger to the character with the specified PlayerNo.
 
-```ini
-trigger1 = Player(1), AILevel
-trigger2 = Player(TeamLeader), MoveType = A
-```
-
 ---
 
 ## playerID(ID) (old)
@@ -161,20 +150,7 @@ The trigger is redirected to the player with unique ID equal to ID. See the `ID`
 
 Each player is assigned a specific index in the internal player list. `PlayerIndex` will redirect a trigger to the player (helpers included) with the specified index. The first index is 0. If there are 20 players on screen, valid indexes will be 0 through 19.  
   
-Like all "index" triggers, this is especially useful in `for` and `while` loops.  
-  
-```go
-trigger1 = PlayerIndexExist(1)
-trigger1 = PlayerIndex(1), id = 56
-
-# Count all explods on screen
-let totalExplod = 0;
-for i = 0; NumPlayer - 1; 1 {
-	if PlayerIndexExist($i) {
-		let totalExplod = $totalExplod + PlayerIndex($i), NumExplod;
-	}
-}
-```
+Like all "index" triggers, this is especially useful in `for` and `while` loops.
 
 ---
 
@@ -187,11 +163,7 @@ Redirects the trigger to the root.
 ## StateOwner (new)
 
 Redirects a trigger to the owner of the current state the character is in. Useful when a custom stated target needs to redirect a trigger to the player.  
-Note: states are owned by the root.  
-
-```ini
-trigger1 = StateOwner,AILevel
-```
+Note: states are owned by the root.
 
 ---
 

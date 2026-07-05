@@ -214,34 +214,36 @@ In all cases, if setting a parameter with an expression, you should be careful t
 Both new and old state controllers can now take advantage of some global new features.
 
 
-## fightfx actions
+## fightfx actions  
 
 All the remaining CNS parameters used to assign character actions that didn't support the `F` prefix (*[Statedef]*, *ChangeState*, *SelfState*, *ChangeAnim*, *ChangeAnim2*, *Projectile*) have access to loading animations from `fightfx.air`. The implementation is the same as in the *Explod* anim parameter.  
-
+  
+**Example:**
 ```ini
 [Statedef 1000]
 anim = F 300
 ```
 
 
-## RedirectID
+## RedirectID  
 
 This feature can be utilized with all state controllers, including legacy ones. It is an optional parameter that sends the execution of the state controller to the player with the designated PlayerID. Unlike custom states, this parameter allows interfering with a player's behavior without putting them in another player's states.
 
 For state controllers that normally stop state execution (ChangeState and SelfState), redirecting to an ID different from the owner will not stop the execution of the current state code.
 
-Example of a poison effect that reduces life, applied without touching the opponent:
+**Examples:**  
+A poison effect that reduces life, applied without touching the opponent:
 
 ```ini
 [State -2, Poison]
 type = LifeAdd
-trigger1 = <Is the enemy posioned? trigger>
+trigger1 = <Is the enemy posioned? trigger  
 value = -1
 kill = 0
-RedirectID = <Enemy id here>
+RedirectID = <Enemy id here  
 ```
 
-Example of increasing a team leader's map, regardless of who is running it, if leader's map is < 10.
+Increasing a team leader's map, regardless of who is running it, if leader's map is < 10.
 
 ```ini
 [State Test]
@@ -535,25 +537,27 @@ Unlike Mugen, Ikemen GO can use unlimited amount of numeric arguments. Also it s
 
 This controller allows (de)activating the player's analog vectors without input from a joystick. Values will be clamped to `[-1,1]` with the exception of analog triggers which are normalized to `[0,1]`.
 
->Optional parameters:  
->leftx = *vector* (float)  
->Sets the `LeftX` analog vector. Defaults to 0.
-
->lefty = *vector* (float)  
->Sets the `LeftY` analog vector. Defaults to 0.
-
->rightx = *vector* (float)  
->Sets the `RightX` analog vector. Defaults to 0.
-
->righty = *vector* (float)  
->Sets the `RightY` analog vector. Defaults to 0.
-
->lefttrigger = *vector* (float)  
->Sets the `LeftTrigger` analog vector. Defaults to 0.
-
->righttrigger = *vector* (float)  
->Sets the `RightTrigger` analog vector. Defaults to 0.
-
+**Optional parameters:**  
+  
+**leftx = *vector* (float)**  
+Sets the `LeftX` analog vector. Defaults to 0.
+  
+**lefty = *vector* (float)**  
+Sets the `LeftY` analog vector. Defaults to 0.
+  
+**rightx = *vector* (float)**  
+Sets the `RightX` analog vector. Defaults to 0.
+  
+**righty = *vector* (float)**  
+Sets the `RightY` analog vector. Defaults to 0.
+  
+**lefttrigger = *vector* (float)**  
+Sets the `LeftTrigger` analog vector. Defaults to 0.
+  
+**righttrigger = *vector* (float)**  
+Sets the `RightTrigger` analog vector. Defaults to 0.
+  
+**Example:**
 ```ini
 [State -1, AssertAnalogVector]
 type = AssertAnalogVector
@@ -571,14 +575,17 @@ righttrigger = 0
 
 This controller allows (de)activating the player's commands without any button presses. If the player has multiple commands with the same name, the controller will affect all of them.
 
->Required parameters:  
+**Required parameters:**  
+  
 >name = *command_name* (string)  
 >String specifying the command to assert.  
->  
->Optional parameters:  
+  
+**Optional parameters:**  
+  
 >buffer.time = *time* (int)  
->Number of ticks during which the command will be buffered. Defaults to 1.
-
+>Number of ticks during which the command will be buffered. Defaults to 1.  
+  
+Examples:
 ```ini
 [State Test]
 type = AssertCommand
@@ -587,7 +594,8 @@ name = "QCF_x"
 buffer.time = 5
 ```
 When the name parameter is set to "" (empty), a random command from all the commands the character has will be activated.
-
+  
+**Example:**
 ```ini
 [State Test]
 type = AssertCommand
@@ -601,36 +609,38 @@ name = ""
 
 This controller allows you to assert up to three input flags simultaneously via single sctrl. Similarly to AssertSpecial, there is no limit how many times this controller is called. Each flag will be automatically "de-asserted" at every game tick, so you must assert a flag for each tick that you want it to be active. Ikemen interprets input flags the same was as if corresponding input keys were pressed.
 
->Required parameters:  
+**Required parameters:**  
+  
 >flag = *flag_name* (string)  
 >String specifying the flag to assert.  
->  
->Optional parameters:  
+  
+**Optional parameters:**  
+  
 >flag2 = *flag_name* (string)  
 >An optional flag to assert.  
->  
+  
 >flag3 = *flag_name* (string)  
 >Another optional flag to assert.  
->  
+  
 >flag4 = *flag_name* (string)  (nightly build only)  
 >Another optional flag to assert.  
-> 
+ 
 >flag5 = *flag_name* (string)  (nightly build only)  
 >Another optional flag to assert.  
-> 
+ 
 >flag6 = *flag_name* (string)  (nightly build only)  
 >Another optional flag to assert.  
-> 
+ 
 >flag7 = *flag_name* (string)  (nightly build only)  
 >Another optional flag to assert.  
-> 
+ 
 >flag8 = *flag_name* (string)  (nightly build only)  
 >Another optional flag to assert.  
-> 
->Details:  
->The flag name can be one of the following input keys (case sensitive):  
->U, D, L, R, a, b, c, x, y, z, s, d, w, m  
->B, F  (nightly build only)
+ 
+**Details:**  
+The flag name can be one of the following input keys (case sensitive):  
+U, D, L, R, a, b, c, x, y, z, s, d, w, m  
+B, F  (nightly build only)
 
 ---
 
@@ -1352,16 +1362,18 @@ The index of the target to bind to. Defaults to 0 (first one).
   
 Changes the camera position and the way players interact with screen and stage edges.  
 
->Required parameters:  
+**Required parameters:**  
+  
 >view = "*view_type*" (string)  
 >Specifies the type of view to implement.  
 >Valid values are "Fighting", "Follow" or "Free". Fighting works like common MUGEN camera. Follow anchors the camera to a specific player/helper and follows it. Free is not bound to anything other than the own camera's limitations.  
->  
->Optional parameters:  
+  
+**Optional parameters:**  
+  
 >Pos: X (float), Y (float). This should be used during Free view, as it lets a character directly control the camera position values.  
 >FollowID: ID (int). When in Follow view and a player/helper ID is specified in this parameter, camera will start following that player/helper.  
->  
->Details:  
+  
+**Details:**  
 >When in Free view, Screenbound and Movecamera will not influence camera or char positions. Follow view will only be influenced by Screenbound/Movecamera from the player being followed (this might change in the future).
 
 ---
@@ -1444,15 +1456,18 @@ This parameter lets a character use the specified animation from another charact
 
 Selects which movelist assigned in the character's DEF file should be displayed in the Pause menu command list.
 
->Required parameters:  
+**Required parameters:**  
+  
 >none  
->  
->Optional parameters:  
+  
+**Optional parameters:**  
+  
 >value = *movelist_index* (int)  
 >Specifies the index of the movelist to use. Defaults to 0.  
 
 The movelist files are specified in the character's DEF file, under the `[Files]` group. `movelist` and `movelist0` both refer to index 0.
-
+  
+**Example:**
 ```ini
 [State 5900, Evil Ryu movelist]
 type = ChangeMovelist
@@ -1621,20 +1636,23 @@ ignorehitpause = 1
 
 Temporarily changes the depth size of the player's for 1 frame. Similar to Width in function. 
 
->Required parameters:  
+**Required parameters:**  
+  
 >none  
->
->Optional parameters:  
+  
+**Optional parameters:**  
+  
 >edge = *edgedepth_front, edgedepth_back* (int, int)  
 >Sets the player's edge depth in front and behind. Edge depth determines how close the player can get to the topbound and botbound of the screen. These parameters default to 0,0 if omitted.  
->
+  
 >player = *playdepth_front, playdepth_back* (int, int)  
 >Sets the player depth in front and behind. Player depth determines how close the player can get to other players depth and also determines the hitable depth area of a player. These parameters default to 0,0 if omitted  
->
+  
 >Alternate syntax:  
 >value = *value = depth_front, depth_back* (int, int)  
 >This is a shorthand syntax for setting both edge depth and player depth simultaneously. This may only be used if the edge and player parameters are not specified.
-
+  
+**Example:**
 ```ini
 [State Test]
 type = Depth
@@ -1685,14 +1703,16 @@ none
 
 Assigns dialogue data to be displayed either right before the lifebar calls the fight during first round (last frame of  RoundState = 1) or at the last active frame of the final round (RoundState = 4, right before screen starts fading out). If more than 1 player calls this sctrl, who will end up initiating dialogue is chosen randomly.
 
->Required parameters:  
+**Required parameters:**  
+  
 >textX = "*dialogue_info*" (string)  
 >String containing information needed for displaying dialogue. There can be multiple *text* parameters assigned, each suffixed with numbers in ascending order. The parameter stores both text, as well as optional tokens (enclosed in <> brackets) for controlling other aspects of dialogue (listed below).
->  
->Optional parameters:  
+  
+**Optional parameters:**  
+  
 >hidebars = *bars_flag* (int)  
 >Set to nonzero to hide lifebars as soon as the sctrl is called (by default lifebar is hidden only when actual dialogue starts).  
->  
+  
 >force = *force_flag* (int)  
 >Set to nonzero to force dialogue start immediately, ignoring normal rules.  
 
@@ -1729,7 +1749,8 @@ As an example, below code showcases Symphony of the Night (in)famous cutscene re
 Click on the image to watch the video corresponding to below code.
 
 [![IMAGE ALT TEXT](http://img.youtube.com/vi/BbUnJT9KnnU/0.jpg)](http://www.youtube.com/watch?v=BbUnJT9KnnU "Ikemen GO SotN cutscene")
-
+  
+**Example:**
 ```ini
 [State 191, Dialogue]
 type = Dialogue
@@ -1809,7 +1830,8 @@ The value of var(17) is 1, which is 4.347826% of 23.
 
 Adds the specified amount to the player's dizzy points.
 
->Required parameters:  
+**Required parameters:**  
+  
 >value = *add_amt* (int)  
 >*add_amt* is the number to add to the player's dizzy points.
 
@@ -1819,7 +1841,8 @@ Adds the specified amount to the player's dizzy points.
 
 Sets the amount of dizzy points that the player has.
 
->Required parameters:  
+**Required parameters:**  
+  
 >value = *set_amt* (int)  
 >*set_amt* is the new value to set the player's dizzy points to.
 
@@ -1829,7 +1852,8 @@ Sets the amount of dizzy points that the player has.
 
 Sets the player's Dizzy flag. For the duration that this flag is set, combo hit counter does not reset and the combo count lifebar text will stay on screen. 
 
->Required parameters:  
+**Required parameters:**  
+  
 >value = *dizzy_flag* (int)  
 >Set to nonzero to add Dizzy flag, or 0 to remove it.
 
@@ -2666,8 +2690,10 @@ none
 
 Changes a player's `GetHitVar` directly, without requiring a hit.  
   
-Supported parameters: airtype, animtype, attr, chainid, ctrltime, damage, dizzypoints, down.recovertime, fall, fall.damage, fall.envshake.ampl, fall.envshake.freq, fall.envshake.mul, fall.envshake.phase, fall.envshake.time, fall.kill, fall.recover, fall.recovertime, fall.xvel, fall.yvel, fallcount, groundtype, guardcount, guarded, guardpoints, hitcount, hitshaketime, hittime, ID, playerno, redlife, slidetime, xvel, yaccel, yvel
-
+Supported parameters:  
+airtype, animtype, attr, chainid, ctrltime, damage, dizzypoints, down.recovertime, fall, fall.damage, fall.envshake.ampl, fall.envshake.freq, fall.envshake.mul, fall.envshake.phase, fall.envshake.time, fall.kill, fall.recover, fall.recovertime, fall.xvel, fall.yvel, fallcount, groundtype, guardcount, guarded, guardpoints, hitcount, hitshaketime, hittime, ID, playerno, redlife, slidetime, xvel, yaccel, yvel
+  
+**Example:**
 ```ini
 [State Test]
 type = GetHitVarSet
@@ -2703,9 +2729,11 @@ type = Gravity
 
 Applies a temporary offset to the player's ground level, which is otherwise 0. This makes the player treat a different position as `pos y = 0`, and therefore allows coding features such as platforms.
 
->Required parameters:  
+**Required parameters:**  
+  
 >value = offset (float)  
-
+  
+**Example:**
 ```ini
 [State Test]
 type = GroundLevelOffset
@@ -2720,7 +2748,8 @@ value = -60
 
 Sets the player's Guard Break flag.
 
->Required parameters:  
+**Required parameters:**  
+  
 >value = *break_flag* (int)  
 >Set to nonzero to add Guard Break flag, or 0 to remove it.
 
@@ -2730,7 +2759,8 @@ Sets the player's Guard Break flag.
 
 Adds the specified amount to the player's guard points.
 
->Required parameters:  
+**Required parameters:**  
+  
 >value = *add_amt* (int)  
 >*add_amt* is the number to add to the player's guard points.
 
@@ -2740,7 +2770,8 @@ Adds the specified amount to the player's guard points.
 
 Sets the amount of guard points that the player has.
 
->Required parameters:  
+**Required parameters:**  
+  
 >value = *set_amt* (int)  
 >*set_amt* is the new value to set the player's guard points to.
 
@@ -2750,9 +2781,11 @@ Sets the amount of guard points that the player has.
 
 Temporarily changes the vertical size of the player's "push box" for 1 frame. Similar to Width in function: the values are added to the height, as defined in the player's constants file—they do not override them. A positive value will make the box larger, and a negative one will make it smaller.
 
->Required parameters:  
+**Required parameters:**  
+  
 >value = *top_extra_size, bottom_extra_size* (int)
-
+  
+**Example:**
 ```ini
 [State Test]
 type = Height
@@ -4174,45 +4207,47 @@ none
 
 Displays text/sprites/anims synchronized with each other, using [lifebar data](Lifebar-features/#new_action). The intended use case is implementation of messages, often found in commercial fighting games.
 
-> Required parameters:  
+**Required parameters:**  
+  
 > none  
->
-> Optional parameters:  
+  
+**Optional parameters:**  
+  
 > top = *top_flag* (int)  
 > Set to nonzero to move the message on top of the messages queue (by default new messages are appended to the end).  
->
+  
 > time = *time_set* (int)  
 > Specifies how long in ticks the message should be displayed. Defaults to time assigned by lifebar DEF file.  
->
+  
 > timemul = *time_mul* (float)  
 > Specifies the desired time multiplier. For instance, *time_mul* of 0.5 halves the time in which the message is displayed.  
->
+  
 > anim = *anim_no* (int)  
 > Specifies the number of the animation that should be used as a message (declared in lifebar DEF file).  
->
+  
 > spr = *group_no*, *sprite_no* (int, int)  
 > Values correspond to the identifying pair assigned to sprite in the lifebar sff file.  
->
+  
 > snd = *group_no*, *sound_no* (int, int)  
 > Values correspond to the identifying pair assigned to sound in the lifebar snd file.  
->
+  
 > text = *"message"* (string)  
 > Text to be rendered as a message.  
->
+  
 > font.no = *font_no* (int)  
 > *font_no* specifies the number of the lifebar font to use for text rendering. Defaults to the font assigned by lifebar DEF file.  
->
+  
 > font.bank = *bank_no* (int)  
 > Color bank of the font to use. Refer to the font for what color banks it has. Defaults to the bank assigned by lifebar DEF file.  
->
+  
 > font.align = *alignment* (int)  
 > *alignment* is a number representing the text alignment. 1 is left, 0 means center, and -1 is for right-alignment. Defaults to the alignment assigned by lifebar DEF file.  
->
+  
 > font.color = *r, g, b, a* (int, int, int, int)  
 > Color adjustment values for the font. Defaults to values assigned by lifebar DEF file. Alpha is optional.  
->  
+  
 > palfx.key = LifebarAction can accept all the same key values from [PalFX state controller](http://www.elecbyte.com/mugendocs/sctrls.html#palfx) for message text rendering (only for sprite fonts).  
->  
+  
 > refreshtype = *type* (int)  
 > Determines how to handle duplicate messages:  
 > 0 lets duplicates stack  
@@ -4248,20 +4283,23 @@ none
 
 Loads the specified data and overrides the data of the execution character. Note that all the data before reading will disappear.
 
->Required parameters:  
->savedata = *var_type* (string)  
->Specifies the data type that should be read. Valid values for var_type are "var", "fvar", and "map".  
->  
->path = "*save_path*" (string)  
->Specifies the path of the file to be read (relative to the character folder). An error occurs if you make a mistake in the path.  
+**Required parameters:**  
+  
+**savedata = *var_type* (string)**  
+Specifies the data type that should be read. Valid values for var_type are "var", "fvar", and "map".  
+  
+**path = "*save_path*" (string)**  
+Specifies the path of the file to be read (relative to the character folder). An error occurs if you make a mistake in the path.  
 
->Optional parameters:  
->maps = *map_1*, *map_2*, *map_3*... (string) (nightly build only)  
->A list of maps to load. Defaults to empty.  
->  
->maps.include = *filter* (string) (nightly build only)  
->All maps containing this string in their names will be loaded. Defaults to empty.  
-
+**Optional parameters:**  
+  
+**maps = *map_1*, *map_2*, *map_3*... (string)** (nightly build only)  
+A list of maps to load. Defaults to empty.  
+  
+**maps.include = *filter* (string)** (nightly build only)  
+All maps containing this string in their names will be loaded. Defaults to empty.  
+  
+**Example:**
 ```ini
 [State Test]
 type = LoadFile
@@ -4311,12 +4349,13 @@ none
 
 Adds value to player's map.
 
->Required parameters:  
->map = "*map_name*" (string)  
->Specifies a name of the map that we add value to.  
->  
->value = *expr* (int or float)  
->*expr* is the value to add to the map.
+**Required parameters:**  
+  
+*map = "*map_name*" (string)*  
+Specifies a name of the map that we add value to.  
+  
+**value = *expr* (int or float)**  
+*expr* is the value to add to the map.
 
 ---
 
@@ -4325,17 +4364,19 @@ Adds value to player's map.
 Clears all of the player's maps, except those containing the specified strings.  
 Maps that are defined in the character's DEF file will be reset to the value specified there.  
 
->Required parameters:  
->none  
->  
->Optional parameters:  
->exclude = "*exception_string*" (string)  
->If a map's name contains this string, it won't be cleared.
->  
->exclude2 = "*exception_string*" (string)  
->Extra filter parameters. Up to exclude8.
+**Required parameters:**  
+  
+none  
+  
+**Optional parameters:**  
+  
+**exclude = "*exception_string*"** (string)  
+If a map's name contains this string, it won't be cleared.
+  
+**exclude2 = "*exception_string*"** (string)  
+Extra filter parameters. Up to `exclude8`.
 
-Example:
+**Example:**
 ```
 mapReset{exclude: "level_"; exclude2: "experience_"; exclude3: "score_"}
 ```
@@ -4346,10 +4387,11 @@ mapReset{exclude: "level_"; exclude2: "experience_"; exclude3: "score_"}
 
 Sets value to player's map. This state controller can be used to change a number that has already been set via character's DEF file or to set a new map.
 
->Required parameters:  
+**Required parameters:**  
+  
 >map = "*map_name*" (string)  
 >Specifies a name of the map that we assign value to.  
->  
+  
 >value = *expr* (int or float)  
 >*expr* is the value to assign to the map.
 
@@ -4359,31 +4401,34 @@ Sets value to player's map. This state controller can be used to change a number
 
 Reset the round or match and resume. By default (when no optional parameters are set) has the same effect as F4 debug key (round restart). Optionally allows characters and stage reloading, which also changes the state controller functionality to work like shift+F4 debug key (match restart).
 
->Required parameters:  
+**Required parameters:**  
+  
 >none  
->  
->Optional parameters:  
+  
+**Optional parameters:**  
+  
 >pXdef = "*char_path*" (string)  
 >Path of the def file to read when reloading player 1-8 (replace X with player number). *char_path* can be relative to the folder of character that triggered MatchRestart or top ikemen directory.  
->  
+  
 >stagedef = "*stage_path*" (string)  
 >Path of the stage def file to read when reloading. *stage_path* can be relative to the folder of character that triggered MatchRestart or top ikemen directory.  
->  
+  
 >reload = *p1, p2, p3, p4, p5, p6, p7, p8* (int)  
 >This parameter specifies whether to reload particular character. Defaults to 0 (round is reset without characters reloading)   
 >Note: Reloading files does not work during netplay due to synchronization limitations.
->
+  
 >resetmatch = "*flag*" (int) (nightly build only)  
 >If set to 1, the match will restart from Round 1 instead of the current round. Unlike standard reloading, this allows restarting the match without reloading assets (reload=0), making it compatible with netplay. Defaults to 0.  
 >Note: This parameter will be ignored in Turns mode if the active characters have already switched and reload is not enabled, as the original characters are no longer in memory.
->
+  
 >preservevars = *p1, p2, p3, p4, p5, p6, p7, p8* (int) (nightly build only)  
 >This parameter specifies whether to preserve variables (var, fvar, map) for a particular character after the restart. Defaults to 0.  
 >Note: In the first round, the default common state will have all var and fvar reset by the varRangeSet in StateDef 5900. If you want to carry over variables to the first round, you will need to overwrite the StateDef 5900.
->
+  
 >pXpalette = *pal_no* (int) (nightly build only)  
 >Specifies the palette number (1-12) to be used for player X (replace X with player number) upon restarting. If not specified, the character retains the currently selected palette.
-
+  
+**Example:**
 ```ini
 [State Test]
 type = MatchRestart
@@ -4400,26 +4445,29 @@ reload = 1, 1
 
 Modifies the parameters of an existing stage [background controller](http://www.elecbyte.com/mugendocs/bgs.html#background-controllers).
 
->Required parameters:  
+**Required parameters:**  
+  
 >id = *sctrlid* (int)  
 >Specifies which controllers should be modified (all BGCtrl marked with [sctrlid](Stage-features/#bgctrl_sctrlid) will be affected)  
->  
->Optional parameters:  
+  
+**Optional parameters:**  
+  
 >time = *start_time*, *end_time*, *looptime* (int)  
 >time values that should modify background controller time parameter.  
->  
+  
 >value = *value_1*, *value_2*, *value_3* (int)  
 >values that should modify background controller value parameter (used by following BGCtrl types: *Visible*, *Enabled*, *Anim*, *SinX*, *SinY*; only SinX and SinY use more than 1 value).  
->  
+  
 >x = *value_x* (float)  
 >x value that should modify background controller *x* parameter (used by following BGCtrl types: *VelSet*, *VelAdd*, *PosSet*, *PosAdd*).  
->  
+  
 >y = *value_y* (float)  
 >y value that should modify background controller *y* parameter (used by following BGCtrl types: *VelSet*, *VelAdd*, *PosSet*, *PosAdd*).  
->  
+  
 >Notes:  
 >This state controller affects background controllers marked with [sctrlid](Stage-features/#bgctrl_sctrlid), which is normally not known by individual characters. For this reason the best way to use this sctrl is through [AttachedChar](Stage-features#info_attachedchar) associated with particular stage.
-
+  
+**Example:**
 ```ini
 [State Test]
 trigger1 = 1
@@ -4434,20 +4482,23 @@ value = 0
 
 Modifies the parameters of an existing [3D stage background controller](../Stage-features-(3d)/).
 
->Required parameters:  
+**Required parameters:**  
+  
 >id = *sctrlid* (int)  
 >Specifies which controllers should be modified (all BGCtrl marked with [sctrlid](Stage-features/#bgctrl_sctrlid) will be affected)  
->  
->Optional parameters:  
+  
+**Optional parameters:**  
+  
 >time = *start_time*, *end_time*, *looptime* (int)  
 >time values that should modify background controller time parameter.  
->  
+  
 >value = *value_1*, *value_2*, *value_3* (int)  
 >values that should modify background controller value parameter (used by following BGCtrl types: *Visible*, *Enabled*, *Anim*).  
->  
+  
 >Notes:  
 >This state controller affects background controllers marked with [sctrlid](Stage-features/#bgctrl_sctrlid), which is normally not known by individual characters. For this reason the best way to use this sctrl is through [AttachedChar](Stage-features#info_attachedchar) associated with particular stage.
-
+  
+**Example:**
 ```ini
 [State -2, Test]
 type = ModifyBGCtrl3d
@@ -4463,25 +4514,27 @@ value = 1
 
 Modifies currently playing music.
 
->Required parameters:  
+**Required parameters:**  
+  
 >none  
->  
->Optional parameters:  
+  
+**Optional parameters:**  
+  
 >volume = *volume_scale* (int)  
 >*volume_scale* alters volume for currently playing bgm.  
->  
+  
 >loopstart = *start_sample* (int)  
 >Loop start position sample number.  
->  
+  
 >loopend = *end_sample* (int)  
 >Loop end position sample number.  
->  
+  
 >position = *sample_point* (int)  
 >Sample point to where the music should seek.  
->  
+  
 >freqmul = *freqmul* (float)  
 >Frequency multiplier of the BGM (control pitch & tempo).  
->  
+  
 >loopcount = *loop_count* (int)  
 >Changes the number of times this BGM should loop.
 
@@ -4540,12 +4593,15 @@ Modifies the `under` parameter of an existing Explod.
 
 Using this state controller will update the specified parameters of the player's currently active `HitDef`. Has no effect if no `HitDef` is active.
 
->Required parameters:  
+**Required parameters:**  
+  
 >none  
->  
->Optional parameters:  
+  
+**Optional parameters:**  
+  
 >same as HitDef  
-
+  
+**Example:**
 ```ini
 [State Test]
 type = ModifyHitdef
@@ -4562,75 +4618,77 @@ Allows changing some player parameters that are otherwise out of reach, or don't
   
 Note: This state controller was briefly named `ModifyChar` during development. A previous nightly state controller named `MoveHitSet` was also integrated into it.  
 
->Required parameters:  
+**Required parameters:**  
+  
 >none  
->  
->Optional parameters:  
->  
+  
+**Optional parameters:**  
+  
+  
 >ailevel = *ailevel* (int)  
 >Sets the character's ailevel.  
->  
+  
 >alive = *flag* (bool)  
 >Toggles the character's alive flag on or off.  
->  
+  
 >attack = *attack_value* (int)  
 >Changes the player's attack value.  
->  
+  
 >defence = *defence_value* (int)  
 >Changes the player's defence value.  
->  
+  
 >displayname = *name*(string)  
 >Changes the character's displayname.  
->  
+  
 >lifebarname = *name* (string)  
 >Changes the character's lifebarname.  
->  
+  
 >lifemax = *points* (int)  
 >Changes the character's maximum life points.  
->  
+  
 >powermax = *points* (int)  
 >Changes the character's maximum life points.  
->  
+  
 >dizzypointsmax = *points* (int)  
 >Changes the character's maximum dizzy points.  
->  
+  
 >guardpointsmax = *points* (int)  
 >Changes the character's maximum guardpoints.  
->  
+  
 >teamside = *side* (int)  
 >Changes the character's team side.  
->  
+  
 >helpervar.ID = *id* (int)  
 >Changes a helper's helper ID.  
->  
+  
 >helpername = *name* (string)  
 >Changes a helper's name.  
->  
+  
 >movehit = *time* (int)  
 >Sets the player's MoveHit timer to the specified value.  
->  
+  
 >moveguarded = *time* (int)  
 >Sets the player's MoveGuarded timer to the specified value.  
->  
+  
 >movereversed = *time* (int)  
 >Sets the player's MoveReversed timer to the specified value.  
->  
+  
 >movecountered = *flag* (bool)  
 >Toggles the player's MoveCountered flag on or off.  
->  
+  
 >hitpausetime = *time* (int)  
 >Sets the player's hitpausetime to the specified value.  
->  
+  
 >pausemovetime = *time* (int)  
 >Sets the player's pausemovetime to the specified value.  
->  
+  
 >supermovetime = *time* (int)  
 >Sets the player's supermovetime to the specified value.  
->  
+  
 >unhittabletime = *time* (int)  
 >Sets the player's "unhittable" timer to the specified value.  
-
-
+  
+**Example:**
 ```ini
 [State Test]
 type = ModifyPlayer
@@ -4646,16 +4704,18 @@ teamside = 2
 
 Using this state controller will update the specified parameters for the projectiles with the specified `ID`. Syntax is essentially the same as for `Projectile`.
 
->Required parameters:  
+**Required parameters:**  
+  
 >none  
->  
->Optional parameters:   
+  
+**Optional parameters:**   
 >ID = projectile_ID (int)  
 >The ID of the projectiles to modify. Defaults to -1 (all the player's projectiles)  
->
+  
 >index = projectile_index (int)  
 >The index of the projectile to modify. Defaults to -1 (all the player's projectiles)  
-
+  
+**Example:**
 ```ini
 [State Test]
 type = ModifyProjectile
@@ -4673,10 +4733,12 @@ teamside = 2
 
 This state controller allows modifying parameters of a char's Reflection
 
->Required parameters:  
+**Required parameters:**  
+  
 >none  
->
->Optional parameters:  
+  
+**Optional parameters:**  
+  
 >anim = *anim_no* (int)  
 >animplayerno = *anim_player_no* (int)  
 >spriteplayerno = *sprite_player_no* (int)  
@@ -4696,12 +4758,15 @@ This state controller allows modifying parameters of a char's Reflection
 
 Using this state controller will update the specified parameters of the player's currently active `ReversalDef`. Has no effect if no `ReversalDef` is active.
 
->Required parameters:  
+**Required parameters:**  
+  
 >none  
->  
->Optional parameters:  
+  
+**Optional parameters:**  
+  
 >same as ReversalDef  
-
+  
+**Example:**
 ```ini
 [State Test]
 type = ModifyReversalDef
@@ -4716,10 +4781,12 @@ fall = 0
 
 This state controller allows modifying parameters of a char's Shadow
 
->Required parameters:  
+**Required parameters:**  
+  
 >none  
->
->Optional parameters:  
+  
+**Optional parameters:**  
+  
 >anim = *anim_no* (int)  
 >animplayerno = *anim_player_no* (int)  
 >spriteplayerno = *sprite_player_no* (int)  
@@ -4739,47 +4806,50 @@ This state controller allows modifying parameters of a char's Shadow
 
 Modifies the following sound parameters on-the-fly. This cannot modify the `lowpriority` parameter. If you need your sound to be low priority, call PlaySnd with the respective parameter set.
 
->Required parameters:  
+**Required parameters:**  
+  
 >none  
->  
->Optional parameters:  
->  
+  
+**Optional parameters:**  
+  
+  
 >channel = *channelNo* (int)  
 >The sound channel to modify. Use -1 to modify all sound channels on the entity.  
->  
+  
 >volume = *volume* (int)  
 >Changes the volume of the specified sound channel.
->  
+  
 >volumescale = *scale* (int)  
 >Changes the volume scale of the specified sound channel.  
->  
+  
 >freqmul = *freqmul* (float)  
 >Changes the sound channel's frequency multiplier. 
->  
+  
 >pan = *pan* (float)  
 >Changes the sound channel's pan.  
->  
+  
 >abspan = *abspan* (float)  
 >Changes the sound channel's absolute pan.  
->  
+  
 >priority = *priority* (int)  
 >Changes the sound channel's priority.  
->
+  
 >loopstart = *loop_start_sample* (int)  
 >Changes the sound's loop start point.  
->
+  
 >loopend = *loop_end_sample* (int)  
 >Changes the sound's loop end point.  
->  
+  
 >position = *new_position_sample* (int)  
 >Changes the position of the currently playing sound. Behavior is undefined when the channel is unspecified (-1).  
->  
+  
 >loop = *new_loop_value* (bool)  
 >Changes whether or not this sound should loop forever (nonzero) or not at all (0). This parameter is ignored if `loopcount` is nonzero.  
->  
+  
 >loopcount = *new_loop_count* (int)  
 >Changes the number of times this sound should loop.  
-
+  
+**Example:**
 ```ini
 [State Test]
 type = ModifySnd
@@ -4795,79 +4865,80 @@ freqmul = 1 + cos(pi*fightTime/256)
 
 This state controller allows modifying the stage's BG elements. Refer to stage documentation for more information.  
 
->Required parameters:  
->  
+**Required parameters:**  
+  
+  
 >At least one parameter modification  
->  
->Optional parameters:   
->  
+  
+**Optional parameters:**   
+  
 >ID = stagebg_ID (int)  
 >The ID of the BG to modify. Defaults to -1 (all)  
->
+  
 >index = stagebg_index (int)  
 >The index of the BG to modify. Defaults to -1 (all)  
->  
+  
 >actionno = *anim* (int)  
 >Changes the animation for anim type elements.  
->  
+  
 >alpha = *source, destination* (int, int)  
 >Changes the transparency's alpha parameters. Requires trans parameter.  
->  
+  
 >angle = *angle* (int)   
 >Changes the angle parameter.   
->  
+  
 >Xangle = *Xangle* (int)   
 >Changes the Xangle parameter.   
->  
+  
 >Yangle = *Yangle* (int)   
 >Changes the Yangle parameter.   
->  
+  
 >delta.x = *delta* (float)  
 >Changes the X delta.  
->  
+  
 >delta.y = *delta* (float)  
 >Changes the Y delta.  
->  
+  
 >layerno = *layer* (int)  
 >Changes the layer number.  
->  
+  
 >pos.x = *position* (float)  
 >Changes the X position in relation to the starting position.  
->  
+  
 >pos.y = *position* (float)  
 >Changes the Y position in relation to the starting position.  
->  
+  
 >spriteno = *group, image* (int, int)  
 >Changes the sprite number for normal type elements.  
->  
+  
 >start.x = *position* (float)  
 >Changes the X starting position.  
->  
+  
 >start.y = *position* (float)  
 >Changes the Y starting position.  
->  
+  
 >scalestart = *scale x, scale y* (float, float)  
 >Changes the scalestart parameter.  
->  
+  
 >trans = *trans_type* (string)  
 >Changes the transparency type.  
->  
+  
 >velocity.x = *velocity* (float)  
 >Changes the X velocity.  
->  
+  
 >velocity.y = *velocity* (float)  
 >Changes the Y velocity.  
->  
+  
 >xshear = *xshear* (float)  
 >Changes the xshear parameter.  
->  
+  
 >focallength = *focallength* (float)  
 >Changes the focallength parameter.  
->  
+  
 >projection = *projection* (string)  
 >Changes the projection parameter.  
-
-Example:
+  
+**Example:**
 ```ini
 [State Test]
 type = ModifyStageBG
@@ -4883,10 +4954,12 @@ velocity.x = 4
 
 This SCTRL lets a character modify basic stage parameters or "stage vars", as declared in the stage .def file. Not all parameters are modifable for now, but the SCTRL could be expanded in the future to allow it.
 
->Required parameters:  
+**Required parameters:**  
+  
 >none  
->  
->Optional parameters:  
+  
+**Optional parameters:**  
+  
 >camera.ytension.enable = *enable_flag* (bool)  
 >camera.boundleft = *bound_left* (int)  
 >camera.boundright = *bound_right* (int)  
@@ -4956,8 +5029,8 @@ This SCTRL lets a character modify basic stage parameters or "stage vars", as de
 >reflection.yangle = *yangle* (int)  
 >reflection.ydelta = *delta* (float) (nightly build only)  
 >reflection.yscale = *scale* (float) (nightly build only)  
->
->Details:  
+  
+**Details:**  
 >camera.ytension.enable is enabled by default when a stage uses tensionhigh and tensionlow
 
 ---
@@ -4966,14 +5039,18 @@ This SCTRL lets a character modify basic stage parameters or "stage vars", as de
 
 Using this state controller will update the specified parameters for the texts with the specified ID. Syntax is essentially the same as for Text sctrl.
 
->Required parameters:  
+**Required parameters:**  
+  
 >none  
->  
->Optional parameters:  
+  
+**Optional parameters:**  
+  
 >ID = text_id (int)  
 >The ID of the texts to modify. Defaults to -1 (all the player's texts)  
 >index = text_index (int)  
 >The index of the texts to modify. Defaults to -1 (all the player's texts)  
+  
+**Example:**
 ```ini
 [State Test]
 type = ModifyText
@@ -5126,7 +5203,7 @@ Defaults to `0`.
 The rectangle, or coordinates for the box.  
 Using `0, 0, 0, 0` removes the box.
 
-**Examples**
+**Examples:**
 
 ```ini
 [State Test]; Force player to have at least one Clsn1 box
@@ -5246,10 +5323,11 @@ Similliar to "sinadd" parameter but instead it creates effect related to "hue" p
 
 If the player is a helper, adds value to parent's map. If the player is not a helper, this controller does nothing. Parent refers to the instance that spawned the helper.
 
->Required parameters:  
+**Required parameters:**  
+  
 >map = "*map_name*" (string)  
 >Specifies a name of the map that we add value to.  
->  
+  
 >value = *expr* (int or float)  
 >*expr* is the value to add to the map.
 
@@ -5259,10 +5337,11 @@ If the player is a helper, adds value to parent's map. If the player is not a he
 
 If the player is a helper, sets value to parent's map. If the player is not a helper, this controller does nothing. Parent refers to the instance that spawned the helper.
 
->Required parameters:  
+**Required parameters:**  
+  
 >map = "*map_name*" (string)  
 >Specifies a name of the map that we assign value to.  
->  
+  
 >value = *expr* (int or float)  
 >*expr* is the value to assign to the map.
 
@@ -5417,31 +5496,33 @@ none
 
 Plays back a music. Supported file formats: *mp3*, *ogg*, *wav*. 
 
->Required parameters:  
+**Required parameters:**  
+  
 >none  
->  
->Optional parameters:  
+  
+**Optional parameters:**  
+  
 >bgm = "*bgm_path*" (string)  
 >Path of the music file to play. Leave it blank if you want to stop current music. *bgm_path* file lookup starts relative to character's directory, followed by checking path relative to top ikemen directory, finally the file existance is checked in *sound* directory.  
->  
+  
 >loop = *loop_flag* (int)  
 >Set *loop_flag* to a nonzero value to have the bgm loop over and over, or 0 to disable looping. Defaults to 1.
->  
+  
 >volume = *volume_scale* (int)  
 >Adjust the volume. 100 is for 100%. Defaults to 100. If *bgm_path* is not specified, *volume_scale* alters volume for currently playing bgm.  
->  
+  
 >loopstart = *start_sample* (int)  
 >Loop start position sample number.  
->  
+  
 >loopend = *end_sample* (int)  
 >Loop end position sample number.  
->  
+  
 >startposition = *sample_point* (int)  
 >Sample point where the music should start playing.  
->  
+  
 >freqmul = *freqmul* (float)  
 >Frequency multiplier of the BGM (control pitch & tempo).  
->  
+  
 >loopcount = *loop_count* (int)  
 >Changes the number of times this BGM should loop.
 
@@ -5726,18 +5807,21 @@ This controller is only useful for debugging. PrintToConsole prints a specified 
 
 The syntax is the same as DisplayToClipboard:
 
->Required parameters:  
+**Required parameters:**  
+  
 >text = "*format_string*" (string)  
 >*format_string* must be encased in double-quotes. It is a printf format string, so if you know about printf, you can skip this description. The format string contains any text you wish to display. You can also use \n to generate a line break, and \t to generate a tab character (tab width is equivalent to 4 characters). To display the value of an arithmetic expression, you can put a %d (for ints) or a %f (for floats) in the format string, then specify the expression in the params list. To display a % character, you must put %% in the format string.  
->  
+  
 >Following format specifiers are accepted: %v (any type), %d, %i, %f, %F, %e, %E, %g, or %G. Format specifier syntax such as %0.2f is also supported. Recognized escape sequences are \n, \t, \\, and \".  
->  
->Optional parameters:  
+  
+**Optional parameters:**  
+  
 >params = *exp_1, exp_2, (...)*  
 >Unlimited amount of numeric arguments can be specified in the format string. These should be listed under the params item, in order. The type of each parameter must match its format specifier. You cannot specify more or less parameters than are called for in the format string.  
->  
+  
 >If there is a type mismatch between the format specifier and the parameter actually provided, then the actual value of the parameter will be shown in an appropriate form for that type, using default formatting options.  
-
+  
+**Example:**
 ```ini
 [State Test]
 type = PrintToConsole
@@ -6040,11 +6124,13 @@ Specifies the amount of horizontal shearing to apply to the projectile. Defaults
 
 Adds the specified amount to the player's red life, scaled by the player's defense multiplier if necessary.
 
->Required parameters:  
+**Required parameters:**  
+  
 >value = *add_amt* (int)  
 >*add_amt* is the number to add to the player's red life.  
->  
->Optional parameters:  
+  
+**Optional parameters:**  
+  
 >absolute = *abs_flag* (int)  
 >If *abs_flag* is 1, then *add_amt* will not be scaled (i.e. attack and defense multipliers will be ignored). Defaults to 0.
 
@@ -6054,7 +6140,8 @@ Adds the specified amount to the player's red life, scaled by the player's defen
 
 Sets the amount of red life that the player has.
 
->Required parameters:  
+**Required parameters:**  
+  
 >value = *set_amt* (int)  
 >*set_amt* is the new value to set the player's red life to.
 
@@ -6112,22 +6199,25 @@ dest = 1,3
 
 Remaps one sprite with another (or does this for multiple sprites at once, based on character's CNS [RemapPreset](Character-features/#cns_remappreset) data)
 
->Required parameters:  
+**Required parameters:**  
+  
 >none  
->  
->Optional parameters:  
+  
+**Optional parameters:**  
+  
 >reset = *reset_flag* (int)  
 >Set to 1 to reset all existing sprite remaps. Defaults to 0.  
->  
+  
 >preset = "*preset_name*" (string)  
 >Name of the character's CNS `RemapPreset` data.  
->  
+  
 >source = *src_spr_grp, src_spr_item* (int, int)  
 >See below.  
->  
+  
 >dest = *dst_spr_grp, dst_spr_item* (int, int)  
 >Any animation that references source sprite will be drawn using the dest sprite instead. Note that the dest sprite group number and item refers to an unmapped sprite numbers.  
-
+  
+**Example:**
 ```ini
 [State Test]
 type = RemapSprite
@@ -6158,13 +6248,16 @@ none
 
 Removes all of a player's texts, or just the texts with a specified ID number.
 
->Required parameters:  
+**Required parameters:**  
+  
 >none  
->  
->Optional parameters:  
+  
+**Optional parameters:**  
+  
 >ID = remove_id (int)  
 >remove_id is the ID number of the texts to remove. If omitted, removes all texts owned by the player.
-
+  
+**Example:**
 ```ini
 [State Test]
 type = RemoveText
@@ -6235,10 +6328,11 @@ reversal.guardflag.not = H
 
 If the player is a helper, adds value to root's map. If the player is not a helper, this controller does nothing. Root refers to the main player.
 
->Required parameters:  
+**Required parameters:**  
+  
 >map = "*map_name*" (string)  
 >Specifies a name of the map that we add value to.  
->  
+  
 >value = *expr* (int or float)  
 >*expr* is the value to add to the map.
 
@@ -6248,10 +6342,11 @@ If the player is a helper, adds value to root's map. If the player is not a help
 
 If the player is a helper, sets value root's map. If the player is not a helper, this controller does nothing. Root refers to the main player.
 
->Required parameters:  
+**Required parameters:**  
+  
 >map = "*map_name*" (string)  
 >Specifies a name of the map that we assign value to.  
->  
+  
 >value = *expr* (int or float)  
 >*expr* is the value to assign to the map.
 
@@ -6264,17 +6359,17 @@ If the player is a helper, adds value to root's working variables. Either a floa
 >Required parameters (int version):  
 >v = *var_no* (int)  
 >*var_no* should evaluate to an integer between 0 and 59.  
->  
+  
 >value = *int_expr* (int)  
 >*int_expr* is the value to add to the int variable indicated by var_no.  
->  
+  
 >Required parameters (float version):  
 >fv = *var_no* (int)  
 >*var_no* should evaluate to an integer between 0 and 39.  
->  
+  
 >value = *float_expr* (float)  
 >*float_expr* is the value to add to the float variable indicated by var_no.  
->  
+  
 >Alternate syntax:  
 >var(var_no) = *int_expr* (int version)  
 >fvar(var_no) = *float_expr* (float version)
@@ -6288,17 +6383,17 @@ If the player is a helper, sets value root's working variables. Either a float v
 >Required parameters (int version):  
 >v = *var_no* (int)  
 >*var_no* should evaluate to an integer between 0 and 59.  
->  
+  
 >value = *int_expr* (int)  
 >*int_expr* is the value to assign to the int variable indicated by var_no.  
->  
+  
 >Required parameters (float version):  
 >fv = *var_no* (int)  
 >*var_no* should evaluate to an integer between 0 and 39.  
->  
+  
 >value = *float_expr* (float)  
 >*float_expr* is the value to assign to the float variable indicated by var_no.  
->  
+  
 >Alternate syntax:  
 >var(var_no) = *int_expr* (int version)  
 >fvar(var_no) = *float_expr* (float version)
@@ -6309,7 +6404,8 @@ If the player is a helper, sets value root's working variables. Either a float v
 
 Add specified amount of ticks into round time.
 
->Required parameters:  
+**Required parameters:**  
+  
 >value = *add_ticks* (int)  
 >add_ticks specifies the number of ticks that should be added to round time.
 
@@ -6319,7 +6415,8 @@ Add specified amount of ticks into round time.
 
 Set round time to specified amount of ticks.
 
->Required parameters:  
+**Required parameters:**  
+  
 >value = *set_ticks* (int)  
 >set_ticks specifies the number of ticks that should be set as a current round time.
 
@@ -6329,20 +6426,23 @@ Set round time to specified amount of ticks.
 
 Put specified data together and save it as binary. It uses gob, which is a serialized format for Go language, as the storage format. All characters specified by the character or helper who executed the function are stored at that time.
 
->Required parameters:  
+**Required parameters:**  
+  
 >savedata = *var_type* (string)  
 >Specifies the data type that should be saved. Valid values for var_type are "var", "fvar", and "map".  
->  
+  
 >path = "*save_path*" (string)  
 >Specifies the save destination file path (relative to the character folder). Can use any extension (.gob is recommended)  
 
->Optional parameters:  
+**Optional parameters:**  
+  
 >maps = *map_1*, *map_2*, *map_3*... (string) (nightly build only)  
 >A list of maps to load. Defaults to empty.  
->  
+  
 >maps.include = *filter* (string) (nightly build only)  
 >All maps containing this string in their names will be saved. Defaults to empty.  
-
+  
+**Example:**
 ```ini
 [State Test]
 type = SaveFile
@@ -6357,10 +6457,12 @@ path = "kfm.gob"
 
 Adds the specified amount of points to P1 current score counter.
 
->Required parameters:  
+**Required parameters:**  
+  
 >value = *expr* (float)  
 >*expr* is the the number of score points to add to the P1 current score counter.  
-
+  
+**Example:**
 ```ini
 [State Test]
 type = ScoreAdd
@@ -6426,13 +6528,14 @@ See also [ChangeState](State-controllers-(changed)/#changed_changestate).
 
 Allows temporarily changing the function of the player's keys. Resets every frame.  
 
->Required parameters:  
+**Required parameters:**  
+  
 >input = *key* (string)  
 >The key to be changed  
->  
+  
 >output = *key* (string)  
 >The new function for that key  
->  
+  
 >Valid keys are:  
 >U, D, L, R, a, b, c, x, y, z, s, d, w, m, none  
 
@@ -6653,20 +6756,22 @@ Determines how much the screen should darken during the pause. Valid values are 
 
 Makes the P1 and/or the specified partner exit `Standby` state. If no parameters are given it affects the player that called it. (Also affects helpers)
 
->Required parameters:  
+**Required parameters:**  
+  
 >none  
->  
->Optional parameters:  
+  
+**Optional parameters:**  
+  
 *All [TagOut](State-controllers/#new_tagout) parameters work with some extra ones specified bellow*  
 >ctrl = "*ctrl_flag*" (int)  
 >Sets the P1 control flag.  
->  
+  
 >leader = *leader_playerno* (int)  
 >Sets the player who is considered a [team leader](Triggers/#new_teamleader) to the specified [playerno](Triggers/#new_playerno).  
->  
+  
 >partnerctrl = *partnerctrl_flag* (int)  
 >Sets the *partner_no* control flag.  
->  
+  
 >memberno = *player_memberno* (int)  
 >Changes the player's position in the team. (nightly build only)  
 
@@ -6690,22 +6795,24 @@ The main purpose of the `Standby` flag is to put a player away so it won't inter
 * The camera will not follow the player
 * `Enemy` and `P2` families of triggers will not pick up the player
 
->Required parameters:  
+**Required parameters:**  
+  
 >none  
->  
->Optional parameters:  
+  
+**Optional parameters:**  
+  
 >self = *self_flag* (int)  
 >Set to 0 to not affect P1. Defaults to 1.  
->  
+  
 >partner = *partner_no* (int)  
 >Specifies what teammate is afected.  
->  
+  
 >stateno = *state_no* (int)  
 >The number of the state to change P1 to.  
->  
+  
 >partnerstateno = *partnerstate_no* (int)  
 >The number of the state to change *partner_no* to.  
->  
+  
 >memberno = *player_memberno* (int)  
 >Changes the player's position in the team. (nightly build only)  
 
@@ -6724,7 +6831,8 @@ memberNo = 3
 Adds the player with the specified ID to the original player's target list.  
 Do not confuse this player ID with a target ID. Target ID can be assigned with `chainID` parameter of [GetHitVarSet](State-controllers-(new)/#new_gethitvarset).  
 
->Required parameters:  
+**Required parameters:**  
+  
 >PlayerID = *ID* (int)  
 >ID of player to be added.
 
@@ -6776,11 +6884,13 @@ This parameter now takes a third value, Specifies the offset from the player's z
 
 Adds the specified amount to all targets' dizzy points.
 
->Required parameters:  
+**Required parameters:**  
+  
 >value = *add_amt* (int)  
 >*add_amt* is added to each target's dizzy points.  
->  
->Optional parameters:  
+  
+**Optional parameters:**  
+  
 >ID = *target_id* (int)  
 >Specifies the desired target ID to affect. Only targets with this target ID will be affected. Defaults to -1 (affects all targets.)
 
@@ -6850,11 +6960,13 @@ The index of the target to be affected. Defaults to -1 (all).
 
 Adds the specified amount to all targets' guard points.
 
->Required parameters:  
+**Required parameters:**  
+  
 >value = *add_amt* (int)  
 >*add_amt* is added to each target's guard points.  
->  
->Optional parameters:  
+  
+**Optional parameters:**  
+  
 >ID = *target_id* (int)  
 >Specifies the desired target ID to affect. Only targets with this target ID will be affected. Defaults to -1 (affects all targets.)
 
@@ -6941,14 +7053,16 @@ The index of the target to be affected. Defaults to -1 (all).
 
 Adds the specified amount to all targets' red life, scaled by the targets' defense multipliers if necessary.
 
->Required parameters:  
+**Required parameters:**  
+  
 >value = *add_amt* (int)  
 >*add_amt* is added to each target's red life.  
->  
->Optional parameters:  
+  
+**Optional parameters:**  
+  
 >ID = *target_id* (int)  
 >Specifies the desired target ID to affect. Only targets with this target ID will be affected. Defaults to -1 (affects all targets.)  
->  
+  
 >absolute = *abs_flag* (int)  
 >If *abs_flag* is 1, then *add_amt* will not be scaled (i.e. attack and defense multipliers will be ignored). Defaults to 0.
 
@@ -6958,11 +7072,13 @@ Adds the specified amount to all targets' red life, scaled by the targets' defen
 
 Adds the specified amount of points to targets' current score counter.
 
->Required parameters:  
+**Required parameters:**  
+  
 >value = *expr* (float)  
 >*expr* is the the number of score points to add to the target's current score counter.  
->  
->Optional parameters:  
+  
+**Optional parameters:**  
+  
 >ID = *target_id* (int)  
 >Specifies the desired target ID to affect. Only targets with this target ID will be affected. Defaults to -1 (affects all targets.)
 
@@ -7096,10 +7212,11 @@ Specifies the value to set the target's z-velocity to.
 
 Adds value to all team members maps.
 
->Required parameters:  
+**Required parameters:**  
+  
 >map = "*map_name*" (string)  
 >Specifies a name of the map that we add value to.  
->  
+  
 >value = *expr* (int or float)  
 >*expr* is the value to add to the map.
 
@@ -7109,10 +7226,11 @@ Adds value to all team members maps.
 
 Sets value to all team members maps.
 
->Required parameters:  
+**Required parameters:**  
+  
 >map = "*map_name*" (string)  
 >Specifies a name of the map that we assign value to.  
->  
+  
 >value = *expr* (int or float)  
 >*expr* is the value to assign to the map.
 
@@ -7122,72 +7240,74 @@ Sets value to all team members maps.
 
 Text controller is used for displaying text on screen.
 
->Required parameters:  
+**Required parameters:**  
+  
 >none  
->  
->Optional parameters:  
+  
+**Optional parameters:**  
+  
 >removetime = *rem_time* (int)  
 >The text will be removed after having been displayed for *rem_time* number of game ticks. Defaults to 1.  
->  
+  
 >layerno = *layer_no* (int)  
 >Sets the layer to which the text will be drawn on. 0 is in front of the background, but behind the players. 1 is in front of the players, but behind the foreground. 2 is in front of the foreground. Defaults to 1.  
->  
+  
 >localcoord = *coord_x, coord_y* (int, int)    
 >Sets custom localcoord. If omitted, lifebar font defaults to the lifebar localcoord, character font and debug font defaults to the screen localcoord.  
->  
+  
 >text = *"format_string"* (string)  
 >Text to be rendered. Defaults to "%v" (rendering first *params* argument of any type). *format_string* must be encased in double-quotes. It is a *printf* format string. You can use \t to generate a tab character (tab width is equivalent to 4 characters) and \n to break lines (nightly build only). To display the value of an arithmetic expression, you can put a %d (for ints) or a %f (for floats) in the format string, then specify the expression in the params list. To display a % character, you must put %% in the format string. Accepted format specifiers: %v (any type), %d, %i, %f, %F, %e, %E, %g, or %G. Syntax such as %0.2f is also supported.  
->  
+  
 >params = *exp_1, exp_2, (...)*  
 >Unlimited amount of numeric arguments can be specified in the format string. These should be listed under the params item, in order. The type of each parameter must match its format specifier.
->  
+  
 >font = *[F]font_no* (int)  
 >*font_no* specifies the number of the font to use for text rendering. The 'F' prefix is optional: if included, then the text is rendred using lifebar (fight.def) fonts. Otherwise font [declared](Character-features#def_files_font) in character's DEF file is used. If specified font doesn't exist than the debug font is used. Defaults to debug font.  
->  
+  
 >bank = *bank_no* (int)  
 >Color bank of the font to use. Refer to the font for what color banks it has. Defaults to 0.  
->  
+  
 >align = *alignment* (int)  
 >*alignment* is a number representing the text alignment. 1 is left, 0 means center, and -1 is for right-alignment. Defaults to 1.  
->  
+  
 >angle = *angle* (int) (nightly build only)  
 >Specify the rotation, rotation point is based on the text's alignment. Defaults to 0.  
->  
+  
 >pos = *off_x, off_y* (int, int)  
 >Specify the offset at which to create the text. Defaults to 0,0.  
->  
+  
 >scale = *x_scale, y_scale* (float, float)  
 >Specify the scaling factors to apply to the text in the horizontal and vertical directions. Defaults to 1,1.  
->  
+  
 >color = *r, g, b, a* (int, int, int, int)  
 >Color adjustment values for the font. Defaults to 256,256,256,256 (no color adjustment). Alpha is nightly only.  
->
+  
 >id = *id_no* (int) (nightly build only)  
 >Specifies an ID number for this text. Used to identify particular text in numText trigger and removeText sctrl.  
->
+  
 >textspacing = *x_spacing, y_spacing*` (float, float) (nightly build only)  
 >Specifies extra spacing between letters (*x_spacing*) and extra spacing between lines when `\n` is used to break lines (*y_spacing*). These values are added on top of the font’s DEF Spacing values.  
->
+  
 >textdelay = *time* (float) (nightly build only)  
 >Adjusts the text typing time, the longer the time the longer the delay between each letter typed.  
->
+  
 >velocity = *vel_x, vel_y* (float, float) (nightly build only)  
 >Applies speed to text on the defined axis.  
->
+  
 >accel = *accel_x, accel_y* (float, float) (nightly build only)  
 >Applies acceleration to text on the defined axis.  
->
+  
 >friction = *friction_x, friction_y* (float, float) (nightly build only)  
 >Applies friction to text on the defined axis (Friction value example: 0.95).   
->
+  
 >xshear = *xshear* (float) (nightly build only)  
 >Specifies the amount of horizontal shearing to apply to the text (only for sprite fonts). Defaults to 0.  
->
+  
 >maxdist = *maxdist* (float) (nightly build only)  
 >Specifies the maximum velocity beyond which additional velocity will no longer be applied. Defaults to 0 (unlimited).  
->
+  
 >palfx.key = the text sctrl can accept all the same key values from [PalFX state controller](http://www.elecbyte.com/mugendocs/sctrls.html#palfx) (only for sprite fonts) (nightly build only)  
->
+  
 >hidewithbars = *bvalue* (bool) (nightly build only)  
 >Enabling this parameter hides the text automatically when the fight screen is hidden.
 
@@ -7259,13 +7379,15 @@ trans{trans: subAlpha; alpha: 256, 256}
 
 Changes the geometry or certain properties of the player's collision boxes.  
 
->Required parameters:  
+**Required parameters:**  
+  
 >At least one of the optional parameters  
->  
->Optional parameters:  
+  
+**Optional parameters:**  
+  
 >scale = *x_scale, y_scale* (float, float)  
 >Applies a scale multiplier to the boxes  
->  
+  
 >angle = *angle* (float)  
 >Changes the angle of the boxes. In degrees
 
@@ -7275,13 +7397,15 @@ Changes the geometry or certain properties of the player's collision boxes.
 
 Apply certain deformations to the char's sprite.  
 
->Required parameters:  
+**Required parameters:**  
+  
 >At least one of the optional parameters  
->  
->Optional parameters:  
+  
+**Optional parameters:**  
+  
 >window = *x1, y1, x2, y2* (float, float, float, float)  
 >The window parameter forms a rectangle (similar to clsn) relative to the char, outside of which pixels will not be drawn.  
->  
+  
 >xshear = *xshear* (float)  
 >Specifies the amount of horizontal shearing to apply to the char. Defaults to 0.  
 >projection = *orthographic (default), perspective(distortion relative to the center of the screen), perspective2(distortion relative to the sprite)*   
