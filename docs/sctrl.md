@@ -149,6 +149,7 @@
 - [ScreenBound (changed)](#screenbound-changed)
 - [SelfState (old)](#selfstate-old)
 - [SelfState (changed)](#selfstate-changed)
+- [ShaderSet (new)](#shaderset-new)
 - [ShiftInput (new)](#shiftinput-new)
 - [SndPan (old)](#sndpan-old)
 - [SprPriority (old)](#sprpriority-old)
@@ -2489,9 +2490,45 @@ Affect how the explod is drawn when `xangle` or `yangle` is not zero.
 
 If 0, disables reflection on the explod regardless of its shadow color. If 1, enables reflection on the explod regardless of its shadow color. Defaults to showing a reflection if the explod's shadow is not 0, 0, 0.
 
-### RemoveOnChangeState
+### Shader (nightly build only)
 
-If set to 1, the Explod will be removed if the character changes state. Defaults to 0.
+>shader = *"shader_name"* (string)  
+
+Specifying the name of the currently loaded custom shader will apply that shader to Explod.
+
+### ShaderTime (nightly build only)
+
+>shadertime = *time* (int)  
+
+Specifying this parameter will remove the custom shader after it has been displayed for the specified number of ticks. The default value is -1.
+
+### ShaderParam.pX (nightly build only)
+
+>shaderparam.pX = *value* (float)  
+
+Specifies the value to send to the custom shader. The value specified here can be used as a variable within the custom shader.
+X is limited to 0 to 15, and a maximum of 16 values ​​can be sent.
+
+### ShaderTexX.spr (nightly build only)
+
+>shadertexX.spr = *group, image* (int, int)  
+
+### ShaderTexX.anim (nightly build only)
+
+
+>shadertexX.anim = *anim_no* (int)  
+
+Specifies the texture to send to the custom shader. The sprites specified here can be used as textures within the custom shader.
+You can specify 1 or 2 for X, and send up to two sprites.
+Each tex can be assigned either a sprite number (spr) or an anim number. It is not possible to assign both sprite and anim numbers to the same tex number simultaneously.
+Note that since textures are loaded as raw data, images with palettes may not display correctly as is.
+
+### SpritePlayerNo (nightly build only)
+
+>spriteplayerno = *playerno* (int)  
+
+This parameter lets a explod use the specified sprites from another character. Defaults to own playerno.
+
 
 ### syncid (nightly build only)
 
@@ -6118,6 +6155,38 @@ This parameter takes four numbers (similar to the format of a Clsn box) which fo
 
 Specifies the amount of horizontal shearing to apply to the projectile. Defaults to 0.
 
+### Shader (nightly build only)
+
+>shader = *"shader_name"* (string)  
+
+Specifying the name of the currently loaded custom shader will apply that shader to Projectile.
+
+### ShaderTime (nightly build only)
+
+>shadertime = *time* (int)  
+
+Specifying this parameter will remove the custom shader after it has been displayed for the specified number of ticks. The default value is -1.
+
+### ShaderParam.pX (nightly build only)
+
+>shaderparam.pX = *value* (float)  
+
+Specifies the value to send to the custom shader. The value specified here can be used as a variable within the custom shader.
+X is limited to 0 to 15, and a maximum of 16 values ​​can be sent.
+
+### ShaderTexX.spr (nightly build only)
+
+>shadertexX.spr = *group, image* (int, int)  
+
+### ShaderTexX.anim (nightly build only)
+
+>shadertexX.anim = *anim_no* (int)  
+
+Specifies the texture to send to the custom shader. The sprites specified here can be used as textures within the custom shader.
+You can specify 1 or 2 for X, and send up to two sprites.
+Each tex can be assigned either a sprite number (spr) or an anim number. It is not possible to assign both sprite and anim numbers to the same tex number simultaneously.
+Note that since textures are loaded as raw data, images with palettes may not display correctly as is.
+
 ---
 
 ## RedLifeAdd (new)
@@ -6521,6 +6590,63 @@ Like ChangeState, except that this changes a player back to a state in his own s
 Change to the state of the character with the specified Player ID. If successful, it would take the character with the specified PlayerID to the selected state.  
   
 See also [ChangeState](State-controllers-(changed)/#changed_changestate).
+
+---
+
+## ShaderSet (new)
+
+Sets the specified custom shader to the character. 
+
+**Required parameters:**  
+  
+>shader = *"shader_name"* (string)  
+>Specify the name from the currently loaded custom shader.  
+  
+**Optional parameters:**  
+  
+>time = *time* (int)  
+>The custom shader is displayed for the specified number of ticks before being removed. The default is 1.  
+>Specifying -1 will prevent it from being removed until ShaderSet is applied again.  
+  
+>shaderparam.pX = *value* (float)  
+>Specifies the value to send to the custom shader. The value specified here can be used as a variable within the custom shader.  
+>X is limited to 0 to 15, and a maximum of 16 values ​​can be sent.  
+
+The shaderparam variable is defined within the custom shader, for example  
+
+**OpenGL:**
+```
+	uniform float p0, p1, p2, p3, p4, p5, p6, p7;
+	uniform float p8, p9, p10, p11, p12, p13, p14, p15;
+```
+**Vulkan:**
+```
+	layout(push_constant, std430) uniform u {
+		vec4 palUV;
+		float p0, p1, p2, p3, p4, p5, p6, p7;
+		float p8, p9, p10, p11, p12, p13, p14, p15;
+	};
+```
+  
+>shadertexX.spr = *group, image* (int, int)  
+>shadertexX.anim = *anim_no* (int)  
+>Specifies the texture to send to the custom shader. The sprites specified here can be used as textures within the custom shader.  
+You can specify 1 or 2 for X, and send up to two sprites.  
+>Each tex can be assigned either a sprite number (spr) or an anim number. It is not possible to assign both sprite and anim numbers to the same tex number simultaneously.  
+>Note that since textures are loaded as raw data, images with palettes may not display correctly as is.  
+  
+Shadertex textures are defined within custom shaders, for example  
+
+**OpenGL:**
+```
+	uniform sampler2D tex1;
+	uniform sampler2D tex2;
+```
+**Vulkan:**
+```
+	layout(binding = 5) uniform sampler2D tex1;
+	layout(binding = 6) uniform sampler2D tex2;
+```
 
 ---
 
