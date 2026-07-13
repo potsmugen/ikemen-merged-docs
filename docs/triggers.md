@@ -233,6 +233,7 @@
 - [SelfAnimExist (old)](#selfanimexist-old)
 - [SelfCommand (new)](#selfcommand-new)
 - [SelfStatenoExist (new)](#selfstatenoexist-new)
+- [Shader (new)](#shader-new)
 - [Sign (Math) (new)](#sign-math-new)
 - [Sin (math) (old)](#sin-math-old)
 - [SoundVar (new)](#soundvar-new)
@@ -6195,6 +6196,18 @@ Checks for the existence of a state only within P1's state numbers, even when P1
 ```ini
 trigger1 = !SelfStatenoExist(200)
   ;Triggers if the player is missing state 200.
+```
+
+---
+
+## Shader (new)
+
+Returns the name of the custom shader applied to the player. If no custom shader is applied, "" is returned.
+
+**Example:**  
+```ini
+trigger1 = shader != ""
+  ;Triggers if any shader is applied to the player.
 ```
 
 ---
