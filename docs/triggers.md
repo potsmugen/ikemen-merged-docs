@@ -3369,22 +3369,28 @@ value = ifelse(var(3),1,2)
 
 ## IkemenVersion (new)
 
-Returns the character's Ikemen version as a float.  
-For example, a character with `ikemenversion = 0.98.2` in its DEF file will have `IkemenVersion` return `0.982000`.  
+Returns one component of the character's Ikemen version as an integer.
+
+For example, a character with `ikemenversion = 0.98.2` in its DEF file returns `0` for `Major`, `98` for `Minor` and `2` for `Patch`.
 
 **Format:**  
->IkemenVersion  
-  
+>IkemenVersion component  
+
 **Arguments:**  
->none  
-  
+>component  
+
+> The version component to return. Valid values are:  
+> Major, Minor, Patch  
+
 **Return type:**  
->float  
-  
-**Example:**  
+>int  
+
+**Example:**
 ```ini
-trigger1 = P2, IkemenVersion < 0.99
-```
+trigger1 = P2, IkemenVersion Major = 0
+trigger1 = P2, IkemenVersion Minor >= 99
+trigger1 = P2, IkemenVersion Patch >= 1
+````
 
 ---
 
@@ -4320,25 +4326,30 @@ trigger1 = movetype != H
 
 ## MugenVersion (new)
 
-Returns the character's Mugen version as a float.  
-Returns 1.1 for characters with an Ikemen version, regardless of what's specified in the def file.  
-Currently returns 0.5 for WinMugen characters, but checking if version is < 1.0 is better advised.  
+Returns one component of the character's Mugen version as an integer.
 
-MugenVersion >= 1.0 is equivalent to MajorVersion.
+Characters with an Ikemen version are treated as Mugen 1.1, regardless of the value specified in the DEF file. WinMugen characters are treated as 0.5.
 
-**Format:**  
->MugenVersion  
-  
-**Arguments:**  
->none  
-  
-**Return type:**  
->float  
-  
-**Example:**  
+**Format:**
+>MugenVersion component  
+
+**Arguments:**
+>component  
+
+>The version component to return. Valid values are:  
+>Major, Minor  
+
+**Return type:**
+>int  
+
+**Example:**
 ```ini
-trigger1 = MugenVersion = 1.1
-```
+trigger1 = MugenVersion Major = 1
+trigger1 = MugenVersion Minor = 1
+````
+
+>info.ikemenversion = *version* (float)  
+>info.mugenversion = *version* (float)
 
 ---
 
@@ -6520,8 +6531,11 @@ trigger1 = StageVar(info.author) = "Suika"
 
 StageVar now accepts all stage parameters that [ModifyStageVar](State-controllers-(new)/#new_modifystagevar) state controller can change. In addition it accepts the following parameters (nightly build only):
 
->info.ikemenversion = *version* (float)  
->info.mugenversion = *version* (float)  
+>info.ikemenversion.major = *major version component* (int)  
+>info.ikemenversion.minor = *minor version component* (int)  
+>info.ikemenversion.patch = *patch version component* (int)  
+>info.mugenversion.major = *major version component* (int)  
+>info.mugenversion.minor = *minor version component* (int)  
 >stageinfo.localcoord.x = *width* (int)  
 >stageinfo.localcoord.y = *height* (int)
 
