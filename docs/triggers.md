@@ -3371,25 +3371,20 @@ value = ifelse(var(3),1,2)
 
 Returns one component of the character's Ikemen version as an integer.
 
-For example, a character with `ikemenversion = 0.98.2` in its DEF file returns `0` for `Major`, `98` for `Minor` and `2` for `Patch`.
+**Format:**
+>IkemenVersion(param_name)  
 
-**Format:**  
->IkemenVersion component  
+**Arguments:**
+>param_name  
+>The version component to return. Valid values are:  
+>Major, Minor, Patch  
 
-**Arguments:**  
->component  
-
-> The version component to return. Valid values are:  
-> Major, Minor, Patch  
-
-**Return type:**  
+**Return type:**
 >int  
 
 **Example:**
 ```ini
-trigger1 = P2, IkemenVersion Major = 0
-trigger1 = P2, IkemenVersion Minor >= 99
-trigger1 = P2, IkemenVersion Patch >= 1
+trigger1 = IkemenVersion(major) = 0 && IkemenVersion(minor) = 98 && IkemenVersion(patch) = 2
 ````
 
 ---
@@ -4331,11 +4326,10 @@ Returns one component of the character's Mugen version as an integer.
 Characters with an Ikemen version are treated as Mugen 1.1, regardless of the value specified in the DEF file. WinMugen characters are treated as 0.5.
 
 **Format:**
->MugenVersion component  
+>MugenVersion(param_name)  
 
 **Arguments:**
->component  
-
+>param_name  
 >The version component to return. Valid values are:  
 >Major, Minor  
 
@@ -4344,12 +4338,8 @@ Characters with an Ikemen version are treated as Mugen 1.1, regardless of the va
 
 **Example:**
 ```ini
-trigger1 = MugenVersion Major = 1
-trigger1 = MugenVersion Minor = 1
+trigger1 = MugenVersion(major) = 1 && MugenVersion(minor) = 1
 ````
-
->info.ikemenversion = *version* (float)  
->info.mugenversion = *version* (float)
 
 ---
 
