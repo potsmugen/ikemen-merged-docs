@@ -4388,11 +4388,11 @@ Adds value to player's map.
 
 **Required parameters:**  
   
-*map = "*map_name*" (string)*  
-Specifies a name of the map that we add value to.  
+>*map = "*map_name*" (string)*  
+>Specifies a name of the map that we add value to.  
   
-**value = *expr* (int or float)**  
-*expr* is the value to add to the map.
+>**value = *expr* (int or float)**  
+>*expr* is the value to add to the map.
 
 ---
 
@@ -4407,11 +4407,11 @@ none
   
 **Optional parameters:**  
   
-**exclude = "*exception_string*"** (string)  
-If a map's name contains this string, it won't be cleared.
+>**exclude = "*exception_string*"** (string)  
+>If a map's name contains this string, it won't be cleared.
   
-**exclude2 = "*exception_string*"** (string)  
-Extra filter parameters. Up to `exclude8`.
+>**exclude2 = "*exception_string*"** (string)  
+>Extra filter parameters. Up to `exclude8`.
 
 **Example:**
 ```
