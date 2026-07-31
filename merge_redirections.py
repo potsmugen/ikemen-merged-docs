@@ -112,6 +112,9 @@ def main():
         list_heading="# Trigger Redirections"
     )
 
+    # Adjust wiki links
+    output = rewrite_links(output)
+
     output_file = Path("docs/redirections.md")
     output_file.write_text(output, encoding="utf-8")
     print(f"\nDone. Output saved to: {output_file}", file=sys.stderr)

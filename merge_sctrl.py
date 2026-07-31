@@ -72,6 +72,9 @@ def main():
         list_heading="# State Controllers"
     )
 
+    # Adjust wiki links
+    output = rewrite_links(output)
+
     output_file = Path("docs/sctrl.md")
     output_file.parent.mkdir(parents=True, exist_ok=True)
     output_file.write_text(output, encoding="utf-8")

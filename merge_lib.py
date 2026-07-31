@@ -250,6 +250,46 @@ def tag_sections(
 
 
 # ----------------------------------------------------------------------
+# LINK REWRITING
+# ----------------------------------------------------------------------
+
+def rewrite_links(text: str) -> str:
+    """
+    Rewrite Markdown links that point to Ikemen GO wiki pages so they point
+    to the corresponding generated documentation pages.
+    """
+    page_map = {
+        "Triggers": "triggers",
+        "Triggers-(changed)": "triggers",
+        "Triggers-(new)": "triggers",
+        "State-controllers": "sctrl",
+        "State-controllers-(changed)": "sctrl",
+        "State-controllers-(new)": "sctrl",
+    }
+
+    def rewrite(match):
+        link_text = match.group(1)
+        url = match.group(2)
+
+        # Leave absolute URLs and same-page anchors unchanged
+        if url.startswith(('#', 'http://', 'https://')):
+            return match.group(0)
+
+        # Split anchor
+        base, _, anchor = url.partition('#')
+
+        if base in page_map:
+            new_url = page_map[base]
+            if anchor:
+                new_url += f"#{anchor}"
+            return f"[{link_text}]({new_url})"
+
+        return match.group(0)
+
+    return re.sub(r'\[([^\]]+)\]\(([^)]+)\)', rewrite, text)
+
+
+# ----------------------------------------------------------------------
 # SLUG / SORT / TOC
 # ----------------------------------------------------------------------
 
