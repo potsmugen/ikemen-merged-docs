@@ -321,8 +321,7 @@ Expression to compute the arccosine of (float).
 float  
   
 **Error conditions:**  
-Returns bottom if exprn evaluates to bottom, or if exprn is not in  
-the domain of arccosine (which is `[-1.0, 1.0]`).  
+Returns bottom if exprn evaluates to bottom, or if exprn is not in the domain of arccosine (which is `[-1.0, 1.0]`).  
   
 **Example:**  
 ```
@@ -529,8 +528,7 @@ Value of animation-time to compare with.
 boolean int (1 or 0)  
   
 **Error conditions:**  
-Returns bottom if the specified element number is invalid for this  
-action (e.g., it's too large or too small).  
+Returns bottom if the specified element number is invalid for this action (e.g., it's too large or too small).  
   
 **Details:**  
 Trigger in Format 1 is true if the player's animation is at the start of the element number specified by value1.  
@@ -576,14 +574,11 @@ Expression that evaluates to the time offset (int).
 int  
   
 **Error conditions:**  
-Returns bottom if you try to check a time that would fall before the  
-start of the current action.  
+Returns bottom if you try to check a time that would fall before the start of the current action.  
   
 **Notes:**  
-If the action is currently within its looping portion, then it is  
-assumed to have been looping forever. That is, no matter how far into  
-the past you check, AnimElemNo will always return an element number  
-that lies within the looping portion of the action.  
+If the action is currently within its looping portion, then it is assumed to have been looping forever.  
+That is, no matter how far into the past you check, AnimElemNo will always return an element number that lies within the looping portion of the action.  
   
 **Examples:**  
 ```
@@ -620,8 +615,7 @@ Expression that evaluates to the element number to check (int).
 int  
   
 **Error conditions:**  
-Returns bottom if exprn evaluates to bottom, or if exprn evaluates  
-to an element number that is not valid for the current action.  
+Returns bottom if exprn evaluates to bottom, or if exprn evaluates to an element number that is not valid for the current action.  
   
 **Notes:**  
 AnimElemTime will not trigger on the first game-tick of the second or later loop of an animation with a finite looptime. For example, `AnimElemTime(1) = 0` will trigger the first tick a player changes to an animation, but will not trigger on the tick that it loops. You may get it to trigger each time using `AnimElemTime(1) = 0 || AnimTime = 0`.  
@@ -4755,12 +4749,8 @@ float
 none  
   
 **Details:**  
-For comparing the Y-distance, P2Dist gives the difference in the  
-heights of the players' Y-axes. A negative value means that P2 is  
-above P1.  
-For comparing the X-distance, P2Dist gives the X-distance  
-of P2's axis from P1's axis. A positive value indicates P2  
-is in front of P1.  
+For comparing the Y-distance, P2Dist gives the difference in the heights of the players' Y-axes. A negative value means that P2 is above P1.  
+For comparing the X-distance, P2Dist gives the X-distance of P2's axis from P1's axis. A positive value indicates P2 is in front of P1.  
 See also P2BodyDist.  
   
 **Example:**  
@@ -4801,8 +4791,7 @@ If there is no primary opponent, then `p2name = "name"` returns 0 no matter what
 Same as StateNo, except that this returns the opponent's state number.  
   
 **Error conditions:**  
-Returns bottom if p2 does not exist. (For instance, if the round  
-has been won.)
+Returns bottom if p2 does not exist. (For instance, if the round has been won.)
 
 ---
 
@@ -4811,8 +4800,7 @@ has been won.)
 Same as StateType, except that this returns the opponent's state type.  
   
 **Error conditions:**  
-Returns bottom if p2 does not exist. (For instance, if the round  
-has been won.)
+Returns bottom if p2 does not exist. (For instance, if the round has been won.)
 
 ---
 
@@ -4927,8 +4915,7 @@ X, Y
 float  
   
 **Error conditions:**  
-Returns bottom if the player does not have a parent (e.g., if the  
-parent was destroyed or KO'd).  
+Returns bottom if the player does not have a parent (e.g., if the parent was destroyed or KO'd).  
   
 **Details:**  
 For comparing the Y-distance, ParentDist gives the difference in the heights of the players' Y-axes. A negative value means that the parent is above its child.  
@@ -5309,8 +5296,7 @@ Expression evaluating to a nonnegative ID number (int).
 int  
   
 **Error conditions:**  
-Returns bottom if exprn evaluates to bottom. If a negative ID is  
-specified, then the ID defaults to zero.  
+Returns bottom if exprn evaluates to bottom. If a negative ID is specified, then the ID defaults to zero.  
   
 **Examples:**  
 ```
@@ -5496,8 +5482,7 @@ Expression evaluating to a nonnegative ID number (int).
 int  
   
 **Error conditions:**  
-Returns bottom if exprn evaluates to bottom. If a negative ID is  
-specified, then the ID defaults to zero.  
+Returns bottom if exprn evaluates to bottom. If a negative ID is specified, then the ID defaults to zero.  
   
 **Examples:**  
 ```
@@ -6608,9 +6593,9 @@ trigger1 = StateType != A
 
 ## SysFVar (old)
 
-This trigger takes a mandatory variable number as an argument. It returns the value of the player's specified system float variable.  
-This trigger should NOT be used under normal circumstances. System  
-variables are reserved for bookkeeping in common1.cns.  
+This trigger takes a mandatory variable number as an argument.  
+It returns the value of the player's specified system float variable.  
+This trigger should NOT be used under normal circumstances. System variables are reserved for bookkeeping in common1.cns.  
   
 **Format:**  
 SysFVar(exprn)  
@@ -6638,9 +6623,9 @@ trigger1 = SysFVar(0) = -1.23
 
 ## SysVar (old)
 
-This trigger takes a mandatory variable number as an argument. It returns the value of the player's specified system int variable.  
-This trigger is NOT to be used under normal circumstances. System  
-variables are reserved for bookkeeping in common1.cns.  
+This trigger takes a mandatory variable number as an argument.  
+It returns the value of the player's specified system int variable.  
+This trigger is NOT to be used under normal circumstances. System variables are reserved for bookkeeping in common1.cns.  
   
 **Format:**  
 SysVar(exprn)  
@@ -6655,8 +6640,7 @@ An expression evaluating to a variable number.
 int  
   
 **Error conditions:**  
-Returns bottom if exprn evaluates to bottom, or if exprn evaluates  
-to an invalid variable index.  
+Returns bottom if exprn evaluates to bottom, or if exprn evaluates to an invalid variable index.  
   
 **Example:**  
 ```

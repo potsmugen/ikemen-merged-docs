@@ -510,7 +510,7 @@ Sets the drawing rotation angle used by AngleDraw. The angle is initialized at 0
   
 **value = *angle* (float)**  
   
-the value of *angle* is interpreted to be in degrees.  
+The value of *angle* is interpreted to be in degrees.  
   
 **Optional arguments:**  
   
@@ -1142,8 +1142,8 @@ Sets the player's attack multiplier. All damage the player gives is scaled by th
   
 **value = *attack_mul* (float)**  
   
-Specifies the desired multiplier. For instance, an *attack_mul* of 2  
-deals double damage.  
+Specifies the desired multiplier.  
+For instance, an *attack_mul* of 2 deals double damage.  
   
 **Optional parameters:**  
   
@@ -1288,14 +1288,12 @@ Defaults to 0.
   
 **pos = *pos_x* (float), *pos_y* (float)**  
   
-*pos_x* and *pos_y* specify the offsets (from the root's axis) to  
-bind to.  
+*pos_x* and *pos_y* specify the offsets (from the root's axis) to bind to.  
 Defaults to `0, 0`.  
   
 **Notes:**  
   
-If the player's root is disabled for any reason, then the effect of  
-BindToRoot is terminated.  
+If the player's root is disabled for any reason, then the effect of BindToRoot is terminated.  
   
 **Example:**  
   
@@ -1321,21 +1319,17 @@ Defaults to 1.
 **ID = *bind_id* (int)**  
   
 Specifies ID number of the target to bind to.  
-Defaults to -1 (pick  
-any target).  
+Defaults to -1 (pick any target).  
   
 **pos = *pos_x* (float), *pos_y* (float), *postype* (string)**  
   
-*pos_x* and *pos_y* specify the offsets (from the bind point) to bind  
-to. The bind point defaults to the target's axis.  
+*pos_x* and *pos_y* specify the offsets (from the bind point) to bind to.  
+The bind point defaults to the target's axis.  
 If *postype* is `Foot`, then the bind point is the target's axis.  
-If *postype* is `Mid`, then the bind point is the target's  
-midsection.  
+If *postype* is `Mid`, then the bind point is the target's midsection.  
 If *postype* is `Head`, then the bind point is the target's head.  
-In the latter two cases, the bind point is determined from the  
-values of the head.pos and mid.pos parameters in the target's CNS  
-file. The bind point is not guaranteed to match up with the  
-target's head or midsection.  
+In the latter two cases, the bind point is determined from the values of the head.pos and mid.pos parameters in the target's CNS file.  
+The bind point is not guaranteed to match up with the target's head or midsection.  
   
 **Example:**  
   
@@ -1393,8 +1387,7 @@ Changes the action number of the player's animation.
   
 **elem = *elem_no* (int)**  
   
-*elem_no* is the element number within the specified action  
-to start from.  
+*elem_no* is the element number within the specified action to start from.  
   
 **Example:**  
   
@@ -1492,13 +1485,13 @@ Changes the state number of the player.
   
 **ctrl = *ctrl_flag* (int)**  
   
-*ctrl_flag* is the value to set the player's control  
-flag to. 0 for no control, nonzero for control.  
+*ctrl_flag* is the value to set the player's control flag to.  
+0 for no control, nonzero for control.  
   
 **anim = *anim_no* (int)**  
   
-This is the action number to switch to. If omitted,  
-the player's animation will remain unchanged.  
+This is the action number to switch to.  
+If omitted, the player's animation will remain unchanged.  
   
 **Example:**  
   
@@ -1683,14 +1676,12 @@ Defaults to 0.
 **removeexplods = *remove_explods* (int)**  
   
 If 1, all explods belonging to the helper will also be removed.  
-If *recursive_flag* is 1, explods belonging to descendents of the helper  
-will also be removed.  
+If *recursive_flag* is 1, explods belonging to descendents of the helper will also be removed.  
 Defaults to 0.  
   
 **Notes:**  
   
-Any players or explods bound to the helper will be forcefully unbound when DestroySelf  
-is executed.  
+Any players or explods bound to the helper will be forcefully unbound when DestroySelf is executed.  
   
 Any unremoved explods belonging to a destroyed helper will become orphaned.  
   
@@ -1782,19 +1773,16 @@ This controller is only useful for debugging. DisplayToClipboard clears the play
   
 **text = `*format_string*`**  
   
-format_string must be encased in double-quotes. It is a printf  
-format string, so if you know about printf, you can skip this  
-description. The format string contains any text you wish to  
-display. You can also use \n to generate a line break, and \t to  
-generate a tab character (tab width is equivalent to 4 characters).  
-To display the value of an arithmetic expression, you can put a %d  
-(for ints) or a %f (for floats) in the format string, then specify  
-the expression in the params list. To display a % character, you  
-must put %% in the format string.  
+format_string must be encased in double-quotes.  
+It is a printf format string, so if you know about printf, you can skip this description.  
+The format string contains any text you wish to display.  
+You can also use \n to generate a line break, and \t to generate a tab character (tab width is equivalent to 4 characters).  
+To display the value of an arithmetic expression, you can put a %d (for ints) or a %f (for floats) in the format string, then specify the expression in the params list.  
+To display a % character, you must put %% in the format string.  
   
 Only signed integer and floating-point format specifiers are accepted:  
-%d, %i, %f, %F, %e, %E, %g, or %G. Length-modified format specifiers  
-(e.g., %lld) are not supported.  
+%d, %i, %f, %F, %e, %E, %g, or %G.  
+Length-modified format specifiers (e.g., %lld) are not supported.  
 Recognized escape sequences are \n, \t, \\, and \`.  
   
 **Optional parameters:**  
@@ -1802,15 +1790,10 @@ Recognized escape sequences are \n, \t, \\, and \`.
 **params = *exp_1*, *exp_2*, *exp_3*, *exp_4*, *exp_5*, *exp_6***  
   
 Up to 6 numeric arguments can be specified in the format string.  
-These should be listed under the params item, in order. The type  
-of each parameter must match its format specifier. You cannot  
-specify more or less parameters than are called for in the format  
-string.  
+These should be listed under the params item, in order. The type of each parameter must match its format specifier.  
+You cannot specify more or less parameters than are called for in the format string.  
   
-If there is a type mismatch between the format specifier and the  
-parameter actually provided, then the actual value of the parameter  
-will be shown in an appropriate form for that type, using default  
-formatting options.  
+If there is a type mismatch between the format specifier and the parameter actually provided, then the actual value of the parameter will be shown in an appropriate form for that type, using default formatting options.  
   
 **Example:**  
   
@@ -1819,7 +1802,7 @@ type = DisplayToClipboard
 text=`The value of var(17) is %d, which is %f%% of 23.\n\t--Kiwi.`  
 params = var(17):=1,var(17)/.230  
   
-displays the following to the player's clipboard:  
+Displays the following to the player's clipboard:  
   
 The value of var(17) is 1, which is 4.347826% of 23.  
     --Kiwi.  
@@ -1872,23 +1855,20 @@ none
   
 **value = *col_r*, *col_g*, *col_b* (int)**  
   
-Specifies the R, G, and B components of the color to set the  
-screen to. Each component should be an integer between 0 and 255.  
-The larger a component, the more of that color will appear in the  
-environment color. The default is 255,255,255 (pure white).  
+Specifies the R, G, and B components of the color to set the screen to.  
+Each component should be an integer between 0 and 255.  
+The larger a component, the more of that color will appear in the environment color. The default is 255,255,255 (pure white).  
   
 **time = *effective_time* (int)**  
   
-Specifies how many ticks the environment color should be  
-displayed.  
-Defaults to 1 tick. Set to -1 to have the EnvColor  
-persist indefinitely.  
+Specifies how many ticks the environment color should be displayed.  
+Defaults to 1 tick.  
+Set to -1 to have the EnvColor persist indefinitely.  
   
 **under = *under_flag* (int)**  
   
-Set *under_flag* to 1 to have the environment color drawn under  
-characters and projectiles. In other words, characters and  
-projectiles will be visible on top of the colored backdrop.  
+Set *under_flag* to 1 to have the environment color drawn under characters and projectiles.  
+In other words, characters and projectiles will be visible on top of the colored backdrop.  
 Defaults to 0.  
   
 **Example:**  
@@ -1911,22 +1891,19 @@ Specifies the number of ticks to shake the screen for.
   
 **freq = *shake_speed* (float)**  
   
-*shake_speed* is a float between 0 (slow shake) to 180 (fast  
-shake).  
+*shake_speed* is a float between 0 (slow shake) to 180 (fast shake).  
 Defaults to 60.  
   
 **ampl = *shake_amplitude* (int)**  
   
-The larger the amplitude, the farther the screen shakes up and  
-down. A negative amplitude means that the screen will shake down  
-first.  
+The larger the amplitude, the farther the screen shakes up and down.  
+A negative amplitude means that the screen will shake down first.  
 Defaults to -4 in 240p, -8 in 480p, -16 in 720p.  
   
 **phase = *phase_offset* (float)**  
   
-Specifies the phase offset for the shaking. The default is 0,  
-unless the frequency multiplier is 90 or greater. In this case,  
-the default phase offset is 90.  
+Specifies the phase offset for the shaking.  
+The default is 0, unless the frequency multiplier is 90 or greater. In this case, the default phase offset is 90.  
   
 **Example:**  
   
@@ -3095,8 +3072,8 @@ Temporarily specifies the types of hits that are be allowed hit to the player.
   
 **value = *attr_string*  OR  value2 = *attr_string***  
   
-Only one of the above parameters can be specified. *attr_string*  
-should be a standard hit attribute string.  See Details.  
+Only one of the above parameters can be specified.  
+*attr_string* should be a standard hit attribute string.  See Details.  
   
 **Optional parameters:**  
   
@@ -3205,21 +3182,18 @@ A single HitDef is valid only for a single hit. To make a move hit several times
   
 **attr = *hit_attribute* (string)**  
   
-This is the attribute of the attack. It is used to determine if  
-the attack can hit P2. It has the format:  
+This is the attribute of the attack. It is used to determine if the attack can hit P2.  
+It has the format:  
   
 attr = *arg1*, *arg2*  
   
 Where:  
-*arg1* is either `S`, `C` or `A`. Similar to `statetype` for the  
-StateDef, this says whether the attack is a standing, crouching,  
-or aerial attack.  
+*arg1* is either `S`, `C` or `A`.  
+Similar to `statetype` for the StateDef, this says whether the attack is a standing, crouching, or aerial attack.  
   
-*arg2* is a 2-character string. The first character is either `N`  
-for `normal`, `S` for `special`, or `H` for `hyper` (or `super`,  
-as it is commonly known). The second character must be either  
-`A` for `attack` (a normal hit attack), `T` for `throw`, or `P`  
-for projectile.  
+*arg2* is a 2-character string.  
+The first character is either `N` for `normal`, `S` for `special`, or `H` for `hyper` (or `super`, as it is commonly known).  
+The second character must be either `A` for `attack` (a normal hit attack), `T` for `throw`, or `P` for projectile.  
   
 **Optional parameters:**  
   
@@ -3241,10 +3215,9 @@ This determines how P2 may guard the attack. hit_flags is a string containing a 
   
 **affectteam = *team_type* (string)**  
   
-*team_type* specifies which team's players can be hit by this  
-HitDef. Use B for both teams (all players), E for enemy team  
-(opponents), or F for friendly team (your own team). The default  
-is E.  
+*team_type* specifies which team's players can be hit by this HitDef.  
+Use B for both teams (all players), E for enemy team (opponents), or F for friendly team (your own team).  
+The default is E.  
   
 **animtype = *anim_type* (string)**  
   
@@ -3389,16 +3362,15 @@ Defaults to 0.35 in 240p, 0.7 in 480p, 1.4 in 720p.
   
 **ground.velocity = *x_velocity*, *y_velocity* (float, float)**  
   
-Initial velocity to give P2 after being hit, if P2 is on the  
-ground. If *y_velocity* is not zero, P2 will be knocked into the  
-air. Both values default to 0 if omitted. You can leave out  
-the *y_velocity* if you want P2 to remain on the ground.  
+Initial velocity to give P2 after being hit, if P2 is on the ground.  
+If *y_velocity* is not zero, P2 will be knocked into the air.  
+Both values default to 0 if omitted.  
+You can leave out the *y_velocity* if you want P2 to remain on the ground.  
   
 **guard.velocity = *x_velocity* (float)**  
   
 Velocity to give P2 if P2 guards the hit on the ground.  
-Defaults to the *x_velocity* value of the `ground.velocity`  
-parameter if omitted.  
+Defaults to the *x_velocity* value of the `ground.velocity` parameter if omitted.  
   
 **air.velocity = *x_velocity*, *y_velocity* (float, float)**  
   
@@ -3408,8 +3380,7 @@ Defaults to `0, 0` if omitted.
 **airguard.velocity = *x_velocity*, *y_velocity* (float float)**  
   
 Velocity to give P2 if P2 guards the hit in the air.  
-Defaults to *x_velocity* \* 1.5, *y_velocity* / 2, where *x_velocity* and *y_velocity*  
-are values of the `air.velocity` parameter.  
+Defaults to *x_velocity* \* 1.5, *y_velocity* / 2, where *x_velocity* and *y_velocity* are values of the `air.velocity` parameter.  
   
 **ground.cornerpush.veloff = *x_velocity* (float)**  
   
@@ -3583,14 +3554,17 @@ Valid values are all values >= 1. If omitted, defaults to 0 (no ID). TargetID is
   
 **chainID = *id_number* (int)**  
   
-Main use of this is for chain moves. If P2 was last hit by a move by P1 with this ID, only then can he be hit by the HitDef with this chainID. You can use this in the following parts of a  
-chain move. Note that chain moves are still possible even without the use of the `id` and `chainid` parameters.  
+Main use of this is for chain moves.  
+If P2 was last hit by a move by P1 with this ID, only then can he be hit by the HitDef with this chainID.  
+You can use this in the following parts of a chain move.  
+Note that chain moves are still possible even without the use of the `id` and `chainid` parameters.  
 Valid values are all values >= 1.  
 If omitted, defaults to -1 (chain from any hit).  
   
 **nochainID = *nochain_1*, *nochain_2* (int)**  
   
-nochainID specifies up to 2 ID numbers of hits which cannot be chained into this hit. If these are -1 (the default), then chaining is not explicitly disabled for any hit ID numbers.  
+nochainID specifies up to 2 ID numbers of hits which cannot be chained into this hit.  
+If these are -1 (the default), then chaining is not explicitly disabled for any hit ID numbers.  
 nochain_2 can be omitted. Except for -1, the values specified must not coincide with the value for chainID.  
 This parameter has no effect if P2 is hit by a third party between P1's previous HitDef and the current HitDef.  
   
@@ -3621,8 +3595,7 @@ Defaults to 1.
   
 **getpower = *p1power*, *p1gpower* (int, int)**  
   
-p1power specifies the amount of power to give P1 if this HitDef  
-connects successfully.  
+p1power specifies the amount of power to give P1 if this HitDef connects successfully.  
 p1gpower specifies the amount of power to give P1 if this HitDef is guarded.  
 If omitted, *p1power* defaults to *hit_damage* (from `damage` parameter) multiplied by the value of Default.Attack.LifeToPowerMul specified in `data/mugen.cfg`.  
 If *p1gpower* is omitted, it defaults to the value specified for *p1power* divided by 2.  
@@ -3663,8 +3636,7 @@ See below.
   
 If included, this shakes the screen if the hit is successful.  
 *envshake_time* is the time in game-ticks to shake the screen.  
-The rest of the parameters are the same as in the EnvShake  
-controller.  
+The rest of the parameters are the same as in the EnvShake controller.  
   
 **fall.envshake.time = *envshake_time* (int)**  
   
@@ -3680,8 +3652,7 @@ See below.
   
 **fall.envshake.phase = *envshake_phase* (float)**  
   
-Similar to the envshake.* parameters, except the effects are  
-applied only when P2 hits the ground.  
+Similar to the envshake.\* parameters, except the effects are applied only when P2 hits the ground.  
   
 **Notes:**  
   
@@ -4007,8 +3978,7 @@ For backwards compatibility reasons, this acceleration is not used by default, a
 
 ## HitFallDamage (old)
 
-When the player has been hit and is in a falling state, apply damage  
-from the fall (specified in the hitdef) to the player.  
+When the player has been hit and is in a falling state, apply damage from the fall (specified in the hitdef) to the player.  
   
 **Required parameters:**  
   
@@ -4036,11 +4006,9 @@ none
   
 **value = *fallset_flag* (int)**  
   
-If *fallset_flag* is -1, then this controller does not change  
-whether the player will fall or not. A *fallset_flag* of 0 means that  
-the player should not fall, and a 1 means that he should.  
-Defaults  
-to -1.  
+If *fallset_flag* is -1, then this controller does not change whether the player will fall or not.  
+A *fallset_flag* of 0 means that the player should not fall, and a 1 means that he should.  
+Defaults to -1.  
   
 **xvel = *x_velocity* (float)**  
   
@@ -4048,9 +4016,8 @@ See below.
   
 **yvel = *y_velocity* (float)**  
   
-If specified, sets the player's fall.xvel and fall.yvel  
-parameters, respectively. See HitDef for a description of these  
-parameters.  
+If specified, sets the player's fall.xvel and fall.yvel parameters, respectively.  
+See HitDef for a description of these parameters.  
   
 **Example:**  
   
@@ -4084,13 +4051,12 @@ Defines a hit override. If the player is hit by an attack of the specified type,
   
 **attr = *attr_string* (string)**  
   
-Standard hit attribute string specifying what types of hits to  
-override. See HitDef's description for the `attr` parameter.  
+Standard hit attribute string specifying what types of hits to override.  
+See HitDef's description for the `attr` parameter.  
   
 **stateno = *value* (int)**  
   
-Specifies which state to go into if hit by a HitDef with the  
-specified attributes.  
+Specifies which state to go into if hit by a HitDef with the specified attributes.  
   
 **Optional parameters:**  
   
@@ -4102,21 +4068,18 @@ Defaults to 0 if omitted.
 **time = *effective_time* (int)**  
   
 Specifies how long this hit override should be active.  
-Defaults to  
-1 (one tick). Set this to -1 to have this override last until  
-overwritten by another one.  
+Defaults to 1 (one tick).  
+Set this to -1 to have this override last until overwritten by another one.  
   
 **forceair = *value* (boolean)**  
   
-If set to 1, the player's gethit variables will be set as if he was  
-in an aerial state when hit. Useful if you want to force the player  
-to fall down from any hit.  
+If set to 1, the player's gethit variables will be set as if he was in an aerial state when hit.  
+Useful if you want to force the player to fall down from any hit.  
 Defaults to 0 if omitted.  
   
 **Notes:**  
   
-If P1 has one or more active HitOverrides, P1 will not be affected by any  
-of P2's matching HitDefs that have any of the following characteristics:  
+If P1 has one or more active HitOverrides, P1 will not be affected by any of P2's matching HitDefs that have any of the following characteristics:  
   
 - p1stateno parameter value is not -1  
 - p2getp1state parameter value is 1  
@@ -4182,13 +4145,11 @@ none
   
 **x = *x_flag* (int)**  
   
-A nonzero flag means to change that x-component of the player's  
-velocity to the gethit velocity.  
+A nonzero flag means to change that x-component of the player's velocity to the gethit velocity.  
   
 **y = *y_flag* (int)**  
   
-A nonzero flag means to change that y-component of the player's  
-velocity to the gethit velocity.  
+A nonzero flag means to change that y-component of the player's velocity to the gethit velocity.  
   
 **Example:**  
   
@@ -4224,14 +4185,12 @@ Specifies amount of life to add to the player's life bar.
   
 **kill = *kill_flag* (int)**  
   
-If *kill_flag* is 0, then the addition will not take the player  
-below 1 life point.  
+If *kill_flag* is 0, then the addition will not take the player below 1 life point.  
 Defaults to 1.  
   
 **absolute = *abs_flag* (int)**  
   
-If *abs_flag* is 1, then exactly *add_amt* is added to the player's  
-life (the defense multiplier is ignored).  
+If *abs_flag* is 1, then exactly *add_amt* is added to the player's life (the defense multiplier is ignored).  
 Defaults to 0.  
   
 **Example:**  
@@ -4303,8 +4262,7 @@ Sets the player's life to the specified value.
   
 **value = *life_amt* (int)**  
   
-Specifies amount of life that the player will have after  
-execution.  
+Specifies amount of life that the player will have after execution.  
   
 **Optional parameters:**  
   
@@ -4361,20 +4319,19 @@ none
   
 **pos = *x_pos*, *y_pos* (int)**  
   
-Specifies the position that the dust should be drawn at, relative  
-to the player's axis.  
+Specifies the position that the dust should be drawn at, relative to the player's axis.  
 Defaults to `0, 0`.  
   
 **pos2 = *x_pos*, *y_pos* (float)**  
   
-Specifies the position to simultaneously draw a second dust cloud  
-at. If omitted, the second dust cloud is not drawn.  
+Specifies the position to simultaneously draw a second dust cloud at.  
+If omitted, the second dust cloud is not drawn.  
   
 **spacing = *value* (int)**  
   
-Determines the number of frames to wait between drawing dust  
-clouds. For instance, spacing = 3 (the default) will draw a new  
-cloud of dust every third frame. spacing should be 1 or greater.  
+Determines the number of frames to wait between drawing dust clouds.  
+For instance, spacing = 3 (the default) will draw a new cloud of dust every third frame.  
+spacing should be 1 or greater.  
   
 **Example:**  
   
@@ -4579,10 +4536,9 @@ Modifies currently playing music.
 
 ## ModifyExplod (old)
 
-Modifies the parameters of an existing Explod. Syntax is basically  
-the same as Explod. However, this controller is subject to future  
-change. Any code relying on this controller is not guaranteed to  
-work in the future.
+Modifies the parameters of an existing Explod.  
+Syntax is basically the same as Explod.  
+~~However, this controller is subject to future change. Any code relying on this controller is not guaranteed to work in the future.~~
 
 ---
 
@@ -5127,29 +5083,24 @@ Temporarily specifies types of hits that are not allowed to hit the player.
   
 **value = *attr_string*  OR  value2 = *attr_string***  
   
-Only one of the above parameters can be specified. *attr_string*  
-should be a standard hit attribute string. See details.  
+Only one of the above parameters can be specified.  
+*attr_string* should be a standard hit attribute string. See details.  
   
 **Optional parameters:**  
   
 **time = *effective_time* (int)**  
   
-Specifies the number of game ticks that these NotHitBy attributes  
-should be effective for.  
+Specifies the number of game ticks that these NotHitBy attributes should be effective for.  
 Defaults to 1.  
   
 **Details:**  
   
-The player has two hit attribute slots, which can be set using the  
-`value` or `value2` parameters to the NotHitBy controller. These  
-slots can also be set by the HitBy controller. When a slot is set,  
-it gets a timer (the effective time) which counts down toward zero.  
-If the timer has not yet reached zero, the slot is considered to be  
-active. The player can be hit by a HitDef only if that HitDef's  
-attribute appears in all currently active slots.  
-Using the NotHitBy controller sets the specified slot to contain all  
-hit attributes except those specified in the NotHitBy attribute  
-string.  
+The player has two hit attribute slots, which can be set using the `value` or `value2` parameters to the NotHitBy controller.  
+These slots can also be set by the HitBy controller.  
+When a slot is set, it gets a timer (the effective time) which counts down toward zero.  
+If the timer has not yet reached zero, the slot is considered to be active.  
+The player can be hit by a HitDef only if that HitDef's attribute appears in all currently active slots.  
+Using the NotHitBy controller sets the specified slot to contain all hit attributes except those specified in the NotHitBy attribute string.  
   
 **Example:**  
   
@@ -7827,8 +7778,7 @@ Defaults to -1.
   
 **Notes:**  
   
-This controller can be called by any player at any time during a match; however  
-only the winning player will affect the quote that is shown.  
+This controller can be called by any player at any time during a match; however only the winning player will affect the quote that is shown.  
 This controller only affects the victory screen immediately following the current match.  
 This controller has no effect if executed by a helper.  
 The actual victory quotes are specified in the [Quotes] group of the player's constants file.  
@@ -7851,8 +7801,8 @@ none
   
 **edge = *edgewidth_front*, *edgewidth_back* (int, int)**  
   
-Sets the player's edge width in front and behind. Edge width  
-determines how close the player can get to the edge of the screen.  
+Sets the player's edge width in front and behind.  
+Edge width determines how close the player can get to the edge of the screen.  
 These parameters default to `0, 0` if omitted.  
   
 **player = *playwidth_front*, *playwidth_back* (int, int)**  
