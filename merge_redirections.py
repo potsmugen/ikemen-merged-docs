@@ -21,7 +21,7 @@ def extract_section(sections: Dict[str, str], name: str) -> Optional[str]:
 def split_redirections(content: str, source_label: str = "") -> Dict[str, str]:
     """
     Split a block of redirections into individual entries.
-    Recognises '## Heading' and '**Heading**' as entry delimiters.
+    Recognises '## Heading' as entry delimiters.
     """
     entries = {}
     lines = content.splitlines()
@@ -29,14 +29,14 @@ def split_redirections(content: str, source_label: str = "") -> Dict[str, str]:
     current_lines = []
 
     for line in lines:
-        heading_match = re.match(r'^(#{2,})\s+(.+)$', line) or re.match(r'^\*\*(.+?)\*\*', line)
-        if heading_match:
+        m_h = re.match(r'^(#{2,})\s+(.+)$', line)
+
+        if m_h:
+            raw = m_h.group(2).strip()
+
             if current_key is not None:
                 entries[current_key] = '\n'.join(current_lines).strip()
-            if heading_match.group(1).startswith('#'):
-                raw = heading_match.group(2).strip()
-            else:
-                raw = heading_match.group(1).strip()
+
             current_key = clean_heading(raw)
             if source_label:
                 current_key = f"{current_key} ({source_label})"
