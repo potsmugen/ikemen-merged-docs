@@ -86,17 +86,12 @@ corresponding ID number.
 Redirects the trigger to the helper entity by index.
 
 Each helper is assigned an index according to their position among the total number of helpers a player has. These indexes begin at 1, with index 0 being a special case that represents the `root` player. A player with 5 helpers, for instance, will have helpers with indexes 1 through 5.  
+
+It takes redirections into account, allowing the return of a helper's helpers.  
   
 **Example:**  
 ```ini
 trigger1 = NumHelper >= 2
-trigger1 = HelperIndex(2), MoveType = A
-```
-Nightly build:
-
-In the nightly build, the trigger has been refactored, now it takes redirections into account, allowing the return of a helper's helpers. The old usage still works if the trigger is called from the **Root**. If you need the same result but the call comes from a helper, use: **Root, HelperIndex(1)**.
-```ini
-trigger1 = HelperIndexExist(2)
 trigger1 = HelperIndex(2), MoveType = A
 ```
 

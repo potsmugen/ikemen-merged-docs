@@ -2585,12 +2585,12 @@ trigger1 = GetHitVar(yvel) < -5.5
 
 ## GetHitVar (changed)
 
-### air.velocity.x (y, z) (nightly build only)
+### air.velocity.x (y, z)
 
 Returns the X, Y or Z component of the last HitDef's `air.velocity` parameter, even if the player was not hit in the air. (float)
 
 
-### airguard.velocity.x (y, z) (nightly build only)
+### airguard.velocity.x (y, z)
 
 Returns the X, Y or Z component of the last HitDef's `airguard.velocity` parameter, even if the player did not guard in the air. (float)
 
@@ -2600,7 +2600,7 @@ Returns the X, Y or Z component of the last HitDef's `airguard.velocity` paramet
 Returns the literal value specified in the HitDef.
 
 
-### attr (nightly build only)
+### attr
 
 Returns the last HitDef `attr` assignment. Requires a comparison to known flags. (string)  
 
@@ -2614,12 +2614,12 @@ trigger1 = getHitVar(attr) = SCA, HA
 Returns last HitDef `dizzypoints` value. (int)
 
 
-### down.velocity.x (y, z) (nightly build only)
+### down.velocity.x (y, z)
 
 Returns the X, Y or Z component of the last HitDef's `down.velocity` parameter, even if the player was not hit while down. (float)
 
 
-### facing (nightly build only)
+### facing
 
 Returns last HitDef `p2facing` value. (int)
 
@@ -2629,22 +2629,22 @@ Returns last HitDef `p2facing` value. (int)
 Returns last HitDef `fall.envshake.mul` value. (float)
 
 
-### fall.zvel (nightly build only)
+### fall.zvel
 
 Returns z velocity after bouncing off ground (float)
 
 
-### frame (nightly build only)
+### frame
 
 Returns true only during the same frame where the player got hit by an attack. (bool)
 
 
-### ground.velocity.x (y, z) (nightly build only)
+### ground.velocity.x (y, z)
 
 Returns the X, Y or Z component of the last HitDef's `ground.velocity` parameter, even if the player was not hit on the ground. (float)
 
 
-### guard.velocity.x (y, z) (nightly build only)
+### guard.velocity.x (y, z)
 
 Returns the X, Y or Z component of the last HitDef's `guard.velocity` parameter, even if the player did not guard on the ground. (float)  
 
@@ -2654,7 +2654,7 @@ Returns the X, Y or Z component of the last HitDef's `guard.velocity` parameter,
 Returns last HitDef `guardpoints` value. (int)
 
 
-### guardcount (nightly build only)
+### guardcount
 
 Returns how many hits the player has guarded without a chance to fight back. (int)
 
@@ -2664,7 +2664,7 @@ Returns how many hits the player has guarded without a chance to fight back. (in
 Returns the second value of the last HitDef's `damage` parameter. (int)
 
 
-### guardflag (nightly build only)
+### guardflag
 
 Returns the `guardflag` parameter of the last HitDef that hit the player. Requires a comparison to known flags. (string)  
 
@@ -2673,7 +2673,7 @@ trigger1 = getHitVar(guardflag) = L
 ```
 
 
-### guardko (nightly build only)
+### guardko
 
 Returns 1 if the player was KO'd by guard damage. (bool)
 
@@ -2683,7 +2683,7 @@ Returns 1 if the player was KO'd by guard damage. (bool)
 Returns the second value of the last HitDef's `givepower` parameter. In other words, the power received when guarding. (int)
 
 
-### hitflag (nightly build only)
+### hitflag
 
 Returns the `hitflag` parameter of the last HitDef that hit the player. Requires a comparison to known flags. (string)  
 
@@ -2718,17 +2718,17 @@ Note: Up until Ikemen GO version 0.99, this trigger used `ID` syntax instead of 
 Returns the [PlayerNo](Triggers-(new)/#new_playerno) of the last character that hit the player. (int)
 
 
-### power (nightly build only)
+### power
 
 Returns how much power the player received from the last hit, regardless of getting hit or guarding. (int)
 
 
-### priority (nightly build only)
+### priority
 
 Returns the numerical value of the attack priority of the last HitDef. (int)
 
 
-### projid (nightly build only)
+### projid
 
 Returns the `projID` of the last projectile that hit the player. Returns -1 if not hit by a projectile. (int)
 
@@ -2743,7 +2743,7 @@ Returns last HitDef `redlife` value. (int)
 Returns last HitDef `score` value. (float)
 
 
-### teamside (nightly build only)
+### teamside
 
 Returns the `teamside` of the last HitDef that hit the player. (int)
 
@@ -2753,34 +2753,34 @@ Returns the `teamside` of the last HitDef that hit the player. (int)
 Returns the value of either groundtype or airtype, depending on the character's StateType upon being hit. Such a trigger was documented in Mugen but did not work.
 
 
-### xaccel (nightly build only)
+### xaccel
 
 Returns the X acceleration set by the hit. (float)  
 NOTE: Currently, this parameter will only work if the character does not override the `common1.cns.zss` states that use it.  
 
 
-### xveladd (nightly build only)
+### xveladd
 
 This trigger was dummied out in Mugen, always returning 0. In Ikemen, it works as documented.
 
 
-### yveladd (nightly build only)
+### yveladd
 
 This trigger was dummied out in Mugen, always returning 0. In Ikemen, it works as documented.
 
 
-### zaccel (nightly build only)
+### zaccel
 
 Returns the Z acceleration set by the hit. (float)  
 NOTE: Currently, this parameter will only work if the character does not override the `common1.cns.zss` states that use it.  
 
 
-### zvel (nightly build only)
+### zvel
 
 Returns the fixed z-velocity imparted by hit. (float)
 
 
-### zoff (nightly build only)
+### zoff
 
 "Snap" z offset when hit.
 
@@ -4661,7 +4661,7 @@ Returns the current outro state number:
 2: Players still have control, but the match outcome can no longer be changed  
 3: Players lose control, but the round has not yet entered win states  
 4: Player win states  
-5: Round over (starting from the last frame of the RoundState sequence and continuing through the entire post-round sequence, individually detactable with [MotifState](https://github.com/ikemen-engine/Ikemen-GO/wiki/Triggers-(new)#motifstate-nightly-build-only) trigger)  
+5: Round over (starting from the last frame of the RoundState sequence and continuing through the entire post-round sequence, individually detactable with [MotifState](https://github.com/ikemen-engine/Ikemen-GO/wiki/Triggers-(new)#motifstate) trigger)  
 
 **Format:**  
 >OutroState  
@@ -4720,11 +4720,11 @@ trigger1 = P2BodyDist X < 30
 
 ## P2BodyDist (changed)
 
-### Y (nightly build only)
+### Y
 
 In Mugen, this trigger merely does the same as `P2Dist Y`. If a character has `ikemenversion`, it will instead return the distance between the size boxes of the two players.
 
-### Z (nightly build only)
+### Z
 
 P2BodyDist now also accepts a Z argument. When there is overlap between the players' Z width, it returns 0, otherwise returns the distance between their theoretical width boxes.
 
@@ -6504,7 +6504,7 @@ trigger1 = StageVar(info.author) = "Suika"
 
 ## StageVar (changed)
 
-StageVar now accepts all stage parameters that [ModifyStageVar](State-controllers-(new)/#new_modifystagevar) state controller can change. In addition it accepts the following parameters (nightly build only):
+StageVar now accepts all stage parameters that [ModifyStageVar](State-controllers-(new)/#new_modifystagevar) state controller can change. In addition it accepts the following parameters:
 
 >info.ikemenversion.major = *major version component* (int)  
 >info.ikemenversion.minor = *minor version component* (int)  

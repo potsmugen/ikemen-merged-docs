@@ -102,7 +102,7 @@
 - [ModifySnd (new)](#modifysnd-new)
 - [ModifyStageBG (new)](#modifystagebg-new)
 - [ModifyStageVar (new)](#modifystagevar-new)
-- [ModifyText (nighty build only) (new)](#modifytext-nighty-build-only-new)
+- [ModifyText (new)](#modifytext-new)
 - [MoveHitReset (old)](#movehitreset-old)
 - [NotHitBy (old)](#nothitby-old)
 - [NotHitBy (changed)](#nothitby-changed)
@@ -134,6 +134,7 @@
 - [RemapPal (old)](#remappal-old)
 - [RemapSprite (new)](#remapsprite-new)
 - [RemoveExplod (old)](#removeexplod-old)
+- [RemoveExplod (changed)](#removeexplod-changed)
 - [RemoveText (new)](#removetext-new)
 - [ReversalDef (old)](#reversaldef-old)
 - [ReversalDef (changed)](#reversaldef-changed)
@@ -157,6 +158,7 @@
 - [StateTypeSet (old)](#statetypeset-old)
 - [StopSnd (old)](#stopsnd-old)
 - [StopSnd (changed)](#stopsnd-changed)
+- [Storyboard (new)](#storyboard-new)
 - [SuperPause (old)](#superpause-old)
 - [SuperPause (changed)](#superpause-changed)
 - [TagIn (new)](#tagin-new)
@@ -472,11 +474,11 @@ none
 
 ## AngleDraw, AngleSet, AngleMul (changed)
 
-### xangle (nightly build only)
+### xangle
 
 >xangle = *xangle* (int)  
 
-### yangle (nightly build only)
+### yangle
 
 >xangle = *yangle* (int)
 
@@ -623,25 +625,25 @@ This controller allows you to assert up to three input flags simultaneously via 
 >flag3 = *flag_name* (string)  
 >Another optional flag to assert.  
   
->flag4 = *flag_name* (string)  (nightly build only)  
+>flag4 = *flag_name* (string)   
 >Another optional flag to assert.  
  
->flag5 = *flag_name* (string)  (nightly build only)  
+>flag5 = *flag_name* (string)   
 >Another optional flag to assert.  
  
->flag6 = *flag_name* (string)  (nightly build only)  
+>flag6 = *flag_name* (string)   
 >Another optional flag to assert.  
  
->flag7 = *flag_name* (string)  (nightly build only)  
+>flag7 = *flag_name* (string)   
 >Another optional flag to assert.  
  
->flag8 = *flag_name* (string)  (nightly build only)  
+>flag8 = *flag_name* (string)   
 >Another optional flag to assert.  
  
 **Details:**  
 The flag name can be one of the following input keys (case sensitive):  
 U, D, L, R, a, b, c, x, y, z, s, d, w, m  
-B, F  (nightly build only)
+B, F
 
 ---
 
@@ -753,14 +755,14 @@ none
 
 ## AssertSpecial (changed)
 
-### Enabled (nightly build only)
+### Enabled
 
 Setting this parameter to 0 will disable the specified flags instead. Defaults to 1.
 
 
 ### Flag
 
-AssertSpecial now allows setting up to 8 flags at a time. (nightly build only)
+AssertSpecial now allows setting up to 8 flags at a time.
   
 Example:  
 ```ini
@@ -780,7 +782,7 @@ flag8 = ...
 In addition, the following flags were added or changed.  
 
 
-#### AnimateHitpause (nightly build only)
+#### AnimateHitpause
 
 While asserted, this flag makes the player's animation advance normally even during a hitpause.
 
@@ -795,12 +797,12 @@ While asserted, the player's animation will be frozen on the current frame.
 While asserted, makes the player guard automatically, without need to press back direction. The player will also switch automatically between standing and crouching guard.
 
 
-#### CameraFreeze (nightly build only)
+#### CameraFreeze
 
 While asserted, prevents the camera from updating, effectively freezing it in place.
 
 
-#### DrawUnder  (nightly build only)
+#### DrawUnder 
 
 While asserted, makes the player sprites be drawn with the same properties of Explod `under` parameter. That is, if the player is on layer 0, it will always be drawn behind lifebars and character shadows.
 
@@ -809,12 +811,12 @@ While asserted, makes the player sprites be drawn with the same properties of Ex
 
 While asserted all players won't die from taking damage.
 
-#### NoAIButtonJam (nightly build only)
+#### NoAIButtonJam
 
 While asserted, disables the random direction and button jamming of Ikemen's default AI.
 
 
-#### NoAICheat (nightly build only)
+#### NoAICheat
 
 While asserted, makes the player's AI unable to cheat commands, i.e. complete them without performing the respective inputs.
 
@@ -834,12 +836,12 @@ Disables the hard-coded state transitions to State 45 when `Ctrl=1 && StateType=
 Disables the hard-coded state transitions to State 0 when `StateNo=20 && Command!="holdfwd" && Command!="holdback"`
 
 
-#### NoComboDisplay (nightly build only)
+#### NoComboDisplay
 
 While asserted, disables displaying combo counter by this playerno (the flag has to be asserted on team leader to disable combo counter rendering for the teamside).
 
 
-#### NoCornerPush (nightly build only)
+#### NoCornerPush
 
 While asserted, the player won't be affected by HitDef `cornerpush.veloff`.
 
@@ -848,7 +850,7 @@ While asserted, the player won't be affected by HitDef `cornerpush.veloff`.
 
 Disables the hard-coded state transitions to State 10 when `Ctrl=1 && StateType=S && Command="holddown"`.
 
-#### NoDestroySelf (nightly build only)
+#### NoDestroySelf
 
 While asserted, disables `destroyself` sctrl.
 
@@ -857,12 +859,12 @@ While asserted, disables `destroyself` sctrl.
 While asserted, player won't be affected by a HitDef's dizzypoints parameter.
 
 
-#### NoFaceDisplay (nightly build only)
+#### NoFaceDisplay
 
 While asserted, disables displaying the face icon for this player.
 
 
-#### NoFaceP2 (nightly build only)
+#### NoFaceP2
 
 While asserted, StateDef `facep2` parameter will have no effect.
 
@@ -882,7 +884,7 @@ Disables the hard-coded FallCount increment when `StateNo=5070 || StateNo=5100`.
 Disables the hard-coded defence increase when `StateNo=5070 || StateNo=5100`.
 
 
-#### NoFallHitflag (nightly build only)
+#### NoFallHitflag
 
 While asserted, every `HitDef` will act as if its `HitFlag` has no `F` parameter. In other words, the player becomes unable to hit falling enemies.
 
@@ -897,7 +899,7 @@ Disables the hard-coded state transitions to State 5120 when `StateNo=5110 && Ge
 While asserted player won't die from taking chip damage.
 
 
-#### NoGuardBarDisplay (nightly build only)
+#### NoGuardBarDisplay
 
 While asserted, disables displaying guardbars by this playerno.
 
@@ -944,7 +946,7 @@ While asserted, the player won't die from taking damage.
 If `ikemenversion` is not 0, the `NoKO` flag affects only the player that called it. Otherwise, the MUGEN behavior is replicated, and all players are affected. The new `GlobalNoKo` flag can be used to replicate the old MUGEN behavior.  
 
 
-#### NoKoFall (nightly build only)
+#### NoKoFall
 
 While asserted, the player won't be forced to fall when receiving a hit that depletes their remaining life. In Mugen this was hardcoded into Training mode.  
 
@@ -954,11 +956,11 @@ While asserted, the player won't be forced to fall when receiving a hit that dep
 While asserted, player won't be affected by HitDef velocity adjustments upon KO.
 
 
-#### NoLifeBarAction (nightly build only)
+#### NoLifeBarAction
 
 While asserted, disables displaying lifebar actions by this playerno (the flag has to be asserted on team leader to disable lifebar actions rendering for the teamside).
 
-#### NoLifeBarDisplay (nightly build only)
+#### NoLifeBarDisplay
 
 While asserted, disables displaying lifebars by this playerno.
 
@@ -968,7 +970,7 @@ While asserted, disables displaying lifebars by this playerno.
 While asserted, the player does not generate hardcoded dust effects. The `MakeDust` state controller will also have no effect.
 
 
-#### NoNameDisplay (nightly build only)
+#### NoNameDisplay
 
 While asserted, disables displaying the Name by this playerno.
 
@@ -978,12 +980,12 @@ While asserted, disables displaying the Name by this playerno.
 While asserted, disables displaying powerbars by this playerno (with team power share option enabled and/or lifebar design with only 1 powerbar per side, the flag has to be asserted on team leader to disable powerbar rendering for whole team).
 
 
-#### NoRedLifeDamage (nightly build only)
+#### NoRedLifeDamage
 
 While asserted, player won't be affected by HitDef *redlife*.
 
 
-#### NoScore (nightly build only)
+#### NoScore
 
 While asserted, player won't be affected by HitDef *score* or the `ScoreAdd` / `TargetScoreAdd` state controllers.
 
@@ -993,22 +995,22 @@ While asserted, player won't be affected by HitDef *score* or the `ScoreAdd` / `
 Disables the hard-coded state transitions to State 12 when `StateType=C && Command!="holddown"`.
 
 
-#### NoStunBarDisplay (nightly build only)
+#### NoStunBarDisplay
 
 While asserted, disables displaying stunbars by this playerno.
 
 
-#### NoTimeDisplay (nightly build only)
+#### NoTimeDisplay
 
 While asserted, disables displaying the fight screens `[Time]` elements.  
 
 
 #### NoTurnTarget
 
-While asserted, keeps the opponent from automatically turning to face the player. This includes the `facep2` parameter. (nightly build only)
+While asserted, keeps the opponent from automatically turning to face the player. This includes the `facep2` parameter.
 
 
-#### NoWinIconDisplay (nightly build only)
+#### NoWinIconDisplay
 
 While asserted, disables displaying winicons by this playerno (the flag has to be asserted on team leader to disable winicon rendering for the teamside).
 
@@ -1018,7 +1020,7 @@ While asserted, disables displaying winicons by this playerno (the flag has to b
 While asserted, player's inputs are not disabled post-match (`RoundState>2 || RoundState=-1`).
 
 
-#### ProjTypeCollision (nightly build only)
+#### ProjTypeCollision
 
 While asserted, the player will clash with projectiles (and other players with the same flag) if their `Clsn2` boxes overlap. This allows helpers to easily replicate this kind of projectile clashing.
 
@@ -1033,37 +1035,37 @@ While asserted, round related lifebar actions and internal timers are frozen (al
 Disables intro and victory pose skipping via button press.
 
 
-#### RunFirst (nightly build only)
+#### RunFirst
 
 While asserted, makes the player code be processed before that of any other players.
 
 
-#### RunLast (nightly build only)
+#### RunLast
 
 While asserted, makes the player code be processed after all other players.
 
 
-#### SizePushOnly (nightly build only)
+#### SizePushOnly
 
 In Ikemen, like Mugen, characters will push each other when both their size boxes (width * height) and their Clsn2 boxes overlap. Asserting this flag makes it so that only the size boxes are checked, as in most fighting games.
 
 
-#### SkipFightDisplay (nightly build only)
+#### SkipFightDisplay
 
 While asserted, the "fight" announcement on round start will be skipped.
 
 
-#### SkipKoDisplay (nightly build only)
+#### SkipKoDisplay
 
 While asserted, the KO announcement on round end will be skipped.
 
 
-#### SkipRoundDisplay (nightly build only)
+#### SkipRoundDisplay
 
 While asserted, the round number announcement on round start will be skipped.
 
 
-#### SkipWinDisplay (nightly build only)
+#### SkipWinDisplay
 
 While asserted, the winner announcement on round end will be skipped.
 
@@ -1092,7 +1094,7 @@ none
 
 ## AttackDist (changed)
 
-### Value (nightly build only)
+### Value
 
 The `value` parameter now takes a second number. This number sets the distance that a player can attack behind the enemy and still allow them to enter proximity guard.
 
@@ -1104,11 +1106,11 @@ trigger1 = 1
 value = 100, 50
 ```
 
-### Width (nightly build only)
+### Width
 
 Works the same as Value.
 
-### Height (nightly build only)
+### Height
 
 Changes the value of the guard.dist.height parameter for the player's current HitDef.
 
@@ -1120,7 +1122,7 @@ trigger1 = 1
 height = 160, 0
 ```
 
-### Depth (nightly build only)
+### Depth
 
 Changes the value of the guard.dist.depth parameter for the player's current HitDef.
 
@@ -1157,22 +1159,22 @@ none
 
 ## AttackMulSet (changed)
 
-### Damage (nightly build only)
+### Damage
 
 Sets an attack multiplier for regular damage only.
 
 
-### DizzyPoints (nightly build only)
+### DizzyPoints
 
 Sets an attack multiplier for dizzy points only.
 
 
-### GuardPoints (nightly build only)
+### GuardPoints
 
 Sets an attack multiplier for guard points only.
 
 
-### RedLife (nightly build only)
+### RedLife
 
 Sets an attack multiplier for red life only.
 
@@ -1339,13 +1341,13 @@ none
 
 ## BindToTarget (changed)
 
-### PosZ (nightly build only)
+### PosZ
 
 >posz = *pos_z* (float)
 
 Specify the offset (in the z-axis) to bind to. Can be skipped, so it's backward compatible with lines having only x,y declared.
 
-### Index (nightly build only)
+### Index
 
 The index of the target to bind to. Defaults to 0 (first one).
 
@@ -1397,7 +1399,7 @@ none
 
 ## ChangeAnim (changed)
 
-### ElemTime (nightly build only)
+### ElemTime
 
 Specifies the exact time of an animation element to change to. Defaults to 0.
 
@@ -1411,12 +1413,12 @@ elem = 4
 elemtime = 1
 ```
 
-### AnimPlayerNo (nightly build only)
+### AnimPlayerNo
 
 This parameter lets a character use the specified animation from another character. Defaults to own playerno.
 
 
-### SpritePlayerNo (nightly build only)
+### SpritePlayerNo
 
 This parameter lets a character use the specified sprites from another character. Defaults to own playerno.
 
@@ -1435,7 +1437,7 @@ Like ChangeAnim, except this controller should be used if you have placed P2 in 
 
 ## ChangeAnim2 (changed)
 
-### ElemTime (nightly build only)
+### ElemTime
 
 See ChangeAnim.
 
@@ -1506,7 +1508,7 @@ ctrl = 1
 
 ## ChangeState (changed)
 
-### Continue (nightly build only)
+### Continue
 
 Due to the way State -1 is normally used to read inputs and change states, Mugen had it so that using a `ChangeState` in a negative state would stop the execution of the rest of the code in that state. Setting `Continue` to 1 will disable this behavior.  
 When a `ChangeState` is redirected, `Continue` will default to 1.
@@ -1913,7 +1915,7 @@ none
 
 ## EnvShake (changed)
 
-### Decay (nightly build only)
+### Decay
 
 >decay = *exponent* (float)  
 
@@ -1936,14 +1938,14 @@ decay = 1.5
 ```
 
 
-### Dir (nightly build only)
+### Dir
 
 >dir = *angle* (int)  
 
 Changes the direction in degrees in which the shake is applied. Defaults to 0. For a negative amplitude, 90 will make the screen shake from left to right.
 
 
-### DirAdd (nightly build only)
+### DirAdd
 
 >diradd = *angle* (int)  
 
@@ -2250,7 +2252,7 @@ For example, assume the player has an x velocity of 5 and a position of (160, 0)
 
 ## Explod (changed)
 
-### AfterImage (nightly build only)
+### AfterImage
 Explods now support AfterImage parameters (e.g. afterimage.time, afterimage.length, afterimage.trans). Usage is identical to Projectile's AfterImage.
 
 ### AnimElem
@@ -2260,28 +2262,28 @@ Explods now support AfterImage parameters (e.g. afterimage.time, afterimage.leng
 Sets the element where the explod's animation should start. Defaults to 1.
 
 
-### AnimPlayerNo (nightly build only)
+### AnimPlayerNo
 
 >animplayerno = *playerno* (int)  
 
 This parameter lets a explod use the specified animation from another character. Defaults to own playerno.
 
 
-### HideWithBars (nightly build only)
+### HideWithBars
 
 >hidewithbars = *bvalue* (boolean int)  
 
 This parameter hides the explod automatically when the fight screen is hidden. Defaults to 0.
 
 
-### SpritePlayerNo (nightly build only)
+### SpritePlayerNo
 
 >spriteplayerno = *playerno* (int)  
 
 This parameter lets a explod use the specified sprites from another character. Defaults to own playerno.
 
 
-### AnimElemTime (nightly build only)
+### AnimElemTime
 
 >animelemtime = *time* (int)  
 
@@ -2331,13 +2333,13 @@ This value is fixed in Mugen 1.1, the explods will look differently under differ
 In Ikemen, this value scales internally like xy scales so that the explods will always look the same.
 Default value is 2048.
 
-### Friction (nightly build only)
+### Friction
 
 Applies friction to explod on the defined axis (Friction value example: 0.95).
 
 >Friction = friction_x, friction_y, friction_z (float, float, float)   
 
-### Interpolation (nightly build only)
+### Interpolation
 
 Interpolation works just as the .air counterpart, interpolating linearly between 2 values.
 
@@ -2446,7 +2448,7 @@ Interpolation.PalFx.Mul = 256, 0, 0;
 ```
 
 
-### LayerNo (nightly build only)
+### LayerNo
 
 Specify on which layer the explod should be drawn. Valid values are -1, 0 and 1. Defaults to the same layer as the player.  
 Layer number 1 is effectively the same as the legacy `ontop` parameter.  
@@ -2467,30 +2469,30 @@ Affect how the explod is drawn when `xangle` or `yangle` is not zero.
 
 If 0, disables reflection on the explod regardless of its shadow color. If 1, enables reflection on the explod regardless of its shadow color. Defaults to showing a reflection if the explod's shadow is not 0, 0, 0.
 
-### Shader (nightly build only)
+### Shader
 
 >shader = *"shader_name"* (string)  
 
 Specifying the name of the currently loaded custom shader will apply that shader to Explod.
 
-### ShaderTime (nightly build only)
+### ShaderTime
 
 >shadertime = *time* (int)  
 
 Specifying this parameter will remove the custom shader after it has been displayed for the specified number of ticks. The default value is -1.
 
-### ShaderParam.pX (nightly build only)
+### ShaderParam.pX
 
 >shaderparam.pX = *value* (float)  
 
 Specifies the value to send to the custom shader. The value specified here can be used as a variable within the custom shader.
 X is limited to 0 to 15, and a maximum of 16 values ​​can be sent.
 
-### ShaderTexX.spr (nightly build only)
+### ShaderTexX.spr
 
 >shadertexX.spr = *group, image* (int, int)  
 
-### ShaderTexX.anim (nightly build only)
+### ShaderTexX.anim
 
 
 >shadertexX.anim = *anim_no* (int)  
@@ -2500,20 +2502,20 @@ You can specify 1 or 2 for X, and send up to two sprites.
 Each tex can be assigned either a sprite number (spr) or an anim number. It is not possible to assign both sprite and anim numbers to the same tex number simultaneously.
 Note that since textures are loaded as raw data, images with palettes may not display correctly as is.
 
-### SpritePlayerNo (nightly build only)
+### SpritePlayerNo
 
 >spriteplayerno = *playerno* (int)  
 
 This parameter lets a explod use the specified sprites from another character. Defaults to own playerno.
 
 
-### syncid (nightly build only)
+### syncid
 
 >syncid = *id* (int)
 
 Specifies the ID of a character to synchronize with. The Explod will group with the target in the draw order. If syncparams is 1, it also copies the target's drawing properties (Position, Scale, Angle, Trans, etc.).
 
-### synclayer (nightly build only)
+### synclayer
 
 >synclayer = *layer* (int)
 
@@ -2522,7 +2524,7 @@ Adjusts the drawing order relative to the character specified in syncid.
 * \> 0: Drawn in front of the character.
 * < 0: Drawn behind the character.
 
-### syncparams (nightly build only)
+### syncparams
 
 >syncparams = *value* (bool)
 
@@ -2539,7 +2541,7 @@ If set to 1 and the explod is on layer 0, it will always be drawn behind lifebar
 
 This parameter takes four numbers (similar to the format of a Clsn box) which forms a rectangle outside of which the pixels will not be rendered.
 
-### xshear (nightly build only)
+### xshear
 
 >xshear = *xshear* (float)
 
@@ -2968,7 +2970,7 @@ none
 
 ## Helper (changed)
 
-### ClsnProxy (nightly build only)
+### ClsnProxy
 
 If set to 1, any overlap with the helper's clsn boxes will instead affect its parent as if the helper's clsn boxes were part of the parent's anim. Defaults to 0.
 
@@ -3001,7 +3003,7 @@ keyctrl = 1, 3
 If set to 1, the helper will be affected by increased KO Velocity (defeated character flying across the screen), just like normal player. Defaults to 0.
 
 
-### Map (nightly build only)
+### Map
 
 A helper's maps can be set immediately upon its creation via `map.<mapname>` syntax.
 
@@ -3010,12 +3012,12 @@ helper{...; map.speed: 8; map.angle: 45}
 ```
 
 
-### OwnClsnScale (nightly build only)
+### OwnClsnScale
 
 A helper with this parameter will have its collision box scale be based on its own `size.xscale` and `size.yscale` constants rather than its root's.
 
 
-### OwnProjectile (nightly build only)
+### OwnProjectile
 
 A helper with this parameter can own its own projectiles instead of the root player.  
 Note: If a helper is destroyed while a projectile is still active, the orphaned projectile loses its ability to interact with other players.
@@ -3105,10 +3107,10 @@ value = S, NA
 
 ### IkemenVersion
 
-In Mugen, the behavior of `HitBy` (and `NotHitBy`) is not as documented. The player's invincibility is compared to the enemy's actual statetype instead of their Hitdef's `SCA` flags. If a character has `ikemenversion`, it will work as documented. (nightly build only)  
+In Mugen, the behavior of `HitBy` (and `NotHitBy`) is not as documented. The player's invincibility is compared to the enemy's actual statetype instead of their Hitdef's `SCA` flags. If a character has `ikemenversion`, it will work as documented.  
 
 
-### New syntax (nightly build only)
+### New syntax
 
 `HitBy` (and `NotHitBy`) now also accepts a syntax similar to `HitOverride`, using `attr` and `slot` instead of `value`. Every player has access to 8 individual slots (numbered 0 to 7).  
 This new syntax is required to use the new features.  
@@ -3130,7 +3132,7 @@ time = 1
 ```
 
 
-### Stack (nightly build only)
+### Stack
 
 >stack = *value* (bool)  
 
@@ -3156,14 +3158,14 @@ stack = 1
 ```
 
 
-### PlayerNo (nightly build only)
+### PlayerNo
 
 >playerno = *player_number* (int)  
 
 Using this parameter limits vulnerability to a specific player number.
 
 
-### PlayerID (nightly build only)
+### PlayerID
 
 >playerid = *player_id* (int)  
 
@@ -3666,26 +3668,26 @@ none
 
 ## HitDef (changed)
 
-### air.juggle (changed) (nightly build only)
+### air.juggle (changed)
 
 In Mugen, the `air.juggle` parameter is only used by the `Projectile` state controller. Characters with `ikemenversion` can now use this parameter in a `Hitdef` to update their juggle points. This allows a move with multiple hits to have different juggle properties in every hit, for instance.  
 
 
-### air.velocity (changed) (nightly build only)
+### air.velocity (changed)
 
 This parameter now takes a third value, It specifies the z velocity.
 
 >air.velocity = *x_vel, y_vel, z_vel* (float, float, float)
 
 
-### airguard.velocity (changed) (nightly build only)
+### airguard.velocity (changed)
 
 This parameter now takes a third value, It specifies the z velocity.
 
 >airguard.velocity = *x_vel, y_vel, z_vel* (float, float, float)
 
 
-### attack.depth (nightly build only)
+### attack.depth
 
 >attack.depth = *z_dist_front, z_dist_back* (int, int)
 
@@ -3699,21 +3701,21 @@ Specifies the range of the attack in the Z plane. An attack with more depth reac
 Specifies the amount of dizzy points to give P2 if this HitDef connects successfully. If omitted, it defaults to hit_damage (from "damage" parameter) multiplied by the value of `Default.LifeToDizzyPointsMul` / `Super.LifeToDizzyPointsMul` specified in data/common.const, scaled by the targets' defense multipliers if necessary.
 
 
-### down.recover (Nightly build only)
+### down.recover
 
 >down.recover = *recover_flag* (bool)  
 
 This parameter controls the enemy's ability to use "fast recovery from lie down" after being hit.  
 
 
-### down.recovertime (Nightly build only)
+### down.recovertime
 
 >down.recovertime = *recover_time* (int)  
 
 This parameter determines how long the enemy will stay down (in state 5110) after being knocked down. Defaults to the enemy's `data.liedown.time` constant. Together with `down.recover`, this allows one to effectively apply "hard knockdown" states on the enemy.
 
 
-### down.velocity (changed) (nightly build only)
+### down.velocity (changed)
 
 >down.velocity = *x_vel, y_vel, z_vel* (float, float, float)  
 
@@ -3727,7 +3729,7 @@ This parameter now takes a third value, It specifies the z velocity.
 For every envshake cycle, the envshake.ampl is multiplied by this value. Defaults to 1.
 
 
-### envshake.dir (nightly build only)
+### envshake.dir
 
 >envshake.dir = *angle* (int)  
 
@@ -3741,28 +3743,28 @@ Changes the direction in degrees in which the shake is applied. Defaults to 0. F
 For every fall.envshake cycle, the fall.envshake.ampl is multiplied by this value. Defaults to 1.
 
 
-### fall.envshake.dir (nightly build only)
+### fall.envshake.dir
 
 >fall.envshake.dir = *angle* (int)  
 
 Changes the direction in degrees in which the shake is applied. Defaults to 0. For a negative amplitude, 90 will make the screen shake from left to right.
 
 
-### fall.zvelocity (nightly build only)
+### fall.zvelocity
 
 >fall.zvelocity = *fall_zvelocity* (float) 
 
 This is the z-velocity that P2 gets when bouncing off the ground in the "fall" state. Defaults to no change if omitted.
 
 
-### forcecrouch (nightly build only)
+### forcecrouch
 
 >forcecrouch = *bvalue* (boolean int)
 
 Forces a standing opponent to crouch upon hit. Similar to ForceStand. Defaults to 0.
 
 
-### guard.hittime (nightly build only)
+### guard.hittime
 
 If the character has `ikemenversion`, this value now defaults to `ground.hittime` as documented, as opposed to `ground.slidetime`.
 
@@ -3774,28 +3776,28 @@ If the character has `ikemenversion`, this value now defaults to `ground.hittime
 Specifies the amount of guard points to give P2 if this HitDef is guarded. If omitted, it defaults to hit_damage (from "damage" parameter) multiplied by the value of `Default.LifeToGuardPointsMul` / `Super.LifeToGuardPointsMul` specified in data/common.const, scaled by the targets' defense multipliers if necessary.
 
 
-### ground.velocity (changed) (nightly build only)
+### ground.velocity (changed)
 
 This parameter now takes a third value, It specifies the z velocity.
 
 >ground.velocity = *x_vel, y_vel, z_vel* (float, float, float)
 
 
-### guard.dist (changed) (nightly build only)
+### guard.dist (changed)
 
 >guard.dist = *x_dist_front, x_dist_back* (int, int)
 
 This parameter now takes a second value. It specifies the distance that a player can attack behind the enemy and still allow them to enter proximity guard. This second value defaults to 0.
 
 
-### guard.dist.width (nightly build only)
+### guard.dist.width
 
 >guard.dist.width = *x_dist_front, x_dist_back* (int, int)
 
 Alternative syntax for guard.dist, for consistency with `guard.dist.height` and `guard.dist.depth`.
 
 
-### guard.dist.height (nightly build only)
+### guard.dist.height
 
 >guard.dist.height = *y_dist_top, y_dist_bottom* (int, int)
 
@@ -3807,7 +3809,7 @@ Specifies the vertical distance (height) within which a player's attack can trig
 Specifies the depth range (along the Z-axis) within which a player's attack can trigger the enemy's proximity guard. The default value is 4, 4.
 
 
-### guard.velocity (changed) (nightly build only)
+### guard.velocity (changed)
 
 >guard.velocity = *x_vel, y_vel, z_vel* (float, float, float)
 
@@ -3821,19 +3823,19 @@ This parameter now takes a second and a third value. It specifies the Y and the 
 Specifies the guard spark rotation directly from a Hitdef. Defaults to 0.
 
 
-### guard.sparkscale (nightly build only)
+### guard.sparkscale
 
 >guard.sparkscale = *x_scale, y_scale* (float, float)  
 
 Specifies the guard spark's scale directly from a Hitdef. Defaults to 1, 1 (no change).
 
-### stand.friction (nightly build only)
+### stand.friction
 
 >stand.friction = *friction_value* (float)
 
 Overrides the opponent's Movement.Stand.Friction constants while they are in the gethit state caused by this HitDef.
 
-### crouch.friction (nightly build only)
+### crouch.friction
 
 >crouch.friction = *friction_value* (float)
 
@@ -3853,30 +3855,30 @@ Specifies which of the player's sound channels the guardsound should play on. If
 Specifies which of the player's sound channels the hitsound should play on. If omitted, channel_no defaults to -1, meaning the sound will play on any free channel.
 
 
-### ignorereversaldef (nightly build only)
+### ignorereversaldef
 
 >ignorereversaldef = *value* (bool)
 
 If set to 1, this HitDef will ignore any active ReversalDef on the opponent, hitting them normally. Defaults to 0.
 
 
-### keepstate (nightly build only)
+### keepstate
 
 >keepstate = *value* (bool)
 
 If set to 1, the hit will apply effects (damage, hitpause, etc.) but the opponent will not change to a gethit state. Defaults to 0.
 
 
-### maxdist (changed) (nightly build only)
+### maxdist (changed)
 
 This parameter now takes a third value. It specifies the Z maxdist.
 
 
-### mindist (changed) (nightly build only)
+### mindist (changed)
 
 This parameter now takes a third value. It specifies the Z mindist.
 
-### missonoverride  (nightly build only)
+### missonoverride 
 
 >missonoverride = *bvalue* (boolean int)
 
@@ -3884,17 +3886,17 @@ This parameter allows you to choose whether or not a HitDef will miss if it woul
 P1StateNo and P2StateNo both do not apply if the hit is overridden.
 
 
-### nochainID (changed) (nightly build only)
+### nochainID (changed)
 
 This parameter now accepts up to 8 values, up from 2. 
 
 
-### p1sprpriority (nightly build only)
+### p1sprpriority
 
 In Mugen, the default value for this parameter was not intuitive and often became a problem. In Ikemen, it defaults to no change.
 
 
-### p2clsncheck (nightly build only)
+### p2clsncheck
 
 >p2clsncheck= *clsn_type* (string)  
 
@@ -3902,7 +3904,7 @@ This parameter makes a hit be checked against a specific type of collision box. 
 Traditionally, fighting games check throws with the `Size` box.  
 
 
-### p2clsnrequire (nightly build only)
+### p2clsnrequire
 
 >p2clsnrequire= *clsn_type* (string)  
 
@@ -3925,7 +3927,7 @@ Specifies the amount of red life to give P2 if this HitDef connects successfully
 Specifies the score value added to P1 and P2 score count.
 
 
-### snap (nightly build only)
+### snap
 
 This parameter now actually uses the third value. It specifies the P2 Pos Z.
 `snap` takes 4 arguments the 4th one being snaptime.
@@ -3938,7 +3940,7 @@ This parameter now actually uses the third value. It specifies the P2 Pos Z.
 Specifies the hitspark rotation directly from a Hitdef. Defaults to 0.
 
 
-### sparkscale (nightly build only)
+### sparkscale
 
 >sparkscale = *x_scale, y_scale* (float, float)  
 
@@ -3949,10 +3951,10 @@ Specifies the hit spark's scale directly from a Hitdef. Defaults to 1, 1 (no cha
 
 Makes the HitDef be treated as an attack from the TeamSide you specify (similar to the trigger of TeamSide).  
 
-When used with `Projectile`, setting a teamside different from the player's will allow the projectile to hit its owner and interact with other projectiles from the same player. (nightlly build only)  
+When used with `Projectile`, setting a teamside different from the player's will allow the projectile to hit its owner and interact with other projectiles from the same player.  
 
 
-### unhittabletime (nightly build only)
+### unhittabletime
 
 >unhittabletime = *p1_time*, *p2_time* (int)  
 
@@ -3960,14 +3962,14 @@ Makes the player or the enemy invincible for the specified number of the frames 
 Defaults to `p1_pausetime + 1, p1_pausetime + 1` for throw attribute attacks, `0, p1_pausetime + 1` for ReversalDef, or `-1, -1` otherwise.
 
 
-### xaccel (nightly build only)
+### xaccel
 
 >xaccel = *accel* (float) 
 
 Specifies the x acceleration to impart to P2 if the hit connects. Defaults to 0.  
 For backwards compatibility reasons, this acceleration is not used by default, as it is not called by `common1.cns`.  
 
-### zaccel (nightly build only)
+### zaccel
 
 >zaccel = *accel* (float) 
 
@@ -4092,21 +4094,21 @@ none
 
 ## HitOverride (changed)
 
-### forceguard (nightly build only)
+### forceguard
 
 >forceguard = *value* (bool)
 
 If set to 1, a successful override will be considered a guarded attack.
 
 
-### guardflag (nightly build only)
+### guardflag
 
 >guardflag = *hit_flags* (string)  
 
 Only hits containing the specified flags in their `guardflag` will be overridden.
 
 
-### guardflag.not (nightly build only)
+### guardflag.not
 
 >guardflag.not = *hit_flags* (string)  
 
@@ -4123,7 +4125,7 @@ guardflag.not = L
 ```
 
 
-### keepstate (nightly build only)
+### keepstate
 
 >keepstate = *value* (bool)
 
@@ -4163,7 +4165,7 @@ Obsolete.
 
 ## HitVelSet (changed)
 
-### Z (nightly build only)
+### Z
 
 >z = z_flag (int)
 
@@ -4288,10 +4290,10 @@ Specifies the path of the file to be read (relative to the character folder). An
 
 **Optional parameters:**  
   
-**maps = *map_1*, *map_2*, *map_3*... (string)** (nightly build only)  
+**maps = *map_1*, *map_2*, *map_3*... (string)**  
 A list of maps to load. Defaults to empty.  
   
-**maps.include = *filter* (string)** (nightly build only)  
+**maps.include = *filter* (string)**  
 All maps containing this string in their names will be loaded. Defaults to empty.  
   
 **Example:**
@@ -4411,15 +4413,15 @@ Reset the round or match and resume. By default (when no optional parameters are
 >This parameter specifies whether to reload particular character. Defaults to 0 (round is reset without characters reloading)   
 >Note: Reloading files does not work during netplay due to synchronization limitations.
   
->resetmatch = "*flag*" (int) (nightly build only)  
+>resetmatch = "*flag*" (int)  
 >If set to 1, the match will restart from Round 1 instead of the current round. Unlike standard reloading, this allows restarting the match without reloading assets (reload=0), making it compatible with netplay. Defaults to 0.  
 >Note: This parameter will be ignored in Turns mode if the active characters have already switched and reload is not enabled, as the original characters are no longer in memory.
   
->preservevars = *p1, p2, p3, p4, p5, p6, p7, p8* (int) (nightly build only)  
+>preservevars = *p1, p2, p3, p4, p5, p6, p7, p8* (int)  
 >This parameter specifies whether to preserve variables (var, fvar, map) for a particular character after the restart. Defaults to 0.  
 >Note: In the first round, the default common state will have all var and fvar reset by the varRangeSet in StateDef 5900. If you want to carry over variables to the first round, you will need to overwrite the StateDef 5900.
   
->pXpalette = *pal_no* (int) (nightly build only)  
+>pXpalette = *pal_no* (int)  
 >Specifies the palette number (1-12) to be used for player X (replace X with player number) upon restarting. If not specified, the character retains the currently selected palette.
   
 **Example:**
@@ -4548,7 +4550,7 @@ Syntax is basically the same as Explod.
 
 In general, characters with `ikemenversion` are able to to modify their explods more freely.  
 
-Additionally, if a character has `ikemenversion`, modifying an explod timer such as `bindtime` or `removetime` will use the current frame as the reference time. For example, if `removetime` is modified to 10, the explod will be removed 10 frames later, regardless of what the original time was. (nightly build only)
+Additionally, if a character has `ikemenversion`, modifying an explod timer such as `bindtime` or `removetime` will use the current frame as the reference time. For example, if `removetime` is modified to 10, the explod will be removed 10 frames later, regardless of what the original time was.
 
 
 ### anim
@@ -4556,12 +4558,12 @@ Additionally, if a character has `ikemenversion`, modifying an explod timer such
 Modifies the `anim` parameter of an existing Explod. Requires `ikemenversion`.
 
 
-### animelem (nightly build only)
+### animelem
 
 Modifies the `animelem` parameter of an existing Explod.
 
 
-### animelemtime (nightly build only)
+### animelemtime
 
 Modifies the `animelemtime` parameter of an existing Explod.
 
@@ -4569,6 +4571,10 @@ Modifies the `animelemtime` parameter of an existing Explod.
 ### ignorehitpause
 
 Modifies the `ignorehitpause` parameter of an existing Explod. Requires `ikemenversion`.
+
+### index
+
+The index of the explod to be affected. Defaults to -1 (all).  
 
 
 ### space
@@ -4966,44 +4972,44 @@ This SCTRL lets a character modify basic stage parameters or "stage vars", as de
 >camera.startzoom = *start_zoom* (float)  
 >camera.zoomout = *zoom_in* (float)  
 >camera.zoomin = *zoom_out* (float)  
->camera.zoomindelay = *zoom_in_delay* (float) (nightly build only)  
->camera.zoominspeed = *zoom_in_speed* (float) (nightly build only)  
->camera.zoomoutspeed = *zoom_out_speed* (float) (nightly build only)  
->camera.tensionvel = *tension_vel* (float) (nightly build only)  
->camera.cuthigh = *cut_high* (float) (nightly build only)  
->camera.cutlow = *cut_low* (float) (nightly build only)  
->camera.yscrollspeed = *y_scroll_speed* (float) (nightly build only)  
->camera.ytension.enable = *enable_flag* (bool) (nightly build only)  
->camera.autocenter = *enable_flag* (bool) (nightly build only)  
+>camera.zoomindelay = *zoom_in_delay* (float)  
+>camera.zoominspeed = *zoom_in_speed* (float)  
+>camera.zoomoutspeed = *zoom_out_speed* (float)  
+>camera.tensionvel = *tension_vel* (float)  
+>camera.cuthigh = *cut_high* (float)  
+>camera.cutlow = *cut_low* (float)  
+>camera.yscrollspeed = *y_scroll_speed* (float)  
+>camera.ytension.enable = *enable_flag* (bool)  
+>camera.autocenter = *enable_flag* (bool)  
 >playerinfo.leftbound = *left_bound* (float)  
 >playerinfo.rightbound = *right_bound* (float)  
->playerinfo.topbound = *top_bound* (float) (nightly build only)  
->playerinfo.botbound = *bot_bound* (float) (nightly build only)  
->playerinfo.p1startx = *p1startx_pos* (int) (nightly build only)  
->playerinfo.p2startx = *p2startx_pos* (int) (nightly build only)  
->playerinfo.p1starty = *p1starty_pos* (int) (nightly build only)  
->playerinfo.p2starty = *p2starty_pos* (int) (nightly build only)  
->playerinfo.p1startz = *p1startz_pos* (int) (nightly build only)  
->playerinfo.p2startz = *p2startz_pos* (int) (nightly build only)  
->playerinfo.p1facing = *p1_facing* (int) (nightly build only)  
->playerinfo.p2facing = *p2_facing* (int) (nightly build only)  
+>playerinfo.topbound = *top_bound* (float)  
+>playerinfo.botbound = *bot_bound* (float)  
+>playerinfo.p1startx = *p1startx_pos* (int)  
+>playerinfo.p2startx = *p2startx_pos* (int)  
+>playerinfo.p1starty = *p1starty_pos* (int)  
+>playerinfo.p2starty = *p2starty_pos* (int)  
+>playerinfo.p1startz = *p1startz_pos* (int)  
+>playerinfo.p2startz = *p2startz_pos* (int)  
+>playerinfo.p1facing = *p1_facing* (int)  
+>playerinfo.p2facing = *p2_facing* (int)  
 >scaling.topscale = *top_scale* (float) (<mugen 1.0)  
 >bound.screenleft = *screen_left* (int)  
 >bound.screenright = *screen_right* (int)  
->stageinfo.autoturn = *autoturn* (bool) (nightly build only)  
->stageinfo.resetbg = *resetbg* (bool) (nightly build only)  
->stageinfo.xscale = *xscale* (float) (nightly build only)  
+>stageinfo.autoturn = *autoturn* (bool)  
+>stageinfo.resetbg = *resetbg* (bool)  
+>stageinfo.xscale = *xscale* (float)  
 >stageinfo.yscale = *yscale* (float)  
 >stageinfo.zoffset = *zoffset* (int)  
 >stageinfo.zoffsetlink = *zoffset_link* (int)  
 >shadow.angle = *angle* (int)  
 >shadow.color = *r*, *g*, *b* (int, int, int)
 >shadow.fade.range = *end*, *begin* (int, int)  
->shadow.focallength = *focallength* (float) (nightly build only)  
+>shadow.focallength = *focallength* (float)  
 >shadow.intensity = *intensity* (int)  
->shadow.offset = *xoff*, *yoff* (float, float) (nightly build only)  
->shadow.projection = *projection* (string) (nightly build only)  
->shadow.window = *x1*, *y1*, *x2*, *y2* (float, float, float, float) (nightly build only)  
+>shadow.offset = *xoff*, *yoff* (float, float)  
+>shadow.projection = *projection* (string)  
+>shadow.window = *x1*, *y1*, *x2*, *y2* (float, float, float, float)  
 >shadow.xangle = *xangle* (int)  
 >shadow.xscale = *scale* (float)  
 >shadow.xshear = *xshear* (float)  
@@ -5012,23 +5018,23 @@ This SCTRL lets a character modify basic stage parameters or "stage vars", as de
 >shadow.yscale = *scale* (float)  
 >reflection.angle = *angle* (int)  
 >reflection.fade.range = *end*, *begin* (int, int)  
->reflection.focallength = *focallength* (float) (nightly build only)  
+>reflection.focallength = *focallength* (float)  
 >reflection.intensity = *intensity* (int)  
->reflection.offset = *xoff*, *yoff* (float, float) (nightly build only)  
->reflection.projection = *projection* (string) (nightly build only)  
->reflection.window = *x1*, *y1*, *x2*, *y2* (float, float, float, float) (nightly build only)  
+>reflection.offset = *xoff*, *yoff* (float, float)  
+>reflection.projection = *projection* (string)  
+>reflection.window = *x1*, *y1*, *x2*, *y2* (float, float, float, float)  
 >reflection.xangle = *xangle* (int)  
->reflection.xscale = *scale* (float) (nightly build only)  
+>reflection.xscale = *scale* (float)  
 >reflection.yangle = *yangle* (int)  
->reflection.ydelta = *delta* (float) (nightly build only)  
->reflection.yscale = *scale* (float) (nightly build only)  
+>reflection.ydelta = *delta* (float)  
+>reflection.yscale = *scale* (float)  
   
 **Details:**  
 >camera.ytension.enable is enabled by default when a stage uses tensionhigh and tensionlow
 
 ---
 
-## ModifyText (nighty build only) (new)
+## ModifyText (new)
 
 Using this state controller will update the specified parameters for the texts with the specified ID. Syntax is essentially the same as for Text sctrl.
 
@@ -5281,7 +5287,7 @@ For PalFx it accepts 4 values:
 
 If character MugenVersion is 1.1 and invertall = 1 and if invertblend param is omitted, it inverts blend by default. For all other MugenVersion invertblend is 0 if omitted.
 
-### hue (nightly build only)
+### hue
 
 >hue = *value* (int)
 
@@ -5299,7 +5305,7 @@ Similliar to "sinadd" parameter but instead it creates effect related to "mul" p
 
 Similliar to "sinadd" parameter but instead it creates effect related to "color" parameter.
 
-### sinhue (nightly build only)
+### sinhue
 
 >sinhue= *ampl*, *period* (int)  
 
@@ -5540,11 +5546,11 @@ none
 
 ## PlayerPush (changed)
 
-### Priority (nightly build only)
+### Priority
 
 `PlayerPush` now accepts a `priority` parameter. A player with a higher priority can't be pushed by a player with a lower priority and will also push them out of a stage corner. Priority is reset to 0 every frame.  
 
-### AffectTeam (nightly build only)
+### AffectTeam
 >affectteam = *team_type* (string)  
 
 specifies which team's players can be push.
@@ -5636,37 +5642,37 @@ Prior to version 1.0 RC8, a volume parameter was used instead of volumescale. Th
 
 Sets the priority of the sound. Does nothing when channel is not specified. A sound with higher priority will not be interrupted by sounds with lower priority. Defaults to 0.
 
-### LoopStart (nightly build only)
+### LoopStart
 
 >loopstart = *loop_start_sample* (int)  
 
 Sets the sample to begin looping from.
 
-### LoopEnd (nightly build only)
+### LoopEnd
 
 >loopend = *loop_end_sample* (int)  
 
 Sets the sample to end looping at.
 
-### StartPosition (nightly build only)
+### StartPosition
 
 >startposition = *start_sample* (int)  
 
 Sets the sample to begin playing from.
 
-### LoopCount (nightly build only)
+### LoopCount
 
 >loopcount = *loop_count*  
 
 If set, will play the sound *loop_count* number of times before stopping. Nonzero values take precedence over the `loop` parameter.
 
-### StopOnGetHit (nightly build only)
+### StopOnGetHit
 
 >stopongethit = *stop*  (bool)
 
 This parameter makes the sound be interrupted if the player gets hit. Defaults to 1 if channel is set to 0.
 
-### StopOnChangeState (nightly build only)
+### StopOnChangeState
 
 >stoponchangestate = *stop*  (bool)
 
@@ -6059,32 +6065,32 @@ Specifies the Xangle of the Projectile animation.
 Specifies the Yangle of the Projectile animation.
 
 
-### ProjClsnAngle (nightly build only)
+### ProjClsnAngle
 
 Defines the angle for the projectile's collision boxes. In degrees.
 
 
-### ProjClsnScale (nightly build only)
+### ProjClsnScale
 
 Defines the collision box scale for the projectile.
 
 
-### ProjDepthBound (nightly build only)
+### ProjDepthBound
 
 Like `projedgebound` but for the Z space. Determines how far out of the Z boundaries the projectile can travel before being removed.  
 
 
-### ProjLayerNo (nightly build only)
+### ProjLayerNo
 
 Specify on which layer the projectile should be drawn. Valid values are -1, 0 and 1. Defaults to the same layer as the player.
 
 
-### ProjFocalLength (nightly build only)
+### ProjFocalLength
 
 Focal Length of the projection. Does nothing when projection is not perspective or perspective2.
 
 
-### ProjProjection (nightly build only)
+### ProjProjection
 
 Affect how the projectile is drawn when xangle or yangle is not zero.
 
@@ -6097,39 +6103,39 @@ Affect how the projectile is drawn when xangle or yangle is not zero.
 
 If 0, disables reflection on the projectile regardless of its shadow color. If 1, enables reflection on the projectile regardless of its shadow color. Defaults to showing a reflection if the projectile's shadow is not 0, 0, 0.
 
-### ProjWindow (nightly build only)
+### ProjWindow
 
 This parameter takes four numbers (similar to the format of a Clsn box) which forms a rectangle outside of which the pixels will not be rendered.
 
 
-### ProjXshear (nightly build only)
+### ProjXshear
 
 Specifies the amount of horizontal shearing to apply to the projectile. Defaults to 0.
 
-### Shader (nightly build only)
+### Shader
 
 >shader = *"shader_name"* (string)  
 
 Specifying the name of the currently loaded custom shader will apply that shader to Projectile.
 
-### ShaderTime (nightly build only)
+### ShaderTime
 
 >shadertime = *time* (int)  
 
 Specifying this parameter will remove the custom shader after it has been displayed for the specified number of ticks. The default value is -1.
 
-### ShaderParam.pX (nightly build only)
+### ShaderParam.pX
 
 >shaderparam.pX = *value* (float)  
 
 Specifies the value to send to the custom shader. The value specified here can be used as a variable within the custom shader.
 X is limited to 0 to 15, and a maximum of 16 values ​​can be sent.
 
-### ShaderTexX.spr (nightly build only)
+### ShaderTexX.spr
 
 >shadertexX.spr = *group, image* (int, int)  
 
-### ShaderTexX.anim (nightly build only)
+### ShaderTexX.anim
 
 >shadertexX.anim = *anim_no* (int)  
 
@@ -6264,6 +6270,14 @@ none
 
 ---
 
+## RemoveExplod (changed)
+
+### index
+
+The index of the explod to be affected. Defaults to -1 (all).
+
+---
+
 ## RemoveText (new)
 
 Removes all of a player's texts, or just the texts with a specified ID number.
@@ -6319,14 +6333,14 @@ none
 
 ReversalDef can also use the new HitDef parameters. In addition it has the following exclusive parameters.
 
-### reversal.guardflag (nightly build only)
+### reversal.guardflag
 
 >reversal.guardflag = *hit_flags* (string)  
 
 Only hits containing the specified flags in their `guardflag` will be countered.
 
 
-### reversal.guardflag.not (nightly build only)
+### reversal.guardflag.not
 
 >reversal.guardflag.not = *hit_flags* (string)  
 
@@ -6456,10 +6470,10 @@ Put specified data together and save it as binary. It uses gob, which is a seria
 
 **Optional parameters:**  
   
->maps = *map_1*, *map_2*, *map_3*... (string) (nightly build only)  
+>maps = *map_1*, *map_2*, *map_3*... (string)  
 >A list of maps to load. Defaults to empty.  
   
->maps.include = *filter* (string) (nightly build only)  
+>maps.include = *filter* (string)  
 >All maps containing this string in their names will be saved. Defaults to empty.  
   
 **Example:**
@@ -6679,7 +6693,7 @@ none
 
 ## SprPriority (changed)
 
-### LayerNo (nightly build only)
+### LayerNo
 
 >layerno = *layer_number* (int)
 
@@ -6756,6 +6770,25 @@ Mugen allowed stopping all sounds for all players with `channel = -1`, but had n
 
 ---
 
+## Storyboard (new)
+
+Plays the specified storyboard during a match.
+
+**Required parameters:**  
+  
+>path = *storyboard_path* (string)  
+>Specifies the path to the storyboard file, relative to the Ikemen top-level directory.  
+
+**Example:**
+```ini
+[State 0, Storyboard]
+type = Storyboard
+trigger1 = Time = 0
+path = "data/ikemen1/logo.def"
+```
+
+---
+
 ## SuperPause (old)
 
 Freezes the gameplay and darkens the screen. While each player is frozen, no time passes for them. Use for a dramatic pause during the start of hyper attacks.  
@@ -6823,7 +6856,7 @@ none
 
 ## SuperPause (changed)
 
-### Brightness (nightly build only)
+### Brightness
 
 Determines how much the screen should darken during the pause. Valid values are between 0 (pitch black) and 255 (no change). Defaults to 128 (same as old `darken` parameter).
 
@@ -6850,7 +6883,7 @@ Makes the P1 and/or the specified partner exit `Standby` state. If no parameters
 >Sets the *partner_no* control flag.  
   
 >memberno = *player_memberno* (int)  
->Changes the player's position in the team. (nightly build only)  
+>Changes the player's position in the team.  
 
 **Example:**
 ```ini
@@ -6891,7 +6924,7 @@ The main purpose of the `Standby` flag is to put a player away so it won't inter
 >The number of the state to change *partner_no* to.  
   
 >memberno = *player_memberno* (int)  
->Changes the player's position in the team. (nightly build only)  
+>Changes the player's position in the team.  
 
 **Example:**
 ```ini
@@ -6944,12 +6977,12 @@ Defaults to `0, 0` if omitted.
 
 ## TargetBind (changed)
 
-### Index (nightly build only)
+### Index
 
 The index of the target to be affected. Defaults to -1 (all).  
 
 
-### Pos (changed) (nightly build only)
+### Pos (changed)
 
 >pos = *x_pos, y_pos, pos_z* (float, float, float)
 
@@ -7027,7 +7060,7 @@ none
 
 ## TargetFacing (changed)
 
-### Index (nightly build only)
+### Index
 
 The index of the target to be affected. Defaults to -1 (all).
 
@@ -7089,7 +7122,7 @@ none
 If set to 1, enables life to dizzy points conversion support using `Default.LifeToDizzyPointsMul` / `Super.LifeToDizzyPointsMul` const. Defaults to 1.
 
 
-### Index (nightly build only)
+### Index
 
 The index of the target to be affected. Defaults to -1 (all).
 
@@ -7120,7 +7153,7 @@ none
 
 ## TargetPowerAdd (changed)
 
-### Index (nightly build only)
+### Index
 
 The index of the target to be affected. Defaults to -1 (all).
 
@@ -7186,7 +7219,7 @@ none
 
 ## TargetState (changed)
 
-### Index (nightly build only)
+### Index
 
 The index of the target to be affected. Defaults to -1 (all).
 
@@ -7228,12 +7261,12 @@ y = 0.45
 
 ## TargetVelAdd (changed)
 
-### Index (nightly build only)
+### Index
 
 The index of the target to be affected. Defaults to -1 (all). 
 
 
-### Z (nightly build only)
+### Z
 
 >z = *z_value* (float)
 
@@ -7272,12 +7305,12 @@ none
 
 ## TargetVelSet (changed)
 
-### Index (nightly build only)
+### Index
 
 The index of the target to be affected. Defaults to -1 (all). 
 
 
-### Z (nightly build only)
+### Z
 
 >z = *z_value* (float)
 
@@ -7333,7 +7366,7 @@ Text controller is used for displaying text on screen.
 >Sets custom localcoord. If omitted, lifebar font defaults to the lifebar localcoord, character font and debug font defaults to the screen localcoord.  
   
 >text = *"format_string"* (string)  
->Text to be rendered. Defaults to "%v" (rendering first *params* argument of any type). *format_string* must be encased in double-quotes. It is a *printf* format string. You can use \t to generate a tab character (tab width is equivalent to 4 characters) and \n to break lines (nightly build only). To display the value of an arithmetic expression, you can put a %d (for ints) or a %f (for floats) in the format string, then specify the expression in the params list. To display a % character, you must put %% in the format string. Accepted format specifiers: %v (any type), %d, %i, %f, %F, %e, %E, %g, or %G. Syntax such as %0.2f is also supported.  
+>Text to be rendered. Defaults to "%v" (rendering first *params* argument of any type). *format_string* must be encased in double-quotes. It is a *printf* format string. You can use \t to generate a tab character (tab width is equivalent to 4 characters) and \n to break lines. To display the value of an arithmetic expression, you can put a %d (for ints) or a %f (for floats) in the format string, then specify the expression in the params list. To display a % character, you must put %% in the format string. Accepted format specifiers: %v (any type), %d, %i, %f, %F, %e, %E, %g, or %G. Syntax such as %0.2f is also supported.  
   
 >params = *exp_1, exp_2, (...)*  
 >Unlimited amount of numeric arguments can be specified in the format string. These should be listed under the params item, in order. The type of each parameter must match its format specifier.
@@ -7347,7 +7380,7 @@ Text controller is used for displaying text on screen.
 >align = *alignment* (int)  
 >*alignment* is a number representing the text alignment. 1 is left, 0 means center, and -1 is for right-alignment. Defaults to 1.  
   
->angle = *angle* (int) (nightly build only)  
+>angle = *angle* (int)  
 >Specify the rotation, rotation point is based on the text's alignment. Defaults to 0.  
   
 >pos = *off_x, off_y* (int, int)  
@@ -7357,35 +7390,35 @@ Text controller is used for displaying text on screen.
 >Specify the scaling factors to apply to the text in the horizontal and vertical directions. Defaults to 1,1.  
   
 >color = *r, g, b, a* (int, int, int, int)  
->Color adjustment values for the font. Defaults to 256,256,256,256 (no color adjustment). Alpha is nightly only.  
+>Color adjustment values for the font. Defaults to 256,256,256,256 (no color adjustment).  
   
->id = *id_no* (int) (nightly build only)  
+>id = *id_no* (int)  
 >Specifies an ID number for this text. Used to identify particular text in numText trigger and removeText sctrl.  
   
->textspacing = *x_spacing, y_spacing*` (float, float) (nightly build only)  
+>textspacing = *x_spacing, y_spacing*` (float, float)  
 >Specifies extra spacing between letters (*x_spacing*) and extra spacing between lines when `\n` is used to break lines (*y_spacing*). These values are added on top of the font’s DEF Spacing values.  
   
->textdelay = *time* (float) (nightly build only)  
+>textdelay = *time* (float)  
 >Adjusts the text typing time, the longer the time the longer the delay between each letter typed.  
   
->velocity = *vel_x, vel_y* (float, float) (nightly build only)  
+>velocity = *vel_x, vel_y* (float, float)  
 >Applies speed to text on the defined axis.  
   
->accel = *accel_x, accel_y* (float, float) (nightly build only)  
+>accel = *accel_x, accel_y* (float, float)  
 >Applies acceleration to text on the defined axis.  
   
->friction = *friction_x, friction_y* (float, float) (nightly build only)  
+>friction = *friction_x, friction_y* (float, float)  
 >Applies friction to text on the defined axis (Friction value example: 0.95).   
   
->xshear = *xshear* (float) (nightly build only)  
+>xshear = *xshear* (float)  
 >Specifies the amount of horizontal shearing to apply to the text (only for sprite fonts). Defaults to 0.  
   
->maxdist = *maxdist* (float) (nightly build only)  
+>maxdist = *maxdist* (float)  
 >Specifies the maximum velocity beyond which additional velocity will no longer be applied. Defaults to 0 (unlimited).  
   
->palfx.key = the text sctrl can accept all the same key values from [PalFX state controller](http://www.elecbyte.com/mugendocs/sctrls.html#palfx) (only for sprite fonts) (nightly build only)  
+>palfx.key = the text sctrl can accept all the same key values from [PalFX state controller](http://www.elecbyte.com/mugendocs/sctrls.html#palfx) (only for sprite fonts)  
   
->hidewithbars = *bvalue* (bool) (nightly build only)  
+>hidewithbars = *bvalue* (bool)  
 >Enabling this parameter hides the text automatically when the fight screen is hidden.
 
 ---
@@ -7836,7 +7869,7 @@ Zoom was a beta feature in Mugen 1.1. It is a fully functional state controller 
 If set to 1, the zoom position is restricted to the current camera position. Defaults to 1.
 
 
-### EndLag (nightly build only)
+### EndLag
 
 Like the `lag` parameter, but it applies after the Zoom effect ends.
 
