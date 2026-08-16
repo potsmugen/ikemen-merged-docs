@@ -255,7 +255,7 @@
 - [Tan (math) (old)](#tan-math-old)
 - [TeamLeader (new)](#teamleader-new)
 - [TeamMode (old)](#teammode-old)
-- [TeamMode = Tag (changed)](#teammode-tag-changed)
+- [TeamMode (changed)](#teammode-changed)
 - [TeamSide (old)](#teamside-old)
 - [TeamSize (new)](#teamsize-new)
 - [TicksPerSecond (old)](#tickspersecond-old)
@@ -6732,11 +6732,9 @@ trigger1 = TeamMode = Single
 
 ---
 
-## TeamMode = Tag (changed)
+## TeamMode (changed)
 
-Now TeamMode can also return "Tag".
-
-Note that TeamMode returns "Turns" during Ratio mode.
+TeamMode can now also return `Tag` when that mode is selected.
 
 ```ini
 trigger1 = TeamMode = Tag

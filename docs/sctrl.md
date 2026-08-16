@@ -4244,7 +4244,7 @@ Displays text/sprites/anims synchronized with each other, using [lifebar data](L
 > font.color = *r, g, b, a* (int, int, int, int)  
 > Color adjustment values for the font. Defaults to values assigned by lifebar DEF file. Alpha is optional.  
   
-> palfx.key = LifebarAction can accept all the same key values from [PalFX state controller](http://www.elecbyte.com/mugendocs/sctrls.html#palfx) for message text rendering (only for sprite fonts).  
+> palfx.key = LifebarAction can accept all the same key values from [PalFX state controller](http://www.elecbyte.com/mugendocs/sctrls.html#palfx) for message text rendering.  
   
 > refreshtype = *type* (int)  
 > Determines how to handle duplicate messages:  
@@ -7411,12 +7411,12 @@ Text controller is used for displaying text on screen.
 >Applies friction to text on the defined axis (Friction value example: 0.95).   
   
 >xshear = *xshear* (float)  
->Specifies the amount of horizontal shearing to apply to the text (only for sprite fonts). Defaults to 0.  
+>Specifies the amount of horizontal shearing to apply to the text. Defaults to 0.  
   
 >maxdist = *maxdist* (float)  
 >Specifies the maximum velocity beyond which additional velocity will no longer be applied. Defaults to 0 (unlimited).  
   
->palfx.key = the text sctrl can accept all the same key values from [PalFX state controller](http://www.elecbyte.com/mugendocs/sctrls.html#palfx) (only for sprite fonts)  
+>palfx.key = the text sctrl can accept all the same key values from [PalFX state controller](http://www.elecbyte.com/mugendocs/sctrls.html#palfx)
   
 >hidewithbars = *bvalue* (bool)  
 >Enabling this parameter hides the text automatically when the fight screen is hidden.
