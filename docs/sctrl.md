@@ -2469,6 +2469,12 @@ Affect how the explod is drawn when `xangle` or `yangle` is not zero.
 
 If 0, disables reflection on the explod regardless of its shadow color. If 1, enables reflection on the explod regardless of its shadow color. Defaults to showing a reflection if the explod's shadow is not 0, 0, 0.
 
+
+### RemoveOnChangeState
+
+If set to 1, the Explod will be removed if the character changes state. Defaults to 0.
+
+
 ### Shader
 
 >shader = *"shader_name"* (string)  
