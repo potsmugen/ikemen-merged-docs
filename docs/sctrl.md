@@ -4745,6 +4745,7 @@ This state controller allows modifying parameters of a char's Reflection
 **Optional parameters:**  
   
 >anim = *anim_no* (int)  
+>animelem = elem_no (int)  
 >animplayerno = *anim_player_no* (int)  
 >spriteplayerno = *sprite_player_no* (int)  
 >color = *r*, *g*, *b* (int, int, int)  
@@ -4793,6 +4794,7 @@ This state controller allows modifying parameters of a char's Shadow
 **Optional parameters:**  
   
 >anim = *anim_no* (int)  
+>animelem = elem_no (int)  
 >animplayerno = *anim_player_no* (int)  
 >spriteplayerno = *sprite_player_no* (int)  
 >color = *r*, *g*, *b* (int, int, int)  
