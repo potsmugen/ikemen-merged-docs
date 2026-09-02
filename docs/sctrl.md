@@ -1112,7 +1112,7 @@ Works the same as Value.
 
 ### Height
 
-Changes the value of the guard.dist.height parameter for the player's current HitDef.
+Changes the value of the attack.dist.height parameter for the player's current HitDef.
 
 Example:
 ```ini
@@ -1124,7 +1124,7 @@ height = 160, 0
 
 ### Depth
 
-Changes the value of the guard.dist.depth parameter for the player's current HitDef.
+Changes the value of the attack.dist.depth parameter for the player's current HitDef.
 
 Example:
 ```ini
