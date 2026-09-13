@@ -61,6 +61,7 @@
 - [GetHitVarSet (new)](#gethitvarset-new)
 - [Gravity (old)](#gravity-old)
 - [GroundLevelOffset (new)](#groundleveloffset-new)
+- [Guard (new)](#guard-new)
 - [GuardBreakSet (new)](#guardbreakset-new)
 - [GuardPointsAdd (new)](#guardpointsadd-new)
 - [GuardPointsSet (new)](#guardpointsset-new)
@@ -912,6 +913,11 @@ While asserted, player won't be affected by HitDef damage *guard_damage*.
 #### NoGuardPointsDamage
 
 While asserted, player won't be affected by HitDef guardpoints.
+
+
+#### NoGuardState (nightly build only)
+
+Disables the hard-coded state transitions to States 120, 140, 150, 152, and 154.
 
 
 #### NoHardcodedKeys
@@ -2762,6 +2768,25 @@ type = GroundLevelOffset
 trigger1 = Pos X + CameraPos X = [-160, 0]
 trigger1 = Pos Y + GroundLevel <= -60
 value = -60
+```
+
+---
+
+## Guard (new)
+
+Sets the player to be guarding in the specified directions, regardless of their current condition.
+
+**Required parameters:**  
+  
+>guardflag = *hit_flags* (string)  
+The directions to guard, generally H, L, M, and/or A.
+
+**Example:**
+```ini
+[State Test]
+type = Guard
+trigger1 = Command = "holdz"
+guardflag = MA
 ```
 
 ---
