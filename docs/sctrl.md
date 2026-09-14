@@ -61,7 +61,6 @@
 - [GetHitVarSet (new)](#gethitvarset-new)
 - [Gravity (old)](#gravity-old)
 - [GroundLevelOffset (new)](#groundleveloffset-new)
-- [Guard (new)](#guard-new)
 - [GuardBreakSet (new)](#guardbreakset-new)
 - [GuardPointsAdd (new)](#guardpointsadd-new)
 - [GuardPointsSet (new)](#guardpointsset-new)
@@ -241,10 +240,10 @@ A poison effect that reduces life, applied without touching the opponent:
 ```ini
 [State -2, Poison]
 type = LifeAdd
-trigger1 = <Is the enemy posioned? trigger  
+trigger1 = <Is the enemy poisoned?> trigger  
 value = -1
 kill = 0
-RedirectID = <Enemy id here  
+RedirectID = <Enemy id here>  
 ```
 
 Increasing a team leader's map, regardless of who is running it, if leader's map is < 10.
@@ -913,11 +912,6 @@ While asserted, player won't be affected by HitDef damage *guard_damage*.
 #### NoGuardPointsDamage
 
 While asserted, player won't be affected by HitDef guardpoints.
-
-
-#### NoGuardState (nightly build only)
-
-Disables the hard-coded state transitions to States 120, 140, 150, 152, and 154.
 
 
 #### NoHardcodedKeys
@@ -2768,25 +2762,6 @@ type = GroundLevelOffset
 trigger1 = Pos X + CameraPos X = [-160, 0]
 trigger1 = Pos Y + GroundLevel <= -60
 value = -60
-```
-
----
-
-## Guard (new)
-
-Sets the player to be guarding in the specified directions, regardless of their current condition.
-
-**Required parameters:**  
-  
->guardflag = *hit_flags* (string)  
-The directions to guard, generally H, L, M, and/or A.
-
-**Example:**
-```ini
-[State Test]
-type = Guard
-trigger1 = Command = "holdz"
-guardflag = MA
 ```
 
 ---
