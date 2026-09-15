@@ -4234,6 +4234,7 @@ Details:
 * `overridden`: Returns true if the last hit encountered a HitOverride. (bool)  
 * `playerid`: Returns ID of the last player hit by the HitDef. (int)  
 * `playerno`: Returns the player number of the last player hit by the HitDef. (int)  
+* `power`: Returns the power the player gained or lost from the last hit. (int)  
 * `sparkx`: Returns the horizontal offset of the hitsparks created by the Hitdef. (float)  
 * `sparky`: Returns the vertical offset of the hitsparks created by the Hitdef. (float)  
 * `uniqhit`: Returns the number of players the last HitDef connected against. (int)  
