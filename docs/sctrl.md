@@ -5191,7 +5191,7 @@ None.
 
 - **group** = *group* (int)  
 The type of collision box to override.  
-Valid values: `Clsn1`, `Clsn2`, `Size`, `None`.  
+Valid values: `All` (nightly build only), `None`, `Clsn1`, `Clsn2`, `Size` and `Dummy` (nightly build only).  
 Using `None` removes all active Clsn overrides.  
 Defaults to `None`.  
 
@@ -7497,17 +7497,28 @@ trans{trans: subAlpha; alpha: 256, 256}
 
 Changes the geometry or certain properties of the player's collision boxes.  
 
-**Required parameters:**  
+**Required parameters**  
+None.
+
+**Optional parameters**  
+
+- **group** = *group* (int)  (nightly build only)  
+The type of collision box to transform.  
+Valid values: `All`, `None`, `Clsn1`, `Clsn2`, `Size` and `Dummy`.  
+Using `None` removes all active modifiers.  
+Defaults to `None`.  
+
+- **index** = *index* (int)  
+[TODO]
+
+- **scale** = *x_scale, y_scale* (float, float)  
+Scale multiplier to be applid to the boxes.  
   
->At least one of the optional parameters  
+- **angle** = *angle* (float)  
+Changes the angle of the boxes. In degrees.  
   
-**Optional parameters:**  
-  
->scale = *x_scale, y_scale* (float, float)  
->Applies a scale multiplier to the boxes  
-  
->angle = *angle* (float)  
->Changes the angle of the boxes. In degrees
+- **pivot** = *pivot_x, pivot_y* (float, float)  
+Determines the angle's rotation center.
 
 ---
 
