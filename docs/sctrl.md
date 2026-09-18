@@ -9,6 +9,7 @@
 - [AllPalFx (changed)](#allpalfx-changed)
 - [AngleAdd (old)](#angleadd-old)
 - [AngleDraw (old)](#angledraw-old)
+- [AngleDraw (changed)](#angledraw-changed)
 - [AngleDraw, AngleSet, AngleMul (changed)](#angledraw-angleset-anglemul-changed)
 - [AngleMul (old)](#anglemul-old)
 - [AngleSet (old)](#angleset-old)
@@ -469,6 +470,16 @@ Rotation/scaling does not affect the player’s collision boxes.
 **Example:**  
   
 none
+
+---
+
+## AngleDraw (changed)
+
+### pivot (nightly build only)
+
+>pivot = *pivot_x, pivot_y* (float, float)  
+
+Shifts the sprite's rotation center by the specified x and y offsets.
 
 ---
 
@@ -2341,73 +2352,67 @@ Applies friction to explod on the defined axis (Friction value example: 0.95).
 
 ### Interpolation
 
-Interpolation works just as the .air counterpart, interpolating linearly between 2 values.
+Interpolation works just as the .air counterpart, interpolating linearly between 2 values.  
 
-The syntax is as follows:
-**Interpolation.**
-Where is one of: **time, animElem, scale, alpha, angle, offset, xshear, focallength**
-
-
-**Interpolation.Time** is required for any of the parameters to work.
-
->Time = duration (int) 
-
-Specifies the time period of the animation (if omitted, defaults to 0).
-
->AnimElem = elem_no (int) 
-
-Interpolation between **AnimElem** and **Interpolation.AnimElem.** if **AnimElem** is omitted, defaults to 1. **AnimFreeze** will stop the animation from going further than **Interpolation.AnimElem**.  
-
->Alpha = alpha_source, alpha_dest (int, int) 
-
-Interpolation between **Alpha** values and **Interpolation.Alpha.** **Sub** and **Add1** are not supported.
-
->Angle = angle, xangle, yangle (float, float, float) 
-
-Interpolation between **Angle** / **XAngle** / **YAngle** and **Interpolation.Angle.**
+The syntax is as follows:  
+**interpolation.parameter**  
+Where "parameter" is the property that will be interpolated.  
 
 
->Offset = offset_x, offset_y (float, float) 
+**interpolation.time** is required for any of the parameters to work.  
 
-Interpolation between **Pos** and **Interpolation.Offset.**
+>interpolation.time = value (int)  
 
->Scale= scale_x, scale_y (float, float) 
+Specifies the time period of the animation (if omitted, defaults to 0).  
 
-Interpolation between **Scale** and **Interpolation.Scale.**
+>interpolation.animelem = elem_no (int)  
 
->Xshear= xshear  (float) 
+Specifies the target animelem for the interpolation. If animelem is omitted, defaults to 1. animfreeze will stop the animation from going further than interpolation.animelem.  
 
-Interpolation between **Xshear** and **Interpolation.Xshear.**
+>interpolation.alpha = alpha_source, alpha_dest (int, int)  
 
+Specifies the source and destination alpha values for the interpolation. sub and add1 are not supported.  
 
->FocalLength = value(float) 
+>interpolation.angle = angle, xangle, yangle (float, float, float)  
 
-Interpolation between **FocalLength** and **Interpolation.FocalLength.**
+Specifies the target angle, xangle, and yangle values for the interpolation.  
 
+Note: For the nightly build, these have been separated into individual parameters.  
 
-Palfx is also compatible with the syntax:
+>interpolation.offset = offset_x, offset_y (float, float)  
 
-**Interpolation.PalFx.(type)**
+Specifies the target x and y offset values for the interpolation.  
 
-where (type) is one of: mul, add, hue, color
+>interpolation.scale = scale_x, scale_y (float, float)  
 
-**PalFx.Time** and **OwnPal = 1** is required for any of the parameters to work.
+Specifies the target x and y scale values for the interpolation.  
 
->Mul = mul_r, mul_g, mul_b (int, int, int) 
+>interpolation.xshear = value (float)  
 
-Interpolation between **PalFx.Mul** values and **Interpolation.PalFx.Mul**. If **PalFx.Mul** is omitted, defaults to 256, 256, 256.
+Specifies the target xshear value.  
 
->Add = add_r, add_g, add_b (int, int, int) 
+>interpolation.focallength = value (float)  
 
-Interpolation between **PalFx.Add** values and **Interpolation.PalFx.Add**. If **PalFx.Add** is omitted, defaults to 0, 0, 0.
+Specifies the target focallength value.  
+  
+  
+PalFX is also compatible with the syntax. **interpolation.palfx.time** and **ownppal = 1** are required for any of the parameters to work.  
 
->Hue = value (int) 
+>interpolation.palfx.mul = mul_r, mul_g, mul_b (int, int, int)
 
-Interpolation between **PalFx.Hue** value and **Interpolation.PalFx.Hue**. If **PalFx.Hue** is omitted, defaults to 0.
+Specifies the target red, green, and blue multiplication values. If palfx.mul is omitted, defaults to 256, 256, 256.
 
->Color = value (int) 
+>interpolation.palfx.add = add_r, add_g, add_b (int, int, int)
 
-Interpolation. between **PalFx.Color** value and **Interpolation.PalFx.Color**. If **PalFx.Color** is omitted, defaults to 256.
+Specifies the target red, green, and blue addition values. If palfx.add is omitted, defaults to 0, 0, 0.
+
+>interpolation.palfx.hue = value (int)
+
+Specifies the target hue value. If palfx.hue is omitted, defaults to 0.
+
+>interpolation.palfx.color = value (int)
+
+Specifies the target color value. If palfx.color is omitted, defaults to 256.
 	
 
 These parameters can be used interchangeably.
@@ -2416,35 +2421,35 @@ Examples:
 
 * Spinning object doing a full circle in a period of 60 ticks:
 ```ini
-Angle = 0;
-XAngle = 0;
-YAngle = 0;
-Interpolation.Time = 60;
-Interpolation.Angle = 360, 0, 0;
+angle = 0;
+xAngle = 0;
+yAngle = 0;
+interpolation.time = 60;
+interpolation.angle = 360, 0, 0;
 ```
 
 * Moving object from 0, 0 to 50, 0 in a period of 100 ticks:
 ```ini
-Pos = 0, 0;
-Interpolation.Time = 100;
-Interpolation.OffSet = 50, 0;
+pos = 0, 0;
+interpolation.time = 100;
+interpolation.offSet = 50, 0;
 ```
 
 
 * Object fading out in 30 ticks:
 ```ini
-Trans = AddAlpha;
-Alpha = 256, 0;
-Interpolation.Time = 30;
-Interpolation.Alpha = 0, 256;
+trans = addAlpha;
+alpha = 256, 0;
+interpolation.time = 30;
+interpolation.alpha = 0, 256;
 ```
 
 * Object Changing from Blue to Red in 50 ticks:
 ```ini
-PalFx.Time = 50;
-PalFx.Mul = 0, 0, 256;
-Interpolation.Time = 50;
-Interpolation.PalFx.Mul = 256, 0, 0;
+palfx.time = 50;
+palfx.mul = 0, 0, 256;
+interpolation.time = 50;
+interpolation.palFx.mul = 256, 0, 0;
 ```
 
 

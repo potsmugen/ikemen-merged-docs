@@ -2743,6 +2743,16 @@ Returns last HitDef `redlife` value. (int)
 Returns last HitDef `score` value. (float)
 
 
+### sparkx (nightly build only)
+
+Returns the x-offset of the spark from the last received hit. (float)
+
+
+### sparky (nightly build only)
+
+Returns the y-offset of the spark from the last received hit. (float)
+
+
 ### teamside
 
 Returns the `teamside` of the last HitDef that hit the player. (int)
