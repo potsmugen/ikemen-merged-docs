@@ -3679,6 +3679,16 @@ none
 
 ## HitDef (changed)
 
+### air.cornerpush.velmul (changed) (nightly build only)
+
+See `ground.cornerpush.velmul`.
+
+
+### airguard.cornerpush.velmul (changed) (nightly build only)
+
+See `ground.cornerpush.velmul`.
+
+
 ### air.juggle (changed)
 
 In Mugen, the `air.juggle` parameter is only used by the `Projectile` state controller. Characters with `ikemenversion` can now use this parameter in a `Hitdef` to update their juggle points. This allows a move with multiple hits to have different juggle properties in every hit, for instance.  
@@ -3710,6 +3720,11 @@ Specifies the range of the attack in the Z plane. An attack with more depth reac
 >dizzypoints = *hit_value* (int)  
 
 Specifies the amount of dizzy points to give P2 if this HitDef connects successfully. If omitted, it defaults to hit_damage (from "damage" parameter) multiplied by the value of `Default.LifeToDizzyPointsMul` / `Super.LifeToDizzyPointsMul` specified in data/common.const, scaled by the targets' defense multipliers if necessary.
+
+
+### down.cornerpush.velmul (changed) (nightly build only)
+
+See `ground.cornerpush.velmul`.
 
 
 ### down.recover
@@ -3773,6 +3788,17 @@ This is the z-velocity that P2 gets when bouncing off the ground in the "fall" s
 >forcecrouch = *bvalue* (boolean int)
 
 Forces a standing opponent to crouch upon hit. Similar to ForceStand. Defaults to 0.
+
+
+### ground.cornerpush.velmul (changed) (nightly build only)
+
+Determines friction to apply to cornerpush. Setting to `-1` makes friction depend on the target's statetype.  
+Defaults to -1 for Ikemen characters and 0.7 for Mugen characters.  
+
+
+### guard.cornerpush.velmul (changed) (nightly build only)
+
+See `ground.cornerpush.velmul`.
 
 
 ### guard.hittime
@@ -3911,7 +3937,7 @@ In Mugen, the default value for this parameter was not intuitive and often becam
 
 >p2clsncheck= *clsn_type* (string)  
 
-This parameter makes a hit be checked against a specific type of collision box. Valid parameters are `Clsn1`, `Clsn2`, `Size` and `None`.  
+This parameter makes a hit be checked against a specific type of collision box. Valid parameters are `None`, `Clsn1`, `Clsn2`, `Size` and `Dummy` (nightly build only).  
 Traditionally, fighting games check throws with the `Size` box.  
 
 

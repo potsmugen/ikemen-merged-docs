@@ -18,6 +18,7 @@
 - [AnimElemVar (new)](#animelemvar-new)
 - [AnimExist (old)](#animexist-old)
 - [AnimLength (new)](#animlength-new)
+- [AnimLoopCount (new)](#animloopcount-new)
 - [AnimPlayerNo (new)](#animplayerno-new)
 - [AnimTime (old)](#animtime-old)
 - [Asin (math) (old)](#asin-math-old)
@@ -708,6 +709,29 @@ trigger1 = Time = GetHitVar(hittime) - AnimLength
 
 ---
 
+## AnimLoopCount (new)
+
+Returns the number of times the current animation has looped. It can increment either by reaching the end on the animation normally, or by returning to a `LoopStart` point.  
+  
+**Format:**  
+AnimLoopCount  
+  
+**Arguments:**  
+none  
+  
+**Return type:**  
+int  
+  
+**Error conditions:**  
+none  
+  
+**Example:**  
+```
+trigger1 = AnimLoopCount > 3
+```
+
+---
+
 ## AnimPlayerNo (new)
 
 Returns the player number of the owner of the player's current animation.  
@@ -1209,13 +1233,13 @@ This trigger uses Ikemen's internal collision detection, so it will work even wi
   
 **Arguments:**  
 >box_type_1  
->The player's collision box type. Valid values are clsn1, clsn2, and size  
+>The player's collision box type. Valid values are Clsn1, Clsn2, Size and Dummy (nightly build only)  
   
 >playerID  
 >The ID of the player against which to check the overlap  
   
 >box_type_2  
->The target's collision box type. Valid values are clsn1, clsn2, and size  
+>The target's collision box type. Valid values are Clsn1, Clsn2, Size and Dummy (nightly build only)  
   
 **Return type:**  
 >boolean int (1 or 0)  
@@ -1235,7 +1259,7 @@ Returns the specified CLSN coordinate from the specified CLSN index. Back always
   
 **Arguments:**  
 >value_type  
->Valid Values are clsn1, clsn2, and size  
+>Valid Values are Clsn1, Clsn2, Size and Dummy (nightly build only)  
   
 >index  
 >Expression  
@@ -5322,7 +5346,7 @@ trigger1 = ProjCancelTime(0) != -1 && ProjCancelTime(0) < 15
 
 ## ProjClsnOverlap (new)
 
-Returns true if the projectile's collision box (either clsn1 or clsn2) overlaps with another player's collision boxes.  
+Returns true if the projectile's collision box (either Clsn1 or Clsn2) overlaps with another player's collision boxes.  
 This trigger uses Ikemen's internal collision detection, so it will work even with angled and rescaled boxes.  
 If you want to specify a projectile with a specific projID, create a loop process that combines the projID with ProjVar.  
 
@@ -5338,7 +5362,7 @@ If you want to specify a projectile with a specific projID, create a loop proces
 >The ID of the player against which to check the overlap  
   
 >box_type  
->The target's collision box type. Valid values are clsn1, clsn2, and size  
+>The target's collision box type. Valid values are Clsn1, Clsn2, Size and Dummy (nightly build only)  
   
 **Return type:**  
 >boolean int (1 or 0)  
@@ -6389,6 +6413,8 @@ Returns information about the stage's BG elements.
 
 Details:
 * `actionno`: Returns the animation number for `type = anim` elements (int)
+* `animloopcount`: Returns the number of times the animation has looped (int) (nightly build only)
+* `animtime`: Returns time until animation ends (int) (nightly build only)
 * `delta.x`: Returns the X delta (float)
 * `delta.y`: Returns the Y delta (float)
 * `id`: Returns the ID (int)
