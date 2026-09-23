@@ -68,29 +68,42 @@ def main():
         lines = lines[1:]
     mugen_content = '\n'.join(lines).strip()
     mugen_entries = split_redirections(mugen_content, source_label="old")
+    require_entries(mugen_entries, "M.U.G.E.N 1.1 redirections")
 
     # 2. Ikemen GO (changed)
     changed_url = "https://raw.githubusercontent.com/wiki/ikemen-engine/Ikemen-GO/Triggers-(changed).md"
     changed_text = fetch_raw_markdown(changed_url)
     # Keep "Changed trigger redirections" as a block
     changed_sections = parse_sections(changed_text, keep_blocks=["Changed trigger redirections"])
+    require_sections(
+        changed_sections,
+        ["Changed trigger redirections"],
+        "Ikemen GO changed redirections",
+    )
     changed_redir_block = extract_section(changed_sections, "Changed trigger redirections")
     if changed_redir_block:
         changed_entries = split_redirections(changed_redir_block)
         changed_entries = {f"{k} (changed)": v for k, v in changed_entries.items()}
     else:
         changed_entries = {}
+    require_entries(changed_entries, "Ikemen GO changed redirections")
 
     # 3. Ikemen GO (new)
     new_url = "https://raw.githubusercontent.com/wiki/ikemen-engine/Ikemen-GO/Triggers-(new).md"
     new_text = fetch_raw_markdown(new_url)
     # Keep "New trigger redirections" as a block
     new_sections = parse_sections(new_text, keep_blocks=["New trigger redirections"])
+    require_sections(
+        new_sections,
+        ["New trigger redirections"],
+        "Ikemen GO new redirections",
+    )
     new_redir_block = extract_section(new_sections, "New trigger redirections")
     if new_redir_block:
         new_entries = split_redirections(new_redir_block, source_label="new")
     else:
         new_entries = {}
+    require_entries(new_entries, "Ikemen GO new redirections")
 
     # Merge
     sources = []
@@ -106,7 +119,7 @@ def main():
     # Output
     output = output_merged(
         merged,
-        title="Merged Trigger Redirection Reference",
+        title="Trigger Redirection Reference",
         sections_to_skip=[],
         top_sections=[],
         list_heading="# Trigger Redirections"
@@ -116,6 +129,7 @@ def main():
     output = rewrite_links(output)
 
     output_file = Path("docs/redirections.md")
+    output_file.parent.mkdir(parents=True, exist_ok=True)
     output_file.write_text(output, encoding="utf-8")
     print(f"\nDone. Output saved to: {output_file}", file=sys.stderr)
     print(f"  {len(merged)} redirection entries merged.", file=sys.stderr)

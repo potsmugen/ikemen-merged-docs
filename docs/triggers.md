@@ -1,4 +1,4 @@
-# Merged Trigger Reference
+# Trigger Reference
 
 ## Table of Contents
 
@@ -153,7 +153,6 @@
 - [MoveType (old)](#movetype-old)
 - [MugenVersion (new)](#mugenversion-new)
 - [Name (old)](#name-old)
-- [New (new)](#new-new)
 - [NumEnemy (old)](#numenemy-old)
 - [NumExplod (old)](#numexplod-old)
 - [NumHelper (old)](#numhelper-old)
@@ -360,6 +359,7 @@ trigger1 = Random < AILevel * 10
 
 ---
 
+<a id="new_ailevelf"></a>
 ## AiLevelF (new)
 
 Returns the difficulty level of the player's AI as float value (unlike *AILevel* trigger, which is still floored for compatibility reasons). If AI is enabled on the player, the value ranges from 1 (easiest) to 8 (most difficult). If AI is not enabled on the player, the return value is 0. AI difficulty level with floating point is a result of AI Ramping system (refer to select.def distributed with engine for more information)
@@ -380,6 +380,7 @@ trigger1 = Random < (500 * (AILevelF ** 2 / 64.0))
 
 ---
 
+<a id="new_airjumpcount"></a>
 ## AirJumpCount (new)
 
 Returns the number of (conventional) air jumps the P1 has performed.
@@ -419,6 +420,7 @@ trigger1 = Alive = 0
 
 ---
 
+<a id="new_alpha"></a>
 ## Alpha (new)
 
 Returns the value of the player's source/dest alpha applied with Trans sctrl.
@@ -439,6 +441,7 @@ trigger1 = Alpha source >= 128 && Alpha dest >= 128
 
 ---
 
+<a id="new_analog"></a>
 ## Analog (new)
 
 Returns the value of the player's respective analog axis. Values are normalized from [-1,1] with the exception of analog triggers (`RightTrigger` and `LeftTrigger`) which are normalized to [0.0,1.0].
@@ -461,6 +464,7 @@ trigger1 = Analog(LeftX) >= 0.5 && Analog(RightTrigger) > 0.75
 
 ---
 
+<a id="new_angle"></a>
 ## Angle (new)
 
 Returns the value of the player's angle applied with AngleDraw/AngleSet/AngleAdd/AngleMul sctrl.
@@ -639,6 +643,7 @@ trigger1 = AnimElemTime(3) < 0
 
 ---
 
+<a id="new_animelemvar"></a>
 ## AnimElemVar (new)
 
 Returns information about the player's current animation frame as defined in the AIR file. Refer to the AIR file documentation for what each parameter means.  
@@ -688,6 +693,7 @@ trigger1 = !AnimExist(200)
 
 ---
 
+<a id="new_animlength"></a>
 ## AnimLength (new)
 
 Returns total length of the P1 current animation.
@@ -709,6 +715,7 @@ trigger1 = Time = GetHitVar(hittime) - AnimLength
 
 ---
 
+<a id="new_animloopcount"></a>
 ## AnimLoopCount (new)
 
 Returns the number of times the current animation has looped. It can increment either by reaching the end on the animation normally, or by returning to a `LoopStart` point.  
@@ -732,6 +739,7 @@ trigger1 = AnimLoopCount > 3
 
 ---
 
+<a id="new_animplayerno"></a>
 ## AnimPlayerNo (new)
 
 Returns the player number of the owner of the player's current animation.  
@@ -836,6 +844,7 @@ value = atan(1)
 
 ---
 
+<a id="new_atan2"></a>
 ## Atan2 (Math) (new)
 
 Takes two arguments, and returns the arc tangent of the two specified arguments.
@@ -860,6 +869,7 @@ fvar(10) = Atan2(enemy,pos y-pos y, enemy,pos x-pos x)
 
 ---
 
+<a id="new_attack"></a>
 ## Attack (new)
 
 Returns P1 current attack value.
@@ -880,6 +890,7 @@ trigger1 = Attack = 100
 
 ---
 
+<a id="new_attackmul"></a>
 ## AttackMul (new)
 
 Returns the player's current attackmul value.
@@ -1005,6 +1016,7 @@ trigger1 = BackEdgeDist < 30
 
 ---
 
+<a id="new_bgmvar"></a>
 ## BgmVar (new)
 
 Allows checking the filename, freqmul, length, loop, loopcount, loopend, loopstart, position, startposition, and volume of the currently playing BGM.
@@ -1035,12 +1047,14 @@ trigger7 = BGMVar(length) = 65536
 
 ---
 
+<a id="new_botboundbodydist"></a>
 ## BotBoundBodyDist (new)
 
 Like `BotBoundDist`, except this trigger accounts for the player's bottom `edge` parameter, as defined by the `Depth` state controller.
 
 ---
 
+<a id="new_botbounddist"></a>
 ## BotBoundDist (new)
 
 BotBoundDist gives the distance between the player's z-axis and the `botbound` limit of the stage.
@@ -1197,6 +1211,7 @@ value = ceil(-2)
 
 ---
 
+<a id="new_clamp"></a>
 ## Clamp (Math) (new)
 
 Takes three arguments, returns a value clamped to an inclusive range of two specified arguments.
@@ -1223,6 +1238,7 @@ fvar(10) = Clamp(fvar(10),10 100)
 
 ---
 
+<a id="new_clsnoverlap"></a>
 ## ClsnOverlap (new)
 
 Returns true if the player's specified collision box type is overlapping another player's collision boxes.  
@@ -1251,6 +1267,7 @@ trigger1 = ClsnOverlap(clsn1, p2,ID, clsn2)
 
 ---
 
+<a id="new_clsnvar"></a>
 ## ClsnVar (new)
 
 Returns the specified CLSN coordinate from the specified CLSN index. Back always returns the back coordinate, and front always returns the front coordinate, even if they are reversed in the .AIR file. All coordinates are in the same coordinate space as .AIR.
@@ -1277,6 +1294,7 @@ fvar(0) = ClsnVar(Clsn2, 0, Back)
 
 ---
 
+<a id="new_combocount"></a>
 ## ComboCount (new)
 
 Returns the total number of hits done by the player's side in the currently ongoing combo. This value is valid as long as the opposite team combo count stays above 0, otherwise it returns 0 too. Returned value always matches current combo counter tracked by lifebar.
@@ -1328,6 +1346,7 @@ trigger1 = Command = "fireball motion"
 
 ---
 
+<a id="changed_command"></a>
 ## Command (changed)
 
 If a character has `ikemenversion`, when the `Command` trigger is redirected to another player, the engine will first check if the other player is performing its own command with the same name. If not, it'll check if it's performing the command from our own command list. Otherwise it will work like Mugen.
@@ -1367,6 +1386,7 @@ value = Cond(var(3),1,2)
 
 ---
 
+<a id="new_consecutivewins"></a>
 ## ConsecutiveWins (new)
 
 Returns number of matches won consecutively by this team side. The counter increases for the winning team at the same time MatchOver trigger starts returning 1. Losing a round resets the counter to 0 and prevents increment for this match.
@@ -1500,11 +1520,12 @@ trigger1 = Const(velocity.walk.fwd.x) > 4
 
 ---
 
+<a id="changed_const"></a>
 ## Const (changed)
 
-The Const trigger can now also read Ikemen GO's [new constants](../Character-features/#cns_constants).
+The Const trigger can now also read Ikemen GO's [new constants](https://github.com/ikemen-engine/Ikemen-GO/wiki/Character-features#cns_constants).
 
-### Const(constants)
+### <a name="changed_const_constants">Const(constants)</a>
 
 Returns the value of one of the player's constants from the [[Constants]](Character-features/#cns_constants) section.
 
@@ -1517,70 +1538,71 @@ triggerall = NumHelper(Const(FireballState)) = 0
 ```
 
 
-### data.dizzypoints
+### <a name="changed_const_datadizzypoints">data.dizzypoints</a>
 
-Returns the value of the player's [Data] [dizzypoints](Character-features/#cns_data_dizzypoints) constant.
+Returns the value of the player's [Data] [dizzypoints](https://github.com/ikemen-engine/Ikemen-GO/wiki/Character-features#cns_data_dizzypoints) constant.
 
-### data.fall.defence_up
+### <a name="changed_const_datafalldefenceup">data.fall.defence_up</a>
 
 Returns the value of the player's [Data] fall.defence_up constant.
 
-### data.guardpoints
+### <a name="changed_const_dataguardpoints">data.guardpoints</a>
 
-Returns the value of the player's [Data] [guardpoints](Character-features/#cns_data_guardpoints) constant.
+Returns the value of the player's [Data] [guardpoints](https://github.com/ikemen-engine/Ikemen-GO/wiki/Character-features#cns_data_guardpoints) constant.
 
-### data.guardsound.channel
+### <a name="changed_const_dataguardsoundchannel">data.guardsound.channel</a>
 
-Returns the value of the player's [Data] [guardsound.channel](Character-features/#cns_data_guardsoundchannel) constant.
+Returns the value of the player's [Data] [guardsound.channel](https://github.com/ikemen-engine/Ikemen-GO/wiki/Character-features#cns_data_guardsoundchannel) constant.
 
-### data.hitsound.channel
+### <a name="changed_const_datahitsoundchannel">data.hitsound.channel</a>
 
-Returns the value of the player's [Data] [hitsound.channel](Character-features/#cns_data_hitsoundchannel) constant.
+Returns the value of the player's [Data] [hitsound.channel](https://github.com/ikemen-engine/Ikemen-GO/wiki/Character-features#cns_data_hitsoundchannel) constant.
 
-### size.height.crouch
+### <a name="changed_const_size_height_crouch">size.height.crouch</a>
 
-Returns the value of the player's [Size] [height.crouch](Character-features/#cns_size_height_crouch) constant.
+Returns the value of the player's [Size] [height.crouch](https://github.com/ikemen-engine/Ikemen-GO/wiki/Character-features#cns_size_height_crouch) constant.
 
-### size.height.air.top
+### <a name="changed_const_size_height_air_top">size.height.air.top</a>
 
-Returns the first value of the player's [Size] [height.air](Character-features/#cns_size_height_air) constant.
+Returns the first value of the player's [Size] [height.air](https://github.com/ikemen-engine/Ikemen-GO/wiki/Character-features#cns_size_height_air) constant.
 
-### size.height.air.bottom
+### <a name="changed_const_size_height_air_bottom">size.height.air.bottom</a>
 
-Returns the second value of the player's [Size] [height.air](Character-features/#cns_size_height_air) constant.
+Returns the second value of the player's [Size] [height.air](https://github.com/ikemen-engine/Ikemen-GO/wiki/Character-features#cns_size_height_air) constant.
 
-### size.height.down
+### <a name="changed_const_size_height_down">size.height.down</a>
 
-Returns the value of the player's [Size] [height.down](Character-features/#cns_size_height_down) constant.
+Returns the value of the player's [Size] [height.down](https://github.com/ikemen-engine/Ikemen-GO/wiki/Character-features#cns_size_height_down) constant.
 
-### velocity.air.gethit.ko.add
+### <a name="changed_const_velocityairgethitkoadd">velocity.air.gethit.ko.add</a>
 
-Returns the value of the player's [Velocity] [air.gethit.ko.add](Character-features/#cns_velocity_airgethitkoadd) constant.
+Returns the value of the player's [Velocity] [air.gethit.ko.add](https://github.com/ikemen-engine/Ikemen-GO/wiki/Character-features#cns_velocity_airgethitkoadd) constant.
 * `velocity.air.gethit.ko.add.x`
 * `velocity.air.gethit.ko.add.y`
 * `velocity.air.gethit.ko.add.z`
 
-### velocity.air.gethit.ko.ymin
+### <a name="changed_const_velocityairgethitkoymin">velocity.air.gethit.ko.ymin</a>
 
-Returns the value of the player's [Velocity] [air.gethit.ko.ymin](Character-features/#cns_velocity_airgethitkoymin) constant.
+Returns the value of the player's [Velocity] [air.gethit.ko.ymin](https://github.com/ikemen-engine/Ikemen-GO/wiki/Character-features#cns_velocity_airgethitkoymin) constant.
 
-### velocity.ground.gethit.ko.xmul
+### <a name="changed_const_velocitygroundgethitkoxmul">velocity.ground.gethit.ko.xmul</a>
 
-Returns the value of the player's [Velocity] [ground.gethit.ko.xmul](Character-features/#cns_velocity_groundgethitkoxmul) constant.
+Returns the value of the player's [Velocity] [ground.gethit.ko.xmul](https://github.com/ikemen-engine/Ikemen-GO/wiki/Character-features#cns_velocity_groundgethitkoxmul) constant.
 
-### velocity.ground.gethit.ko.add
+### <a name="changed_const_velocitygroundgethitkoadd">velocity.ground.gethit.ko.add</a>
 
-Returns the value of the player's [Velocity] [ground.gethit.ko.add](Character-features/#cns_velocity_groundgethitkoadd) constant.
+Returns the value of the player's [Velocity] [ground.gethit.ko.add](https://github.com/ikemen-engine/Ikemen-GO/wiki/Character-features#cns_velocity_groundgethitkoadd) constant.
 * `velocity.ground.gethit.ko.add.x`
 * `velocity.ground.gethit.ko.add.y`
 * `velocity.ground.gethit.ko.add.z`
 
-### velocity.ground.gethit.ko.ymin
+### <a name="changed_const_velocitygroundgethitkoymin">velocity.ground.gethit.ko.ymin</a>
 
-Returns the value of the player's [Velocity] [ground.gethit.ko.ymin](Character-features/#cns_velocity_groundgethitkoymin) constant.
+Returns the value of the player's [Velocity] [ground.gethit.ko.ymin](https://github.com/ikemen-engine/Ikemen-GO/wiki/Character-features#cns_velocity_groundgethitkoymin) constant.
 
 ---
 
+<a id="new_const1080p"></a>
 ## Const1080p (new)
 
 Converts a value from the 1080p coordinate space to the player's coordinate space. The conversion ratio between coordinate spaces is the ratio of their widths.
@@ -1754,6 +1776,7 @@ trigger1 = Ctrl
 
 ---
 
+<a id="new_debugmode"></a>
 ## DebugMode (new)
 
 Returns information related to the debug mode.
@@ -1774,6 +1797,7 @@ trigger1 = DebugMode(clsndisplay)
 
 ---
 
+<a id="new_decisiveround"></a>
 ## DecisiveRound (new)
 
 Returns 1 if the match will conclude if the player's team wins.
@@ -1794,6 +1818,7 @@ trigger1 = DecisiveRound
 
 ---
 
+<a id="new_defence"></a>
 ## Defence (new)
 
 Returns the player's current defence value. This value accounts for all defence multipliers.
@@ -1814,6 +1839,7 @@ trigger1 = Defence = 100
 
 ---
 
+<a id="new_defencemul"></a>
 ## DefenceMul (new)
 
 Returns the player's current defencemul value.
@@ -1834,6 +1860,7 @@ trigger1 = DefenceMul > 1.0
 
 ---
 
+<a id="new_deg"></a>
 ## Deg (Math) (new)
 
 Converts an argument value from radians to degrees.
@@ -1855,6 +1882,7 @@ trigger1 = Deg(pi/2) = 90
 
 ---
 
+<a id="new_displayname"></a>
 ## DisplayName (new)
 
 Returns the player's displayed name. Note that the lifebar name is not necessarily the same.
@@ -1879,9 +1907,10 @@ trigger1 = EnemyNear, DisplayName = "Gopher"
 
 ---
 
+<a id="new_dizzy"></a>
 ## Dizzy (new)
 
-Returns 1 if character is under [dizzy effect](Miscellaneous-Info/#dizzy) (assigned by [DizzySet](State-controllers-(new)/#new_dizzyset) sctrl).
+Returns 1 if character is under [dizzy effect](https://github.com/ikemen-engine/Ikemen-GO/wiki/Miscellaneous-Info#dizzy) (assigned by [DizzySet](sctrl#new_dizzyset) sctrl).
 
 **Format:**  
 >Dizzy  
@@ -1899,9 +1928,10 @@ trigger1 = !Dizzy
 
 ---
 
+<a id="new_dizzypoints"></a>
 ## DizzyPoints (new)
 
-Returns the amount of [dizzy points](Character-features/#dizzypoints) the player has.
+Returns the amount of [dizzy points](https://github.com/ikemen-engine/Ikemen-GO/wiki/Character-features#dizzypoints) the player has.
 
 **Format:**  
 >DizzyPoints  
@@ -1919,9 +1949,10 @@ trigger1 = DizzyPoints = 0
 
 ---
 
+<a id="new_dizzypointsmax"></a>
 ## DizzyPointsMax (new)
 
-Returns the maximum amount of [dizzy points](Character-features/#dizzypoints) the player can have. This is normally the same value as LifeMax (adjustable in character's CNS `[Data]` section).
+Returns the maximum amount of [dizzy points](https://github.com/ikemen-engine/Ikemen-GO/wiki/Character-features#dizzypoints) the player can have. This is normally the same value as LifeMax (adjustable in character's CNS `[Data]` section).
 
 **Format:**  
 >DizzyPointsMax  
@@ -1963,6 +1994,7 @@ trigger1 = DrawGame
 
 ---
 
+<a id="new_drawpal"></a>
 ## DrawPal (new)
 
 returns the value of the group and index of the palette being used to draw the sprites at the moment, unlike PalNo, which returns the palette selected in the character select screen. 
@@ -2004,6 +2036,7 @@ none
 
 ---
 
+<a id="new_envshakevar"></a>
 ## EnvShakeVar (new)
 
 Allows checking the (remaining) time, frequency and amplitude of the current EnvShake.
@@ -2055,6 +2088,7 @@ value = exp(4-var(0))
 
 ---
 
+<a id="new_explodvar"></a>
 ## ExplodVar (new)
 
 Returns the specified explod parameter. Use -1 for ID to iterate over all explods.
@@ -2101,6 +2135,7 @@ Trigger = Facing = -1
 
 ---
 
+<a id="new_fightscreenstate"></a>
 ## FightScreenState (new)
 
 Allows checking if the fight screen is displaying specific screens.  
@@ -2126,6 +2161,7 @@ trigger2 = FightScreenState(fightdisplay) = 1
 
 ---
 
+<a id="new_fightscreenvar"></a>
 ## FightScreenVar (new)
 
 Returns information about the fight screen (commonly referred to as "lifebars").
@@ -2149,6 +2185,7 @@ trigger1 = Time > FightScreenVar(Round.Ctrl.Time)
 
 ---
 
+<a id="new_fighttime"></a>
 ## FightTime (new)
 
 Returns the amount of ticks since the start of the actual fight.
@@ -2169,6 +2206,7 @@ trigger1 = FightTime > 600
 
 ---
 
+<a id="new_firstattack"></a>
 ## FirstAttack (new)
 
 Returns 1 if this character has landed the first attack (before any of the opponents or team partners) in the current round. Otherwise returns 0.
@@ -2189,6 +2227,7 @@ trigger1 = FirstAttack
 
 ---
 
+<a id="new_float"></a>
 ## Float (math) (new)
 
 Converts argument evaluating to int type into float type.
@@ -2374,12 +2413,14 @@ trigger1 = ScreenPos Y < GameHeight / 2
 
 ---
 
+<a id="changed_gameheight"></a>
 ## GameHeight (changed)
 
 If mugenVersion is specified as 1.0 in character's [[Info]](Character-features/#def_info) section, GameHeight returns the same value as ScreenHeight.
 
 ---
 
+<a id="new_gamemode"></a>
 ## GameMode (new)
 
 Returns the current game mode.
@@ -2422,10 +2463,11 @@ The following game modes are detectable by default:
 - versuscoop
 - watch
 
-The trigger can be also used to detect [story mode arcs](Miscellaneous-Info/#arcs) and modes added via [external modules](Miscellaneous-Info/#lua_modules).
+The trigger can be also used to detect [story mode arcs](https://github.com/ikemen-engine/Ikemen-GO/wiki/Miscellaneous-Info#arcs) and modes added via [external modules](https://github.com/ikemen-engine/Ikemen-GO/wiki/Miscellaneous-Info#lua_modules).
 
 ---
 
+<a id="new_gameoption"></a>
 ## GameOption (new)
 
 Allows checking the various game options as defined in config.ini (TBD)
@@ -2472,6 +2514,7 @@ trigger1 = (GameTime % 27) = 0
 
 ---
 
+<a id="new_gamevar"></a>
 ## GameVar (new)
 
 Allows checking some system variables that generally don't justify having their own dedicated triggers.  
@@ -2533,6 +2576,7 @@ trigger1 = ScreenPos X >= GameWidth / 2
 
 ---
 
+<a id="changed_gamewidth"></a>
 ## GameWidth (changed)
 
 If mugenVersion is specified as 1.0 in character's [[Info]](Character-features/#def_info) section, GameWidth returns the same value as ScreenWidth.
@@ -2607,24 +2651,25 @@ trigger1 = GetHitVar(yvel) < -5.5
 
 ---
 
+<a id="changed_gethitvar"></a>
 ## GetHitVar (changed)
 
-### air.velocity.x (y, z)
+### <a name="changed_gethitvar_air_velocity_x">air.velocity.x (y, z)</a>
 
 Returns the X, Y or Z component of the last HitDef's `air.velocity` parameter, even if the player was not hit in the air. (float)
 
 
-### airguard.velocity.x (y, z)
+### <a name="changed_gethitvar_airguard_velocity_x">airguard.velocity.x (y, z)</a>
 
 Returns the X, Y or Z component of the last HitDef's `airguard.velocity` parameter, even if the player did not guard in the air. (float)
 
 
-### air.animtype, fall.animtype, ground.animtype
+### <a name="changed_gethitvar_animtype">air.animtype, fall.animtype, ground.animtype</a>
 
 Returns the literal value specified in the HitDef.
 
 
-### attr
+### <a name="changed_gethitvar_attr">attr</a>
 
 Returns the last HitDef `attr` assignment. Requires a comparison to known flags. (string)  
 
@@ -2633,62 +2678,62 @@ trigger1 = getHitVar(attr) = SCA, HA
 ```
 
 
-### dizzypoints
+### <a name="changed_gethitvar_dizzypoints">dizzypoints</a>
 
 Returns last HitDef `dizzypoints` value. (int)
 
 
-### down.velocity.x (y, z)
+### <a name="changed_gethitvar_down_velocity_x">down.velocity.x (y, z)</a>
 
 Returns the X, Y or Z component of the last HitDef's `down.velocity` parameter, even if the player was not hit while down. (float)
 
 
-### facing
+### <a name="changed_gethitvar_facing">facing</a>
 
 Returns last HitDef `p2facing` value. (int)
 
 
-### fall.envshake.mul
+### <a name="changed_gethitvar_fallenvshakemul">fall.envshake.mul</a>
 
 Returns last HitDef `fall.envshake.mul` value. (float)
 
 
-### fall.zvel
+### <a name="changed_gethitvar_fall_zvel">fall.zvel</a>
 
 Returns z velocity after bouncing off ground (float)
 
 
-### frame
+### <a name="changed_gethitvar_frame">frame</a>
 
 Returns true only during the same frame where the player got hit by an attack. (bool)
 
 
-### ground.velocity.x (y, z)
+### <a name="changed_gethitvar_ground_velocity_x">ground.velocity.x (y, z)</a>
 
 Returns the X, Y or Z component of the last HitDef's `ground.velocity` parameter, even if the player was not hit on the ground. (float)
 
 
-### guard.velocity.x (y, z)
+### <a name="changed_gethitvar_guard_velocity_x">guard.velocity.x (y, z)</a>
 
 Returns the X, Y or Z component of the last HitDef's `guard.velocity` parameter, even if the player did not guard on the ground. (float)  
 
 
-### guardpoints
+### <a name="changed_gethitvar_guardpoints">guardpoints</a>
 
 Returns last HitDef `guardpoints` value. (int)
 
 
-### guardcount
+### <a name="changed_gethitvar_guardcount">guardcount</a>
 
 Returns how many hits the player has guarded without a chance to fight back. (int)
 
 
-### guarddamage
+### <a name="changed_gethitvar_guarddamage">guarddamage</a>
 
 Returns the second value of the last HitDef's `damage` parameter. (int)
 
 
-### guardflag
+### <a name="changed_gethitvar_guardflag">guardflag</a>
 
 Returns the `guardflag` parameter of the last HitDef that hit the player. Requires a comparison to known flags. (string)  
 
@@ -2697,17 +2742,17 @@ trigger1 = getHitVar(guardflag) = L
 ```
 
 
-### guardko
+### <a name="changed_gethitvar_guardko">guardko</a>
 
 Returns 1 if the player was KO'd by guard damage. (bool)
 
 
-### guardpower
+### <a name="changed_gethitvar_guardpower">guardpower</a>
 
 Returns the second value of the last HitDef's `givepower` parameter. In other words, the power received when guarding. (int)
 
 
-### hitflag
+### <a name="changed_gethitvar_hitflag">hitflag</a>
 
 Returns the `hitflag` parameter of the last HitDef that hit the player. Requires a comparison to known flags. (string)  
 
@@ -2716,113 +2761,114 @@ trigger1 = getHitVar(hitflag) = MA
 ```
 
 
-### hitpower
+### <a name="changed_gethitvar_hitpower">hitpower</a>
 
 Returns the first value of the last HitDef's `givepower` parameter. In other words, the power received when getting hit. (int)
 
 
-### hitdamage
+### <a name="changed_gethitvar_hitdamage">hitdamage</a>
 
 Returns the first value of the last HitDef's `damage` parameter. (int)
 
 
-### kill
+### <a name="changed_gethitvar_kill">kill</a>
 
 Returns the kill flag of the last hit or LifeAdd the character suffered. (int)
 
 
-### playerid
+### <a name="changed_gethitvar_playerid">playerid</a>
 
 Returns the ID of the last character that hit the player. (int)  
 Note: Up until Ikemen GO version 0.99, this trigger used `ID` syntax instead of `playerID`. That syntax is still valid, but it's deprecated.  
 
 
-### playerno
+### <a name="changed_gethitvar_playerno">playerno</a>
 
-Returns the [PlayerNo](Triggers-(new)/#new_playerno) of the last character that hit the player. (int)
+Returns the [PlayerNo](triggers#new_playerno) of the last character that hit the player. (int)
 
 
-### power
+### <a name="changed_gethitvar_power">power</a>
 
 Returns how much power the player received from the last hit, regardless of getting hit or guarding. (int)
 
 
-### priority
+### <a name="changed_gethitvar_priority">priority</a>
 
 Returns the numerical value of the attack priority of the last HitDef. (int)
 
 
-### projid
+### <a name="changed_gethitvar_projid">projid</a>
 
 Returns the `projID` of the last projectile that hit the player. Returns -1 if not hit by a projectile. (int)
 
 
-### redlife
+### <a name="changed_gethitvar_redlife">redlife</a>
 
 Returns last HitDef `redlife` value. (int)
 
 
-### score
+### <a name="changed_gethitvar_score">score</a>
 
 Returns last HitDef `score` value. (float)
 
 
-### sparkx (nightly build only)
+### <a name="changed_gethitvar_sparkx">sparkx</a> (nightly build only)
 
 Returns the x-offset of the spark from the last received hit. (float)
 
 
-### sparky (nightly build only)
+### <a name="changed_gethitvar_sparky">sparky</a> (nightly build only)
 
 Returns the y-offset of the spark from the last received hit. (float)
 
 
-### teamside
+### <a name="changed_gethitvar_teamside">teamside</a>
 
 Returns the `teamside` of the last HitDef that hit the player. (int)
 
 
-### type
+### <a name="changed_gethitvar_type">type</a>
 
 Returns the value of either groundtype or airtype, depending on the character's StateType upon being hit. Such a trigger was documented in Mugen but did not work.
 
 
-### xaccel
+### <a name="changed_gethitvar_xaccel">xaccel</a>
 
 Returns the X acceleration set by the hit. (float)  
 NOTE: Currently, this parameter will only work if the character does not override the `common1.cns.zss` states that use it.  
 
 
-### xveladd
+### <a name="changed_gethitvar_xveladd">xveladd</a>
 
 This trigger was dummied out in Mugen, always returning 0. In Ikemen, it works as documented.
 
 
-### yveladd
+### <a name="changed_gethitvar_yveladd">yveladd</a>
 
 This trigger was dummied out in Mugen, always returning 0. In Ikemen, it works as documented.
 
 
-### zaccel
+### <a name="changed_gethitvar_zaccel">zaccel</a>
 
 Returns the Z acceleration set by the hit. (float)  
 NOTE: Currently, this parameter will only work if the character does not override the `common1.cns.zss` states that use it.  
 
 
-### zvel
+### <a name="changed_gethitvar_zvel">zvel</a>
 
 Returns the fixed z-velocity imparted by hit. (float)
 
 
-### zoff
+### <a name="changed_gethitvar_zoff">zoff</a>
 
 "Snap" z offset when hit.
 
 ---
 
+<a id="new_groundangle"></a>
 ## GroundAngle (new)
 
-TODO: ? Related to undocumented [PlatformAngle](State-controllers-(changed)/#changed_projectile_platformangle) projectile parameter.
+TODO: ? Related to undocumented [PlatformAngle](https://github.com/ikemen-engine/Ikemen-GO/wiki/State-controllers-(changed)#changed_projectile_platformangle) projectile parameter.
 
 **Format:**  
 >GroundAngle  
@@ -2840,9 +2886,10 @@ trigger1 = GroundAngle != 0
 
 ---
 
+<a id="new_groundlevel"></a>
 ## GroundLevel (new)
 
-Returns the character's ground level, which is normally 0 but can be changed via [GroundLevelOffset](State-controllers-(new)/#new_groundleveloffset).  
+Returns the character's ground level, which is normally 0 but can be changed via [GroundLevelOffset](sctrl#new_groundleveloffset).  
   
 **Format:**  
 >GroundLevel
@@ -2855,9 +2902,10 @@ Returns the character's ground level, which is normally 0 but can be changed via
 
 ---
 
+<a id="new_guardbreak"></a>
 ## GuardBreak (new)
 
-Returns 1 if character is under [guard break](Miscellaneous-Info/#guardbreak) (assigned by [GuardBreakSet](State-controllers-(new)/#new_guardbreakset) sctrl).
+Returns 1 if character is under [guard break](https://github.com/ikemen-engine/Ikemen-GO/wiki/Miscellaneous-Info#guardbreak) (assigned by [GuardBreakSet](sctrl#new_guardbreakset) sctrl).
 
 **Format:**  
 >GuardBreak  
@@ -2875,6 +2923,7 @@ trigger1 = !GuardBreak
 
 ---
 
+<a id="new_guardcount"></a>
 ## GuardCount (new)
 
 Returns how many hits of the current attack were guarded. Similar to Hitcount.
@@ -2895,9 +2944,10 @@ trigger1 = GuardCount >= 2
 
 ---
 
+<a id="new_guardpoints"></a>
 ## GuardPoints (new)
 
-Returns the amount of [guard points](Character-features/#guardpoints) the player has.
+Returns the amount of [guard points](https://github.com/ikemen-engine/Ikemen-GO/wiki/Character-features#guardpoints) the player has.
 
 **Format:**  
 >GuardPoints  
@@ -2915,9 +2965,10 @@ trigger1 = GuardPoints = 0
 
 ---
 
+<a id="new_guardpointsmax"></a>
 ## GuardPointsMax (new)
 
-Returns the maximum amount of [guard points](Character-features/#guardpoints) the player can have. This is normally the same value as LifeMax (adjustable in character's CNS `[Data]` section).
+Returns the maximum amount of [guard points](https://github.com/ikemen-engine/Ikemen-GO/wiki/Character-features#guardpoints) the player can have. This is normally the same value as LifeMax (adjustable in character's CNS `[Data]` section).
 
 **Format:**  
 >GuardPointsMax  
@@ -2935,6 +2986,7 @@ trigger1 = GuardPoints < GuardPointsMax / 2
 
 ---
 
+<a id="new_helperindexexist"></a>
 ## HelperIndexExist(n) (new)
 
 Returns 1 if a player's helper with the specified index number exists, or 0 otherwise.
@@ -2947,6 +2999,7 @@ trigger1 = HelperIndex(5),time > 0
 
 ---
 
+<a id="new_helpername"></a>
 ## HelperName (new)
 
 Returns the helper's name (assigned via helper's name parameter, which defaults to "\<parent\>'s helper" if a unique name is not assigned).
@@ -2971,6 +3024,7 @@ trigger1 = HelperName = "Fireball"
 
 ---
 
+<a id="new_helpervar"></a>
 ## HelperVar (new)
 
 Returns a helper's unique properties. If called from a root player, the return is always invalid.  
@@ -3001,6 +3055,7 @@ trigger1 = Helper(1000), HelperVar(keyctrl)
 
 ---
 
+<a id="new_hitbyattr"></a>
 ## HitByAttr (new)
 
 Checks if the player can be hit by an attack with the specified attribute.  
@@ -3097,6 +3152,7 @@ trigger1 = HitDefAttr = SC, NA, SA
 
 ---
 
+<a id="new_hitdefvar"></a>
 ## HitDefVar (new)
 
 Returns information about the player's currently active HitDef or ReversalDef. The parameter format is the same as in the `HitDef` state controller.  
@@ -3228,6 +3284,7 @@ trigger1 = HitOver = 1
 
 ---
 
+<a id="new_hitoverridden"></a>
 ## HitOverridden (new)
 
 Returns 1 during frame in which player has overridden default gethit behavior via HitOverride state controller. Otherwise returns 0.
@@ -3395,6 +3452,7 @@ value = ifelse(var(3),1,2)
 
 ---
 
+<a id="new_ikemenversion"></a>
 ## IkemenVersion (new)
 
 Returns one component of the character's Ikemen version as an integer.
@@ -3417,6 +3475,7 @@ trigger1 = IkemenVersion(major) = 0 && IkemenVersion(minor) = 98 && IkemenVersio
 
 ---
 
+<a id="new_incustomanim"></a>
 ## InCustomAnim (new)
 
 Returns 1 if the character is in a custom animation, such as when `ChangeAnim2` is used in a custom state.  
@@ -3437,6 +3496,7 @@ trigger1 = InCustomAnim
 
 ---
 
+<a id="new_incustomstate"></a>
 ## InCustomState (new)
 
 Returns 1 if the character is in a custom state (sent into another player's state).
@@ -3457,15 +3517,17 @@ trigger1 = InCustomState
 
 ---
 
+<a id="new_index"></a>
 ## Index (new)
 
-Returns the player's index as an integer. See [PlayerIndex](Triggers-(new)/#redirection_playerindex).
+Returns the player's index as an integer. See [PlayerIndex](redirections#playerindexn-new).
 
 ---
 
+<a id="new_indialogue"></a>
 ## InDialogue (new)
 
-Returns 1 during ongoing dialogue initiated by [Dialogue](State-controllers-(new)/#new_dialogue) state controller.
+Returns 1 during ongoing dialogue initiated by [Dialogue](sctrl#new_dialogue) state controller.
 
 **Format:**  
 >InDialogue  
@@ -3503,6 +3565,7 @@ none
 
 ---
 
+<a id="new_inputtime"></a>
 ## InputTime (new)
 
 Returns number of frames since a given button was pressed or released. A positive number means the button is being held, while a negative number means it has been released. For players without `keyctrl`, it returns 0.  
@@ -3529,6 +3592,7 @@ trigger5 = InputTime(c) = -40; c was released 40 frames ago
 
 ---
 
+<a id="new_IntroState"></a>
 ## IntroState (new)
 
 Returns the current intro state number:  
@@ -3554,6 +3618,7 @@ trigger1 = IntroState = 3
 
 ---
 
+<a id="new_isasserted"></a>
 ## IsAsserted (new)
 
 Returns 1 if the character has specified AssertSpecial state controller flag asserted. Flags that affect all characters at once don't have to be asserted directly by character to be detectable.
@@ -3575,9 +3640,10 @@ trigger1 = IsAsserted(noBG)
 
 ---
 
+<a id="new_isclsnproxy"></a>
 ## IsClsnProxy (new)
 
-Returns if the helper is a [Clsn Proxy](./State-controllers-(changed)#clsnproxy).
+Returns if the helper is a [Clsn Proxy](sctrl#clsnproxy).
 
 **Format:**  
 >IsClsnProxy
@@ -3625,6 +3691,7 @@ trigger1 = IsHelper(1234)
 
 ---
 
+<a id="changed_ishelper"></a>
 ## IsHelper (changed)
 
 The `IsHelper` trigger now also accepts an optional index argument, through the new format `IsHelper(ID, index)`. Defaults to -1 (any index).  
@@ -3659,6 +3726,7 @@ none
 
 ---
 
+<a id="new_ishost"></a>
 ## IsHost (new)
 
 Returns if the player is host in online match.
@@ -3679,6 +3747,7 @@ trigger1 = IsHost
 
 ---
 
+<a id="new_jugglepoints"></a>
 ## JugglePoints (new)
 
 Returns the remaining juggle points between the player and another player with the specified ID. If the specified ID is not yet a target of the first player, the trigger will simply return the maximum juggle points.
@@ -3700,6 +3769,7 @@ trigger1 = JugglePoints(EnemyNear, ID) < 10
 
 ---
 
+<a id="new_lastplayerid"></a>
 ## LastPlayerID (new)
 
 Returns the ID number of the last spawned player or helper.
@@ -3720,6 +3790,7 @@ trigger1 = PlayerID(LastPlayerID), HitDefAttr = SCA, AP
 
 ---
 
+<a id="new_layerno"></a>
 ## LayerNo (new)
 
 Returns the layer number on which the character is currently being drawn on.
@@ -3767,6 +3838,7 @@ trigger1 = Pos X + CameraPos X < LeftEdge
 
 ---
 
+<a id="new_lerp"></a>
 ## Lerp (Math) (new)
 
 Linear interpolation. Takes three arguments, and returns a number between two specified arguments at a specific increment. 
@@ -3870,6 +3942,7 @@ value = ln(time)
 
 ---
 
+<a id="new_localcoord"></a>
 ## LocalCoord (new)
 
 Returns the character's `localcoord` as a float. This trigger returns a constant value even when the player is in a custom state.
@@ -3952,6 +4025,7 @@ trigger1 = !LoseKO
 
 ---
 
+<a id="new_map"></a>
 ## Map (new)
 
 Use the name of the map you want to recognize in parentheses. For example, a character with the below map will return Map(age) as a value set in character DEF file or via various state controllers that can modify character's map. If nothing is set, 0 is returned.
@@ -4025,6 +4099,7 @@ trigger1 = !matchover
 
 ---
 
+<a id="new_max"></a>
 ## Max (math) (new)
 
 Takes two arguments, and returns the highest-valued number.
@@ -4049,6 +4124,7 @@ trigger1 = Max(var(3), 10)
 
 ---
 
+<a id="new_memberno"></a>
 ## MemberNo (new)
 
 Returns character's team member position. Team leader is 1, while partners receive successive numbers. In Tag mode this value is dynamic.  
@@ -4069,6 +4145,7 @@ trigger1 = MemberNo = 1
 
 ---
 
+<a id="new_min"></a>
 ## Min (math) (new)
 
 Takes two arguments, and returns the lowest-valued number.
@@ -4093,6 +4170,7 @@ trigger1 = Min(var(3), 10)
 
 ---
 
+<a id="new_motifstate"></a>
 ## MotifState (new)
 
 Allows retrieval of whether the specified post-round sequence is active.  
@@ -4110,6 +4188,7 @@ Allows retrieval of whether the specified post-round sequence is active.
 
 ---
 
+<a id="new_motifvar"></a>
 ## MotifVar (new)
 
 Allows checking the various screenpack options as defined in system.def (TBD)
@@ -4168,6 +4247,7 @@ trigger1 = MoveContact = 1
 
 ---
 
+<a id="new_movecountered"></a>
 ## MoveCountered (new)
 
 This trigger is valid only when the player is in an attack state. MoveCountered returns 1 on attack contact, at the exact frame that p1 interrupts p2 attack (true for 1 frame, even if both P1 and P2 countered each other's moves). After contact, MoveCountered's return value will increase by 1 for each game tick that P1 is not paused. It gives 0 otherwise. See Details section of Mugen's `MoveContact` trigger for more information.
@@ -4246,6 +4326,7 @@ trigger1 = MoveHit
 
 ---
 
+<a id="new_movehitvar"></a>
 ## MoveHitVar (new)
 
 Similarly to `GetHitVar`, this trigger allows retrieving information about the last hit the player inflicted.  
@@ -4348,6 +4429,7 @@ trigger1 = movetype != H
 
 ---
 
+<a id="new_mugenversion"></a>
 ## MugenVersion (new)
 
 Returns one component of the character's Mugen version as an integer.
@@ -4519,6 +4601,7 @@ trigger1 = partner, life < 200
 
 ---
 
+<a id="new_numplayer"></a>
 ## NumPlayer (new)
 
 Returns total number of players (including helpers, attached chars, etc) existing ingame.
@@ -4583,6 +4666,7 @@ trigger1 = NumProjID(1234) = 1
 
 ---
 
+<a id="new_numstagebg"></a>
 ## NumStageBG (new)
 
 Returns the number of BG elements in the stage that have the specified ID. If the ID argument is not used, or if ID is -1, it returns the total.  
@@ -4645,6 +4729,7 @@ trigger1 = NumExplod(1234) >= 4
 
 ---
 
+<a id="new_numtext"></a>
 ## NumText (new)
 
 This trigger takes an ID number as an optional argument. If the ID number is omitted, NumText returns the number of texts owned by the player. If the ID number is included, then NumText returns the number of texts with that ID number that are owned by the player. The ID number must be greater than -1. An ID number of -1 or less will give the same behavior as if the ID number is omitted.
@@ -4668,6 +4753,7 @@ trigger1 = NumText(1234) >= 2
 
 ---
 
+<a id="new_offset"></a>
 ## Offset (new)
 
 Returns the value of the player's x,y offset applied with OffSet sctrl.
@@ -4688,6 +4774,7 @@ trigger1 = OffSet x > 100 && OffSet y > 50
 
 ---
 
+<a id="new_OutroState"></a>
 ## OutroState (new)
 
 Returns the current outro state number:  
@@ -4753,13 +4840,14 @@ trigger1 = P2BodyDist X < 30
 
 ---
 
+<a id="changed_p2bodydist"></a>
 ## P2BodyDist (changed)
 
-### Y
+### <a name="changed_p2bodydist_y">Y</a>
 
 In Mugen, this trigger merely does the same as `P2Dist Y`. If a character has `ikemenversion`, it will instead return the distance between the size boxes of the two players.
 
-### Z
+### <a name="changed_p2bodydist_y">Z</a>
 
 P2BodyDist now also accepts a Z argument. When there is overlap between the players' Z width, it returns 0, otherwise returns the distance between their theoretical width boxes.
 
@@ -4796,6 +4884,7 @@ trigger1 = P2Dist Y <= -12
 
 ---
 
+<a id="changed_p2dist_z"></a>
 ## P2Dist Z (changed)
 
 The `P2Dist` trigger now also accepts a `Z` argument. Returns the distance between the players in the Z axis.
@@ -4853,6 +4942,7 @@ If there is no secondary opponent, then `p4name = "name"` returns 0 no matter wh
 
 ---
 
+<a id="new_pxname"></a>
 ## P5Name, P6Name, P7Name, P8Name (new)
 
 Same as P1Name-P4Name, except that these return the name of other team members, if present. If there is no such opponent, then it returns 0 no matter what name is specified. Similarly, P5Name != "name" will return 1 no matter what name is specified.
@@ -4877,6 +4967,7 @@ trigger1 = P5Name = "Kumquat"
 
 ---
 
+<a id="new_palfxvar"></a>
 ## PalFXVar (new)
 
 [TODO] Returns information about the player, background or global ("all") PalFX. Accepted parameters:
@@ -4965,12 +5056,14 @@ trigger1 = ParentDist X != 0
 
 ---
 
+<a id="changed_parentdist_z"></a>
 ## ParentDist Z (changed)
 
 The `ParentDist` trigger now also accepts a `Z` argument. Returns the distance between the helper and its parent in the Z axis.
 
 ---
 
+<a id="new_parentexist"></a>
 ## ParentExist (new)
 
 Returns true if the helper's parent is still present in the game.
@@ -4984,6 +5077,7 @@ if parentExist {
 
 ---
 
+<a id="new_pausetime"></a>
 ## PauseTime (new)
 
 Returns the time until the active Pause and/or SuperPause effect expires (whichever lasts longer). The non 0 value is returned only after movetime parameter of these sctrls expires (player can no longer move).
@@ -5007,6 +5101,7 @@ trigger1 = PauseTime = 0
 
 ---
 
+<a id="new_physics"></a>
 ## Physics (new)
 
 Returns the player's physics-type. Refer to the section on StateDef in the CNS documentation for more details on physics.
@@ -5077,9 +5172,10 @@ trigger1 = PlayerIDExist(var(4))
 
 ---
 
+<a id="new_playerindexexist"></a>
 ## PlayerIndexExist(n) (new)
 
-Returns 1 if a player with the specified index number exists, 0 otherwise. See [PlayerIndex](Triggers-(new)/#redirection_playerindex).
+Returns 1 if a player with the specified index number exists, 0 otherwise. See [PlayerIndex](redirections#playerindexn-new).
   
 **Example:**  
 ```ini
@@ -5088,9 +5184,10 @@ trigger1 = PlayerIndexExist(2)
 
 ---
 
+<a id="new_playerno"></a>
 ## PlayerNo (new)
 
-Returns character's player number. Player 1 side uses odd numbers (1, 3, 5, 7), player 2 side even numbers (2, 4, 6, 8). Stage [AttachedChar](Stage-features/#info_attachedchar) uses number outside maximum player range (9).
+Returns character's player number. Player 1 side uses odd numbers (1, 3, 5, 7), player 2 side even numbers (2, 4, 6, 8). Stage [AttachedChar](https://github.com/ikemen-engine/Ikemen-GO/wiki/Stage-features#info_attachedchar) uses number outside maximum player range (9).
 
 **Format:**  
 >PlayerNo  
@@ -5108,6 +5205,7 @@ trigger1 = PlayerNo < 3
 
 ---
 
+<a id="new_playernoexist"></a>
 ## PlayerNoExist (new)
 
 Evaluates if the specified player number is currently in use.  
@@ -5212,6 +5310,7 @@ trigger1 = power < powermax / 2
 
 ---
 
+<a id="new_prevanim"></a>
 ## PrevAnim (new)
 
 Returns the number of the anim that the player was last in.
@@ -5234,6 +5333,7 @@ trigger1 = PrevAnim = 200
 
 ---
 
+<a id="new_prevmovetype"></a>
 ## PrevMoveType (new)
 
 Returns the MoveType that the player was last in.
@@ -5285,6 +5385,7 @@ trigger1 = PrevStateNo = [200,650]
 
 ---
 
+<a id="new_prevstatetype"></a>
 ## PrevStateType (new)
 
 Returns the StateType that the player was last in.
@@ -5344,6 +5445,7 @@ trigger1 = ProjCancelTime(0) != -1 && ProjCancelTime(0) < 15
 
 ---
 
+<a id="new_projclsnoverlap"></a>
 ## ProjClsnOverlap (new)
 
 Returns true if the projectile's collision box (either Clsn1 or Clsn2) overlaps with another player's collision boxes.  
@@ -5605,6 +5707,7 @@ trigger1 = ProjHitTime(0) != -1 && ProjHitTime(0) < 15
 
 ---
 
+<a id="new_projvar"></a>
 ## ProjVar (new)
 
 Returns the specified projectile parameter. Use -1 for ID to iterate over all projectiles.
@@ -5637,6 +5740,7 @@ trigger3 = ProjVar(3000, 0, guardflag) = L
 
 ---
 
+<a id="new_rad"></a>
 ## Rad (Math) (new)
 
 Converts an argument value from degree to radians.
@@ -5683,6 +5787,7 @@ trigger1 = Random <= 249
 
 ---
 
+<a id="new_rand"></a>
 ## RandomRange(math) (new)
 
 Generates pseudo-random integer numbers uniformly distributed between the given range (both bounds inclusive).  
@@ -5709,6 +5814,7 @@ pos = RandomRange(-300, 600), 0
 
 ---
 
+<a id="new_receiveddamage"></a>
 ## ReceivedDamage (new)
 
 Returns the total damage dealt by the opposite team to this character, in the currently ongoing combo. This value is valid as long as the opposite team combo count stays above 0, otherwise it returns 0 too.
@@ -5729,6 +5835,7 @@ trigger1 = ReceivedDamage > (LifeMax / 10)
 
 ---
 
+<a id="new_receivedhits"></a>
 ## ReceivedHits (new)
 
 Returns the total number of hits done by the opposite team to this character, in the currently ongoing combo. Unlike GetHitVar(hitcount), it takes into account all hits, including those applied by HitAdd. This value is valid as long as the opposite team combo count stays above 0, otherwise it returns 0 too.
@@ -5749,9 +5856,10 @@ trigger1 = ReceivedHits > 10
 
 ---
 
+<a id="new_redlife"></a>
 ## RedLife (new)
 
-Returns the amount of [red life](Miscellaneous-Info/#redlife) the player has.
+Returns the amount of [red life](https://github.com/ikemen-engine/Ikemen-GO/wiki/Miscellaneous-Info#redlife) the player has.
 
 **Format:**  
 >RedLife  
@@ -5769,6 +5877,7 @@ trigger1 = RedLife = 0
 
 ---
 
+<a id="new_reversaldefattr"></a>
 ## ReversalDefAttr (new)
 
 Checks the attribute parameter of the player's currently-active ReversalDef. If the player does not currently have an active ReversalDef, then no parameters will match. Can be used for AI to detect a counter or to code something to happen if it exists.
@@ -5875,12 +5984,14 @@ trigger1 = RootDist X != 0
 
 ---
 
+<a id="changed_rootdist_z"></a>
 ## RootDist Z (changed)
 
 The `RootDist` trigger now also accepts a `Z` argument. Returns the distance between the helper and its root in the Z axis.
 
 ---
 
+<a id="new_round"></a>
 ## Round (math) (new)
 
 Returns the rounded value of `val` to specified `precision` (number of digits after the decimal point). `precision` can also be negative or zero.
@@ -5993,6 +6104,7 @@ trigger1 = RoundState = 2
 
 ---
 
+<a id="changed_roundstate"></a>
 ## RoundState (changed)
 
 The `RoundState` trigger no longer returns 2 during the "Fight!" screen, before players have control, returning 1 instead.  
@@ -6000,6 +6112,7 @@ The `RoundState` trigger no longer returns 2 during the "Fight!" screen, before 
 
 ---
 
+<a id="new_round"></a>
 ## RoundsWon (new)
 
 Returns how many total rounds the teamside has won during the current match. Resets between matches.
@@ -6008,6 +6121,7 @@ Returns how many total rounds the teamside has won during the current match. Res
 
 ---
 
+<a id="new_roundtime"></a>
 ## RoundTime (new)
 
 Returns the tick count since the start of the round.
@@ -6028,12 +6142,14 @@ trigger1 = RoundTime > 600
 
 ---
 
+<a id="new_runorder"></a>
 ## RunOrder (new)
 
-At the start of each frame, players are sorted into a list for code processing based on their current actions (see [character processing order](Miscellaneous-info#character-processing-order)). `RunOrder` returns their position in this list as an integer.
+At the start of each frame, players are sorted into a list for code processing based on their current actions (see [character processing order](https://github.com/ikemen-engine/Ikemen-GO/wiki/Miscellaneous-info#character-processing-order)). `RunOrder` returns their position in this list as an integer.
 
 ---
 
+<a id="new_scale"></a>
 ## Scale (new)
 
 Returns the value of the player's drawing scale. `Scale X` and `Scale Y` refer to the scale applied by `AngleDraw`. `Scale Z` refers to the rescaling that affects the player when moving in the Z space.  
@@ -6054,6 +6170,7 @@ trigger1 = Scale x > 2 && Scale y > 1
 
 ---
 
+<a id="new_score"></a>
 ## Score (new)
 
 Returns the score points gained in this round by all team members.
@@ -6074,6 +6191,7 @@ trigger1 = Score > 10000
 
 ---
 
+<a id="new_scoretotal"></a>
 ## ScoreTotal (new)
 
 Returns the total score points value. Takes into account all team members, previous rounds and previous matches since the start of this game mode.
@@ -6193,12 +6311,14 @@ If P1 has been given P2's animation data by a hit, SelfAnimExist will not check 
 
 ---
 
+<a id="new_selfcommand"></a>
 ## SelfCommand (new)
 
 [TODO]
 
 ---
 
+<a id="new_selfstatenoexist"></a>
 ## SelfStatenoExist (new)
 
 Checks for the existence of a state only within P1's state numbers, even when P1 is custom stated by a hit. Returns 1 if there is a statedef with the specified number. Otherwise it returns 0. Use the statedef number you want to recognize in parentheses.
@@ -6221,6 +6341,7 @@ trigger1 = !SelfStatenoExist(200)
 
 ---
 
+<a id="new_shader"></a>
 ## Shader (new)
 
 Returns the name of the custom shader applied to the player. If no custom shader is applied, "" is returned.
@@ -6233,6 +6354,7 @@ trigger1 = shader != ""
 
 ---
 
+<a id="new_sign"></a>
 ## Sign (Math) (new)
 
 Returns the sign of a real number. If value < 0 return -1. If value 0 return 0. if value > 0 return 1.
@@ -6281,6 +6403,7 @@ value = sin(pi/2)
 
 ---
 
+<a id="new_soundvar"></a>
 ## SoundVar (new)
 
 Returns the specified sound channel parameter. Use -1 for channelNo to find the first sound available.
@@ -6308,6 +6431,7 @@ fvar(1) = SoundVar(1, VolumeScale)
 
 ---
 
+<a id="new_spriteplayerno"></a>
 ## SpritePlayerNo (new)
 
 Returns the player number of the owner of the player's current sprite.  
@@ -6329,6 +6453,7 @@ trigger1 = Player(SpritePlayerNo), SelfAnimExist(1234)
 
 ---
 
+<a id="new_spritevar"></a>
 ## SpriteVar (new)
 
 Returns information about the player's current sprite.  
@@ -6351,6 +6476,7 @@ pos = -SpriteVar(xoffset) + SpriteVar(width), -SpriteVar(yoffset) + SpriteVar(he
 
 ---
 
+<a id="new_sprpriority"></a>
 ## SprPriority (new)
 
 Returns the player's/helper's current SprPriority value.
@@ -6371,6 +6497,7 @@ trigger1 = SprPriority > 0
 
 ---
 
+<a id="new_stagebackedgedist"></a>
 ## StageBackEdgeDist (new)
 
 Returns the distance to the stage edge (corner) behind the player.
@@ -6391,6 +6518,7 @@ trigger1 = StageBackEdgeDist < 100
 
 ---
 
+<a id="new_stagebgvar"></a>
 ## StageBGVar (new)
 
 Returns information about the stage's BG elements.  
@@ -6435,6 +6563,7 @@ trigger1 = StageBGVar(4, 1, actionno) = 40
 
 ---
 
+<a id="new_stageconst"></a>
 ## StageConst (new)
 
 Returns the value of one of the stage's constants. Stage constant variables can be set under stage's DEF [[Constants]](Stage-features/#constants) section.
@@ -6456,6 +6585,7 @@ trigger1 = StageConst(WaterGround) = 1
 
 ---
 
+<a id="new_stagefrontedgedist"></a>
 ## StageFrontEdgeDist (new)
 
 Returns the distance to the stage edge (corner) in front of the player.
@@ -6476,9 +6606,10 @@ trigger1 = StageFrontEdgeDist < 100
 
 ---
 
+<a id="new_stagetime"></a>
 ## StageTime (new)
 
-Returns the stage's internal time, or the amount of ticks since the last stage reset. The value returned by this trigger corresponds directly to the amount of times stage backgrounds have been updated (taking into account `pausebg`, `resetbg`, etc), allowing one to for instance reliably synchronize [attachedchar](Stage-features/#info_attachedchar) actions to what's currently displayed by the stage.
+Returns the stage's internal time, or the amount of ticks since the last stage reset. The value returned by this trigger corresponds directly to the amount of times stage backgrounds have been updated (taking into account `pausebg`, `resetbg`, etc), allowing one to for instance reliably synchronize [attachedchar](https://github.com/ikemen-engine/Ikemen-GO/wiki/Stage-features#info_attachedchar) actions to what's currently displayed by the stage.
 
 **Format:**  
 >StageTime  
@@ -6539,9 +6670,10 @@ trigger1 = StageVar(info.author) = "Suika"
 
 ---
 
+<a id="changed_stagevar"></a>
 ## StageVar (changed)
 
-StageVar now accepts all stage parameters that [ModifyStageVar](State-controllers-(new)/#new_modifystagevar) state controller can change. In addition it accepts the following parameters:
+StageVar now accepts all stage parameters that [ModifyStageVar](sctrl#new_modifystagevar) state controller can change. In addition it accepts the following parameters:
 
 >info.ikemenversion.major = *major version component* (int)  
 >info.ikemenversion.minor = *minor version component* (int)  
@@ -6553,9 +6685,10 @@ StageVar now accepts all stage parameters that [ModifyStageVar](State-controller
 
 ---
 
+<a id="new_standby"></a>
 ## Standby (new)
 
-Returns 1 if character is under standby effect (assigned by [TagOut](State-controllers-(new)/#new_tagout) sctrl).
+Returns 1 if character is under standby effect (assigned by [TagOut](sctrl#new_tagout) sctrl).
 
 **Format:**  
 >Standby  
@@ -6715,9 +6848,10 @@ value = tan(pi/4)
 
 ---
 
+<a id="new_teamleader"></a>
 ## TeamLeader (new)
 
-Returns [playerno](Triggers-(new)/#playerno) of the character that is considered a team leader. In modes where only one player is controlled in particular round (*single*, *turns* and *ratio*) it will be either 1 or 2, depending on team side. In *simul* and *tag* modes, team leader is the first party member (again 1 or 2) by default, but who is considered a leader can be also dynamically adjusted via optional [TagIn](State-controllers-(new)/#new_tagin) sctrl *leader* parameter.
+Returns [playerno](triggers#playerno) of the character that is considered a team leader. In modes where only one player is controlled in particular round (*single*, *turns* and *ratio*) it will be either 1 or 2, depending on team side. In *simul* and *tag* modes, team leader is the first party member (again 1 or 2) by default, but who is considered a leader can be also dynamically adjusted via optional [TagIn](sctrl#new_tagin) sctrl *leader* parameter.
 
 Manually swapping leader changes lifebar elements assignment - leader always uses P1 (or P2, depending on team side) lifebar elements, remaining players positions are moved accordingly, in ascending players order.
 
@@ -6769,6 +6903,7 @@ trigger1 = TeamMode = Single
 
 ---
 
+<a id="changed_teammode"></a>
 ## TeamMode (changed)
 
 TeamMode can now also return `Tag` when that mode is selected.
@@ -6803,6 +6938,7 @@ trigger1 = TeamSide = 2
 
 ---
 
+<a id="new_teamsize"></a>
 ## TeamSize (new)
 
 Returns character's team size (for *turns* mode it returns information that was previously not obtainable, for other team modes the returned value is equivalent to using `NumPartner + 1`)
@@ -6871,6 +7007,7 @@ trigger1 = Time = 2
 
 ---
 
+<a id="new_timeelapsed"></a>
 ## TimeElapsed (new)
 
 Returns the amount of clock ticks since the battle began (0 if time is disabled). Value returned by this trigger corresponds to lifebar timer (only ticks during RoundState = 2)
@@ -6922,6 +7059,7 @@ trigger1 = TimeMod = 4, 3
 
 ---
 
+<a id="new_timeremaining"></a>
 ## TimeRemaining (new)
 
 Returns the amount of clock ticks until time over (-1 if time is disabled). Value returned by this trigger corresponds to lifebar timer (only ticks during RoundState = 2)
@@ -6942,6 +7080,7 @@ trigger1 = TimeRemaining > 600
 
 ---
 
+<a id="new_timetotal"></a>
 ## TimeTotal (new)
 
 Returns the total number of clock ticks that have elapsed so far. Takes into account previous rounds and matches since the start of this game mode.
@@ -6962,12 +7101,14 @@ trigger1 = TimeTotal > 5940
 
 ---
 
+<a id="new_topboundbodydist"></a>
 ## TopBoundBodyDist (new)
 
 Like `TopBoundDist`, except this trigger accounts for the player's top `edge` parameter, as defined by the `Depth` state controller.
 
 ---
 
+<a id="new_topbounddist"></a>
 ## TopBoundDist (new)
 
 TopBoundDist gives the distance between the player's z-axis and the `topbound` limit of the stage.
@@ -7132,6 +7273,7 @@ trigger1 = !WinKO
 
 ---
 
+<a id="new_winclutch"></a>
 ## WinClutch (new)
 
 Returns true if the player (or the player's team, in team mode) has won the round with health below the limit set by ``clutch.threshold`` in fight.def. If the parameter isn't defined, the default is under 10%.
@@ -7147,6 +7289,7 @@ Returns true if the player (or the player's team, in team mode) has won the roun
 
 ---
 
+<a id="new_winhyper"></a>
 ## WinHyper (new)
 
 Returns true if the player (or the player's team, in team mode) has won the round with the finishing blow being a hyper attack.
@@ -7167,6 +7310,7 @@ trigger1 = !WinHyper
 
 ---
 
+<a id="new_winhyper"></a>
 ## WinSpecial (new)
 
 Returns true if the player (or the player's team, in team mode) has won the round with the finishing blow being a special attack.
@@ -7187,6 +7331,7 @@ trigger1 = !WinSpecial
 
 ---
 
+<a id="new_xangle"></a>
 ## XAngle (new)
 
 Returns the value of the player's Xangle applied with AngleDraw/AngleSet/AngleAdd/AngleMul sctrl.
@@ -7207,6 +7352,7 @@ trigger1 = XAngle >= 90
 
 ---
 
+<a id="new_xshear"></a>
 ## Xshear (new)
 
 Returns the value of the player's xshear applied with TransformSprite sctrl.
@@ -7227,6 +7373,7 @@ trigger1 = xshear > 40
 
 ---
 
+<a id="new_yangle"></a>
 ## YAngle (new)
 
 Returns the value of the player's yangle applied with AngleDraw/AngleSet/AngleAdd/AngleMul sctrl.
@@ -7247,6 +7394,7 @@ trigger1 = YAngle >= 90
 
 ---
 
+<a id="new_zoomvar"></a>
 ## ZoomVar (new)
 
 Allows checking the scale, pos x, pos y, lag, and remaining time of the currently Zoom sctrl.

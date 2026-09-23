@@ -49,6 +49,14 @@ def main():
         if name in skip_titles:
             del new[name]
 
+    require_sections(mugen, ["AfterImage"], "M.U.G.E.N 1.1 state controllers")
+    require_sections(changed, [], "Ikemen GO changed state controllers")
+    require_sections(
+        new,
+        ["New state controller features"],
+        "Ikemen GO new state controllers",
+    )
+
     # Tag sources
     mugen = tag_sections(mugen, "(old)", skip_names=["About controllers"])
     changed = tag_sections(changed, "(changed)", replace_words=["parameters", "triggers"])
@@ -66,7 +74,7 @@ def main():
     # Output – no sections_to_skip needed (already filtered)
     output = output_merged(
         merged,
-        title="Merged State Controller Reference",
+        title="State Controller Reference",
         sections_to_skip=[],
         top_sections=["About controllers", "New state controller features"],
         list_heading="# State Controllers"

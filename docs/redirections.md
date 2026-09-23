@@ -1,4 +1,4 @@
-# Merged Trigger Redirection Reference
+# Trigger Redirection Reference
 
 ## Table of Contents
 
@@ -61,6 +61,7 @@ Redirects the trigger to the first helper found. See the related trigger `NumHel
 
 ---
 
+<a id="redirection_helper"></a>
 ## Helper (changed)
 
 The `Helper` redirection now also accepts an optional index argument, through the new format `Helper(ID, index)`. Defaults to 0 (first one).  
@@ -81,6 +82,7 @@ corresponding ID number.
 
 ---
 
+<a id="redirection_helperindex"></a>
 ## HelperIndex(n) (new)
 
 Redirects the trigger to the helper entity by index.
@@ -97,6 +99,7 @@ trigger1 = HelperIndex(2), MoveType = A
 
 ---
 
+<a id="redirection_p2"></a>
 ## P2 (new)
 
 Redirects the trigger to the same player as the "P2" family of triggers (P2StateNo, etc). So, for instance, `P2, StateNo` is equivalent to `P2StateNo`.  
@@ -136,6 +139,7 @@ The trigger is redirected to the n'th partner.
 
 ---
 
+<a id="redirection_player"></a>
 ## Player(n) (new)
 
 Redirects a trigger to the character with the specified PlayerNo.
@@ -155,6 +159,7 @@ The trigger is redirected to the player with unique ID equal to ID. See the `ID`
 
 ---
 
+<a id="redirection_playerindex"></a>
 ## PlayerIndex(n) (new)
 
 Each player is assigned a specific index in the internal player list. `PlayerIndex` will redirect a trigger to the player (helpers included) with the specified index. The first index is 0. If there are 20 players on screen, valid indexes will be 0 through 19.  
@@ -183,6 +188,7 @@ Redirects the trigger to the root.
 
 ---
 
+<a id="redirection_stateowner"></a>
 ## StateOwner (new)
 
 Redirects a trigger to the owner of the current state the character is in. Useful when a custom stated target needs to redirect a trigger to the player.  
@@ -201,6 +207,7 @@ Redirects the trigger to the first target found.
 
 ---
 
+<a id="redirection_target"></a>
 ## Target (changed)
 
 The `Target` redirection now also accepts an optional index argument, through the new format `Target(ID, index)`. Defaults to 0 (first one).  

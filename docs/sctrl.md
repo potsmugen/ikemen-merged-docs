@@ -1,4 +1,4 @@
-# Merged State Controller Reference
+# State Controller Reference
 
 ## Table of Contents
 
@@ -213,12 +213,13 @@ In all cases, if setting a parameter with an expression, you should be careful t
 
 ---
 
+<a id="changed_all"></a>
 # New state controller features (new)
 
 Both new and old state controllers can now take advantage of some global new features.
 
 
-## fightfx actions  
+## <a name="changed_all_fightfx">fightfx actions</a>  
 
 All the remaining CNS parameters used to assign character actions that didn't support the `F` prefix (*[Statedef]*, *ChangeState*, *SelfState*, *ChangeAnim*, *ChangeAnim2*, *Projectile*) have access to loading animations from `fightfx.air`. The implementation is the same as in the *Explod* anim parameter.  
   
@@ -229,7 +230,7 @@ anim = F 300
 ```
 
 
-## RedirectID  
+## <a name="changed_all_redirectid">RedirectID</a>  
 
 This feature can be utilized with all state controllers, including legacy ones. It is an optional parameter that sends the execution of the state controller to the player with the designated PlayerID. Unlike custom states, this parameter allows interfering with a player's behavior without putting them in another player's states.
 
@@ -360,9 +361,10 @@ none
 
 ---
 
+<a id="changed_afterimage"></a>
 ## AfterImage (changed)
 
-### palinvertblend 
+### <a name="changed_afterimage_invertblend">palinvertblend </a>
 
 >palinvertblend = *blend_mode* (int)  
 
@@ -409,9 +411,10 @@ Same as PalFX, except that this affects the palette of the background and lifeba
 
 ---
 
+<a id="changed_allpalfx"></a>
 ## AllPalFx (changed)
 
-### invertblend
+### <a name="changed_allpalfx_invertblend">invertblend</a>
 
 >invertblend = *blend_mode* (int)  
 
@@ -473,9 +476,10 @@ none
 
 ---
 
+<a id="changed_angledraw"></a>
 ## AngleDraw (changed)
 
-### pivot (nightly build only)
+### <a name="changed_angledraw_pivot">pivot</a> (nightly build only)
 
 >pivot = *pivot_x, pivot_y* (float, float)  
 
@@ -483,13 +487,14 @@ Shifts the sprite's rotation center by the specified x and y offsets.
 
 ---
 
+<a id="changed_angledraw"></a>
 ## AngleDraw, AngleSet, AngleMul (changed)
 
-### xangle
+### <a name="changed_angledraw_xangle">xangle</a>
 
 >xangle = *xangle* (int)  
 
-### yangle
+### <a name="changed_angledraw_yangle">yangle</a>
 
 >xangle = *yangle* (int)
 
@@ -541,12 +546,14 @@ This is the same as DisplayToClipboard, except that message text is added on a n
 
 ---
 
+<a id="changed_clipboard"></a>
 ## AppendToClipboard, DisplayToClipboard (changed)
 
 Unlike Mugen, Ikemen GO can use unlimited amount of numeric arguments. Also it supports format specifiers, e.g. %0.2f (prints float value truncated to 2 digits), %v (prints the value in a default format and optimal formatting, regardless if it's int, float or string).
 
 ---
 
+<a id="new_assertanalogvector"></a>
 ## AssertAnalogVector (new)
 
 This controller allows (de)activating the player's analog vectors without input from a joystick. Values will be clamped to `[-1,1]` with the exception of analog triggers which are normalized to `[0,1]`.
@@ -585,6 +592,7 @@ righttrigger = 0
 
 ---
 
+<a id="new_assertcommand"></a>
 ## AssertCommand (new)
 
 This controller allows (de)activating the player's commands without any button presses. If the player has multiple commands with the same name, the controller will affect all of them.
@@ -619,6 +627,7 @@ name = ""
 
 ---
 
+<a id="new_assertinput"></a>
 ## AssertInput (new)
 
 This controller allows you to assert up to three input flags simultaneously via single sctrl. Similarly to AssertSpecial, there is no limit how many times this controller is called. Each flag will be automatically "de-asserted" at every game tick, so you must assert a flag for each tick that you want it to be active. Ikemen interprets input flags the same was as if corresponding input keys were pressed.
@@ -764,14 +773,15 @@ none
 
 ---
 
+<a id="changed_assertspecial"></a>
 ## AssertSpecial (changed)
 
-### Enabled
+### <a name="changed_assertspecial_enabled">Enabled</a>
 
 Setting this parameter to 0 will disable the specified flags instead. Defaults to 1.
 
 
-### Flag
+### <a name="changed_assertspecial_flag">Flag</a>
 
 AssertSpecial now allows setting up to 8 flags at a time.
   
@@ -793,290 +803,290 @@ flag8 = ...
 In addition, the following flags were added or changed.  
 
 
-#### AnimateHitpause
+#### <a name="changed_assertspecial_flag_animatehitpause">AnimateHitpause</a>
 
 While asserted, this flag makes the player's animation advance normally even during a hitpause.
 
 
-#### AnimFreeze
+#### <a name="changed_assertspecial_flag_animfreeze">AnimFreeze</a>
 
 While asserted, the player's animation will be frozen on the current frame.
 
 
-#### AutoGuard
+#### <a name="changed_assertspecial_flag_autoguard">AutoGuard</a>
 
 While asserted, makes the player guard automatically, without need to press back direction. The player will also switch automatically between standing and crouching guard.
 
 
-#### CameraFreeze
+#### <a name="changed_assertspecial_flag_camerafreeze">CameraFreeze</a>
 
 While asserted, prevents the camera from updating, effectively freezing it in place.
 
 
-#### DrawUnder 
+#### <a name="changed_assertspecial_flag_drawunder">DrawUnder </a>
 
 While asserted, makes the player sprites be drawn with the same properties of Explod `under` parameter. That is, if the player is on layer 0, it will always be drawn behind lifebars and character shadows.
 
 
-#### GlobalNoKo
+#### <a name="changed_assertspecial_flag_globalnoko">GlobalNoKo</a>
 
 While asserted all players won't die from taking damage.
 
-#### NoAIButtonJam
+#### <a name="changed_assertspecial_flag_noaibuttonjam">NoAIButtonJam</a>
 
 While asserted, disables the random direction and button jamming of Ikemen's default AI.
 
 
-#### NoAICheat
+#### <a name="changed_assertspecial_flag_noaicheat">NoAICheat</a>
 
 While asserted, makes the player's AI unable to cheat commands, i.e. complete them without performing the respective inputs.
 
 
-#### NoAiLevel
+#### <a name="changed_assertspecial_flag_noailevel">NoAiLevel</a>
 
 While asserted, makes the player AILevel and AILevelF triggers return 0.
 
 
-#### NoAirJump
+#### <a name="changed_assertspecial_flag_noairjump">NoAirJump</a>
 
 Disables the hard-coded state transitions to State 45 when `Ctrl=1 && StateType=A && Command="holdup"` and `AirJump.Num` allows
 
 
-#### NoBrake
+#### <a name="changed_assertspecial_flag_nobrake">NoBrake</a>
 
 Disables the hard-coded state transitions to State 0 when `StateNo=20 && Command!="holdfwd" && Command!="holdback"`
 
 
-#### NoComboDisplay
+#### <a name="changed_assertspecial_flag_nocombodisplay">NoComboDisplay</a>
 
 While asserted, disables displaying combo counter by this playerno (the flag has to be asserted on team leader to disable combo counter rendering for the teamside).
 
 
-#### NoCornerPush
+#### <a name="changed_assertspecial_flag_nocornerpush">NoCornerPush</a>
 
 While asserted, the player won't be affected by HitDef `cornerpush.veloff`.
 
 
-#### NoCrouch
+#### <a name="changed_assertspecial_flag_nocrouch">NoCrouch</a>
 
 Disables the hard-coded state transitions to State 10 when `Ctrl=1 && StateType=S && Command="holddown"`.
 
-#### NoDestroySelf
+#### <a name="changed_assertspecial_flag_nodestroyself">NoDestroySelf</a>
 
 While asserted, disables `destroyself` sctrl.
 
-#### NoDizzyPointsDamage
+#### <a name="changed_assertspecial_flag_nodizzypointsdamage">NoDizzyPointsDamage</a>
 
 While asserted, player won't be affected by a HitDef's dizzypoints parameter.
 
 
-#### NoFaceDisplay
+#### <a name="changed_assertspecial_flag_nofacedisplay">NoFaceDisplay</a>
 
 While asserted, disables displaying the face icon for this player.
 
 
-#### NoFaceP2
+#### <a name="changed_assertspecial_flag_nofacep2">NoFaceP2</a>
 
 While asserted, StateDef `facep2` parameter will have no effect.
 
 
-#### NoFastRecoverFromLieDown
+#### <a name="changed_assertspecial_flag_nofastrecoverfromliedown">NoFastRecoverFromLieDown</a>
 
 Disables the hard-coded faster recover from lie down on key input mashing when `StateType=L && GetHitVar(RecoverTime)>0`.
 
 
-#### NoFallCount
+#### <a name="changed_assertspecial_flag_nofallcount">NoFallCount</a>
 
 Disables the hard-coded FallCount increment when `StateNo=5070 || StateNo=5100`.
 
 
-#### NoFallDefenceUp
+#### <a name="changed_assertspecial_flag_nofalldefenceup">NoFallDefenceUp</a>
 
 Disables the hard-coded defence increase when `StateNo=5070 || StateNo=5100`.
 
 
-#### NoFallHitflag
+#### <a name="changed_assertspecial_flag_nofallhitflag">NoFallHitflag</a>
 
 While asserted, every `HitDef` will act as if its `HitFlag` has no `F` parameter. In other words, the player becomes unable to hit falling enemies.
 
 
-#### NoGetUpFromLieDown
+#### <a name="changed_assertspecial_flag_nogetupfromliedown">NoGetUpFromLieDown</a>
 
 Disables the hard-coded state transitions to State 5120 when `StateNo=5110 && GetHitVar(RecoverTime)=0`.
 
 
-#### NoGuardKo
+#### <a name="changed_assertspecial_flag_noguardko">NoGuardKo</a>
 
 While asserted player won't die from taking chip damage.
 
 
-#### NoGuardBarDisplay
+#### <a name="changed_assertspecial_flag_noguardbardisplay">NoGuardBarDisplay</a>
 
 While asserted, disables displaying guardbars by this playerno.
 
 
-#### NoGuardDamage
+#### <a name="changed_assertspecial_flag_noguarddamage">NoGuardDamage</a>
 
 While asserted, player won't be affected by HitDef damage *guard_damage*.
 
 
-#### NoGuardPointsDamage
+#### <a name="changed_assertspecial_flag_noguardpointsdamage">NoGuardPointsDamage</a>
 
 While asserted, player won't be affected by HitDef guardpoints.
 
 
-#### NoHardcodedKeys
+#### <a name="changed_assertspecial_flag_nohardcodedkeys">NoHardcodedKeys</a>
 
 Disables the hard-coded state transitions when pressing directional keys (combination of `NoJump`, `NoAirJump`, `NoCrouch`, `NoStand`, `NoWalk`, `NoBrake`, `NoStandGuard`, `NoCrouchGuard`, `NoAirGuard`).
 
 
-#### NoHitDamage
+#### <a name="changed_assertspecial_flag_nohitdamage">NoHitDamage</a>
 
 While asserted, player won't be affected by HitDef damage *hit_damage*.
 
 
-#### NoInput
+#### <a name="changed_assertspecial_flag_noinput">NoInput</a>
 
 While asserted, makes the player ignore any player/CPU inputs.
 
 
-#### NoIntroReset
+#### <a name="changed_assertspecial_flag_nointroreset">NoIntroReset</a>
 
 While asserted, prevents a player from being forced to their starting position after the round number announcement.
 
 
-#### NoJump
+#### <a name="changed_assertspecial_flag_nojump">NoJump</a>
 
 Disables the hard-coded state transitions to State 40 when `Ctrl=1 && StateType=S && Command="holdup"`
 
 
-#### NoKo
+#### <a name="changed_assertspecial_flag_noko">NoKo</a>
 
 While asserted, the player won't die from taking damage.  
 
 If `ikemenversion` is not 0, the `NoKO` flag affects only the player that called it. Otherwise, the MUGEN behavior is replicated, and all players are affected. The new `GlobalNoKo` flag can be used to replicate the old MUGEN behavior.  
 
 
-#### NoKoFall
+#### <a name="changed_assertspecial_flag_nokofall">NoKoFall</a>
 
 While asserted, the player won't be forced to fall when receiving a hit that depletes their remaining life. In Mugen this was hardcoded into Training mode.  
 
 
-#### NoKoVelocity
+#### <a name="changed_assertspecial_flag_nokovelocity">NoKoVelocity</a>
 
 While asserted, player won't be affected by HitDef velocity adjustments upon KO.
 
 
-#### NoLifeBarAction
+#### <a name="changed_assertspecial_flag_nolifebaraction">NoLifeBarAction</a>
 
 While asserted, disables displaying lifebar actions by this playerno (the flag has to be asserted on team leader to disable lifebar actions rendering for the teamside).
 
-#### NoLifeBarDisplay
+#### <a name="changed_assertspecial_flag_nolifebardisplay">NoLifeBarDisplay</a>
 
 While asserted, disables displaying lifebars by this playerno.
 
 
-#### NoMakeDust
+#### <a name="changed_assertspecial_flag_nomakedust">NoMakeDust</a>
 
 While asserted, the player does not generate hardcoded dust effects. The `MakeDust` state controller will also have no effect.
 
 
-#### NoNameDisplay
+#### <a name="changed_assertspecial_flag_nonamedisplay">NoNameDisplay</a>
 
 While asserted, disables displaying the Name by this playerno.
 
 
-#### NoPowerBarDisplay
+#### <a name="changed_assertspecial_flag_nopowerbardisplay">NoPowerBarDisplay</a>
 
 While asserted, disables displaying powerbars by this playerno (with team power share option enabled and/or lifebar design with only 1 powerbar per side, the flag has to be asserted on team leader to disable powerbar rendering for whole team).
 
 
-#### NoRedLifeDamage
+#### <a name="changed_assertspecial_flag_noredlifedamage">NoRedLifeDamage</a>
 
 While asserted, player won't be affected by HitDef *redlife*.
 
 
-#### NoScore
+#### <a name="changed_assertspecial_flag_noscore">NoScore</a>
 
 While asserted, player won't be affected by HitDef *score* or the `ScoreAdd` / `TargetScoreAdd` state controllers.
 
 
-#### NoStand
+#### <a name="changed_assertspecial_flag_nostand">NoStand</a>
 
 Disables the hard-coded state transitions to State 12 when `StateType=C && Command!="holddown"`.
 
 
-#### NoStunBarDisplay
+#### <a name="changed_assertspecial_flag_nostunbardisplay">NoStunBarDisplay</a>
 
 While asserted, disables displaying stunbars by this playerno.
 
 
-#### NoTimeDisplay
+#### <a name="changed_assertspecial_flag_notimedisplay">NoTimeDisplay</a>
 
 While asserted, disables displaying the fight screens `[Time]` elements.  
 
 
-#### NoTurnTarget
+#### <a name="changed_assertspecial_flag_noturntarget">NoTurnTarget</a>
 
 While asserted, keeps the opponent from automatically turning to face the player. This includes the `facep2` parameter.
 
 
-#### NoWinIconDisplay
+#### <a name="changed_assertspecial_flag_nowinicondisplay">NoWinIconDisplay</a>
 
 While asserted, disables displaying winicons by this playerno (the flag has to be asserted on team leader to disable winicon rendering for the teamside).
 
 
-#### PostRoundInput
+#### <a name="changed_assertspecial_flag_postroundinput">PostRoundInput</a>
 
 While asserted, player's inputs are not disabled post-match (`RoundState>2 || RoundState=-1`).
 
 
-#### ProjTypeCollision
+#### <a name="changed_assertspecial_flag_projtypecollision">ProjTypeCollision</a>
 
 While asserted, the player will clash with projectiles (and other players with the same flag) if their `Clsn2` boxes overlap. This allows helpers to easily replicate this kind of projectile clashing.
 
 
-#### RoundFreeze
+#### <a name="changed_assertspecial_flag_roundfreeze">RoundFreeze</a>
 
 While asserted, round related lifebar actions and internal timers are frozen (allows maintaining current roundstate).
 
 
-#### RoundNotSkip
+#### <a name="changed_assertspecial_flag_roundnotskip">RoundNotSkip</a>
 
 Disables intro and victory pose skipping via button press.
 
 
-#### RunFirst
+#### <a name="changed_assertspecial_flag_runfirst">RunFirst</a>
 
 While asserted, makes the player code be processed before that of any other players.
 
 
-#### RunLast
+#### <a name="changed_assertspecial_flag_runlast">RunLast</a>
 
 While asserted, makes the player code be processed after all other players.
 
 
-#### SizePushOnly
+#### <a name="changed_assertspecial_flag_sizepushonly">SizePushOnly</a>
 
 In Ikemen, like Mugen, characters will push each other when both their size boxes (width * height) and their Clsn2 boxes overlap. Asserting this flag makes it so that only the size boxes are checked, as in most fighting games.
 
 
-#### SkipFightDisplay
+#### <a name="changed_assertspecial_flag_skipfightdisplay">SkipFightDisplay</a>
 
 While asserted, the "fight" announcement on round start will be skipped.
 
 
-#### SkipKoDisplay
+#### <a name="changed_assertspecial_flag_skipkodisplay">SkipKoDisplay</a>
 
 While asserted, the KO announcement on round end will be skipped.
 
 
-#### SkipRoundDisplay
+#### <a name="changed_assertspecial_flag_skiprounddisplay">SkipRoundDisplay</a>
 
 While asserted, the round number announcement on round start will be skipped.
 
 
-#### SkipWinDisplay
+#### <a name="changed_assertspecial_flag_skipwindisplay">SkipWinDisplay</a>
 
 While asserted, the winner announcement on round end will be skipped.
 
@@ -1103,9 +1113,10 @@ none
 
 ---
 
+<a id="changed_attackdist"></a>
 ## AttackDist (changed)
 
-### Value
+### <a name="changed_attackdist_value">Value</a>
 
 The `value` parameter now takes a second number. This number sets the distance that a player can attack behind the enemy and still allow them to enter proximity guard.
 
@@ -1117,11 +1128,11 @@ trigger1 = 1
 value = 100, 50
 ```
 
-### Width
+### <a name="changed_attackdist_width">Width</a>
 
 Works the same as Value.
 
-### Height
+### <a name="changed_attackdist_height">Height</a>
 
 Changes the value of the attack.dist.height parameter for the player's current HitDef.
 
@@ -1133,7 +1144,7 @@ trigger1 = 1
 height = 160, 0
 ```
 
-### Depth
+### <a name="changed_attackdist_depth">Depth</a>
 
 Changes the value of the attack.dist.depth parameter for the player's current HitDef.
 
@@ -1168,29 +1179,30 @@ none
 
 ---
 
+<a id="changed_attackmulset"></a>
 ## AttackMulSet (changed)
 
-### Damage
+### <a name="changed_attackmulset_damage">Damage</a>
 
 Sets an attack multiplier for regular damage only.
 
 
-### DizzyPoints
+### <a name="changed_attackmulset_dizzypoints">DizzyPoints</a>
 
 Sets an attack multiplier for dizzy points only.
 
 
-### GuardPoints
+### <a name="changed_attackmulset_guardpoints">GuardPoints</a>
 
 Sets an attack multiplier for guard points only.
 
 
-### RedLife
+### <a name="changed_attackmulset_redlife">RedLife</a>
 
 Sets an attack multiplier for red life only.
 
 
-### Value
+### <a name="changed_attackmulset_value">Value</a>
 
 Sets the attack multiplier for all types of damage.
 
@@ -1213,17 +1225,18 @@ Same as PalFX, except that this affects the palette of the background and lifeba
 
 ---
 
+<a id="changed_bgpalfx"></a>
 ## BGPalFX (changed)
 
 BGPalFX now also accepts `ID` and `index` parameters. This allows it to apply PalFX to specific BG elements of the stage.  
 
 
-### ID
+### <a name="changed_bgpalfx_id">ID</a>
 
 The ID of the stage BG element to affect. Defaults to -1 (any).  
 
 
-### Index
+### <a name="changed_bgpalfx_index">Index</a>
 
 The index of the stage BG element to affect. Defaults to -1 (any).  
 
@@ -1350,20 +1363,22 @@ none
 
 ---
 
+<a id="changed_BindToTarget"></a>
 ## BindToTarget (changed)
 
-### PosZ
+### <a name="changed_bindtotarget_posz">PosZ</a>
 
 >posz = *pos_z* (float)
 
 Specify the offset (in the z-axis) to bind to. Can be skipped, so it's backward compatible with lines having only x,y declared.
 
-### Index
+### <a name="changed_bindtotarget_index">Index</a>
 
 The index of the target to bind to. Defaults to 0 (first one).
 
 ---
 
+<a id="new_camera"></a>
 ## Camera [EXPERIMENTAL] (new)
 
 **This SCTRL is still experimental and subject to possible changes, there is no guarantee this will be supported as is in future IKEMEN Go versions.**  
@@ -1408,9 +1423,10 @@ none
 
 ---
 
+<a id="changed_changeanim"></a>
 ## ChangeAnim (changed)
 
-### ElemTime
+### <a name="changed_changeanim_elemtime">ElemTime</a>
 
 Specifies the exact time of an animation element to change to. Defaults to 0.
 
@@ -1424,17 +1440,17 @@ elem = 4
 elemtime = 1
 ```
 
-### AnimPlayerNo
+### <a name="changed_changeanim_animplayerno">AnimPlayerNo</a>
 
 This parameter lets a character use the specified animation from another character. Defaults to own playerno.
 
 
-### SpritePlayerNo
+### <a name="changed_changeanim_spriteplayerno">SpritePlayerNo</a>
 
 This parameter lets a character use the specified sprites from another character. Defaults to own playerno.
 
 
-### ReadPlayerID
+### <a name="changed_changeanim_readplayerid">ReadPlayerID</a>
 
 This parameter lets a character use the specified animation from another character, including their sprites.
 
@@ -1446,19 +1462,21 @@ Like ChangeAnim, except this controller should be used if you have placed P2 in 
 
 ---
 
+<a id="changed_changeanim2"></a>
 ## ChangeAnim2 (changed)
 
-### ElemTime
+### <a name="changed_changeanim2_elemtime">ElemTime</a>
 
 See ChangeAnim.
 
 
-### ReadPlayerID
+### <a name="changed_changeanim2_readplayerid">ReadPlayerID</a>
 
 This parameter lets a character use the specified animation from another character, but maintaining their own sprites.
 
 ---
 
+<a id="new_changemovelist"></a>
 ## ChangeMovelist (new)
 
 Selects which movelist assigned in the character's DEF file should be displayed in the Pause menu command list.
@@ -1517,9 +1535,10 @@ ctrl = 1
 
 ---
 
+<a id="changed_changestate"></a>
 ## ChangeState (changed)
 
-### Continue
+### <a name="changed_changestate_continue">Continue</a>
 
 Due to the way State -1 is normally used to read inputs and change states, Mugen had it so that using a `ChangeState` in a negative state would stop the execution of the rest of the code in that state. Setting `Continue` to 1 will disable this behavior.  
 When a `ChangeState` is redirected, `Continue` will default to 1.
@@ -1592,17 +1611,18 @@ value = 0.5
 
 ---
 
+<a id="changed_defencemulset"></a>
 ## DefenceMulSet (changed)
 
 In Mugen, `DefenceMulSet` changes the player's final defense multiplier. That means it will override any defense buffs such as those gained through the `fall.defence_up` constant or the `SuperPause` `p2defmul` parameter. In Ikemen GO, it is only another multiplier, meaning the other defense buffs will still work correctly.  
 
 
-### IkemenVersion
+### <a name="changed_defencemulset_ikemenversion">IkemenVersion</a>
 
 Characters with `ikemenversion` will have `DefenceMulSet` work correctly and more intuitively by default. See `MulType` and `OnHit`.  
 
 
-### MulType
+### <a name="changed_defencemulset_multype">MulType</a>
 
 >multype = *bvalue* (boolean int)  
 
@@ -1614,7 +1634,7 @@ If 1, defense is multiplied by `value` (therefore the damage is divided).
 Defaults to 1 for characters with `ikemenversion`, and to 0 otherwise.  
 
 
-### OnHit
+### <a name="changed_defencemulset_onhit">OnHit</a>
 
 >onHit = *bvalue* (boolean int)  
 
@@ -1639,6 +1659,7 @@ ignorehitpause = 1
 
 ---
 
+<a id="new_depth"></a>
 ## Depth (new)
 
 Temporarily changes the depth size of the player's for 1 frame. Similar to Width in function. 
@@ -1704,6 +1725,7 @@ none
 
 ---
 
+<a id="new_dialogue"></a>
 ## Dialogue (new)
 
 Assigns dialogue data to be displayed either right before the lifebar calls the fight during first round (last frame of  RoundState = 1) or at the last active frame of the final round (RoundState = 4, right before screen starts fading out). If more than 1 player calls this sctrl, who will end up initiating dialogue is chosen randomly.
@@ -1731,7 +1753,7 @@ Tokens prefixed with *pX* (where X is 1 or 2) refers to screenpack `[Dialogue In
 
 Following redirection are supported:
 - `self`: redirects to player that called the sctrl
-- `playerno(X)`: redirects to [playerno](Triggers-(new)/#new_playerno) X
+- `playerno(X)`: redirects to [playerno](triggers#new_playerno) X
 - `enemy(X)`: redirects to enemy X of the player that called the sctrl (defaults to 0, the first enemy, if bracket is ommiteed)
 - `partner(X)`: redirects to partner X of the player that called the sctrl (defaults to 0, the first partner, if bracket is ommiteed)
 - `enemyname(name)`: redirects to the enemy with matching name (the internal `name` parameter specified in .DEF file)
@@ -1743,9 +1765,9 @@ Token list:
 - `<pXname=redirection>`: changes pX side name displayed during dialogue to the redirected player displayname (as specified in displayname parameter within the .DEF file)
 - `<pXface=redirection,group_or_anim,sprite_no>`: changes pX side sprite group and index used to render the face portrait. If only one value is assigned, it is treated as an animation to play while the portrait is active. Defaults to the sprite numbers defined by the screenpack (and falls back to those if the specified sprites are missing), unless *group_or_anim* is set to -1, in which case face rendering is completely disabled.
 - `<sound=redirection,group_no,sound_no,volumescale>`: plays back a sound. *volumescale* argument is optional (defaults to 100).
-- ``: changes the action number of the player's animation
+- `<anim=redirection,anim_no>`: changes the action number of the player's animation
 - `<state=redirection,state_no>`: changes the state number of the player
-- `<map=redirection,map_name,value,map_type>`: modifies player's map. *map_type* controls what kind of operation on map should be performed (`set`: equivalent of [MapSet](State-controllers/#new_mapset), `add`: equivalent of [MapAdd](State-controllers/#new_mapadd)), 
+- `<map=redirection,map_name,value,map_type>`: modifies player's map. *map_type* controls what kind of operation on map should be performed (`set`: equivalent of [MapSet](sctrl#new_mapset), `add`: equivalent of [MapAdd](sctrl#new_mapadd)), 
 - `<displayname=redirection>`: part of the dialogue text replaced automatically with redirected player displayname (as specified in displayname parameter within the .DEF file)
 - `<wait=ticks>`: amount of ticks delay before sctrl resume further text parameter parsing
 
@@ -1771,7 +1793,7 @@ text6 = "<p2><p2face=enemy,9100,5><sound=enemy,9100,2>What is a man?<wait=75><p1
 [State 180, Dialogue]
 type = Dialogue
 trigger1 = Win && enemy,Name="Demitri Maximoff"
-text1 = "<p2><p1face=self,9100,6><p2face=enemy,9100,3><sound=enemy,9200,0><state=enemy,5500>How?<wait=120> How is that I have been so defeated?<wait=120>"
+text1 = "<p2><p1face=self,9100,6><p2face=enemy,9100,3><sound=enemy,9200,0><anim=self,0><state=enemy,5500>How?<wait=120> How is that I have been so defeated?<wait=120>"
 text2 = "<p1><p1face=self,9100,3><sound=self,9200,0><displayname=enemy>, you have been doomed ever since you lost the ability to love.<wait=20>"
 text3 = "<p2><p2face=enemy,9100,0><sound=enemy,9200,1>Ah...<wait=90> sarcasm.<p1face=self,9100,5><wait=40><state=self,186>"
 ```
@@ -1823,6 +1845,7 @@ The value of var(17) is 1, which is 4.347826% of 23.
 
 ---
 
+<a id="new_dizzypointsadd"></a>
 ## DizzyPointsAdd (new)
 
 Adds the specified amount to the player's dizzy points.
@@ -1834,6 +1857,7 @@ Adds the specified amount to the player's dizzy points.
 
 ---
 
+<a id="new_dizzypointsset"></a>
 ## DizzyPointsSet (new)
 
 Sets the amount of dizzy points that the player has.
@@ -1845,6 +1869,7 @@ Sets the amount of dizzy points that the player has.
 
 ---
 
+<a id="new_dizzyset"></a>
 ## DizzySet (new)
 
 Sets the player's Dizzy flag. For the duration that this flag is set, combo hit counter does not reset and the combo count lifebar text will stay on screen. 
@@ -1924,9 +1949,10 @@ none
 
 ---
 
+<a id="changed_envshake"></a>
 ## EnvShake (changed)
 
-### Decay
+### <a name="changed_envshake_decay">Decay</a>
 
 >decay = *exponent* (float)  
 
@@ -1949,21 +1975,21 @@ decay = 1.5
 ```
 
 
-### Dir
+### <a name="changed_envshake_dir">Dir</a>
 
 >dir = *angle* (int)  
 
 Changes the direction in degrees in which the shake is applied. Defaults to 0. For a negative amplitude, 90 will make the screen shake from left to right.
 
 
-### DirAdd
+### <a name="changed_envshake_diradd">DirAdd</a>
 
 >diradd = *angle* (int)  
 
 Increases the shaking angle by the specified value each frame. Allows the effect to appear more exaggerated and erratic.  
 
 
-### Mul
+### <a name="changed_envshake_mul">Mul</a>
 
 >mul = *factor* (float)  
 
@@ -2261,47 +2287,48 @@ For example, assume the player has an x velocity of 5 and a position of (160, 0)
 
 ---
 
+<a id="changed_explod"></a>
 ## Explod (changed)
 
-### AfterImage
+### <a name="changed_explod_aferimage">AfterImage</a>
 Explods now support AfterImage parameters (e.g. afterimage.time, afterimage.length, afterimage.trans). Usage is identical to Projectile's AfterImage.
 
-### AnimElem
+### <a name="changed_explod_animelem">AnimElem</a>
 
 >animelem = *elem_no* (int)  
 
 Sets the element where the explod's animation should start. Defaults to 1.
 
 
-### AnimPlayerNo
+### <a name="changed_explod_animplayerno">AnimPlayerNo</a>
 
 >animplayerno = *playerno* (int)  
 
 This parameter lets a explod use the specified animation from another character. Defaults to own playerno.
 
 
-### HideWithBars
+### <a name="changed_explod_hidewithbars">HideWithBars</a>
 
 >hidewithbars = *bvalue* (boolean int)  
 
 This parameter hides the explod automatically when the fight screen is hidden. Defaults to 0.
 
 
-### SpritePlayerNo
+### <a name="changed_explod_spriteplayerno">SpritePlayerNo</a>
 
 >spriteplayerno = *playerno* (int)  
 
 This parameter lets a explod use the specified sprites from another character. Defaults to own playerno.
 
 
-### AnimElemTime
+### <a name="changed_explod_animelem">AnimElemTime</a>
 
 >animelemtime = *time* (int)  
 
 Sets the time at which the explod's animation element should start. Defaults to 0.
 
 
-### AnimFreeze
+### <a name="changed_explod_animfreeze">AnimFreeze</a>
 
 >animfreeze = *bvalue* (boolean int)  
 
@@ -2337,20 +2364,20 @@ ignorehitpause = 1
 ```
 
 
-### FocalLength
+### <a name="changed_explod_focallength">FocalLength</a>
 
 Focal Length of the projection. Does nothing when `projection` is not perspective or perspective2. 
 This value is fixed in Mugen 1.1, the explods will look differently under different different resolution/loaclcoord/camera zoom.
 In Ikemen, this value scales internally like xy scales so that the explods will always look the same.
 Default value is 2048.
 
-### Friction
+### <a name="changed_explod_fricction">Friction</a>
 
 Applies friction to explod on the defined axis (Friction value example: 0.95).
 
 >Friction = friction_x, friction_y, friction_z (float, float, float)   
 
-### Interpolation
+### <a name="changed_explod_interpolation">Interpolation</a>
 
 Interpolation works just as the .air counterpart, interpolating linearly between 2 values.  
 
@@ -2453,57 +2480,57 @@ interpolation.palFx.mul = 256, 0, 0;
 ```
 
 
-### LayerNo
+### <a name="changed_explod_layerno">LayerNo</a>
 
 Specify on which layer the explod should be drawn. Valid values are -1, 0 and 1. Defaults to the same layer as the player.  
 Layer number 1 is effectively the same as the legacy `ontop` parameter.  
 
 
-### PalFx
+### <a name="changed_explod_palfx">PalFx</a>
 
 Apply palette effects on explods. The parameters are the same as in the HitDef controller. Requires `ownpal` to be a nonzero value.
 
-### Projection
+### <a name="changed_explod_projection">Projection</a>
 
 Affect how the explod is drawn when `xangle` or `yangle` is not zero. 
 - orthographic: The default value when Mugen version is not 1.1 or Ikemen version is not 0. The explod is drawn using orthographic projection.
 - perspective: The default value when Mugen version is 1.1 and Ikemen version is 0. The explod is drawn using perspective projection. Distortion is affected by the position of the sprite relative to the center of the screen.
 - perspective2: The explod is drawn using perspective projection. Distortion is affected by the position of the sprite relative to the center of the animation.
 
-### Reflection
+### <a name="changed_explod_reflection">Reflection</a>
 
 If 0, disables reflection on the explod regardless of its shadow color. If 1, enables reflection on the explod regardless of its shadow color. Defaults to showing a reflection if the explod's shadow is not 0, 0, 0.
 
 
-### RemoveOnChangeState
+### <a name="changed_explod_removeonchangestate">RemoveOnChangeState</a>
 
 If set to 1, the Explod will be removed if the character changes state. Defaults to 0.
 
 
-### Shader
+### <a name="changed_explod_shader">Shader</a>
 
 >shader = *"shader_name"* (string)  
 
 Specifying the name of the currently loaded custom shader will apply that shader to Explod.
 
-### ShaderTime
+### <a name="changed_explod_shadertime">ShaderTime</a>
 
 >shadertime = *time* (int)  
 
 Specifying this parameter will remove the custom shader after it has been displayed for the specified number of ticks. The default value is -1.
 
-### ShaderParam.pX
+### <a name="changed_explod_shadersaram.px">ShaderParam.pX</a>
 
 >shaderparam.pX = *value* (float)  
 
 Specifies the value to send to the custom shader. The value specified here can be used as a variable within the custom shader.
 X is limited to 0 to 15, and a maximum of 16 values ​​can be sent.
 
-### ShaderTexX.spr
+### <a name="changed_explod_shadertexx.spr">ShaderTexX.spr</a>
 
 >shadertexX.spr = *group, image* (int, int)  
 
-### ShaderTexX.anim
+### <a name="changed_explod_shadertexx.anim">ShaderTexX.anim</a>
 
 
 >shadertexX.anim = *anim_no* (int)  
@@ -2513,20 +2540,20 @@ You can specify 1 or 2 for X, and send up to two sprites.
 Each tex can be assigned either a sprite number (spr) or an anim number. It is not possible to assign both sprite and anim numbers to the same tex number simultaneously.
 Note that since textures are loaded as raw data, images with palettes may not display correctly as is.
 
-### SpritePlayerNo
+### <a name="changed_explod_spriteplayerno">SpritePlayerNo</a>
 
 >spriteplayerno = *playerno* (int)  
 
 This parameter lets a explod use the specified sprites from another character. Defaults to own playerno.
 
 
-### syncid
+### <a name="changed_explod_syncid">syncid</a>
 
 >syncid = *id* (int)
 
 Specifies the ID of a character to synchronize with. The Explod will group with the target in the draw order. If syncparams is 1, it also copies the target's drawing properties (Position, Scale, Angle, Trans, etc.).
 
-### synclayer
+### <a name="changed_explod_synclayer">synclayer</a>
 
 >synclayer = *layer* (int)
 
@@ -2535,24 +2562,24 @@ Adjusts the drawing order relative to the character specified in syncid.
 * \> 0: Drawn in front of the character.
 * < 0: Drawn behind the character.
 
-### syncparams
+### <a name="changed_explod_syncparams">syncparams</a>
 
 >syncparams = *value* (bool)
 
 If set to 1, visual parameters (Scale, Angle, Trans, etc.) are continuously copied from the character specified in syncid. If set to 0, only the draw order is synchronized. Defaults to 1.
 
-### under
+### <a name="changed_explod_under">under</a>
 
 If set to 1 and the explod is on layer 0, it will always be drawn behind lifebars and character shadows.
 
 
-### window
+### <a name="changed_explod_window">window</a>
 
 >window = *x1*, *y1*, *x2*, *y2* (float)  
 
 This parameter takes four numbers (similar to the format of a Clsn box) which forms a rectangle outside of which the pixels will not be rendered.
 
-### xshear
+### <a name="changed_explod_xshear">xshear</a>
 
 >xshear = *xshear* (float)
 
@@ -2658,18 +2685,19 @@ See common1.cns.
 
 ---
 
+<a id="changed_forcefeedback"></a>
 ## Forcefeedback (changed)
 
 Note: The below parameters are considered "new API" and override all `freq` and `ampl` parameters of ForceFeedback. `ampl` is ignored regardless of API used.
 
 
-### lo
+### <a name="changed_forcefeedback_lo">lo</a>
 
 >lo = *lo_value* (int)  
 
 Sets the frequency for the low frequency (left) rumble motor. Defaults to 0.
 
-### hi
+### <a name="changed_forcefeedback_hi">hi</a>
 
 >hi = *hi_value* (int)  
 
@@ -2713,6 +2741,7 @@ none
 
 ---
 
+<a id="new_grthitvarset"></a>
 ## GetHitVarSet (new)
 
 Changes a player's `GetHitVar` directly, without requiring a hit.  
@@ -2752,6 +2781,7 @@ type = Gravity
 
 ---
 
+<a id="new_groundleveloffset"></a>
 ## GroundLevelOffset (new)
 
 Applies a temporary offset to the player's ground level, which is otherwise 0. This makes the player treat a different position as `pos y = 0`, and therefore allows coding features such as platforms.
@@ -2771,6 +2801,7 @@ value = -60
 
 ---
 
+<a id="new_guardbreakset"></a>
 ## GuardBreakSet (new)
 
 Sets the player's Guard Break flag.
@@ -2782,6 +2813,7 @@ Sets the player's Guard Break flag.
 
 ---
 
+<a id="new_guardpointsadd"></a>
 ## GuardPointsAdd (new)
 
 Adds the specified amount to the player's guard points.
@@ -2793,6 +2825,7 @@ Adds the specified amount to the player's guard points.
 
 ---
 
+<a id="new_guardpointsset"></a>
 ## GuardPointsSet (new)
 
 Sets the amount of guard points that the player has.
@@ -2804,6 +2837,7 @@ Sets the amount of guard points that the player has.
 
 ---
 
+<a id="new_height"></a>
 ## Height (new)
 
 Temporarily changes the vertical size of the player's "push box" for 1 frame. Similar to Width in function: the values are added to the height, as defined in the player's constants file—they do not override them. A positive value will make the box larger, and a negative one will make it smaller.
@@ -2979,29 +3013,30 @@ none
 
 ---
 
+<a id="changed_helper"></a>
 ## Helper (changed)
 
-### ClsnProxy
+### <a name="changed_helper_clsnproxy">ClsnProxy</a>
 
 If set to 1, any overlap with the helper's clsn boxes will instead affect its parent as if the helper's clsn boxes were part of the parent's anim. Defaults to 0.
 
-### ExtendsMap
+### <a name="changed_helper_extendsmap">ExtendsMap</a>
 
 If set to 1, the parent map is inherited by helper. Defaults to 0.
 
-### Immortal
+### <a name="changed_helper_immortal">Immortal</a>
 
 If set to 1, the helper's life can't be reduced to 0. Defaults to 0.
 
-### InheritChannels
+### <a name="changed_helper_inheritchannels">InheritChannels</a>
 
 If set to 1, helper shares parent's sound channels. Setting it to 2 does the same thing but for root instead of parent. Defaults to 0.
 
-### InheritJuggle
+### <a name="changed_helper_inheritjuggle">InheritJuggle</a>
 
 If set to 1, helper's attacks also update parent's target list and add to the parent's juggle points. Also, the helper will inherit its parent's juggle points against attacked enemy. Setting it to 2 does the same thing but for root instead of parent. Defaults to 0.
 
-### keyctrl
+### <a name="changed_helper_keyctrl">keyctrl</a>
 
 In Mugen this parameter accepts a single boolean int value that makes the helper being able to read command input and inherit its root's State -1. In Ikemen GO, on top of this functionality, the parameter optionally accepts more values that enable additional root's negative state inheritance (2 means that helper inherit its root's State -2 and so forth). 
 
@@ -3009,12 +3044,12 @@ In Mugen this parameter accepts a single boolean int value that makes the helper
 keyctrl = 1, 3
 ```
 
-### KOVelocity
+### <a name="changed_helper_kovelocity">KOVelocity</a>
 
 If set to 1, the helper will be affected by increased KO Velocity (defeated character flying across the screen), just like normal player. Defaults to 0.
 
 
-### Map
+### <a name="changed_helper_map">Map</a>
 
 A helper's maps can be set immediately upon its creation via `map.<mapname>` syntax.
 
@@ -3023,23 +3058,23 @@ helper{...; map.speed: 8; map.angle: 45}
 ```
 
 
-### OwnClsnScale
+### <a name="changed_helper_ownclsnscale">OwnClsnScale</a>
 
 A helper with this parameter will have its collision box scale be based on its own `size.xscale` and `size.yscale` constants rather than its root's.
 
 
-### OwnProjectile
+### <a name="changed_helper_ownprojectile">OwnProjectile</a>
 
 A helper with this parameter can own its own projectiles instead of the root player.  
 Note: If a helper is destroyed while a projectile is still active, the orphaned projectile loses its ability to interact with other players.
 
 
-### Preserve
+### <a name="changed_helper_preserve">Preserve</a>
 
 If set to 1, the helper won't be destroyed after skipping round 1 intro and will move over to the next round, just like normal player. Defaults to 0.
 
 
-### Size
+### <a name="changed_helper_size">Size</a>
 
 New size constants like `depth` and `weight` can also be attributed to helpers upon their creation, with the `size` prefix.
 
@@ -3051,7 +3086,7 @@ size.depth = 10, 10
 ```
 
 
-### Standby
+### <a name="changed_helper_standby">Standby</a>
 
 Helpers inherit standby flag from root characters. By using this parameter, a character can force a specific standby for its helper, regardless of the standby value of the character itself.
 
@@ -3114,14 +3149,15 @@ value = S, NA
 
 ---
 
+<a id="changed_hitby"></a>
 ## HitBy (changed)
 
-### IkemenVersion
+### <a name="changed_hitby_ikemenversion">IkemenVersion</a>
 
 In Mugen, the behavior of `HitBy` (and `NotHitBy`) is not as documented. The player's invincibility is compared to the enemy's actual statetype instead of their Hitdef's `SCA` flags. If a character has `ikemenversion`, it will work as documented.  
 
 
-### New syntax
+### <a name="changed_hitby_stack">New syntax</a>
 
 `HitBy` (and `NotHitBy`) now also accepts a syntax similar to `HitOverride`, using `attr` and `slot` instead of `value`. Every player has access to 8 individual slots (numbered 0 to 7).  
 This new syntax is required to use the new features.  
@@ -3143,7 +3179,7 @@ time = 1
 ```
 
 
-### Stack
+### <a name="changed_hitby_stack">Stack</a>
 
 >stack = *value* (bool)  
 
@@ -3169,14 +3205,14 @@ stack = 1
 ```
 
 
-### PlayerNo
+### <a name="changed_hitby_playerno">PlayerNo</a>
 
 >playerno = *player_number* (int)  
 
 Using this parameter limits vulnerability to a specific player number.
 
 
-### PlayerID
+### <a name="changed_hitby_playerid">PlayerID</a>
 
 >playerid = *player_id* (int)  
 
@@ -3677,164 +3713,165 @@ none
 
 ---
 
+<a id="changed_hitdef"></a>
 ## HitDef (changed)
 
-### air.cornerpush.velmul (changed) (nightly build only)
+### <a name="changed_hitdef_air_cornerpush_velmul">air.cornerpush.velmul (changed)</a> (nightly build only)
 
 See `ground.cornerpush.velmul`.
 
 
-### airguard.cornerpush.velmul (changed) (nightly build only)
+### <a name="changed_hitdef_airguard_cornerpush_velmul">airguard.cornerpush.velmul (changed)</a> (nightly build only)
 
 See `ground.cornerpush.velmul`.
 
 
-### air.juggle (changed)
+### <a name="changed_hitdef_airjuggle">air.juggle (changed)</a>
 
 In Mugen, the `air.juggle` parameter is only used by the `Projectile` state controller. Characters with `ikemenversion` can now use this parameter in a `Hitdef` to update their juggle points. This allows a move with multiple hits to have different juggle properties in every hit, for instance.  
 
 
-### air.velocity (changed)
+### <a name="changed_hitdef_air_velocity">air.velocity (changed)</a>
 
 This parameter now takes a third value, It specifies the z velocity.
 
 >air.velocity = *x_vel, y_vel, z_vel* (float, float, float)
 
 
-### airguard.velocity (changed)
+### <a name="changed_hitdef_airguard_velocity">airguard.velocity (changed)</a>
 
 This parameter now takes a third value, It specifies the z velocity.
 
 >airguard.velocity = *x_vel, y_vel, z_vel* (float, float, float)
 
 
-### attack.depth
+### <a name="changed_hitdef_attackdepth">attack.depth</a>
 
 >attack.depth = *z_dist_front, z_dist_back* (int, int)
 
 Specifies the range of the attack in the Z plane. An attack with more depth reaches further into or out of the Z plane. Defaults to the character's `attack.depth` size constant.  
 
 
-### dizzypoints
+### <a name="changed_hitdef_dizzypoints">dizzypoints</a>
 
 >dizzypoints = *hit_value* (int)  
 
 Specifies the amount of dizzy points to give P2 if this HitDef connects successfully. If omitted, it defaults to hit_damage (from "damage" parameter) multiplied by the value of `Default.LifeToDizzyPointsMul` / `Super.LifeToDizzyPointsMul` specified in data/common.const, scaled by the targets' defense multipliers if necessary.
 
 
-### down.cornerpush.velmul (changed) (nightly build only)
+### <a name="changed_hitdef_down_cornerpush_velmul">down.cornerpush.velmul (changed)</a> (nightly build only)
 
 See `ground.cornerpush.velmul`.
 
 
-### down.recover
+### <a name="changed_hitdef_downrecover">down.recover</a>
 
 >down.recover = *recover_flag* (bool)  
 
 This parameter controls the enemy's ability to use "fast recovery from lie down" after being hit.  
 
 
-### down.recovertime
+### <a name="changed_hitdef_downrecovertime">down.recovertime</a>
 
 >down.recovertime = *recover_time* (int)  
 
 This parameter determines how long the enemy will stay down (in state 5110) after being knocked down. Defaults to the enemy's `data.liedown.time` constant. Together with `down.recover`, this allows one to effectively apply "hard knockdown" states on the enemy.
 
 
-### down.velocity (changed)
+### <a name="changed_hitdef_down_velocity">down.velocity (changed)</a>
 
 >down.velocity = *x_vel, y_vel, z_vel* (float, float, float)  
 
 This parameter now takes a third value, It specifies the z velocity. 
 
 
-### envshake.mul
+### <a name="changed_hitdef_envshakemul">envshake.mul</a>
 
 >envshake.mul = *envshake_mul* (float) 
 
 For every envshake cycle, the envshake.ampl is multiplied by this value. Defaults to 1.
 
 
-### envshake.dir
+### <a name="changed_hitdef_envshakedir">envshake.dir</a>
 
 >envshake.dir = *angle* (int)  
 
 Changes the direction in degrees in which the shake is applied. Defaults to 0. For a negative amplitude, 90 will make the screen shake from left to right.
 
 
-### fall.envshake.mul
+### <a name="changed_hitdef_fallenvshakemul">fall.envshake.mul</a>
 
 >fall.envshake.mul = *fall_envshake_mul* (float) 
 
 For every fall.envshake cycle, the fall.envshake.ampl is multiplied by this value. Defaults to 1.
 
 
-### fall.envshake.dir
+### <a name="changed_hitdef_fallenvshakedir">fall.envshake.dir</a>
 
 >fall.envshake.dir = *angle* (int)  
 
 Changes the direction in degrees in which the shake is applied. Defaults to 0. For a negative amplitude, 90 will make the screen shake from left to right.
 
 
-### fall.zvelocity
+### <a name="changed_hitdef_zvelocity">fall.zvelocity</a>
 
 >fall.zvelocity = *fall_zvelocity* (float) 
 
 This is the z-velocity that P2 gets when bouncing off the ground in the "fall" state. Defaults to no change if omitted.
 
 
-### forcecrouch
+### <a name="changed_hitdef_forcecrouch">forcecrouch</a>
 
 >forcecrouch = *bvalue* (boolean int)
 
 Forces a standing opponent to crouch upon hit. Similar to ForceStand. Defaults to 0.
 
 
-### ground.cornerpush.velmul (changed) (nightly build only)
+### <a name="changed_hitdef_ground_cornerpush_velmul">ground.cornerpush.velmul (changed)</a> (nightly build only)
 
 Determines friction to apply to cornerpush. Setting to `-1` makes friction depend on the target's statetype.  
 Defaults to -1 for Ikemen characters and 0.7 for Mugen characters.  
 
 
-### guard.cornerpush.velmul (changed) (nightly build only)
+### <a name="changed_hitdef_guard_cornerpush_velmul">guard.cornerpush.velmul (changed)</a> (nightly build only)
 
 See `ground.cornerpush.velmul`.
 
 
-### guard.hittime
+### <a name="changed_hitdef_guard_hittime">guard.hittime</a>
 
 If the character has `ikemenversion`, this value now defaults to `ground.hittime` as documented, as opposed to `ground.slidetime`.
 
 
-### guardpoints
+### <a name="changed_hitdef_guardpoints">guardpoints</a>
 
 >guardpoints = *hit_value* (float)  
 
 Specifies the amount of guard points to give P2 if this HitDef is guarded. If omitted, it defaults to hit_damage (from "damage" parameter) multiplied by the value of `Default.LifeToGuardPointsMul` / `Super.LifeToGuardPointsMul` specified in data/common.const, scaled by the targets' defense multipliers if necessary.
 
 
-### ground.velocity (changed)
+### <a name="changed_hitdef_ground_velocity">ground.velocity (changed)</a>
 
 This parameter now takes a third value, It specifies the z velocity.
 
 >ground.velocity = *x_vel, y_vel, z_vel* (float, float, float)
 
 
-### guard.dist (changed)
+### <a name="changed_hitdef_guard_dist">guard.dist (changed)</a>
 
 >guard.dist = *x_dist_front, x_dist_back* (int, int)
 
 This parameter now takes a second value. It specifies the distance that a player can attack behind the enemy and still allow them to enter proximity guard. This second value defaults to 0.
 
 
-### guard.dist.width
+### <a name="changed_hitdef_guard_width">guard.dist.width</a>
 
 >guard.dist.width = *x_dist_front, x_dist_back* (int, int)
 
 Alternative syntax for guard.dist, for consistency with `guard.dist.height` and `guard.dist.depth`.
 
 
-### guard.dist.height
+### <a name="changed_hitdef_guard_height">guard.dist.height</a>
 
 >guard.dist.height = *y_dist_top, y_dist_bottom* (int, int)
 
@@ -3846,76 +3883,76 @@ Specifies the vertical distance (height) within which a player's attack can trig
 Specifies the depth range (along the Z-axis) within which a player's attack can trigger the enemy's proximity guard. The default value is 4, 4.
 
 
-### guard.velocity (changed)
+### <a name="changed_hitdef_guard_velocity">guard.velocity (changed)</a>
 
 >guard.velocity = *x_vel, y_vel, z_vel* (float, float, float)
 
 This parameter now takes a second and a third value. It specifies the Y and the Z guard velocities. They default to 0.
 
 
-### guard.sparkangle
+### <a name="changed_hitdef_guardsparkangle">guard.sparkangle</a>
 
 >guard.sparkangle = *angle_value* (float)  
 
 Specifies the guard spark rotation directly from a Hitdef. Defaults to 0.
 
 
-### guard.sparkscale
+### <a name="changed_hitdef_guardsparksclae">guard.sparkscale</a>
 
 >guard.sparkscale = *x_scale, y_scale* (float, float)  
 
 Specifies the guard spark's scale directly from a Hitdef. Defaults to 1, 1 (no change).
 
-### stand.friction
+### <a name="changed_hitdef_stand.friction">stand.friction</a>
 
 >stand.friction = *friction_value* (float)
 
 Overrides the opponent's Movement.Stand.Friction constants while they are in the gethit state caused by this HitDef.
 
-### crouch.friction
+### <a name="changed_hitdef_crouch.friction">crouch.friction</a>
 
 >crouch.friction = *friction_value* (float)
 
 Overrides the opponent's Movement.Crouch.Friction constants while they are in the gethit state caused by this HitDef.
 
-### guardsound.channel
+### <a name="changed_hitdef_guardsoundchannel">guardsound.channel</a>
 
 >guardsound.channel = *channel_no* (int)
 
 Specifies which of the player's sound channels the guardsound should play on. If omitted, channel_no defaults to -1, meaning the sound will play on any free channel.
 
 
-### hitsound.channel
+### <a name="changed_hitdef_hitsoundchannel">hitsound.channel</a>
 
 >hitsound.channel = *channel_no* (int)
 
 Specifies which of the player's sound channels the hitsound should play on. If omitted, channel_no defaults to -1, meaning the sound will play on any free channel.
 
 
-### ignorereversaldef
+### <a name="changed_hitdef_ignorereversaldef">ignorereversaldef</a>
 
 >ignorereversaldef = *value* (bool)
 
 If set to 1, this HitDef will ignore any active ReversalDef on the opponent, hitting them normally. Defaults to 0.
 
 
-### keepstate
+### <a name="changed_hitdef_keepstate">keepstate</a>
 
 >keepstate = *value* (bool)
 
 If set to 1, the hit will apply effects (damage, hitpause, etc.) but the opponent will not change to a gethit state. Defaults to 0.
 
 
-### maxdist (changed)
+### <a name="changed_hitdef_mindist">maxdist (changed)</a>
 
 This parameter now takes a third value. It specifies the Z maxdist.
 
 
-### mindist (changed)
+### <a name="changed_hitdef_mindist">mindist (changed)</a>
 
 This parameter now takes a third value. It specifies the Z mindist.
 
-### missonoverride 
+### <a name="changed_hitdef_missonoverride">missonoverride </a>
 
 >missonoverride = *bvalue* (boolean int)
 
@@ -3923,17 +3960,17 @@ This parameter allows you to choose whether or not a HitDef will miss if it woul
 P1StateNo and P2StateNo both do not apply if the hit is overridden.
 
 
-### nochainID (changed)
+### <a name="changed_hitdef_nochainid">nochainID (changed)</a>
 
 This parameter now accepts up to 8 values, up from 2. 
 
 
-### p1sprpriority
+### <a name="changed_hitdef_p1sprpriority">p1sprpriority</a>
 
 In Mugen, the default value for this parameter was not intuitive and often became a problem. In Ikemen, it defaults to no change.
 
 
-### p2clsncheck
+### <a name="changed_hitdef_p2clsncheck">p2clsncheck</a>
 
 >p2clsncheck= *clsn_type* (string)  
 
@@ -3941,7 +3978,7 @@ This parameter makes a hit be checked against a specific type of collision box. 
 Traditionally, fighting games check throws with the `Size` box.  
 
 
-### p2clsnrequire
+### <a name="changed_hitdef_p2clsnrequire">p2clsnrequire</a>
 
 >p2clsnrequire= *clsn_type* (string)  
 
@@ -3950,48 +3987,48 @@ This parameter prevents a hit from happening if the enemy lacks a particular typ
 Note: All Mugen characters were created on the assumption that lacking `Clsn2` makes them invulnerable. Therefore, if a character is designed for compatibility with other Mugen characters, this parameter should be used when checking hits against other types of collision boxes.  
 
 
-### redlife
+### <a name="changed_hitdef_redlife">redlife</a>
 
 >redlife = *hit_value*, *guard_value* (int)  
 
 Specifies the amount of red life to give P2 if this HitDef connects successfully. If omitted, it defaults to hit_damage (from "damage" parameter) multiplied by the value of `Default.LifeToRedLifeMul` / `Super.LifeToRedLifeMul` specified in data/common.const, scaled by the targets' defense multipliers if necessary. Additional second value is optional and assigns an amount of guard red life to P2.
 
 
-### score
+### <a name="changed_hitdef_score">score</a>
 
 >score = *p1_value*, *p2_value* (float)  
 
 Specifies the score value added to P1 and P2 score count.
 
 
-### snap
+### <a name="changed_hitdef_snap">snap</a>
 
 This parameter now actually uses the third value. It specifies the P2 Pos Z.
 `snap` takes 4 arguments the 4th one being snaptime.
 
 
-### sparkangle
+### <a name="changed_hitdef_sparkangle">sparkangle</a>
 
 >sparkangle = *angle_value* (float)  
 
 Specifies the hitspark rotation directly from a Hitdef. Defaults to 0.
 
 
-### sparkscale
+### <a name="changed_hitdef_sparksclae">sparkscale</a>
 
 >sparkscale = *x_scale, y_scale* (float, float)  
 
 Specifies the hit spark's scale directly from a Hitdef. Defaults to 1, 1 (no change).
 
 
-### teamside
+### <a name="changed_hitdef_teamside">teamside</a>
 
 Makes the HitDef be treated as an attack from the TeamSide you specify (similar to the trigger of TeamSide).  
 
 When used with `Projectile`, setting a teamside different from the player's will allow the projectile to hit its owner and interact with other projectiles from the same player.  
 
 
-### unhittabletime
+### <a name="changed_hitdef_unhittabletime">unhittabletime</a>
 
 >unhittabletime = *p1_time*, *p2_time* (int)  
 
@@ -3999,14 +4036,14 @@ Makes the player or the enemy invincible for the specified number of the frames 
 Defaults to `p1_pausetime + 1, p1_pausetime + 1` for throw attribute attacks, `0, p1_pausetime + 1` for ReversalDef, or `-1, -1` otherwise.
 
 
-### xaccel
+### <a name="changed_hitdef_xaccel">xaccel</a>
 
 >xaccel = *accel* (float) 
 
 Specifies the x acceleration to impart to P2 if the hit connects. Defaults to 0.  
 For backwards compatibility reasons, this acceleration is not used by default, as it is not called by `common1.cns`.  
 
-### zaccel
+### <a name="changed_hitdef_zaccel">zaccel</a>
 
 >zaccel = *accel* (float) 
 
@@ -4129,23 +4166,24 @@ none
 
 ---
 
+<a id="changed_hitoverride"></a>
 ## HitOverride (changed)
 
-### forceguard
+### <a name="changed_hitoverride_forceguard">forceguard</a>
 
 >forceguard = *value* (bool)
 
 If set to 1, a successful override will be considered a guarded attack.
 
 
-### guardflag
+### <a name="changed_hitoverride_guardflag">guardflag</a>
 
 >guardflag = *hit_flags* (string)  
 
 Only hits containing the specified flags in their `guardflag` will be overridden.
 
 
-### guardflag.not
+### <a name="changed_hitoverride_guardflagnot">guardflag.not</a>
 
 >guardflag.not = *hit_flags* (string)  
 
@@ -4162,7 +4200,7 @@ guardflag.not = L
 ```
 
 
-### keepstate
+### <a name="changed_hitoverride_keepstate">keepstate</a>
 
 >keepstate = *value* (bool)
 
@@ -4200,9 +4238,10 @@ Obsolete.
 
 ---
 
+<a id="changed_hitvelset"></a>
 ## HitVelSet (changed)
 
-### Z
+### <a name="changed_hitvelset_z">Z</a>
 
 >z = z_flag (int)
 
@@ -4238,9 +4277,10 @@ none
 
 ---
 
+<a id="new_lifebaraction"></a>
 ## LifebarAction (new)
 
-Displays text/sprites/anims synchronized with each other, using [lifebar data](Lifebar-features/#new_action). The intended use case is implementation of messages, often found in commercial fighting games.
+Displays text/sprites/anims synchronized with each other, using [lifebar data](https://github.com/ikemen-engine/Ikemen-GO/wiki/Lifebar-features#new_action). The intended use case is implementation of messages, often found in commercial fighting games.
 
 **Required parameters:**  
   
@@ -4313,6 +4353,7 @@ none
 
 ---
 
+<a id="new_loadfile"></a>
 ## LoadFile (new)
 
 Loads the specified data and overrides the data of the execution character. Note that all the data before reading will disappear.
@@ -4378,6 +4419,7 @@ none
 
 ---
 
+<a id="new_mapadd"></a>
 ## MapAdd (new)
 
 Adds value to player's map.
@@ -4392,6 +4434,7 @@ Adds value to player's map.
 
 ---
 
+<a id="new_mapreset"></a>
 ## MapReset (new)
 
 Clears all of the player's maps, except those containing the specified strings.  
@@ -4416,6 +4459,7 @@ mapReset{exclude: "level_"; exclude2: "experience_"; exclude3: "score_"}
 
 ---
 
+<a id="new_mapset"></a>
 ## MapSet (new)
 
 Sets value to player's map. This state controller can be used to change a number that has already been set via character's DEF file or to set a new map.
@@ -4430,6 +4474,7 @@ Sets value to player's map. This state controller can be used to change a number
 
 ---
 
+<a id="new_matchrestart"></a>
 ## MatchRestart (new)
 
 Reset the round or match and resume. By default (when no optional parameters are set) has the same effect as F4 debug key (round restart). Optionally allows characters and stage reloading, which also changes the state controller functionality to work like shift+F4 debug key (match restart).
@@ -4474,6 +4519,7 @@ reload = 1, 1
 
 ---
 
+<a id="new_modifybgctrl"></a>
 ## ModifyBGCtrl (new)
 
 Modifies the parameters of an existing stage [background controller](http://www.elecbyte.com/mugendocs/bgs.html#background-controllers).
@@ -4481,7 +4527,7 @@ Modifies the parameters of an existing stage [background controller](http://www.
 **Required parameters:**  
   
 >id = *sctrlid* (int)  
->Specifies which controllers should be modified (all BGCtrl marked with [sctrlid](Stage-features/#bgctrl_sctrlid) will be affected)  
+>Specifies which controllers should be modified (all BGCtrl marked with [sctrlid](https://github.com/ikemen-engine/Ikemen-GO/wiki/Stage-features#bgctrl_sctrlid) will be affected)  
   
 **Optional parameters:**  
   
@@ -4498,7 +4544,7 @@ Modifies the parameters of an existing stage [background controller](http://www.
 >y value that should modify background controller *y* parameter (used by following BGCtrl types: *VelSet*, *VelAdd*, *PosSet*, *PosAdd*).  
   
 >Notes:  
->This state controller affects background controllers marked with [sctrlid](Stage-features/#bgctrl_sctrlid), which is normally not known by individual characters. For this reason the best way to use this sctrl is through [AttachedChar](Stage-features#info_attachedchar) associated with particular stage.
+>This state controller affects background controllers marked with [sctrlid](https://github.com/ikemen-engine/Ikemen-GO/wiki/Stage-features#bgctrl_sctrlid), which is normally not known by individual characters. For this reason the best way to use this sctrl is through [AttachedChar](https://github.com/ikemen-engine/Ikemen-GO/wiki/Stage-features#info_attachedchar) associated with particular stage.
   
 **Example:**
 ```ini
@@ -4511,14 +4557,15 @@ value = 0
 
 ---
 
+<a id="new_modifybgctrl"></a>
 ## ModifyBGCtrl3D (new)
 
-Modifies the parameters of an existing [3D stage background controller](../Stage-features-(3d)/).
+Modifies the parameters of an existing [3D stage background controller](https://github.com/ikemen-engine/Ikemen-GO/wiki/Stage-features-(3d)).
 
 **Required parameters:**  
   
 >id = *sctrlid* (int)  
->Specifies which controllers should be modified (all BGCtrl marked with [sctrlid](Stage-features/#bgctrl_sctrlid) will be affected)  
+>Specifies which controllers should be modified (all BGCtrl marked with [sctrlid](https://github.com/ikemen-engine/Ikemen-GO/wiki/Stage-features#bgctrl_sctrlid) will be affected)  
   
 **Optional parameters:**  
   
@@ -4529,7 +4576,7 @@ Modifies the parameters of an existing [3D stage background controller](../Stage
 >values that should modify background controller value parameter (used by following BGCtrl types: *Visible*, *Enabled*, *Anim*).  
   
 >Notes:  
->This state controller affects background controllers marked with [sctrlid](Stage-features/#bgctrl_sctrlid), which is normally not known by individual characters. For this reason the best way to use this sctrl is through [AttachedChar](Stage-features#info_attachedchar) associated with particular stage.
+>This state controller affects background controllers marked with [sctrlid](https://github.com/ikemen-engine/Ikemen-GO/wiki/Stage-features#bgctrl_sctrlid), which is normally not known by individual characters. For this reason the best way to use this sctrl is through [AttachedChar](https://github.com/ikemen-engine/Ikemen-GO/wiki/Stage-features#info_attachedchar) associated with particular stage.
   
 **Example:**
 ```ini
@@ -4543,6 +4590,7 @@ value = 1
 
 ---
 
+<a id="new_modifybgm"></a>
 ## ModifyBgm (new)
 
 Modifies currently playing music.
@@ -4581,50 +4629,52 @@ Syntax is basically the same as Explod.
 
 ---
 
+<a id="changed_modifyexplod"></a>
 ## ModifyExplod (changed)
 
-### IkemenVersion
+### <a name="changed_modifyexplod_ikemenversion">IkemenVersion</a>
 
 In general, characters with `ikemenversion` are able to to modify their explods more freely.  
 
 Additionally, if a character has `ikemenversion`, modifying an explod timer such as `bindtime` or `removetime` will use the current frame as the reference time. For example, if `removetime` is modified to 10, the explod will be removed 10 frames later, regardless of what the original time was.
 
 
-### anim
+### <a name="changed_modifyexplod_anim">anim</a>
 
 Modifies the `anim` parameter of an existing Explod. Requires `ikemenversion`.
 
 
-### animelem
+### <a name="changed_modifyexplod_animelem">animelem</a>
 
 Modifies the `animelem` parameter of an existing Explod.
 
 
-### animelemtime
+### <a name="changed_modifyexplod_animelemtime">animelemtime</a>
 
 Modifies the `animelemtime` parameter of an existing Explod.
 
 
-### ignorehitpause
+### <a name="changed_modifyexplod_ignorehitpause">ignorehitpause</a>
 
 Modifies the `ignorehitpause` parameter of an existing Explod. Requires `ikemenversion`.
 
-### index
+### <a name="changed_modifyexplod_index">index</a>
 
 The index of the explod to be affected. Defaults to -1 (all).  
 
 
-### space
+### <a name="changed_modifyexplod_space">space</a>
 
 Modifies the `space` parameter of an existing Explod. Requires `ikemenversion`.
 
 
-### under
+### <a name="changed_modifyexplod_under">under</a>
 
 Modifies the `under` parameter of an existing Explod.
 
 ---
 
+<a id="new_modifyhitdef"></a>
 ## ModifyHitDef (new)
 
 Using this state controller will update the specified parameters of the player's currently active `HitDef`. Has no effect if no `HitDef` is active.
@@ -4648,6 +4698,7 @@ damage = 100, 25
 
 ---
 
+<a id="new_modifyplayer"></a>
 ## ModifyPlayer (new)
 
 Allows changing some player parameters that are otherwise out of reach, or don't justify having their own dedicated state controllers. Some parameters should be used with care.  
@@ -4736,6 +4787,7 @@ teamside = 2
 
 ---
 
+<a id="new_modifyprojectile"></a>
 ## ModifyProjectile (new)
 
 Using this state controller will update the specified parameters for the projectiles with the specified `ID`. Syntax is essentially the same as for `Projectile`.
@@ -4765,6 +4817,7 @@ teamside = 2
 
 ---
 
+<a id="new_modifyReflection"></a>
 ## ModifyReflection (new)
 
 This state controller allows modifying parameters of a char's Reflection
@@ -4791,6 +4844,7 @@ This state controller allows modifying parameters of a char's Reflection
 
 ---
 
+<a id="new_modifyreversaldef"></a>
 ## ModifyReversalDef (new)
 
 Using this state controller will update the specified parameters of the player's currently active `ReversalDef`. Has no effect if no `ReversalDef` is active.
@@ -4814,6 +4868,7 @@ fall = 0
 
 ---
 
+<a id="new_modifyShadow"></a>
 ## ModifyShadow (new)
 
 This state controller allows modifying parameters of a char's Shadow
@@ -4840,6 +4895,7 @@ This state controller allows modifying parameters of a char's Shadow
 
 ---
 
+<a id="new_modifysnd"></a>
 ## ModifySnd (new)
 
 Modifies the following sound parameters on-the-fly. This cannot modify the `lowpriority` parameter. If you need your sound to be low priority, call PlaySnd with the respective parameter set.
@@ -4899,6 +4955,7 @@ freqmul = 1 + cos(pi*fightTime/256)
 
 ---
 
+<a id="new_modifystagebg"></a>
 ## ModifyStageBG (new)
 
 This state controller allows modifying the stage's BG elements. Refer to stage documentation for more information.  
@@ -4988,6 +5045,7 @@ velocity.x = 4
 
 ---
 
+<a id="new_modifystagevar"></a>
 ## ModifyStageVar (new)
 
 This SCTRL lets a character modify basic stage parameters or "stage vars", as declared in the stage .def file. Not all parameters are modifable for now, but the SCTRL could be expanded in the future to allow it.
@@ -5073,6 +5131,7 @@ This SCTRL lets a character modify basic stage parameters or "stage vars", as de
 
 ---
 
+<a id="new_modifytext"></a>
 ## ModifyText (new)
 
 Using this state controller will update the specified parameters for the texts with the specified ID. Syntax is essentially the same as for Text sctrl.
@@ -5163,6 +5222,7 @@ value = , NA, AP
 
 ---
 
+<a id="changed_nothitby"></a>
 ## NotHitBy (changed)
 
 See HitBy.
@@ -5211,6 +5271,7 @@ none
 
 ---
 
+<a id="new_overrideclsn"></a>
 ## OverrideClsn (new)
 
 This state controller allows you to directly modify a player’s collision boxes without changing their animation.
@@ -5310,9 +5371,10 @@ none
 
 ---
 
+<a id="changed_palfx"></a>
 ## PalFx (changed)
 
-### invertblend
+### <a name="changed_palfx_invertblend">invertblend</a>
 
 >invertblend = *blend_mode* (int)  
 
@@ -5326,25 +5388,25 @@ For PalFx it accepts 4 values:
 
 If character MugenVersion is 1.1 and invertall = 1 and if invertblend param is omitted, it inverts blend by default. For all other MugenVersion invertblend is 0 if omitted.
 
-### hue
+### <a name="changed_palfx_hue">hue</a>
 
 >hue = *value* (int)
 
 This affects the hue level of the palette. Avaiable range is -256 to 256.
 
-### sinmul
+### <a name="changed_palfx_sinmul">sinmul</a>
 
 >sinmul = *ampl_r*, *ampl_g*, *ampl_b*, *period* (int)  
 
 Similliar to "sinadd" parameter but instead it creates effect related to "mul" parameter.
 
-### sincolor
+### <a name="changed_palfx_sincolor">sincolor</a>
 
 >sincolor= *ampl*, *period* (int)  
 
 Similliar to "sinadd" parameter but instead it creates effect related to "color" parameter.
 
-### sinhue
+### <a name="changed_palfx_sinhue">sinhue</a>
 
 >sinhue= *ampl*, *period* (int)  
 
@@ -5352,6 +5414,7 @@ Similliar to "sinadd" parameter but instead it creates effect related to "hue" p
 
 ---
 
+<a id="new_parentmapadd"></a>
 ## ParentMapAdd (new)
 
 If the player is a helper, adds value to parent's map. If the player is not a helper, this controller does nothing. Parent refers to the instance that spawned the helper.
@@ -5366,6 +5429,7 @@ If the player is a helper, adds value to parent's map. If the player is not a he
 
 ---
 
+<a id="new_parentmapset"></a>
 ## ParentMapSet (new)
 
 If the player is a helper, sets value to parent's map. If the player is not a helper, this controller does nothing. Parent refers to the instance that spawned the helper.
@@ -5525,6 +5589,7 @@ none
 
 ---
 
+<a id="new_playbgm"></a>
 ## PlayBgm (new)
 
 Plays back a music. Supported file formats: *mp3*, *ogg*, *wav*. 
@@ -5583,13 +5648,14 @@ none
 
 ---
 
+<a id="changed_playerpush"></a>
 ## PlayerPush (changed)
 
-### Priority
+### <a name="changed_playerpush_priority">Priority</a>
 
 `PlayerPush` now accepts a `priority` parameter. A player with a higher priority can't be pushed by a player with a lower priority and will also push them out of a stage corner. Priority is reset to 0 every frame.  
 
-### AffectTeam
+### <a name="changed_playerpush_affectteam">AffectTeam</a>
 >affectteam = *team_type* (string)  
 
 specifies which team's players can be push.
@@ -5673,45 +5739,46 @@ Prior to version 1.0 RC8, a volume parameter was used instead of volumescale. Th
 
 ---
 
+<a id="changed_playsnd"></a>
 ## PlaySnd (changed)
 
-### Priority
+### <a name="changed_playsnd_priority">Priority</a>
 
 >priority = *snd_priority* (int)  
 
 Sets the priority of the sound. Does nothing when channel is not specified. A sound with higher priority will not be interrupted by sounds with lower priority. Defaults to 0.
 
-### LoopStart
+### <a name="changed_playsnd_loopstart">LoopStart</a>
 
 >loopstart = *loop_start_sample* (int)  
 
 Sets the sample to begin looping from.
 
-### LoopEnd
+### <a name="changed_playsnd_loopend">LoopEnd</a>
 
 >loopend = *loop_end_sample* (int)  
 
 Sets the sample to end looping at.
 
-### StartPosition
+### <a name="changed_playsnd_startposition">StartPosition</a>
 
 >startposition = *start_sample* (int)  
 
 Sets the sample to begin playing from.
 
-### LoopCount
+### <a name="changed_playsnd_loopcount">LoopCount</a>
 
 >loopcount = *loop_count*  
 
 If set, will play the sound *loop_count* number of times before stopping. Nonzero values take precedence over the `loop` parameter.
 
-### StopOnGetHit
+### <a name="changed_playsnd_stopongethit">StopOnGetHit</a>
 
 >stopongethit = *stop*  (bool)
 
 This parameter makes the sound be interrupted if the player gets hit. Defaults to 1 if channel is set to 0.
 
-### StopOnChangeState
+### <a name="changed_playsnd_stoponchangestate">StopOnChangeState</a>
 
 >stoponchangestate = *stop*  (bool)
 
@@ -5834,6 +5901,7 @@ none
 
 ---
 
+<a id="new_printtoconsole"></a>
 ## PrintToConsole (new)
 
 This controller is only useful for debugging. PrintToConsole prints a specified message to debug mode console, as well as terminal / command line window, if it's opened.
@@ -6082,54 +6150,55 @@ none
 
 ---
 
+<a id="changed_projectile"></a>
 ## Projectile (changed)
 
-### IkemenVersion
+### <a name="changed_projectile_ikemenversion">IkemenVersion</a>
 
 In MUGEN, contrary to its documentation, projectiles do not support the ChainID and NochainID parameters. This behavior has been replicated by default in Ikemen GO. However, when a character's `ikemenversion` is not 0, projectiles do take these parameters into account.  
 
 
-### ProjAngle
+### <a name="changed_projectile_projangle">ProjAngle</a>
 
 Specifies the angle to rotate the Projectile animation.
 
 
-### ProjXAngle
+### <a name="changed_projectile_projxangle">ProjXAngle</a>
 
 Specifies the Xangle of the Projectile animation.
 
 
-### ProjYAngle
+### <a name="changed_projectile_projyangle">ProjYAngle</a>
 
 Specifies the Yangle of the Projectile animation.
 
 
-### ProjClsnAngle
+### <a name="changed_projectile_projclsnangle">ProjClsnAngle</a>
 
 Defines the angle for the projectile's collision boxes. In degrees.
 
 
-### ProjClsnScale
+### <a name="changed_projectile_projclsnscale">ProjClsnScale</a>
 
 Defines the collision box scale for the projectile.
 
 
-### ProjDepthBound
+### <a name="changed_projectile_projdepthbound">ProjDepthBound</a>
 
 Like `projedgebound` but for the Z space. Determines how far out of the Z boundaries the projectile can travel before being removed.  
 
 
-### ProjLayerNo
+### <a name="changed_projectile_projlayerno">ProjLayerNo</a>
 
 Specify on which layer the projectile should be drawn. Valid values are -1, 0 and 1. Defaults to the same layer as the player.
 
 
-### ProjFocalLength
+### <a name="changed_projectile_projfocallenth">ProjFocalLength</a>
 
 Focal Length of the projection. Does nothing when projection is not perspective or perspective2.
 
 
-### ProjProjection
+### <a name="changed_projectile_projprojection">ProjProjection</a>
 
 Affect how the projectile is drawn when xangle or yangle is not zero.
 
@@ -6138,43 +6207,43 @@ Affect how the projectile is drawn when xangle or yangle is not zero.
  - perspective2: The projectile is drawn using perspective projection. Distortion is affected by the position of the sprite relative to the center of the animation.
 
 
-### ProjReflection
+### <a name="changed_projectile_projreflection">ProjReflection</a>
 
 If 0, disables reflection on the projectile regardless of its shadow color. If 1, enables reflection on the projectile regardless of its shadow color. Defaults to showing a reflection if the projectile's shadow is not 0, 0, 0.
 
-### ProjWindow
+### <a name="changed_projectile_projwindow">ProjWindow</a>
 
 This parameter takes four numbers (similar to the format of a Clsn box) which forms a rectangle outside of which the pixels will not be rendered.
 
 
-### ProjXshear
+### <a name="changed_projectile_projxshear">ProjXshear</a>
 
 Specifies the amount of horizontal shearing to apply to the projectile. Defaults to 0.
 
-### Shader
+### <a name="changed_projectile_shader">Shader</a>
 
 >shader = *"shader_name"* (string)  
 
 Specifying the name of the currently loaded custom shader will apply that shader to Projectile.
 
-### ShaderTime
+### <a name="changed_projectile_shadertime">ShaderTime</a>
 
 >shadertime = *time* (int)  
 
 Specifying this parameter will remove the custom shader after it has been displayed for the specified number of ticks. The default value is -1.
 
-### ShaderParam.pX
+### <a name="changed_projectile_shadersaram.px">ShaderParam.pX</a>
 
 >shaderparam.pX = *value* (float)  
 
 Specifies the value to send to the custom shader. The value specified here can be used as a variable within the custom shader.
 X is limited to 0 to 15, and a maximum of 16 values ​​can be sent.
 
-### ShaderTexX.spr
+### <a name="changed_projectile_shadertexx.spr">ShaderTexX.spr</a>
 
 >shadertexX.spr = *group, image* (int, int)  
 
-### ShaderTexX.anim
+### <a name="changed_projectile_shadertexx.anim">ShaderTexX.anim</a>
 
 >shadertexX.anim = *anim_no* (int)  
 
@@ -6185,6 +6254,7 @@ Note that since textures are loaded as raw data, images with palettes may not di
 
 ---
 
+<a id="new_redlifeadd"></a>
 ## RedLifeAdd (new)
 
 Adds the specified amount to the player's red life, scaled by the player's defense multiplier if necessary.
@@ -6201,6 +6271,7 @@ Adds the specified amount to the player's red life, scaled by the player's defen
 
 ---
 
+<a id="new_redlifeset"></a>
 ## RedLifeSet (new)
 
 Sets the amount of red life that the player has.
@@ -6260,9 +6331,10 @@ dest = 1,3
 
 ---
 
+<a id="new_remapsprite"></a>
 ## RemapSprite (new)
 
-Remaps one sprite with another (or does this for multiple sprites at once, based on character's CNS [RemapPreset](Character-features/#cns_remappreset) data)
+Remaps one sprite with another (or does this for multiple sprites at once, based on character's CNS [RemapPreset](https://github.com/ikemen-engine/Ikemen-GO/wiki/Character-features#cns_remappreset) data)
 
 **Required parameters:**  
   
@@ -6309,14 +6381,16 @@ none
 
 ---
 
+<a id="changed_removeexplod"></a>
 ## RemoveExplod (changed)
 
-### index
+### <a name="changed_removeexplod_index">index</a>
 
 The index of the explod to be affected. Defaults to -1 (all).
 
 ---
 
+<a id="new_removetext"></a>
 ## RemoveText (new)
 
 Removes all of a player's texts, or just the texts with a specified ID number.
@@ -6368,18 +6442,19 @@ none
 
 ---
 
+<a id="changed_screenbound"></a>
 ## ReversalDef (changed)
 
 ReversalDef can also use the new HitDef parameters. In addition it has the following exclusive parameters.
 
-### reversal.guardflag
+### <a name="changed_reversaldef_reversalguardflag">reversal.guardflag</a>
 
 >reversal.guardflag = *hit_flags* (string)  
 
 Only hits containing the specified flags in their `guardflag` will be countered.
 
 
-### reversal.guardflag.not
+### <a name="changed_reversaldef_reversalguardflagnot">reversal.guardflag.not</a>
 
 >reversal.guardflag.not = *hit_flags* (string)  
 
@@ -6397,6 +6472,7 @@ reversal.guardflag.not = H
 
 ---
 
+<a id="new_rootmapadd"></a>
 ## RootMapAdd (new)
 
 If the player is a helper, adds value to root's map. If the player is not a helper, this controller does nothing. Root refers to the main player.
@@ -6411,6 +6487,7 @@ If the player is a helper, adds value to root's map. If the player is not a help
 
 ---
 
+<a id="new_rootmapset"></a>
 ## RootMapSet (new)
 
 If the player is a helper, sets value root's map. If the player is not a helper, this controller does nothing. Root refers to the main player.
@@ -6425,6 +6502,7 @@ If the player is a helper, sets value root's map. If the player is not a helper,
 
 ---
 
+<a id="new_rootvaradd"></a>
 ## RootVarAdd (new)
 
 If the player is a helper, adds value to root's working variables. Either a float variable or an int variable can be added by this controller. If the player is not a helper, this controller does nothing. Root refers to the main player.
@@ -6449,6 +6527,7 @@ If the player is a helper, adds value to root's working variables. Either a floa
 
 ---
 
+<a id="new_rootvarset"></a>
 ## RootVarSet (new)
 
 If the player is a helper, sets value root's working variables. Either a float variable or an int variable can be set by this controller. If the player is not a helper, this controller does nothing. Root refers to the main player.
@@ -6473,6 +6552,7 @@ If the player is a helper, sets value root's working variables. Either a float v
 
 ---
 
+<a id="new_roundtimeadd"></a>
 ## RoundTimeAdd (new)
 
 Add specified amount of ticks into round time.
@@ -6484,6 +6564,7 @@ Add specified amount of ticks into round time.
 
 ---
 
+<a id="new_roundtimeset"></a>
 ## RoundTimeSet (new)
 
 Set round time to specified amount of ticks.
@@ -6495,6 +6576,7 @@ Set round time to specified amount of ticks.
 
 ---
 
+<a id="new_savefile"></a>
 ## SaveFile (new)
 
 Put specified data together and save it as binary. It uses gob, which is a serialized format for Go language, as the storage format. All characters specified by the character or helper who executed the function are stored at that time.
@@ -6526,6 +6608,7 @@ path = "kfm.gob"
 
 ---
 
+<a id="new_scoreadd"></a>
 ## ScoreAdd (new)
 
 Adds the specified amount of points to P1 current score counter.
@@ -6573,9 +6656,10 @@ none
 
 ---
 
+<a id="changed_screenbound"></a>
 ## ScreenBound (changed)
 
-### StageBound
+### <a name="changed_screenbound_stagebound">StageBound</a>
 
 Lets a character bypass leftbound and rightbound from stage.
 
@@ -6587,16 +6671,18 @@ Like ChangeState, except that this changes a player back to a state in his own s
 
 ---
 
+<a id="changed_selfstate"></a>
 ## SelfState (changed)
 
-### ReadPlayerID
+### <a name="changed_selfstate_readplayerid">ReadPlayerID</a>
 
 Change to the state of the character with the specified Player ID. If successful, it would take the character with the specified PlayerID to the selected state.  
   
-See also [ChangeState](State-controllers-(changed)/#changed_changestate).
+See also [ChangeState](sctrl#changed_changestate).
 
 ---
 
+<a id="new_shaderset"></a>
 ## ShaderSet (new)
 
 Sets the specified custom shader to the character. 
@@ -6654,6 +6740,7 @@ Shadertex textures are defined within custom shaders, for example
 
 ---
 
+<a id="new_shiftinput"></a>
 ## ShiftInput (new)
 
 Allows temporarily changing the function of the player's keys. Resets every frame.  
@@ -6730,9 +6817,10 @@ none
 
 ---
 
+<a id="changed_sprpriority"></a>
 ## SprPriority (changed)
 
-### LayerNo
+### <a name="changed_sprpriority_layerno">LayerNo</a>
 
 >layerno = *layer_number* (int)
 
@@ -6801,14 +6889,16 @@ none
 
 ---
 
+<a id="changed_stopsnd"></a>
 ## StopSnd (changed)
 
-### Channel
+### <a name="changed_stopsnd_channel">Channel</a>
 
 Mugen allowed stopping all sounds for all players with `channel = -1`, but had no way to stop only the player's own sound channels. Using `channel = -2` will now do just that.
 
 ---
 
+<a id="new_storyboard"></a>
 ## Storyboard (new)
 
 Plays the specified storyboard during a match.
@@ -6893,14 +6983,16 @@ none
 
 ---
 
+<a id="changed_superpause"></a>
 ## SuperPause (changed)
 
-### Brightness
+### <a name="changed_superpause_brightness">Brightness</a>
 
 Determines how much the screen should darken during the pause. Valid values are between 0 (pitch black) and 255 (no change). Defaults to 128 (same as old `darken` parameter).
 
 ---
 
+<a id="new_tagin"></a>
 ## TagIn (new)
 
 Makes the P1 and/or the specified partner exit `Standby` state. If no parameters are given it affects the player that called it. (Also affects helpers)
@@ -6911,12 +7003,12 @@ Makes the P1 and/or the specified partner exit `Standby` state. If no parameters
   
 **Optional parameters:**  
   
-*All [TagOut](State-controllers/#new_tagout) parameters work with some extra ones specified bellow*  
+*All [TagOut](sctrl#new_tagout) parameters work with some extra ones specified bellow*  
 >ctrl = "*ctrl_flag*" (int)  
 >Sets the P1 control flag.  
   
 >leader = *leader_playerno* (int)  
->Sets the player who is considered a [team leader](Triggers/#new_teamleader) to the specified [playerno](Triggers/#new_playerno).  
+>Sets the player who is considered a [team leader](triggers#new_teamleader) to the specified [playerno](triggers#new_playerno).  
   
 >partnerctrl = *partnerctrl_flag* (int)  
 >Sets the *partner_no* control flag.  
@@ -6935,6 +7027,7 @@ stateno = 5600
 
 ---
 
+<a id="new_tagout"></a>
 ## TagOut (new)
 
 Makes the the player and/or the specified partner enter `Standby` state. If no parameters are given it affects the player that called it.  
@@ -6975,10 +7068,11 @@ memberNo = 3
 
 ---
 
+<a id="new_targetadd"></a>
 ## TargetAdd (new)
 
 Adds the player with the specified ID to the original player's target list.  
-Do not confuse this player ID with a target ID. Target ID can be assigned with `chainID` parameter of [GetHitVarSet](State-controllers-(new)/#new_gethitvarset).  
+Do not confuse this player ID with a target ID. Target ID can be assigned with `chainID` parameter of [GetHitVarSet](sctrl#new_grthitvarset).  
 
 **Required parameters:**  
   
@@ -7014,14 +7108,15 @@ Defaults to `0, 0` if omitted.
 
 ---
 
+<a id="changed_targetbind"></a>
 ## TargetBind (changed)
 
-### Index
+### <a name="changed_targetbind_index">Index</a>
 
 The index of the target to be affected. Defaults to -1 (all).  
 
 
-### Pos (changed)
+### <a name="changed_targebind_pos">Pos (changed)</a>
 
 >pos = *x_pos, y_pos, pos_z* (float, float, float)
 
@@ -7029,6 +7124,7 @@ This parameter now takes a third value, Specifies the offset from the player's z
 
 ---
 
+<a id="new_targetdizzypointsadd"></a>
 ## TargetDizzyPointsAdd (new)
 
 Adds the specified amount to all targets' dizzy points.
@@ -7097,14 +7193,16 @@ none
 
 ---
 
+<a id="changed_targetfacing"></a>
 ## TargetFacing (changed)
 
-### Index
+### <a name="changed_targetfacing_index">Index</a>
 
 The index of the target to be affected. Defaults to -1 (all).
 
 ---
 
+<a id="new_targetguardpointsadd"></a>
 ## TargetGuardPointsAdd (new)
 
 Adds the specified amount to all targets' guard points.
@@ -7154,14 +7252,15 @@ none
 
 ---
 
+<a id="changed_targetlifeadd"></a>
 ## TargetLifeAdd (changed)
 
-### Dizzy
+### <a name="changed_targetlifeadd_dizzy">Dizzy</a>
 
 If set to 1, enables life to dizzy points conversion support using `Default.LifeToDizzyPointsMul` / `Super.LifeToDizzyPointsMul` const. Defaults to 1.
 
 
-### Index
+### <a name="changed_targetlifeadd_index">Index</a>
 
 The index of the target to be affected. Defaults to -1 (all).
 
@@ -7190,14 +7289,16 @@ none
 
 ---
 
+<a id="changed_targetpoweradd"></a>
 ## TargetPowerAdd (changed)
 
-### Index
+### <a name="changed_targetpoweradd_index">Index</a>
 
 The index of the target to be affected. Defaults to -1 (all).
 
 ---
 
+<a id="new_targetredlifeadd"></a>
 ## TargetRedLifeAdd (new)
 
 Adds the specified amount to all targets' red life, scaled by the targets' defense multipliers if necessary.
@@ -7217,6 +7318,7 @@ Adds the specified amount to all targets' red life, scaled by the targets' defen
 
 ---
 
+<a id="new_targetscoreadd"></a>
 ## TargetScoreAdd (new)
 
 Adds the specified amount of points to targets' current score counter.
@@ -7256,9 +7358,10 @@ none
 
 ---
 
+<a id="changed_targetstate"></a>
 ## TargetState (changed)
 
-### Index
+### <a name="changed_targetstate_index">Index</a>
 
 The index of the target to be affected. Defaults to -1 (all).
 
@@ -7298,14 +7401,15 @@ y = 0.45
 
 ---
 
+<a id="changed_targetveladd"></a>
 ## TargetVelAdd (changed)
 
-### Index
+### <a name="changed_targetveladd_index">Index</a>
 
 The index of the target to be affected. Defaults to -1 (all). 
 
 
-### Z
+### <a name="changed_targetveladd_z">Z</a>
 
 >z = *z_value* (float)
 
@@ -7342,14 +7446,15 @@ none
 
 ---
 
+<a id="changed_targetvelset"></a>
 ## TargetVelSet (changed)
 
-### Index
+### <a name="changed_targetvelset_index">Index</a>
 
 The index of the target to be affected. Defaults to -1 (all). 
 
 
-### Z
+### <a name="changed_targetvelset_z">Z</a>
 
 >z = *z_value* (float)
 
@@ -7357,6 +7462,7 @@ Specifies the value to set the target's z-velocity to.
 
 ---
 
+<a id="new_teammapadd"></a>
 ## TeamMapAdd (new)
 
 Adds value to all team members maps.
@@ -7371,6 +7477,7 @@ Adds value to all team members maps.
 
 ---
 
+<a id="new_teammapset"></a>
 ## TeamMapSet (new)
 
 Sets value to all team members maps.
@@ -7385,6 +7492,7 @@ Sets value to all team members maps.
 
 ---
 
+<a id="new_textrender"></a>
 ## Text (new)
 
 Text controller is used for displaying text on screen.
@@ -7411,7 +7519,7 @@ Text controller is used for displaying text on screen.
 >Unlimited amount of numeric arguments can be specified in the format string. These should be listed under the params item, in order. The type of each parameter must match its format specifier.
   
 >font = *[F]font_no* (int)  
->*font_no* specifies the number of the font to use for text rendering. The 'F' prefix is optional: if included, then the text is rendred using lifebar (fight.def) fonts. Otherwise font [declared](Character-features#def_files_font) in character's DEF file is used. If specified font doesn't exist than the debug font is used. Defaults to debug font.  
+>*font_no* specifies the number of the font to use for text rendering. The 'F' prefix is optional: if included, then the text is rendred using lifebar (fight.def) fonts. Otherwise font [declared](https://github.com/ikemen-engine/Ikemen-GO/wiki/Character-features#def_files_font) in character's DEF file is used. If specified font doesn't exist than the debug font is used. Defaults to debug font.  
   
 >bank = *bank_no* (int)  
 >Color bank of the font to use. Refer to the font for what color banks it has. Defaults to 0.  
@@ -7497,13 +7605,14 @@ alpha = time, 256-time
 
 ---
 
+<a id="changed_trans"></a>
 ## Trans (changed)
 
 Ikemen GO has some expanded transparency options.  
 Note: Applies to all `trans` definitions (e.g. explods, backgrounds, etc).
 
 
-### Sub
+### <a name="changed_trans_sub">Sub</a>
 
 The `sub` transparency now also supports alpha values.
 
@@ -7512,7 +7621,7 @@ trans{trans: sub; alpha: 192, 64}
 ```
 
 
-### SubAdd
+### <a name="changed_trans_subadd">SubAdd</a>
 
 The `subadd` transparency mode was added. It draws the sprite in grayscale subtractive transparency, then draws it again in full color additive transparency. The result is a transparent effect that looks more solid and is easier to see against bright backgrounds.  
 The `alpha` source parameter controls the intensity of the additive layer, while destination controls the subtractive layer.  
@@ -7524,6 +7633,7 @@ trans{trans: subAlpha; alpha: 256, 256}
 
 ---
 
+<a id="new_transformclsn"></a>
 ## TransformClsn (new)
 
 Changes the geometry or certain properties of the player's collision boxes.  
@@ -7553,6 +7663,7 @@ Determines the angle's rotation center.
 
 ---
 
+<a id="new_transformsprite"></a>
 ## TransformSprite (new)
 
 Apply certain deformations to the char's sprite.  
@@ -7909,44 +8020,45 @@ none
 
 ---
 
+<a id="changed_zoom"></a>
 ## Zoom (changed)
 
 Zoom was a beta feature in Mugen 1.1. It is a fully functional state controller in Ikemen GO.  
 
 
-### CameraBound
+### <a name="changed_zoom_camerabound">CameraBound</a>
 
 If set to 1, the zoom position is restricted to the current camera position. Defaults to 1.
 
 
-### EndLag
+### <a name="changed_zoom_endlag">EndLag</a>
 
 Like the `lag` parameter, but it applies after the Zoom effect ends.
 
 
-### Lag
+### <a name="changed_zoom_lag">Lag</a>
 
 Controls the smoothing effect for camera position and scale transitions during zoom, with smaller values leading to quicker adjustments and larger values causing more gradual changes.  
 Valid values are between 0 and 1, where 0 snaps the camera instantly and 1 delays the zoom effect indefinitely.  
 Defaults to 0.
 
 
-### Pos
+### <a name="changed_zoom_pos">Pos</a>
 
 The position on screen to bind the zoom, relative to the center of the screen. A value of Pos X, Pos Y will zoom in on P1.
 
 
-### Scale
+### <a name="changed_zoom_scale">Scale</a>
 
 The camera zoom factor as a float. Values greater than 1 zoom in, while values between 0 and 1 zoom out. For example, a value of 2 doubles the size of the sprites.
 
 
-### StageBound
+### <a name="changed_zoom_stagebound">StageBound</a>
 
 If set to 1, the zoom position is restricted to the stage boundaries. Defaults to 1.
 
 
-### Time
+### <a name="changed_zoom_time">Time</a>
 
 Countdown timer that controls how long zoom effects are applied, decreasing by 1 every frame. Once it reaches 0, the zoom stops, and the camera resets to its default behavior without any smoothing or zoom effects. Defaults to 1.
 

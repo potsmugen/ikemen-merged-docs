@@ -35,6 +35,18 @@ def main():
     changed = parse_sections(changed_text, keep_blocks=["Changed trigger redirections"])
     new = parse_sections(new_text, keep_blocks=["New triggers", "New trigger redirections"])
 
+    require_sections(mugen, ["Abs (math)"], "M.U.G.E.N 1.1 triggers")
+    require_sections(
+        changed,
+        ["Changed trigger redirections"],
+        "Ikemen GO changed triggers",
+    )
+    require_sections(
+        new,
+        ["New triggers", "New trigger redirections"],
+        "Ikemen GO new triggers",
+    )
+
     # --- REMOVE REDIRECTION SECTIONS (they go to redirections page) ---
     for key in list(mugen.keys()):
         if "redirection" in key.lower():
@@ -52,10 +64,15 @@ def main():
     if "New triggers" in new:
         triggers_block = new.pop("New triggers")
         # Split the block by ## headings to get individual triggers
-        new_individual = parse_sections(triggers_block)   # <-- changed from parse_sub_sections
+        new_individual = parse_sections(triggers_block)
+        new_individual.pop("New triggers", None)
 
     # Remove any stray "Changed triggers" heading
     changed.pop("Changed triggers", None)
+
+    require_sections(mugen, ["Abs (math)"], "M.U.G.E.N 1.1 triggers")
+    require_sections(changed, [], "Ikemen GO changed triggers")
+    require_sections(new_individual, [], "Ikemen GO new triggers")
 
     # --- TAG SOURCES ---
     mugen = tag_sections(mugen, "(old)", skip_names=[])
@@ -74,7 +91,7 @@ def main():
     # --- OUTPUT ---
     output = output_merged(
         merged,
-        title="Merged Trigger Reference",
+        title="Trigger Reference",
         sections_to_skip=[],
         top_sections=[],
         list_heading="# Triggers"

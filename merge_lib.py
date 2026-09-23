@@ -4,10 +4,12 @@
 Shared library for merging M.U.G.E.N + Ikemen GO documentation.
 """
 
+import html
 import re
 import sys
 from pathlib import Path
 from typing import Dict, Set, Optional, List, Tuple
+from urllib.parse import unquote, urlsplit, urlunsplit
 
 try:
     import requests
@@ -31,6 +33,40 @@ def load_file(filepath: Path) -> str:
     if not filepath.exists():
         return ""
     return filepath.read_text(encoding="utf-8").strip()
+
+
+def _section_body(content: str) -> str:
+    return re.sub(r"^#{1,6}\s+[^\n]*(?:\n|$)", "", content, count=1).strip()
+
+
+def require_sections(
+    sections: Dict[str, str], required: List[str], source_name: str
+) -> None:
+    """Fail clearly when a source document no longer has expected sections."""
+    if not sections:
+        raise ValueError(f"{source_name} produced no sections")
+
+    missing = [name for name in required if name not in sections]
+    if missing:
+        raise ValueError(
+            f"{source_name} is missing required section(s): {', '.join(missing)}"
+        )
+
+    empty = [name for name in required if not _section_body(sections[name])]
+    if empty:
+        raise ValueError(
+            f"{source_name} has empty required section(s): {', '.join(empty)}"
+        )
+
+    if not any(_section_body(content) for content in sections.values()):
+        raise ValueError(f"{source_name} produced no documented sections")
+
+
+def require_entries(entries: Dict[str, str], source_name: str) -> None:
+    """Fail clearly when a parsed reference source has no documented entries."""
+    if any(_section_body(content) for content in entries.values()):
+        return
+    raise ValueError(f"{source_name} produced no documented entries")
 
 
 # ----------------------------------------------------------------------
@@ -170,15 +206,27 @@ def merge_sections(sections_list: List[Tuple[str, Dict[str, str]]]) -> Dict[str,
                 heading_level = len(match.group(1))
                 body_lines = lines[1:]
             body = '\n'.join(body_lines).strip()
+            anchors = set()
+            if lines:
+                anchors = {
+                    match.group(1)
+                    for match in re.finditer(
+                        r'<a\b[^>]*\b(?:name|id)\s*=\s*["\']([^"\']+)["\'][^>]*>',
+                        lines[0],
+                        re.IGNORECASE,
+                    )
+                }
             if heading in merged:
                 merged[heading]['content'] += '\n\n' + body
                 merged[heading]['sources'].add(source_name)
+                merged[heading]['anchors'].update(anchors)
                 merged[heading]['level'] = min(merged[heading]['level'], heading_level)
             else:
                 merged[heading] = {
                     'content': body,
                     'sources': {source_name},
-                    'level': heading_level
+                    'level': heading_level,
+                    'anchors': anchors,
                 }
     return merged
 
@@ -193,10 +241,13 @@ def tag_first_heading(content: str, suffix: str) -> str:
     for i, line in enumerate(lines):
         m = re.match(r'^(#{1,6})\s+(.+)$', line)
         if m:
-            level, text = m.group(1), m.group(2).strip()
-            text = clean_heading(text)
+            level, raw_text = m.group(1), m.group(2).strip()
+            text = clean_heading(raw_text)
             if not re.search(rf'{re.escape(suffix)}$', text):
                 text = f"{text} {suffix}"
+            anchor = re.search(r'<a\b([^>]*)>(.*?)</a>', raw_text, re.IGNORECASE)
+            if anchor:
+                text = f"<a{anchor.group(1)}>{text}</a>"
             lines[i] = f"{level} {text}"
             break
     return '\n'.join(lines)
@@ -254,39 +305,93 @@ def tag_sections(
 # ----------------------------------------------------------------------
 
 def rewrite_links(text: str) -> str:
-    """
-    Rewrite Markdown links that point to Ikemen GO wiki pages so they point
-    to the corresponding generated documentation pages.
-    """
+    """Route Ikemen wiki links to generated pages or the upstream wiki."""
     page_map = {
-        "Triggers": "triggers",
-        "Triggers-(changed)": "triggers",
-        "Triggers-(new)": "triggers",
-        "State-controllers": "sctrl",
-        "State-controllers-(changed)": "sctrl",
-        "State-controllers-(new)": "sctrl",
+        "triggers": "triggers",
+        "triggers-(changed)": "triggers",
+        "triggers-(new)": "triggers",
+        "state-controllers": "sctrl",
+        "state-controllers-(changed)": "sctrl",
+        "state-controllers-(new)": "sctrl",
+    }
+    anchor_aliases = {
+        ("state-controllers-(new)", "new_gethitvarset"): "new_grthitvarset",
+    }
+    external_anchor_links = {
+        # This upstream reference points to an anchor absent from the changed page.
+        ("state-controllers-(changed)", "changed_projectile_platformangle"),
+    }
+    redirect_anchors = {
+        "triggers": {
+            "enemy": "enemy-old",
+            "enemy_n": "enemyn-old",
+            "enemy_near": "enemynear-old",
+            "enemynear": "enemynear-old",
+            "helper": "helper-old",
+            "helper_id": "helperid-old",
+            "parent": "parent-old",
+            "partner": "partner-old",
+            "partner_n": "partnern-old",
+            "playerid": "playeridid-old",
+            "root": "root-old",
+            "target": "target-old",
+            "target_id": "targetid-old",
+        },
+        "triggers-(changed)": {
+            "helper": "helper-changed",
+            "target": "target-changed",
+        },
+        "triggers-(new)": {
+            "helperindex": "helperindexn-new",
+            "p2": "p2-new",
+            "player": "playern-new",
+            "playerindex": "playerindexn-new",
+            "stateowner": "stateowner-new",
+        },
     }
 
     def rewrite(match):
         link_text = match.group(1)
         url = match.group(2)
+        parsed = urlsplit(url)
 
-        # Leave absolute URLs and same-page anchors unchanged
-        if url.startswith(('#', 'http://', 'https://')):
+        # Leave absolute URLs and same-page anchors unchanged.
+        if parsed.scheme or parsed.netloc or not parsed.path:
             return match.group(0)
 
-        # Split anchor
-        base, _, anchor = url.partition('#')
+        # Relative paths to files (usually images) are not wiki page links.
+        if Path(unquote(parsed.path)).suffix:
+            return match.group(0)
 
-        if base in page_map:
-            new_url = page_map[base]
-            if anchor:
-                new_url += f"#{anchor}"
-            return f"[{link_text}]({new_url})"
+        page = unquote(parsed.path).rstrip("/")
+        while page.startswith("../"):
+            page = page[3:]
+        if page.startswith("./"):
+            page = page[2:]
+        page = page.lstrip("/")
 
-        return match.group(0)
+        page_key = page.casefold()
+        anchor = unquote(parsed.fragment)
+        target = page_map.get(page_key)
+        if (page_key, anchor.casefold()) in external_anchor_links:
+            target = None
+        if target:
+            anchor = anchor_aliases.get((page_key, anchor.casefold()), anchor)
+            redirect = re.match(r"^redirection[_-](.+)$", anchor, re.IGNORECASE)
+            if redirect:
+                anchor_name = redirect.group(1).casefold()
+                anchor = redirect_anchors.get(page_key, {}).get(
+                    anchor_name, slugify(anchor_name.replace("_", " "))
+                )
+                target = "redirections"
+            rewritten = urlunsplit(("", "", target, parsed.query, anchor))
+        else:
+            wiki_path = page.replace(" ", "-")
+            rewritten = urlunsplit(("https", "github.com", "/ikemen-engine/Ikemen-GO/wiki/" + wiki_path, parsed.query, parsed.fragment))
 
-    return re.sub(r'\[([^\]]+)\]\(([^)]+)\)', rewrite, text)
+        return f"[{link_text}]({rewritten})"
+
+    return re.sub(r'\[([^\]]+)\]\(((?:[^()]|\([^()]*\))+)\)', rewrite, text)
 
 
 # ----------------------------------------------------------------------
@@ -374,9 +479,11 @@ def output_merged(
             data = merged.pop(key)
             content = data['content']
             level = data.get('level', 2)
-            content = re.sub(r'<a[^>]+>', '', content)
-            content = re.sub(r'</a>', '', content)
             clean = clean_heading(key)
+            lines.extend(
+                f'<a id="{html.escape(anchor, quote=True)}"></a>'
+                for anchor in sorted(data.get('anchors', set()))
+            )
             lines.append(f"{'#' * level} {clean}")
             lines.append("")
             if content.strip():
@@ -395,10 +502,13 @@ def output_merged(
         if name in sections_to_skip or not merged[name]['content'].strip():
             continue
         data = merged[name]
-        content = re.sub(r'<a[^>]+>', '', data['content'])
-        content = re.sub(r'</a>', '', content)
+        content = data['content']
         level = data.get('level', 2)
         clean = clean_heading(name)
+        lines.extend(
+            f'<a id="{html.escape(anchor, quote=True)}"></a>'
+            for anchor in sorted(data.get('anchors', set()))
+        )
         lines.append(f"{'#' * level} {clean}")
         lines.append("")
         if content.strip():

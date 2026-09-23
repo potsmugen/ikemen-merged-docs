@@ -1,7 +1,8 @@
 # Ikemen GO Merged Documentation
 
-Automatically generated merged documentation for Ikemen GO.  
-Updated daily via GitHub Actions by merging the latest Ikemen GO wiki with a static copy of the M.U.G.E.N 1.1 documentation.
+This project merges the Ikemen GO wiki with the M.U.G.E.N 1.1 documentation. Ikemen GO supports all M.U.G.E.N features and adds more; **all pages here describe Ikemen GO behavior**. The M.U.G.E.N documentation is included to show which features are inherited and which Ikemen GO changed or added.
+
+Updated daily via GitHub Actions.
 
 ## How to use
 

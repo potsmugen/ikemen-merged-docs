@@ -1,6 +1,6 @@
 # Ikemen GO Merged Documentation
 
-The documentation in this page is obtained by automatically merging the Ikemen GO wiki with the M.U.G.E.N 1.1 documentation.
+This project merges the Ikemen GO wiki with the M.U.G.E.N 1.1 documentation. Ikemen GO supports all M.U.G.E.N features and adds more; all pages here describe Ikemen GO behavior. The M.U.G.E.N documentation is included to show which features are inherited and which Ikemen GO changed or added.
 
 ## Pages
 
@@ -9,17 +9,17 @@ The documentation in this page is obtained by automatically merging the Ikemen G
 - [Redirections](redirections)
 
 ## About the tags
-Most features are listed with one of the following tags:  
-- `old`: Features that already existed in M.U.G.E.N and are still supported in Ikemen GO.
-- `changed`: M.U.G.E.N features that were modified or expanded in Ikemen GO.
-- `new`: Ikemen GO features that did not exist in M.U.G.E.N.
+These tags describe each feature's origin or status relative to M.U.G.E.N 1.1; all describe Ikemen GO behavior:  
+- `old`: Inherited from M.U.G.E.N 1.1 and supported in Ikemen GO.
+- `changed`: Based on a M.U.G.E.N feature that Ikemen GO modified or expanded.
+- `new`: Added by Ikemen GO; it is not part of M.U.G.E.N 1.1.
 
 ## Notes
-In the `old` sections, the "deprecated" notices refer to M.U.G.E.N 1.1 standards. Ikemen GO maintains backward compatibility, so these features will always continue to work. However, their deprecation might mean there are better alternatives available.
+In `old` sections, "deprecated" notices refer to M.U.G.E.N 1.1 standards. They do not mean the feature is unsupported by Ikemen GO: Ikemen GO maintains compatibility with M.U.G.E.N features. The notice may indicate that a better alternative is available.
 
 ## Sources
 
-M.U.G.E.N 1.1 documentation:  
+M.U.G.E.N 1.1 source documentation:  
 <https://www.elecbyte.com/mugendocs-11b1/mugen.html>  
 Copyright (c) 1999-2013 Elecbyte. All rights reserved.  
   
@@ -30,4 +30,4 @@ Copyright (c) Ikemen GO contributors.
 ---
 
 *Updates checked daily via GitHub Actions.*  
-*Last updated: 2026-09-20 03:44:05 UTC*
+*Last updated: 2026-09-23 06:45:18 UTC*
