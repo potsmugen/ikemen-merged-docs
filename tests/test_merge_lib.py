@@ -3,6 +3,7 @@ import unittest
 from pathlib import Path
 
 from merge_lib import (
+    clean_heading,
     hide_code_blocks,
     require_entries,
     require_sections,
@@ -31,6 +32,18 @@ class RewriteLinksTests(unittest.TestCase):
         self.assertEqual(
             tag_first_heading('## <a name="new_tagout">TagOut</a>', "(new)"),
             '## <a name="new_tagout">TagOut (new)</a>',
+        )
+
+    def test_clean_heading_preserves_nightly_build_qualifier(self):
+        self.assertEqual(
+            clean_heading("Feature (nightly build only)"),
+            "Feature (nightly build only)",
+        )
+
+    def test_tagging_preserves_nightly_build_qualifier(self):
+        self.assertEqual(
+            tag_first_heading("## Feature (nightly build only)", "(new)"),
+            "## Feature (nightly build only) (new)",
         )
 
     def test_maps_upstream_anchor_aliases_and_preserves_stale_wiki_targets(self):

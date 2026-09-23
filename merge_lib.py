@@ -128,9 +128,8 @@ def restore_code_blocks(text: str, placeholders: Dict[str, str]) -> str:
 # ----------------------------------------------------------------------
 
 def clean_heading(text: str) -> str:
-    """Remove HTML tags and (nightly build only) from heading."""
+    """Remove HTML tags from a heading while preserving its wording."""
     text = re.sub(r'<[^>]+>', '', text)
-    text = re.sub(r'\s*\(nightly build only\)\s*', '', text, flags=re.IGNORECASE)
     return text.strip()
 
 
