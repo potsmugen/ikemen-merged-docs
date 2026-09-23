@@ -18,7 +18,7 @@
 - [AnimElemVar (new)](#animelemvar-new)
 - [AnimExist (old)](#animexist-old)
 - [AnimLength (new)](#animlength-new)
-- [AnimLoopCount (new)](#animloopcount-new)
+- [AnimLoopCount (nightly build only) (new)](#animloopcount-nightly-build-only-new)
 - [AnimPlayerNo (new)](#animplayerno-new)
 - [AnimTime (old)](#animtime-old)
 - [Asin (math) (old)](#asin-math-old)
@@ -716,7 +716,7 @@ trigger1 = Time = GetHitVar(hittime) - AnimLength
 ---
 
 <a id="new_animloopcount"></a>
-## AnimLoopCount (new)
+## AnimLoopCount (nightly build only) (new)
 
 Returns the number of times the current animation has looped. It can increment either by reaching the end on the animation normally, or by returning to a `LoopStart` point.  
   
