@@ -15,7 +15,7 @@
 - [partner (old)](#partner-old)
 - [partner(n) (old)](#partnern-old)
 - [Player(n) (new)](#playern-new)
-- [playerID(ID) (old)](#playeridid-old)
+- [playerID(n) (old)](#playeridn-old)
 - [PlayerIndex(n) (new)](#playerindexn-new)
 - [root (old)](#root-old)
 - [StateOwner (new)](#stateowner-new)
@@ -152,10 +152,10 @@ trigger2 = Player(TeamLeader), MoveType = A
 
 ---
 
-## playerID(ID) (old)
+## playerID(n) (old)
 
 `n` should be a well-formed expression that evaluates to a non-negative integer.  
-The trigger is redirected to the player with unique ID equal to ID. See the `ID` and `PlayerExistID` triggers in the trigger documentation.
+The trigger is redirected to the player with unique ID equal to `n`. See the `ID` and `PlayerExistID` triggers in the trigger documentation.
 
 ---
 
