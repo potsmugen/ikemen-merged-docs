@@ -41,6 +41,6 @@ Redirects the trigger to the nearest opponent.
 `n` should be a well-formed expression that evaluates to a non-negative integer.  
 The trigger is redirected to the n'th-nearest opponent.  
   
-## playerID(ID)  
+## playerID(n)  
 `n` should be a well-formed expression that evaluates to a non-negative integer.  
-The trigger is redirected to the player with unique ID equal to ID. See the `ID` and `PlayerExistID` triggers in the trigger documentation.  
+The trigger is redirected to the player with unique ID equal to `n`. See the `ID` and `PlayerExistID` triggers in the trigger documentation.  
