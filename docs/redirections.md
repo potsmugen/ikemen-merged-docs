@@ -67,7 +67,7 @@ Redirects the trigger to the first helper found. See the related trigger `NumHel
 The `Helper` redirection now also accepts an optional index argument, through the new format `Helper(ID, index)`. Defaults to 0 (first one).  
 The old formats still work exactly the same.  
 
-Example:
+**Example:**
 ```ini
 trigger1 = NumHelper(1005) >= 2
 trigger1 = Helper(1005, 1), MoveType = A; The second helper with ID 1005
@@ -90,7 +90,7 @@ Redirects the trigger to the helper entity by index.
 Each helper is assigned an index according to their position among the total number of helpers a player has. These indexes begin at 1, with index 0 being a special case that represents the `root` player. A player with 5 helpers, for instance, will have helpers with indexes 1 through 5.  
 
 It takes redirections into account, allowing the return of a helper's helpers.  
-  
+
 **Example:**  
 ```ini
 trigger1 = NumHelper >= 2
@@ -112,7 +112,7 @@ The "P2" enemy has some notable properties:
 All of these properties make `P2` the optimal enemy redirection in most cases.  
 
 Note: This redirection should not be mistaken for "Player(2)", which is always player number 2.  
-  
+
 **Example:**  
 ```ini
 trigger1 = P2, DizzyPoints <= 100
@@ -143,7 +143,7 @@ The trigger is redirected to the n'th partner.
 ## Player(n) (new)
 
 Redirects a trigger to the character with the specified PlayerNo.
-  
+
 **Example:**  
 ```ini
 trigger1 = Player(1), AILevel
@@ -163,9 +163,9 @@ The trigger is redirected to the player with unique ID equal to `n`. See the `ID
 ## PlayerIndex(n) (new)
 
 Each player is assigned a specific index in the internal player list. `PlayerIndex` will redirect a trigger to the player (helpers included) with the specified index. The first index is 0. If there are 20 players on screen, valid indexes will be 0 through 19.  
-  
+
 Like all "index" triggers, this is especially useful in `for` and `while` loops.  
-  
+
 **Example:**  
 ```go
 trigger1 = PlayerIndexExist(1)
@@ -193,7 +193,7 @@ Redirects the trigger to the root.
 
 Redirects a trigger to the owner of the current state the character is in. Useful when a custom stated target needs to redirect a trigger to the player.  
 Note: states are owned by the root.  
-  
+
 **Example:**  
 ```ini
 trigger1 = StateOwner,AILevel
@@ -213,7 +213,7 @@ Redirects the trigger to the first target found.
 The `Target` redirection now also accepts an optional index argument, through the new format `Target(ID, index)`. Defaults to 0 (first one).  
 The old format still works exactly the same.  
 
-Example:
+**Example:**
 ```ini
 trigger1 = NumTarget >= 2
 trigger1 = Target(-1, 1), Alive; The second target with any ID

@@ -35,6 +35,7 @@
 - [ChangeAnim (changed)](#changeanim-changed)
 - [ChangeAnim2 (old)](#changeanim2-old)
 - [ChangeAnim2 (changed)](#changeanim2-changed)
+- [Changed state controller features (changed)](#changed-state-controller-features-changed)
 - [ChangeMovelist (new)](#changemovelist-new)
 - [ChangeState (old)](#changestate-old)
 - [ChangeState (changed)](#changestate-changed)
@@ -218,19 +219,17 @@ In all cases, if setting a parameter with an expression, you should be careful t
 
 Both new and old state controllers can now take advantage of some global new features.
 
-
-## <a name="changed_all_fightfx">fightfx actions</a>  
+## <a name="changed_all_fightfx">fightfx actions</a>
 
 All the remaining CNS parameters used to assign character actions that didn't support the `F` prefix (*[Statedef]*, *ChangeState*, *SelfState*, *ChangeAnim*, *ChangeAnim2*, *Projectile*) have access to loading animations from `fightfx.air`. The implementation is the same as in the *Explod* anim parameter.  
-  
+
 **Example:**
 ```ini
 [Statedef 1000]
 anim = F 300
 ```
 
-
-## <a name="changed_all_redirectid">RedirectID</a>  
+## <a name="changed_all_redirectid">RedirectID</a>
 
 This feature can be utilized with all state controllers, including legacy ones. It is an optional parameter that sends the execution of the state controller to the player with the designated PlayerID. Unlike custom states, this parameter allows interfering with a player's behavior without putting them in another player's states.
 
@@ -366,7 +365,7 @@ none
 
 ### <a name="changed_afterimage_invertblend">palinvertblend </a>
 
->palinvertblend = *blend_mode* (int)  
+**palinvertblend = *blend_mode* (int)**  
 
 Inverts current blend mode if enabled so Sub becomes Add and Add becomes Sub.
 
@@ -416,7 +415,7 @@ Same as PalFX, except that this affects the palette of the background and lifeba
 
 ### <a name="changed_allpalfx_invertblend">invertblend</a>
 
->invertblend = *blend_mode* (int)  
+**invertblend = *blend_mode* (int)**  
 
 Inverts current blend mode if enabled so Sub becomes Add and Add becomes Sub.
 
@@ -476,12 +475,12 @@ none
 
 ---
 
-<a id="changed_angledraw"></a>
+<a id="changed_angledraw_parameters"></a>
 ## AngleDraw (changed)
 
 ### <a name="changed_angledraw_pivot">pivot</a> (nightly build only)
 
->pivot = *pivot_x, pivot_y* (float, float)  
+**pivot = *pivot_x, pivot_y* (float, float)**  
 
 Shifts the sprite's rotation center by the specified x and y offsets.
 
@@ -492,11 +491,11 @@ Shifts the sprite's rotation center by the specified x and y offsets.
 
 ### <a name="changed_angledraw_xangle">xangle</a>
 
->xangle = *xangle* (int)  
+**xangle = *xangle* (int)**  
 
 ### <a name="changed_angledraw_yangle">yangle</a>
 
->xangle = *yangle* (int)
+**yangle = *yangle* (int)**
 
 ---
 
@@ -559,25 +558,25 @@ Unlike Mugen, Ikemen GO can use unlimited amount of numeric arguments. Also it s
 This controller allows (de)activating the player's analog vectors without input from a joystick. Values will be clamped to `[-1,1]` with the exception of analog triggers which are normalized to `[0,1]`.
 
 **Optional parameters:**  
-  
+
 **leftx = *vector* (float)**  
 Sets the `LeftX` analog vector. Defaults to 0.
-  
+
 **lefty = *vector* (float)**  
 Sets the `LeftY` analog vector. Defaults to 0.
-  
+
 **rightx = *vector* (float)**  
 Sets the `RightX` analog vector. Defaults to 0.
-  
+
 **righty = *vector* (float)**  
 Sets the `RightY` analog vector. Defaults to 0.
-  
+
 **lefttrigger = *vector* (float)**  
 Sets the `LeftTrigger` analog vector. Defaults to 0.
-  
+
 **righttrigger = *vector* (float)**  
 Sets the `RightTrigger` analog vector. Defaults to 0.
-  
+
 **Example:**
 ```ini
 [State -1, AssertAnalogVector]
@@ -597,17 +596,19 @@ righttrigger = 0
 
 This controller allows (de)activating the player's commands without any button presses. If the player has multiple commands with the same name, the controller will affect all of them.
 
-**Required parameters:**  
-  
->name = *command_name* (string)  
->String specifying the command to assert.  
-  
-**Optional parameters:**  
-  
->buffer.time = *time* (int)  
->Number of ticks during which the command will be buffered. Defaults to 1.  
-  
-Examples:
+**Required parameters:**
+
+**name = *command_name* (string)**
+
+Command to assert.
+
+**Optional parameters:**
+
+**buffer.time = *time* (int)**
+
+Number of ticks to buffer the command. Defaults to 1.
+
+**Examples:**
 ```ini
 [State Test]
 type = AssertCommand
@@ -615,8 +616,9 @@ trigger1 = time = 10
 name = "QCF_x"
 buffer.time = 5
 ```
+
 When the name parameter is set to "" (empty), a random command from all the commands the character has will be activated.
-  
+
 **Example:**
 ```ini
 [State Test]
@@ -633,37 +635,48 @@ name = ""
 This controller allows you to assert up to three input flags simultaneously via single sctrl. Similarly to AssertSpecial, there is no limit how many times this controller is called. Each flag will be automatically "de-asserted" at every game tick, so you must assert a flag for each tick that you want it to be active. Ikemen interprets input flags the same was as if corresponding input keys were pressed.
 
 **Required parameters:**  
-  
->flag = *flag_name* (string)  
->String specifying the flag to assert.  
-  
+
+**flag = *flag_name* (string)**  
+String specifying the flag to assert.  
+
 **Optional parameters:**  
-  
->flag2 = *flag_name* (string)  
->An optional flag to assert.  
-  
->flag3 = *flag_name* (string)  
->Another optional flag to assert.  
-  
->flag4 = *flag_name* (string)   
->Another optional flag to assert.  
- 
->flag5 = *flag_name* (string)   
->Another optional flag to assert.  
- 
->flag6 = *flag_name* (string)   
->Another optional flag to assert.  
- 
->flag7 = *flag_name* (string)   
->Another optional flag to assert.  
- 
->flag8 = *flag_name* (string)   
->Another optional flag to assert.  
- 
+
+**flag2 = *flag_name* (string)**  
+An optional flag to assert.  
+
+**flag3 = *flag_name* (string)**  
+Another optional flag to assert.  
+
+**flag4 = *flag_name* (string)**  
+Another optional flag to assert.  
+
+**flag5 = *flag_name* (string)**  
+Another optional flag to assert.  
+
+**flag6 = *flag_name* (string)**  
+Another optional flag to assert.  
+
+**flag7 = *flag_name* (string)**  
+Another optional flag to assert.  
+
+**flag8 = *flag_name* (string)**  
+Another optional flag to assert.  
+
 **Details:**  
 The flag name can be one of the following input keys (case sensitive):  
 U, D, L, R, a, b, c, x, y, z, s, d, w, m  
-B, F
+B, F  
+
+**Example:**
+```go
+assertInput{
+    flag: U;
+    flag2: D;
+    flag3: L;
+    flag4: R;
+}
+
+```
 
 ---
 
@@ -780,12 +793,11 @@ none
 
 Setting this parameter to 0 will disable the specified flags instead. Defaults to 1.
 
-
 ### <a name="changed_assertspecial_flag">Flag</a>
 
 AssertSpecial now allows setting up to 8 flags at a time.
-  
-Example:  
+
+**Example:**  
 ```ini
 [State Test]
 type = AssertSpecial
@@ -799,34 +811,28 @@ flag6 = ...
 flag7 = ...
 flag8 = ...
 ```
-  
-In addition, the following flags were added or changed.  
 
+In addition, the following flags were added or changed.  
 
 #### <a name="changed_assertspecial_flag_animatehitpause">AnimateHitpause</a>
 
 While asserted, this flag makes the player's animation advance normally even during a hitpause.
 
-
 #### <a name="changed_assertspecial_flag_animfreeze">AnimFreeze</a>
 
 While asserted, the player's animation will be frozen on the current frame.
-
 
 #### <a name="changed_assertspecial_flag_autoguard">AutoGuard</a>
 
 While asserted, makes the player guard automatically, without need to press back direction. The player will also switch automatically between standing and crouching guard.
 
-
 #### <a name="changed_assertspecial_flag_camerafreeze">CameraFreeze</a>
 
 While asserted, prevents the camera from updating, effectively freezing it in place.
 
-
 #### <a name="changed_assertspecial_flag_drawunder">DrawUnder </a>
 
 While asserted, makes the player sprites be drawn with the same properties of Explod `under` parameter. That is, if the player is on layer 0, it will always be drawn behind lifebars and character shadows.
-
 
 #### <a name="changed_assertspecial_flag_globalnoko">GlobalNoKo</a>
 
@@ -836,36 +842,29 @@ While asserted all players won't die from taking damage.
 
 While asserted, disables the random direction and button jamming of Ikemen's default AI.
 
-
 #### <a name="changed_assertspecial_flag_noaicheat">NoAICheat</a>
 
 While asserted, makes the player's AI unable to cheat commands, i.e. complete them without performing the respective inputs.
-
 
 #### <a name="changed_assertspecial_flag_noailevel">NoAiLevel</a>
 
 While asserted, makes the player AILevel and AILevelF triggers return 0.
 
-
 #### <a name="changed_assertspecial_flag_noairjump">NoAirJump</a>
 
 Disables the hard-coded state transitions to State 45 when `Ctrl=1 && StateType=A && Command="holdup"` and `AirJump.Num` allows
-
 
 #### <a name="changed_assertspecial_flag_nobrake">NoBrake</a>
 
 Disables the hard-coded state transitions to State 0 when `StateNo=20 && Command!="holdfwd" && Command!="holdback"`
 
-
 #### <a name="changed_assertspecial_flag_nocombodisplay">NoComboDisplay</a>
 
 While asserted, disables displaying combo counter by this playerno (the flag has to be asserted on team leader to disable combo counter rendering for the teamside).
 
-
 #### <a name="changed_assertspecial_flag_nocornerpush">NoCornerPush</a>
 
 While asserted, the player won't be affected by HitDef `cornerpush.veloff`.
-
 
 #### <a name="changed_assertspecial_flag_nocrouch">NoCrouch</a>
 
@@ -879,86 +878,69 @@ While asserted, disables `destroyself` sctrl.
 
 While asserted, player won't be affected by a HitDef's dizzypoints parameter.
 
-
 #### <a name="changed_assertspecial_flag_nofacedisplay">NoFaceDisplay</a>
 
 While asserted, disables displaying the face icon for this player.
-
 
 #### <a name="changed_assertspecial_flag_nofacep2">NoFaceP2</a>
 
 While asserted, StateDef `facep2` parameter will have no effect.
 
-
 #### <a name="changed_assertspecial_flag_nofastrecoverfromliedown">NoFastRecoverFromLieDown</a>
 
 Disables the hard-coded faster recover from lie down on key input mashing when `StateType=L && GetHitVar(RecoverTime)>0`.
-
 
 #### <a name="changed_assertspecial_flag_nofallcount">NoFallCount</a>
 
 Disables the hard-coded FallCount increment when `StateNo=5070 || StateNo=5100`.
 
-
 #### <a name="changed_assertspecial_flag_nofalldefenceup">NoFallDefenceUp</a>
 
 Disables the hard-coded defence increase when `StateNo=5070 || StateNo=5100`.
-
 
 #### <a name="changed_assertspecial_flag_nofallhitflag">NoFallHitflag</a>
 
 While asserted, every `HitDef` will act as if its `HitFlag` has no `F` parameter. In other words, the player becomes unable to hit falling enemies.
 
-
 #### <a name="changed_assertspecial_flag_nogetupfromliedown">NoGetUpFromLieDown</a>
 
 Disables the hard-coded state transitions to State 5120 when `StateNo=5110 && GetHitVar(RecoverTime)=0`.
-
 
 #### <a name="changed_assertspecial_flag_noguardko">NoGuardKo</a>
 
 While asserted player won't die from taking chip damage.
 
-
 #### <a name="changed_assertspecial_flag_noguardbardisplay">NoGuardBarDisplay</a>
 
 While asserted, disables displaying guardbars by this playerno.
-
 
 #### <a name="changed_assertspecial_flag_noguarddamage">NoGuardDamage</a>
 
 While asserted, player won't be affected by HitDef damage *guard_damage*.
 
-
 #### <a name="changed_assertspecial_flag_noguardpointsdamage">NoGuardPointsDamage</a>
 
 While asserted, player won't be affected by HitDef guardpoints.
-
 
 #### <a name="changed_assertspecial_flag_nohardcodedkeys">NoHardcodedKeys</a>
 
 Disables the hard-coded state transitions when pressing directional keys (combination of `NoJump`, `NoAirJump`, `NoCrouch`, `NoStand`, `NoWalk`, `NoBrake`, `NoStandGuard`, `NoCrouchGuard`, `NoAirGuard`).
 
-
 #### <a name="changed_assertspecial_flag_nohitdamage">NoHitDamage</a>
 
 While asserted, player won't be affected by HitDef damage *hit_damage*.
-
 
 #### <a name="changed_assertspecial_flag_noinput">NoInput</a>
 
 While asserted, makes the player ignore any player/CPU inputs.
 
-
 #### <a name="changed_assertspecial_flag_nointroreset">NoIntroReset</a>
 
 While asserted, prevents a player from being forced to their starting position after the round number announcement.
 
-
 #### <a name="changed_assertspecial_flag_nojump">NoJump</a>
 
 Disables the hard-coded state transitions to State 40 when `Ctrl=1 && StateType=S && Command="holdup"`
-
 
 #### <a name="changed_assertspecial_flag_noko">NoKo</a>
 
@@ -966,16 +948,13 @@ While asserted, the player won't die from taking damage.
 
 If `ikemenversion` is not 0, the `NoKO` flag affects only the player that called it. Otherwise, the MUGEN behavior is replicated, and all players are affected. The new `GlobalNoKo` flag can be used to replicate the old MUGEN behavior.  
 
-
 #### <a name="changed_assertspecial_flag_nokofall">NoKoFall</a>
 
 While asserted, the player won't be forced to fall when receiving a hit that depletes their remaining life. In Mugen this was hardcoded into Training mode.  
 
-
 #### <a name="changed_assertspecial_flag_nokovelocity">NoKoVelocity</a>
 
 While asserted, player won't be affected by HitDef velocity adjustments upon KO.
-
 
 #### <a name="changed_assertspecial_flag_nolifebaraction">NoLifeBarAction</a>
 
@@ -985,106 +964,85 @@ While asserted, disables displaying lifebar actions by this playerno (the flag h
 
 While asserted, disables displaying lifebars by this playerno.
 
-
 #### <a name="changed_assertspecial_flag_nomakedust">NoMakeDust</a>
 
 While asserted, the player does not generate hardcoded dust effects. The `MakeDust` state controller will also have no effect.
-
 
 #### <a name="changed_assertspecial_flag_nonamedisplay">NoNameDisplay</a>
 
 While asserted, disables displaying the Name by this playerno.
 
-
 #### <a name="changed_assertspecial_flag_nopowerbardisplay">NoPowerBarDisplay</a>
 
 While asserted, disables displaying powerbars by this playerno (with team power share option enabled and/or lifebar design with only 1 powerbar per side, the flag has to be asserted on team leader to disable powerbar rendering for whole team).
-
 
 #### <a name="changed_assertspecial_flag_noredlifedamage">NoRedLifeDamage</a>
 
 While asserted, player won't be affected by HitDef *redlife*.
 
-
 #### <a name="changed_assertspecial_flag_noscore">NoScore</a>
 
 While asserted, player won't be affected by HitDef *score* or the `ScoreAdd` / `TargetScoreAdd` state controllers.
-
 
 #### <a name="changed_assertspecial_flag_nostand">NoStand</a>
 
 Disables the hard-coded state transitions to State 12 when `StateType=C && Command!="holddown"`.
 
-
 #### <a name="changed_assertspecial_flag_nostunbardisplay">NoStunBarDisplay</a>
 
 While asserted, disables displaying stunbars by this playerno.
-
 
 #### <a name="changed_assertspecial_flag_notimedisplay">NoTimeDisplay</a>
 
 While asserted, disables displaying the fight screens `[Time]` elements.  
 
-
 #### <a name="changed_assertspecial_flag_noturntarget">NoTurnTarget</a>
 
 While asserted, keeps the opponent from automatically turning to face the player. This includes the `facep2` parameter.
-
 
 #### <a name="changed_assertspecial_flag_nowinicondisplay">NoWinIconDisplay</a>
 
 While asserted, disables displaying winicons by this playerno (the flag has to be asserted on team leader to disable winicon rendering for the teamside).
 
-
 #### <a name="changed_assertspecial_flag_postroundinput">PostRoundInput</a>
 
 While asserted, player's inputs are not disabled post-match (`RoundState>2 || RoundState=-1`).
-
 
 #### <a name="changed_assertspecial_flag_projtypecollision">ProjTypeCollision</a>
 
 While asserted, the player will clash with projectiles (and other players with the same flag) if their `Clsn2` boxes overlap. This allows helpers to easily replicate this kind of projectile clashing.
 
-
 #### <a name="changed_assertspecial_flag_roundfreeze">RoundFreeze</a>
 
 While asserted, round related lifebar actions and internal timers are frozen (allows maintaining current roundstate).
-
 
 #### <a name="changed_assertspecial_flag_roundnotskip">RoundNotSkip</a>
 
 Disables intro and victory pose skipping via button press.
 
-
 #### <a name="changed_assertspecial_flag_runfirst">RunFirst</a>
 
 While asserted, makes the player code be processed before that of any other players.
-
 
 #### <a name="changed_assertspecial_flag_runlast">RunLast</a>
 
 While asserted, makes the player code be processed after all other players.
 
-
 #### <a name="changed_assertspecial_flag_sizepushonly">SizePushOnly</a>
 
 In Ikemen, like Mugen, characters will push each other when both their size boxes (width * height) and their Clsn2 boxes overlap. Asserting this flag makes it so that only the size boxes are checked, as in most fighting games.
-
 
 #### <a name="changed_assertspecial_flag_skipfightdisplay">SkipFightDisplay</a>
 
 While asserted, the "fight" announcement on round start will be skipped.
 
-
 #### <a name="changed_assertspecial_flag_skipkodisplay">SkipKoDisplay</a>
 
 While asserted, the KO announcement on round end will be skipped.
 
-
 #### <a name="changed_assertspecial_flag_skiprounddisplay">SkipRoundDisplay</a>
 
 While asserted, the round number announcement on round start will be skipped.
-
 
 #### <a name="changed_assertspecial_flag_skipwindisplay">SkipWinDisplay</a>
 
@@ -1120,7 +1078,7 @@ none
 
 The `value` parameter now takes a second number. This number sets the distance that a player can attack behind the enemy and still allow them to enter proximity guard.
 
-Example:
+**Example:**
 ```ini
 [State Test]
 type = AttackDist
@@ -1136,7 +1094,7 @@ Works the same as Value.
 
 Changes the value of the attack.dist.height parameter for the player's current HitDef.
 
-Example:
+**Example:**
 ```ini
 [State Test]
 type = AttackDist
@@ -1148,7 +1106,7 @@ height = 160, 0
 
 Changes the value of the attack.dist.depth parameter for the player's current HitDef.
 
-Example:
+**Example:**
 ```ini
 [State Test]
 type = AttackDist
@@ -1186,27 +1144,23 @@ none
 
 Sets an attack multiplier for regular damage only.
 
-
 ### <a name="changed_attackmulset_dizzypoints">DizzyPoints</a>
 
 Sets an attack multiplier for dizzy points only.
-
 
 ### <a name="changed_attackmulset_guardpoints">GuardPoints</a>
 
 Sets an attack multiplier for guard points only.
 
-
 ### <a name="changed_attackmulset_redlife">RedLife</a>
 
 Sets an attack multiplier for red life only.
-
 
 ### <a name="changed_attackmulset_value">Value</a>
 
 Sets the attack multiplier for all types of damage.
 
-Example:
+**Example:**
 ```ini
 [State Test]
 type = AttackMulSet
@@ -1230,18 +1184,15 @@ Same as PalFX, except that this affects the palette of the background and lifeba
 
 BGPalFX now also accepts `ID` and `index` parameters. This allows it to apply PalFX to specific BG elements of the stage.  
 
-
 ### <a name="changed_bgpalfx_id">ID</a>
 
 The ID of the stage BG element to affect. Defaults to -1 (any).  
-
 
 ### <a name="changed_bgpalfx_index">Index</a>
 
 The index of the stage BG element to affect. Defaults to -1 (any).  
 
-
-Example:  
+**Example:**  
 ```ini
 [State Test]; Invert colors for the sixth BG element with any ID
 type = BGPalFX
@@ -1368,7 +1319,7 @@ none
 
 ### <a name="changed_bindtotarget_posz">PosZ</a>
 
->posz = *pos_z* (float)
+**posz = *pos_z* (float)**
 
 Specify the offset (in the z-axis) to bind to. Can be skipped, so it's backward compatible with lines having only x,y declared.
 
@@ -1382,22 +1333,32 @@ The index of the target to bind to. Defaults to 0 (first one).
 ## Camera [EXPERIMENTAL] (new)
 
 **This SCTRL is still experimental and subject to possible changes, there is no guarantee this will be supported as is in future IKEMEN Go versions.**  
-  
+
 Changes the camera position and the way players interact with screen and stage edges.  
 
 **Required parameters:**  
-  
->view = "*view_type*" (string)  
->Specifies the type of view to implement.  
->Valid values are "Fighting", "Follow" or "Free". Fighting works like common MUGEN camera. Follow anchors the camera to a specific player/helper and follows it. Free is not bound to anything other than the own camera's limitations.  
-  
+
+**view = "*view_type*" (string)**  
+Specifies the type of view to implement.  
+Valid values are "Fighting", "Follow" or "Free". Fighting works like common MUGEN camera. Follow anchors the camera to a specific player/helper and follows it. Free is not bound to anything other than the own camera's limitations.  
+
 **Optional parameters:**  
-  
->Pos: X (float), Y (float). This should be used during Free view, as it lets a character directly control the camera position values.  
->FollowID: ID (int). When in Follow view and a player/helper ID is specified in this parameter, camera will start following that player/helper.  
-  
+
+Pos: X (float), Y (float). This should be used during Free view, as it lets a character directly control the camera position values.  
+FollowID: ID (int). When in Follow view and a player/helper ID is specified in this parameter, camera will start following that player/helper.  
+
 **Details:**  
->When in Free view, Screenbound and Movecamera will not influence camera or char positions. Follow view will only be influenced by Screenbound/Movecamera from the player being followed (this might change in the future).
+When in Free view, Screenbound and Movecamera will not influence camera or char positions. Follow view will only be influenced by Screenbound/Movecamera from the player being followed (this might change in the future).
+
+**Example:**
+```go
+camera{
+    view: "Free";
+    pos.x: 0;
+    pos.y: 0;
+}
+
+```
 
 ---
 
@@ -1430,7 +1391,7 @@ none
 
 Specifies the exact time of an animation element to change to. Defaults to 0.
 
-Example:
+**Example:**
 ```ini
 [State 1000, Anim]; Change to animation 1003, element 4, second frame
 type = ChangeAnim
@@ -1444,11 +1405,9 @@ elemtime = 1
 
 This parameter lets a character use the specified animation from another character. Defaults to own playerno.
 
-
 ### <a name="changed_changeanim_spriteplayerno">SpritePlayerNo</a>
 
 This parameter lets a character use the specified sprites from another character. Defaults to own playerno.
-
 
 ### <a name="changed_changeanim_readplayerid">ReadPlayerID</a>
 
@@ -1469,7 +1428,6 @@ Like ChangeAnim, except this controller should be used if you have placed P2 in 
 
 See ChangeAnim.
 
-
 ### <a name="changed_changeanim2_readplayerid">ReadPlayerID</a>
 
 This parameter lets a character use the specified animation from another character, but maintaining their own sprites.
@@ -1482,16 +1440,16 @@ This parameter lets a character use the specified animation from another charact
 Selects which movelist assigned in the character's DEF file should be displayed in the Pause menu command list.
 
 **Required parameters:**  
-  
->none  
-  
+
+none  
+
 **Optional parameters:**  
-  
->value = *movelist_index* (int)  
->Specifies the index of the movelist to use. Defaults to 0.  
+
+**value = *movelist_index* (int)**  
+Specifies the index of the movelist to use. Defaults to 0.  
 
 The movelist files are specified in the character's DEF file, under the `[Files]` group. `movelist` and `movelist0` both refer to index 0.
-  
+
 **Example:**
 ```ini
 [State 5900, Evil Ryu movelist]
@@ -1616,15 +1574,13 @@ value = 0.5
 
 In Mugen, `DefenceMulSet` changes the player's final defense multiplier. That means it will override any defense buffs such as those gained through the `fall.defence_up` constant or the `SuperPause` `p2defmul` parameter. In Ikemen GO, it is only another multiplier, meaning the other defense buffs will still work correctly.  
 
-
 ### <a name="changed_defencemulset_ikemenversion">IkemenVersion</a>
 
 Characters with `ikemenversion` will have `DefenceMulSet` work correctly and more intuitively by default. See `MulType` and `OnHit`.  
 
-
 ### <a name="changed_defencemulset_multype">MulType</a>
 
->multype = *bvalue* (boolean int)  
+**multype = *bvalue* (boolean int)**  
 
 Defines how damage taken should be multiplied.  
 
@@ -1633,10 +1589,9 @@ If 1, defense is multiplied by `value` (therefore the damage is divided).
 
 Defaults to 1 for characters with `ikemenversion`, and to 0 otherwise.  
 
-
 ### <a name="changed_defencemulset_onhit">OnHit</a>
 
->onHit = *bvalue* (boolean int)  
+**onHit = *bvalue* (boolean int)**  
 
 Defines if the defense value should also apply outside of `moveType = H`.
 
@@ -1645,8 +1600,7 @@ If 1, the defense value is only active if the char is already in `moveType = H`.
 
 Defaults to 0 for characters with `ikemenversion`, and 1 otherwise.
 
-
-Example:
+**Example:**
 ```ini
 [State -2, Evil Ryu Defense]
 type = defencemulset
@@ -1662,24 +1616,24 @@ ignorehitpause = 1
 <a id="new_depth"></a>
 ## Depth (new)
 
-Temporarily changes the depth size of the player's for 1 frame. Similar to Width in function. 
+Temporarily changes the depth size of the player's for 1 frame. Similar to Width in function.
 
 **Required parameters:**  
-  
->none  
-  
+
+none  
+
 **Optional parameters:**  
-  
->edge = *edgedepth_front, edgedepth_back* (int, int)  
->Sets the player's edge depth in front and behind. Edge depth determines how close the player can get to the topbound and botbound of the screen. These parameters default to 0,0 if omitted.  
-  
->player = *playdepth_front, playdepth_back* (int, int)  
->Sets the player depth in front and behind. Player depth determines how close the player can get to other players depth and also determines the hitable depth area of a player. These parameters default to 0,0 if omitted  
-  
->Alternate syntax:  
->value = *value = depth_front, depth_back* (int, int)  
->This is a shorthand syntax for setting both edge depth and player depth simultaneously. This may only be used if the edge and player parameters are not specified.
-  
+
+**edge = *edgedepth_front, edgedepth_back* (int, int)**  
+Sets the player's edge depth in front and behind. Edge depth determines how close the player can get to the topbound and botbound of the screen. These parameters default to 0,0 if omitted.  
+
+**player = *playdepth_front, playdepth_back* (int, int)**  
+Sets the player depth in front and behind. Player depth determines how close the player can get to other players depth and also determines the hitable depth area of a player. These parameters default to 0,0 if omitted  
+
+**Alternate syntax:**  
+**value = *value = depth_front, depth_back* (int, int)**  
+This is a shorthand syntax for setting both edge depth and player depth simultaneously. This may only be used if the edge and player parameters are not specified.
+
 **Example:**
 ```ini
 [State Test]
@@ -1731,17 +1685,17 @@ none
 Assigns dialogue data to be displayed either right before the lifebar calls the fight during first round (last frame of  RoundState = 1) or at the last active frame of the final round (RoundState = 4, right before screen starts fading out). If more than 1 player calls this sctrl, who will end up initiating dialogue is chosen randomly.
 
 **Required parameters:**  
-  
->textX = "*dialogue_info*" (string)  
->String containing information needed for displaying dialogue. There can be multiple *text* parameters assigned, each suffixed with numbers in ascending order. The parameter stores both text, as well as optional tokens (enclosed in <> brackets) for controlling other aspects of dialogue (listed below).
-  
+
+**textX = "*dialogue_info*" (string)**  
+String containing information needed for displaying dialogue. There can be multiple *text* parameters assigned, each suffixed with numbers in ascending order. The parameter stores both text, as well as optional tokens (enclosed in <> brackets) for controlling other aspects of dialogue (listed below).
+
 **Optional parameters:**  
-  
->hidebars = *bars_flag* (int)  
->Set to nonzero to hide lifebars as soon as the sctrl is called (by default lifebar is hidden only when actual dialogue starts).  
-  
->force = *force_flag* (int)  
->Set to nonzero to force dialogue start immediately, ignoring normal rules.  
+
+**hidebars = *bars_flag* (int)**  
+Set to nonzero to hide lifebars as soon as the sctrl is called (by default lifebar is hidden only when actual dialogue starts).  
+
+**force = *force_flag* (int)**  
+Set to nonzero to force dialogue start immediately, ignoring normal rules.  
 
 How the rendered dialogue will look like (positioning, default face sprites, background definition, default time between text etc.) is controlled by `[Dialogue Info]` screenpack parameters (refer to system.def distributed with engine for a working example). By default player who called the state controller will use screenpack parameters prefixed with *p1* and his *enemy(0)* will be assigned to use *p2* parameters (this is adjustable via text tokens).
 
@@ -1759,7 +1713,7 @@ Following redirection are supported:
 - `enemyname(name)`: redirects to the enemy with matching name (the internal `name` parameter specified in .DEF file)
 - `partnername(name)`: redirects to the partner with matching name (the internal `name` parameter specified in .DEF file)
 
-Token list:
+**Token list:**
 - `<pX>`: changes which dialogue box side (replace X with 1 or 2) should be used to render text. Defaults to p1 side.
 - `<pXname=name>`: changes pX side name displayed during dialogue to the string within quotation marks
 - `<pXname=redirection>`: changes pX side name displayed during dialogue to the redirected player displayname (as specified in displayname parameter within the .DEF file)
@@ -1767,7 +1721,7 @@ Token list:
 - `<sound=redirection,group_no,sound_no,volumescale>`: plays back a sound. *volumescale* argument is optional (defaults to 100).
 - `<anim=redirection,anim_no>`: changes the action number of the player's animation
 - `<state=redirection,state_no>`: changes the state number of the player
-- `<map=redirection,map_name,value,map_type>`: modifies player's map. *map_type* controls what kind of operation on map should be performed (`set`: equivalent of [MapSet](sctrl#new_mapset), `add`: equivalent of [MapAdd](sctrl#new_mapadd)), 
+- `<map=redirection,map_name,value,map_type>`: modifies player's map. *map_type* controls what kind of operation on map should be performed (`set`: equivalent of [MapSet](sctrl#new_mapset), `add`: equivalent of [MapAdd](sctrl#new_mapadd)),
 - `<displayname=redirection>`: part of the dialogue text replaced automatically with redirected player displayname (as specified in displayname parameter within the .DEF file)
 - `<wait=ticks>`: amount of ticks delay before sctrl resume further text parameter parsing
 
@@ -1776,7 +1730,7 @@ As an example, below code showcases Symphony of the Night (in)famous cutscene re
 Click on the image to watch the video corresponding to below code.
 
 [![IMAGE ALT TEXT](http://img.youtube.com/vi/BbUnJT9KnnU/0.jpg)](http://www.youtube.com/watch?v=BbUnJT9KnnU "Ikemen GO SotN cutscene")
-  
+
 **Example:**
 ```ini
 [State 191, Dialogue]
@@ -1851,9 +1805,14 @@ The value of var(17) is 1, which is 4.347826% of 23.
 Adds the specified amount to the player's dizzy points.
 
 **Required parameters:**  
-  
->value = *add_amt* (int)  
->*add_amt* is the number to add to the player's dizzy points.
+
+**value = *add_amt* (int)**  
+*add_amt* is the number to add to the player's dizzy points.  
+
+**Example:**
+```go
+dizzyPointsAdd{value: 10}
+```
 
 ---
 
@@ -1863,21 +1822,31 @@ Adds the specified amount to the player's dizzy points.
 Sets the amount of dizzy points that the player has.
 
 **Required parameters:**  
-  
->value = *set_amt* (int)  
->*set_amt* is the new value to set the player's dizzy points to.
+
+**value = *set_amt* (int)**  
+*set_amt* is the new value to set the player's dizzy points to.  
+
+**Example:**
+```go
+dizzyPointsSet{value: 100}
+```
 
 ---
 
 <a id="new_dizzyset"></a>
 ## DizzySet (new)
 
-Sets the player's Dizzy flag. For the duration that this flag is set, combo hit counter does not reset and the combo count lifebar text will stay on screen. 
+Sets the player's Dizzy flag. For the duration that this flag is set, combo hit counter does not reset and the combo count lifebar text will stay on screen.
 
 **Required parameters:**  
-  
->value = *dizzy_flag* (int)  
->Set to nonzero to add Dizzy flag, or 0 to remove it.
+
+**value = *dizzy_flag* (int)**  
+Set to nonzero to add Dizzy flag, or 0 to remove it.  
+
+**Example:**
+```go
+dizzySet{value: 1}
+```
 
 ---
 
@@ -1954,16 +1923,16 @@ none
 
 ### <a name="changed_envshake_decay">Decay</a>
 
->decay = *exponent* (float)  
+**decay = *exponent* (float)**  
 
-Applies an exponential decay to the shake amplitude over time, making it fade out automatically.   
+Applies an exponential decay to the shake amplitude over time, making it fade out automatically.  
 
 - `decay = 0`: no fading
 - `0 < decay < 1`: fades slow, then fast
 - `decay = 1`: fades linearly
 - `decay > 1`: fades fast, then slow
 
-Example:  
+**Example:**  
 ```ini
 [State Shake]
 type = envshake
@@ -1974,28 +1943,25 @@ freq = 90
 decay = 1.5
 ```
 
-
 ### <a name="changed_envshake_dir">Dir</a>
 
->dir = *angle* (int)  
+**dir = *angle* (int)**  
 
 Changes the direction in degrees in which the shake is applied. Defaults to 0. For a negative amplitude, 90 will make the screen shake from left to right.
 
-
 ### <a name="changed_envshake_diradd">DirAdd</a>
 
->diradd = *angle* (int)  
+**diradd = *angle* (int)**  
 
 Increases the shaking angle by the specified value each frame. Allows the effect to appear more exaggerated and erratic.  
 
-
 ### <a name="changed_envshake_mul">Mul</a>
 
->mul = *factor* (float)  
+**mul = *factor* (float)**  
 
 For every EnvShake cycle, the amplitude is multiplied by this value. Defaults to 1. Cycle duration is determined by frequency, with a frequency of 180 needing two frames to complete one cycle.
 
-Example:
+**Example:**
 ```ini
 [State 3051, Shake]
 type = envshake
@@ -2005,8 +1971,9 @@ ampl = 5
 freq = 180
 mul = 0.9
 ```
+
 In this case, the screen shakes 5 pixels in the first cycle, then 4.50 pixels, then 4.05 and so on.  
-  
+
 Note: This parameter has been superseded by the `decay` parameter.
 
 ---
@@ -2295,46 +2262,41 @@ Explods now support AfterImage parameters (e.g. afterimage.time, afterimage.leng
 
 ### <a name="changed_explod_animelem">AnimElem</a>
 
->animelem = *elem_no* (int)  
+**animelem = *elem_no* (int)**  
 
 Sets the element where the explod's animation should start. Defaults to 1.
 
-
 ### <a name="changed_explod_animplayerno">AnimPlayerNo</a>
 
->animplayerno = *playerno* (int)  
+**animplayerno = *playerno* (int)**  
 
 This parameter lets a explod use the specified animation from another character. Defaults to own playerno.
 
-
 ### <a name="changed_explod_hidewithbars">HideWithBars</a>
 
->hidewithbars = *bvalue* (boolean int)  
+**hidewithbars = *bvalue* (boolean int)**  
 
 This parameter hides the explod automatically when the fight screen is hidden. Defaults to 0.
 
-
 ### <a name="changed_explod_spriteplayerno">SpritePlayerNo</a>
 
->spriteplayerno = *playerno* (int)  
+**spriteplayerno = *playerno* (int)**  
 
 This parameter lets a explod use the specified sprites from another character. Defaults to own playerno.
 
+### <a name="changed_explod_animelemtime">AnimElemTime</a>
 
-### <a name="changed_explod_animelem">AnimElemTime</a>
-
->animelemtime = *time* (int)  
+**animelemtime = *time* (int)**  
 
 Sets the time at which the explod's animation element should start. Defaults to 0.
 
-
 ### <a name="changed_explod_animfreeze">AnimFreeze</a>
 
->animfreeze = *bvalue* (boolean int)  
+**animfreeze = *bvalue* (boolean int)**  
 
 Freezes the explod's animation. Defaults to 0.
 
-Example:
+**Example:**
 ```ini
 [State 0, Custom Afterimage]
 type = Explod
@@ -2363,10 +2325,9 @@ removeongethit = 0
 ignorehitpause = 1
 ```
 
-
 ### <a name="changed_explod_focallength">FocalLength</a>
 
-Focal Length of the projection. Does nothing when `projection` is not perspective or perspective2. 
+Focal Length of the projection. Does nothing when `projection` is not perspective or perspective2.
 This value is fixed in Mugen 1.1, the explods will look differently under different different resolution/loaclcoord/camera zoom.
 In Ikemen, this value scales internally like xy scales so that the explods will always look the same.
 Default value is 2048.
@@ -2375,7 +2336,7 @@ Default value is 2048.
 
 Applies friction to explod on the defined axis (Friction value example: 0.95).
 
->Friction = friction_x, friction_y, friction_z (float, float, float)   
+**Friction = friction_x, friction_y, friction_z (float, float, float)**  
 
 ### <a name="changed_explod_interpolation">Interpolation</a>
 
@@ -2385,68 +2346,66 @@ The syntax is as follows:
 **interpolation.parameter**  
 Where "parameter" is the property that will be interpolated.  
 
-
 **interpolation.time** is required for any of the parameters to work.  
 
->interpolation.time = value (int)  
+**interpolation.time = value (int)**  
 
 Specifies the time period of the animation (if omitted, defaults to 0).  
 
->interpolation.animelem = elem_no (int)  
+**interpolation.animelem = elem_no (int)**  
 
 Specifies the target animelem for the interpolation. If animelem is omitted, defaults to 1. animfreeze will stop the animation from going further than interpolation.animelem.  
 
->interpolation.alpha = alpha_source, alpha_dest (int, int)  
+**interpolation.alpha = alpha_source, alpha_dest (int, int)**  
 
 Specifies the source and destination alpha values for the interpolation. sub and add1 are not supported.  
 
->interpolation.angle = angle, xangle, yangle (float, float, float)  
+**interpolation.angle = angle, xangle, yangle (float, float, float)**  
 
 Specifies the target angle, xangle, and yangle values for the interpolation.  
 
 Note: For the nightly build, these have been separated into individual parameters.  
 
->interpolation.offset = offset_x, offset_y (float, float)  
+**interpolation.offset = offset_x, offset_y (float, float)**  
 
 Specifies the target x and y offset values for the interpolation.  
 
->interpolation.scale = scale_x, scale_y (float, float)  
+**interpolation.scale = scale_x, scale_y (float, float)**  
 
 Specifies the target x and y scale values for the interpolation.  
 
->interpolation.xshear = value (float)  
+**interpolation.xshear = value (float)**  
 
 Specifies the target xshear value.  
 
->interpolation.focallength = value (float)  
+**interpolation.focallength = value (float)**  
 
 Specifies the target focallength value.  
-  
-  
+
 PalFX is also compatible with the syntax. **interpolation.palfx.time** and **ownppal = 1** are required for any of the parameters to work.  
 
->interpolation.palfx.mul = mul_r, mul_g, mul_b (int, int, int)
+**interpolation.palfx.mul = mul_r, mul_g, mul_b (int, int, int)**
 
 Specifies the target red, green, and blue multiplication values. If palfx.mul is omitted, defaults to 256, 256, 256.
 
->interpolation.palfx.add = add_r, add_g, add_b (int, int, int)
+**interpolation.palfx.add = add_r, add_g, add_b (int, int, int)**
 
 Specifies the target red, green, and blue addition values. If palfx.add is omitted, defaults to 0, 0, 0.
 
->interpolation.palfx.hue = value (int)
+**interpolation.palfx.hue = value (int)**
 
 Specifies the target hue value. If palfx.hue is omitted, defaults to 0.
 
->interpolation.palfx.color = value (int)
+**interpolation.palfx.color = value (int)**
 
 Specifies the target color value. If palfx.color is omitted, defaults to 256.
-	
 
 These parameters can be used interchangeably.
 
-Examples:
+**Examples:**
 
 * Spinning object doing a full circle in a period of 60 ticks:
+
 ```ini
 angle = 0;
 xAngle = 0;
@@ -2456,14 +2415,15 @@ interpolation.angle = 360, 0, 0;
 ```
 
 * Moving object from 0, 0 to 50, 0 in a period of 100 ticks:
+
 ```ini
 pos = 0, 0;
 interpolation.time = 100;
 interpolation.offSet = 50, 0;
 ```
 
-
 * Object fading out in 30 ticks:
+
 ```ini
 trans = addAlpha;
 alpha = 256, 0;
@@ -2472,6 +2432,7 @@ interpolation.alpha = 0, 256;
 ```
 
 * Object Changing from Blue to Red in 50 ticks:
+
 ```ini
 palfx.time = 50;
 palfx.mul = 0, 0, 256;
@@ -2479,12 +2440,10 @@ interpolation.time = 50;
 interpolation.palFx.mul = 256, 0, 0;
 ```
 
-
 ### <a name="changed_explod_layerno">LayerNo</a>
 
 Specify on which layer the explod should be drawn. Valid values are -1, 0 and 1. Defaults to the same layer as the player.  
 Layer number 1 is effectively the same as the legacy `ontop` parameter.  
-
 
 ### <a name="changed_explod_palfx">PalFx</a>
 
@@ -2492,7 +2451,7 @@ Apply palette effects on explods. The parameters are the same as in the HitDef c
 
 ### <a name="changed_explod_projection">Projection</a>
 
-Affect how the explod is drawn when `xangle` or `yangle` is not zero. 
+Affect how the explod is drawn when `xangle` or `yangle` is not zero.
 - orthographic: The default value when Mugen version is not 1.1 or Ikemen version is not 0. The explod is drawn using orthographic projection.
 - perspective: The default value when Mugen version is 1.1 and Ikemen version is 0. The explod is drawn using perspective projection. Distortion is affected by the position of the sprite relative to the center of the screen.
 - perspective2: The explod is drawn using perspective projection. Distortion is affected by the position of the sprite relative to the center of the animation.
@@ -2501,61 +2460,57 @@ Affect how the explod is drawn when `xangle` or `yangle` is not zero.
 
 If 0, disables reflection on the explod regardless of its shadow color. If 1, enables reflection on the explod regardless of its shadow color. Defaults to showing a reflection if the explod's shadow is not 0, 0, 0.
 
-
 ### <a name="changed_explod_removeonchangestate">RemoveOnChangeState</a>
 
 If set to 1, the Explod will be removed if the character changes state. Defaults to 0.
 
-
 ### <a name="changed_explod_shader">Shader</a>
 
->shader = *"shader_name"* (string)  
+**shader = *"shader_name"* (string)**  
 
 Specifying the name of the currently loaded custom shader will apply that shader to Explod.
 
 ### <a name="changed_explod_shadertime">ShaderTime</a>
 
->shadertime = *time* (int)  
+**shadertime = *time* (int)**  
 
 Specifying this parameter will remove the custom shader after it has been displayed for the specified number of ticks. The default value is -1.
 
 ### <a name="changed_explod_shadersaram.px">ShaderParam.pX</a>
 
->shaderparam.pX = *value* (float)  
+**shaderparam.pX = *value* (float)**  
 
 Specifies the value to send to the custom shader. The value specified here can be used as a variable within the custom shader.
 X is limited to 0 to 15, and a maximum of 16 values ​​can be sent.
 
 ### <a name="changed_explod_shadertexx.spr">ShaderTexX.spr</a>
 
->shadertexX.spr = *group, image* (int, int)  
+**shadertexX.spr = *group, image* (int, int)**  
 
 ### <a name="changed_explod_shadertexx.anim">ShaderTexX.anim</a>
 
-
->shadertexX.anim = *anim_no* (int)  
+**shadertexX.anim = *anim_no* (int)**  
 
 Specifies the texture to send to the custom shader. The sprites specified here can be used as textures within the custom shader.
 You can specify 1 or 2 for X, and send up to two sprites.
 Each tex can be assigned either a sprite number (spr) or an anim number. It is not possible to assign both sprite and anim numbers to the same tex number simultaneously.
 Note that since textures are loaded as raw data, images with palettes may not display correctly as is.
 
-### <a name="changed_explod_spriteplayerno">SpritePlayerNo</a>
+### <a name="changed_explod_spriteplayerno_2">SpritePlayerNo</a>
 
->spriteplayerno = *playerno* (int)  
+**spriteplayerno = *playerno* (int)**  
 
 This parameter lets a explod use the specified sprites from another character. Defaults to own playerno.
 
-
 ### <a name="changed_explod_syncid">syncid</a>
 
->syncid = *id* (int)
+**syncid = *id* (int)**
 
 Specifies the ID of a character to synchronize with. The Explod will group with the target in the draw order. If syncparams is 1, it also copies the target's drawing properties (Position, Scale, Angle, Trans, etc.).
 
 ### <a name="changed_explod_synclayer">synclayer</a>
 
->synclayer = *layer* (int)
+**synclayer = *layer* (int)**
 
 Adjusts the drawing order relative to the character specified in syncid.
 * 0: Same layer as the character (default).
@@ -2564,7 +2519,7 @@ Adjusts the drawing order relative to the character specified in syncid.
 
 ### <a name="changed_explod_syncparams">syncparams</a>
 
->syncparams = *value* (bool)
+**syncparams = *value* (bool)**
 
 If set to 1, visual parameters (Scale, Angle, Trans, etc.) are continuously copied from the character specified in syncid. If set to 0, only the draw order is synchronized. Defaults to 1.
 
@@ -2572,16 +2527,15 @@ If set to 1, visual parameters (Scale, Angle, Trans, etc.) are continuously copi
 
 If set to 1 and the explod is on layer 0, it will always be drawn behind lifebars and character shadows.
 
-
 ### <a name="changed_explod_window">window</a>
 
->window = *x1*, *y1*, *x2*, *y2* (float)  
+**window = *x1*, *y1*, *x2*, *y2* (float)**  
 
 This parameter takes four numbers (similar to the format of a Clsn box) which forms a rectangle outside of which the pixels will not be rendered.
 
 ### <a name="changed_explod_xshear">xshear</a>
 
->xshear = *xshear* (float)
+**xshear = *xshear* (float)**
 
 Specifies the amount of horizontal shearing to apply to the explod. Defaults to 0.
 
@@ -2690,16 +2644,15 @@ See common1.cns.
 
 Note: The below parameters are considered "new API" and override all `freq` and `ampl` parameters of ForceFeedback. `ampl` is ignored regardless of API used.
 
-
 ### <a name="changed_forcefeedback_lo">lo</a>
 
->lo = *lo_value* (int)  
+**lo = *lo_value* (int)**  
 
 Sets the frequency for the low frequency (left) rumble motor. Defaults to 0.
 
 ### <a name="changed_forcefeedback_hi">hi</a>
 
->hi = *hi_value* (int)  
+**hi = *hi_value* (int)**  
 
 Sets the frequency for the high frequency (right) rumble motor. Defaults to 0.
 
@@ -2745,10 +2698,10 @@ none
 ## GetHitVarSet (new)
 
 Changes a player's `GetHitVar` directly, without requiring a hit.  
-  
-Supported parameters:  
+
+**Supported parameters:**  
 airtype, animtype, attr, chainid, ctrltime, damage, dizzypoints, down.recovertime, fall, fall.damage, fall.envshake.ampl, fall.envshake.freq, fall.envshake.mul, fall.envshake.phase, fall.envshake.time, fall.kill, fall.recover, fall.recovertime, fall.xvel, fall.yvel, fallcount, groundtype, guardcount, guarded, guardpoints, hitcount, hitshaketime, hittime, ID, playerno, redlife, slidetime, xvel, yaccel, yvel
-  
+
 **Example:**
 ```ini
 [State Test]
@@ -2787,9 +2740,9 @@ type = Gravity
 Applies a temporary offset to the player's ground level, which is otherwise 0. This makes the player treat a different position as `pos y = 0`, and therefore allows coding features such as platforms.
 
 **Required parameters:**  
-  
->value = offset (float)  
-  
+
+**value = offset (float)**  
+
 **Example:**
 ```ini
 [State Test]
@@ -2807,9 +2760,14 @@ value = -60
 Sets the player's Guard Break flag.
 
 **Required parameters:**  
-  
->value = *break_flag* (int)  
->Set to nonzero to add Guard Break flag, or 0 to remove it.
+
+**value = *break_flag* (int)**  
+Set to nonzero to add Guard Break flag, or 0 to remove it.  
+
+**Example:**
+```go
+guardBreakSet{value: 1}
+```
 
 ---
 
@@ -2819,9 +2777,14 @@ Sets the player's Guard Break flag.
 Adds the specified amount to the player's guard points.
 
 **Required parameters:**  
-  
->value = *add_amt* (int)  
->*add_amt* is the number to add to the player's guard points.
+
+**value = *add_amt* (int)**  
+*add_amt* is the number to add to the player's guard points.  
+
+**Example:**
+```go
+guardPointsAdd{value: 10}
+```
 
 ---
 
@@ -2831,9 +2794,14 @@ Adds the specified amount to the player's guard points.
 Sets the amount of guard points that the player has.
 
 **Required parameters:**  
-  
->value = *set_amt* (int)  
->*set_amt* is the new value to set the player's guard points to.
+
+**value = *set_amt* (int)**  
+*set_amt* is the new value to set the player's guard points to.  
+
+**Example:**
+```go
+guardPointsSet{value: 100}
+```
 
 ---
 
@@ -2843,9 +2811,9 @@ Sets the amount of guard points that the player has.
 Temporarily changes the vertical size of the player's "push box" for 1 frame. Similar to Width in function: the values are added to the height, as defined in the player's constants file—they do not override them. A positive value will make the box larger, and a negative one will make it smaller.
 
 **Required parameters:**  
-  
->value = *top_extra_size, bottom_extra_size* (int)
-  
+
+**value = *top_extra_size, bottom_extra_size* (int)**
+
 **Example:**
 ```ini
 [State Test]
@@ -3038,7 +3006,7 @@ If set to 1, helper's attacks also update parent's target list and add to the pa
 
 ### <a name="changed_helper_keyctrl">keyctrl</a>
 
-In Mugen this parameter accepts a single boolean int value that makes the helper being able to read command input and inherit its root's State -1. In Ikemen GO, on top of this functionality, the parameter optionally accepts more values that enable additional root's negative state inheritance (2 means that helper inherit its root's State -2 and so forth). 
+In Mugen this parameter accepts a single boolean int value that makes the helper being able to read command input and inherit its root's State -1. In Ikemen GO, on top of this functionality, the parameter optionally accepts more values that enable additional root's negative state inheritance (2 means that helper inherit its root's State -2 and so forth).
 
 ```ini
 keyctrl = 1, 3
@@ -3048,7 +3016,6 @@ keyctrl = 1, 3
 
 If set to 1, the helper will be affected by increased KO Velocity (defeated character flying across the screen), just like normal player. Defaults to 0.
 
-
 ### <a name="changed_helper_map">Map</a>
 
 A helper's maps can be set immediately upon its creation via `map.<mapname>` syntax.
@@ -3057,34 +3024,29 @@ A helper's maps can be set immediately upon its creation via `map.<mapname>` syn
 helper{...; map.speed: 8; map.angle: 45}
 ```
 
-
 ### <a name="changed_helper_ownclsnscale">OwnClsnScale</a>
 
 A helper with this parameter will have its collision box scale be based on its own `size.xscale` and `size.yscale` constants rather than its root's.
-
 
 ### <a name="changed_helper_ownprojectile">OwnProjectile</a>
 
 A helper with this parameter can own its own projectiles instead of the root player.  
 Note: If a helper is destroyed while a projectile is still active, the orphaned projectile loses its ability to interact with other players.
 
-
 ### <a name="changed_helper_preserve">Preserve</a>
 
 If set to 1, the helper won't be destroyed after skipping round 1 intro and will move over to the next round, just like normal player. Defaults to 0.
-
 
 ### <a name="changed_helper_size">Size</a>
 
 New size constants like `depth` and `weight` can also be attributed to helpers upon their creation, with the `size` prefix.
 
-Example:
+**Example:**
 ```ini
 type = Helper
 size.weight = 200
 size.depth = 10, 10
 ```
-
 
 ### <a name="changed_helper_standby">Standby</a>
 
@@ -3156,13 +3118,12 @@ value = S, NA
 
 In Mugen, the behavior of `HitBy` (and `NotHitBy`) is not as documented. The player's invincibility is compared to the enemy's actual statetype instead of their Hitdef's `SCA` flags. If a character has `ikemenversion`, it will work as documented.  
 
-
-### <a name="changed_hitby_stack">New syntax</a>
+### <a name="changed_hitby_newsyntax">New syntax</a>
 
 `HitBy` (and `NotHitBy`) now also accepts a syntax similar to `HitOverride`, using `attr` and `slot` instead of `value`. Every player has access to 8 individual slots (numbered 0 to 7).  
 This new syntax is required to use the new features.  
 
-Example of equivalent code in old and new syntax:
+**Example:** Equivalent code in old and new syntax:
 ```ini
 [State -3, Old Syntax]
 type = hitby
@@ -3178,14 +3139,14 @@ slot = 0
 time = 1
 ```
 
-
 ### <a name="changed_hitby_stack">Stack</a>
 
->stack = *value* (bool)  
+**stack = *value* (bool)**  
 
 Using this parameter makes a vulnerability slot stack with other slots. This allows setting vulnerability combinations not previously possible in Mugen.  
 
 Example, make a player vulnerable to Standing Attacks and Air Projectiles:
+
 ```ini
 [State -2, Test]
 type = hitby
@@ -3204,17 +3165,15 @@ slot = 1
 stack = 1
 ```
 
-
 ### <a name="changed_hitby_playerno">PlayerNo</a>
 
->playerno = *player_number* (int)  
+**playerno = *player_number* (int)**  
 
 Using this parameter limits vulnerability to a specific player number.
 
-
 ### <a name="changed_hitby_playerid">PlayerID</a>
 
->playerid = *player_id* (int)  
+**playerid = *player_id* (int)**  
 
 Using this parameter limits vulnerability to a specific player ID.
 
@@ -3720,233 +3679,200 @@ none
 
 See `ground.cornerpush.velmul`.
 
-
 ### <a name="changed_hitdef_airguard_cornerpush_velmul">airguard.cornerpush.velmul (changed)</a> (nightly build only)
 
 See `ground.cornerpush.velmul`.
-
 
 ### <a name="changed_hitdef_airjuggle">air.juggle (changed)</a>
 
 In Mugen, the `air.juggle` parameter is only used by the `Projectile` state controller. Characters with `ikemenversion` can now use this parameter in a `Hitdef` to update their juggle points. This allows a move with multiple hits to have different juggle properties in every hit, for instance.  
 
-
 ### <a name="changed_hitdef_air_velocity">air.velocity (changed)</a>
 
 This parameter now takes a third value, It specifies the z velocity.
 
->air.velocity = *x_vel, y_vel, z_vel* (float, float, float)
-
+**air.velocity = *x_vel, y_vel, z_vel* (float, float, float)**
 
 ### <a name="changed_hitdef_airguard_velocity">airguard.velocity (changed)</a>
 
 This parameter now takes a third value, It specifies the z velocity.
 
->airguard.velocity = *x_vel, y_vel, z_vel* (float, float, float)
-
+**airguard.velocity = *x_vel, y_vel, z_vel* (float, float, float)**
 
 ### <a name="changed_hitdef_attackdepth">attack.depth</a>
 
->attack.depth = *z_dist_front, z_dist_back* (int, int)
+**attack.depth = *z_dist_front, z_dist_back* (int, int)**
 
 Specifies the range of the attack in the Z plane. An attack with more depth reaches further into or out of the Z plane. Defaults to the character's `attack.depth` size constant.  
 
-
 ### <a name="changed_hitdef_dizzypoints">dizzypoints</a>
 
->dizzypoints = *hit_value* (int)  
+**dizzypoints = *hit_value* (int)**  
 
 Specifies the amount of dizzy points to give P2 if this HitDef connects successfully. If omitted, it defaults to hit_damage (from "damage" parameter) multiplied by the value of `Default.LifeToDizzyPointsMul` / `Super.LifeToDizzyPointsMul` specified in data/common.const, scaled by the targets' defense multipliers if necessary.
-
 
 ### <a name="changed_hitdef_down_cornerpush_velmul">down.cornerpush.velmul (changed)</a> (nightly build only)
 
 See `ground.cornerpush.velmul`.
 
-
 ### <a name="changed_hitdef_downrecover">down.recover</a>
 
->down.recover = *recover_flag* (bool)  
+**down.recover = *recover_flag* (bool)**  
 
 This parameter controls the enemy's ability to use "fast recovery from lie down" after being hit.  
 
-
 ### <a name="changed_hitdef_downrecovertime">down.recovertime</a>
 
->down.recovertime = *recover_time* (int)  
+**down.recovertime = *recover_time* (int)**  
 
 This parameter determines how long the enemy will stay down (in state 5110) after being knocked down. Defaults to the enemy's `data.liedown.time` constant. Together with `down.recover`, this allows one to effectively apply "hard knockdown" states on the enemy.
 
-
 ### <a name="changed_hitdef_down_velocity">down.velocity (changed)</a>
 
->down.velocity = *x_vel, y_vel, z_vel* (float, float, float)  
+**down.velocity = *x_vel, y_vel, z_vel* (float, float, float)**  
 
-This parameter now takes a third value, It specifies the z velocity. 
-
+This parameter now takes a third value, It specifies the z velocity.
 
 ### <a name="changed_hitdef_envshakemul">envshake.mul</a>
 
->envshake.mul = *envshake_mul* (float) 
+**envshake.mul = *envshake_mul* (float)**
 
 For every envshake cycle, the envshake.ampl is multiplied by this value. Defaults to 1.
 
-
 ### <a name="changed_hitdef_envshakedir">envshake.dir</a>
 
->envshake.dir = *angle* (int)  
+**envshake.dir = *angle* (int)**  
 
 Changes the direction in degrees in which the shake is applied. Defaults to 0. For a negative amplitude, 90 will make the screen shake from left to right.
-
 
 ### <a name="changed_hitdef_fallenvshakemul">fall.envshake.mul</a>
 
->fall.envshake.mul = *fall_envshake_mul* (float) 
+**fall.envshake.mul = *fall_envshake_mul* (float)**
 
 For every fall.envshake cycle, the fall.envshake.ampl is multiplied by this value. Defaults to 1.
 
-
 ### <a name="changed_hitdef_fallenvshakedir">fall.envshake.dir</a>
 
->fall.envshake.dir = *angle* (int)  
+**fall.envshake.dir = *angle* (int)**  
 
 Changes the direction in degrees in which the shake is applied. Defaults to 0. For a negative amplitude, 90 will make the screen shake from left to right.
 
-
 ### <a name="changed_hitdef_zvelocity">fall.zvelocity</a>
 
->fall.zvelocity = *fall_zvelocity* (float) 
+**fall.zvelocity = *fall_zvelocity* (float)**
 
 This is the z-velocity that P2 gets when bouncing off the ground in the "fall" state. Defaults to no change if omitted.
 
-
 ### <a name="changed_hitdef_forcecrouch">forcecrouch</a>
 
->forcecrouch = *bvalue* (boolean int)
+**forcecrouch = *bvalue* (boolean int)**
 
 Forces a standing opponent to crouch upon hit. Similar to ForceStand. Defaults to 0.
-
 
 ### <a name="changed_hitdef_ground_cornerpush_velmul">ground.cornerpush.velmul (changed)</a> (nightly build only)
 
 Determines friction to apply to cornerpush. Setting to `-1` makes friction depend on the target's statetype.  
 Defaults to -1 for Ikemen characters and 0.7 for Mugen characters.  
 
-
 ### <a name="changed_hitdef_guard_cornerpush_velmul">guard.cornerpush.velmul (changed)</a> (nightly build only)
 
 See `ground.cornerpush.velmul`.
-
 
 ### <a name="changed_hitdef_guard_hittime">guard.hittime</a>
 
 If the character has `ikemenversion`, this value now defaults to `ground.hittime` as documented, as opposed to `ground.slidetime`.
 
-
 ### <a name="changed_hitdef_guardpoints">guardpoints</a>
 
->guardpoints = *hit_value* (float)  
+**guardpoints = *hit_value* (float)**  
 
 Specifies the amount of guard points to give P2 if this HitDef is guarded. If omitted, it defaults to hit_damage (from "damage" parameter) multiplied by the value of `Default.LifeToGuardPointsMul` / `Super.LifeToGuardPointsMul` specified in data/common.const, scaled by the targets' defense multipliers if necessary.
-
 
 ### <a name="changed_hitdef_ground_velocity">ground.velocity (changed)</a>
 
 This parameter now takes a third value, It specifies the z velocity.
 
->ground.velocity = *x_vel, y_vel, z_vel* (float, float, float)
-
+**ground.velocity = *x_vel, y_vel, z_vel* (float, float, float)**
 
 ### <a name="changed_hitdef_guard_dist">guard.dist (changed)</a>
 
->guard.dist = *x_dist_front, x_dist_back* (int, int)
+**guard.dist = *x_dist_front, x_dist_back* (int, int)**
 
 This parameter now takes a second value. It specifies the distance that a player can attack behind the enemy and still allow them to enter proximity guard. This second value defaults to 0.
 
-
 ### <a name="changed_hitdef_guard_width">guard.dist.width</a>
 
->guard.dist.width = *x_dist_front, x_dist_back* (int, int)
+**guard.dist.width = *x_dist_front, x_dist_back* (int, int)**
 
 Alternative syntax for guard.dist, for consistency with `guard.dist.height` and `guard.dist.depth`.
 
-
 ### <a name="changed_hitdef_guard_height">guard.dist.height</a>
 
->guard.dist.height = *y_dist_top, y_dist_bottom* (int, int)
+**guard.dist.height = *y_dist_top, y_dist_bottom* (int, int)**
 
 Specifies the vertical distance (height) within which a player's attack can trigger the enemy's proximity guard. The default value is 1000, 1000.
 
-
->guard.dist.depth = *z_dist_top, z_dist_bottom* (int, int)
+**guard.dist.depth = *z_dist_top, z_dist_bottom* (int, int)**
 
 Specifies the depth range (along the Z-axis) within which a player's attack can trigger the enemy's proximity guard. The default value is 4, 4.
 
-
 ### <a name="changed_hitdef_guard_velocity">guard.velocity (changed)</a>
 
->guard.velocity = *x_vel, y_vel, z_vel* (float, float, float)
+**guard.velocity = *x_vel, y_vel, z_vel* (float, float, float)**
 
 This parameter now takes a second and a third value. It specifies the Y and the Z guard velocities. They default to 0.
 
-
 ### <a name="changed_hitdef_guardsparkangle">guard.sparkangle</a>
 
->guard.sparkangle = *angle_value* (float)  
+**guard.sparkangle = *angle_value* (float)**  
 
 Specifies the guard spark rotation directly from a Hitdef. Defaults to 0.
 
-
 ### <a name="changed_hitdef_guardsparksclae">guard.sparkscale</a>
 
->guard.sparkscale = *x_scale, y_scale* (float, float)  
+**guard.sparkscale = *x_scale, y_scale* (float, float)**  
 
 Specifies the guard spark's scale directly from a Hitdef. Defaults to 1, 1 (no change).
 
 ### <a name="changed_hitdef_stand.friction">stand.friction</a>
 
->stand.friction = *friction_value* (float)
+**stand.friction = *friction_value* (float)**
 
 Overrides the opponent's Movement.Stand.Friction constants while they are in the gethit state caused by this HitDef.
 
 ### <a name="changed_hitdef_crouch.friction">crouch.friction</a>
 
->crouch.friction = *friction_value* (float)
+**crouch.friction = *friction_value* (float)**
 
 Overrides the opponent's Movement.Crouch.Friction constants while they are in the gethit state caused by this HitDef.
 
 ### <a name="changed_hitdef_guardsoundchannel">guardsound.channel</a>
 
->guardsound.channel = *channel_no* (int)
+**guardsound.channel = *channel_no* (int)**
 
 Specifies which of the player's sound channels the guardsound should play on. If omitted, channel_no defaults to -1, meaning the sound will play on any free channel.
 
-
 ### <a name="changed_hitdef_hitsoundchannel">hitsound.channel</a>
 
->hitsound.channel = *channel_no* (int)
+**hitsound.channel = *channel_no* (int)**
 
 Specifies which of the player's sound channels the hitsound should play on. If omitted, channel_no defaults to -1, meaning the sound will play on any free channel.
 
-
 ### <a name="changed_hitdef_ignorereversaldef">ignorereversaldef</a>
 
->ignorereversaldef = *value* (bool)
+**ignorereversaldef = *value* (bool)**
 
 If set to 1, this HitDef will ignore any active ReversalDef on the opponent, hitting them normally. Defaults to 0.
 
-
 ### <a name="changed_hitdef_keepstate">keepstate</a>
 
->keepstate = *value* (bool)
+**keepstate = *value* (bool)**
 
 If set to 1, the hit will apply effects (damage, hitpause, etc.) but the opponent will not change to a gethit state. Defaults to 0.
 
-
-### <a name="changed_hitdef_mindist">maxdist (changed)</a>
+### <a name="changed_hitdef_maxdist">maxdist (changed)</a>
 
 This parameter now takes a third value. It specifies the Z maxdist.
-
 
 ### <a name="changed_hitdef_mindist">mindist (changed)</a>
 
@@ -3954,72 +3880,62 @@ This parameter now takes a third value. It specifies the Z mindist.
 
 ### <a name="changed_hitdef_missonoverride">missonoverride </a>
 
->missonoverride = *bvalue* (boolean int)
+**missonoverride = *bvalue* (boolean int)**
 
 This parameter allows you to choose whether or not a HitDef will miss if it would be overridden(HitOverride), by default, it missing only if P1StateNo, P2StateNo, or P2GetP1State is specified.
 P1StateNo and P2StateNo both do not apply if the hit is overridden.
 
-
 ### <a name="changed_hitdef_nochainid">nochainID (changed)</a>
 
-This parameter now accepts up to 8 values, up from 2. 
-
+This parameter now accepts up to 8 values, up from 2.
 
 ### <a name="changed_hitdef_p1sprpriority">p1sprpriority</a>
 
 In Mugen, the default value for this parameter was not intuitive and often became a problem. In Ikemen, it defaults to no change.
 
-
 ### <a name="changed_hitdef_p2clsncheck">p2clsncheck</a>
 
->p2clsncheck= *clsn_type* (string)  
+**p2clsncheck= *clsn_type* (string)**  
 
 This parameter makes a hit be checked against a specific type of collision box. Valid parameters are `None`, `Clsn1`, `Clsn2`, `Size` and `Dummy` (nightly build only).  
 Traditionally, fighting games check throws with the `Size` box.  
 
-
 ### <a name="changed_hitdef_p2clsnrequire">p2clsnrequire</a>
 
->p2clsnrequire= *clsn_type* (string)  
+**p2clsnrequire= *clsn_type* (string)**  
 
 This parameter prevents a hit from happening if the enemy lacks a particular type of collision box, regardless of them overlapping or not with the player.  
-  
-Note: All Mugen characters were created on the assumption that lacking `Clsn2` makes them invulnerable. Therefore, if a character is designed for compatibility with other Mugen characters, this parameter should be used when checking hits against other types of collision boxes.  
 
+Note: All Mugen characters were created on the assumption that lacking `Clsn2` makes them invulnerable. Therefore, if a character is designed for compatibility with other Mugen characters, this parameter should be used when checking hits against other types of collision boxes.  
 
 ### <a name="changed_hitdef_redlife">redlife</a>
 
->redlife = *hit_value*, *guard_value* (int)  
+**redlife = *hit_value*, *guard_value* (int)**  
 
 Specifies the amount of red life to give P2 if this HitDef connects successfully. If omitted, it defaults to hit_damage (from "damage" parameter) multiplied by the value of `Default.LifeToRedLifeMul` / `Super.LifeToRedLifeMul` specified in data/common.const, scaled by the targets' defense multipliers if necessary. Additional second value is optional and assigns an amount of guard red life to P2.
 
-
 ### <a name="changed_hitdef_score">score</a>
 
->score = *p1_value*, *p2_value* (float)  
+**score = *p1_value*, *p2_value* (float)**  
 
 Specifies the score value added to P1 and P2 score count.
-
 
 ### <a name="changed_hitdef_snap">snap</a>
 
 This parameter now actually uses the third value. It specifies the P2 Pos Z.
 `snap` takes 4 arguments the 4th one being snaptime.
 
-
 ### <a name="changed_hitdef_sparkangle">sparkangle</a>
 
->sparkangle = *angle_value* (float)  
+**sparkangle = *angle_value* (float)**  
 
 Specifies the hitspark rotation directly from a Hitdef. Defaults to 0.
 
-
 ### <a name="changed_hitdef_sparksclae">sparkscale</a>
 
->sparkscale = *x_scale, y_scale* (float, float)  
+**sparkscale = *x_scale, y_scale* (float, float)**  
 
 Specifies the hit spark's scale directly from a Hitdef. Defaults to 1, 1 (no change).
-
 
 ### <a name="changed_hitdef_teamside">teamside</a>
 
@@ -4027,25 +3943,23 @@ Makes the HitDef be treated as an attack from the TeamSide you specify (similar 
 
 When used with `Projectile`, setting a teamside different from the player's will allow the projectile to hit its owner and interact with other projectiles from the same player.  
 
-
 ### <a name="changed_hitdef_unhittabletime">unhittabletime</a>
 
->unhittabletime = *p1_time*, *p2_time* (int)  
+**unhittabletime = *p1_time*, *p2_time* (int)**  
 
 Makes the player or the enemy invincible for the specified number of the frames after the hit. Use -1 for no change.  
 Defaults to `p1_pausetime + 1, p1_pausetime + 1` for throw attribute attacks, `0, p1_pausetime + 1` for ReversalDef, or `-1, -1` otherwise.
 
-
 ### <a name="changed_hitdef_xaccel">xaccel</a>
 
->xaccel = *accel* (float) 
+**xaccel = *accel* (float)**
 
 Specifies the x acceleration to impart to P2 if the hit connects. Defaults to 0.  
 For backwards compatibility reasons, this acceleration is not used by default, as it is not called by `common1.cns`.  
 
 ### <a name="changed_hitdef_zaccel">zaccel</a>
 
->zaccel = *accel* (float) 
+**zaccel = *accel* (float)**
 
 Specifies the z acceleration to impart to P2 if the hit connects. Defaults to 0.  
 For backwards compatibility reasons, this acceleration is not used by default, as it is not called by `common1.cns`.
@@ -4171,25 +4085,23 @@ none
 
 ### <a name="changed_hitoverride_forceguard">forceguard</a>
 
->forceguard = *value* (bool)
+**forceguard = *value* (bool)**
 
 If set to 1, a successful override will be considered a guarded attack.
 
-
 ### <a name="changed_hitoverride_guardflag">guardflag</a>
 
->guardflag = *hit_flags* (string)  
+**guardflag = *hit_flags* (string)**  
 
 Only hits containing the specified flags in their `guardflag` will be overridden.
 
-
 ### <a name="changed_hitoverride_guardflagnot">guardflag.not</a>
 
->guardflag.not = *hit_flags* (string)  
+**guardflag.not = *hit_flags* (string)**  
 
 Hits containing the specified flags in their `guardflag` will not be overridden.
 
-Example:  
+**Example:**  
 ```ini
 [State Test]; Override attacks that can be blocked standing but not crouching (overheads)
 type = HitOverride
@@ -4199,10 +4111,9 @@ guardflag = H
 guardflag.not = L
 ```
 
-
 ### <a name="changed_hitoverride_keepstate">keepstate</a>
 
->keepstate = *value* (bool)
+**keepstate = *value* (bool)**
 
 If set to 1, the character will override a hit without changing states at all.
 
@@ -4243,7 +4154,7 @@ Obsolete.
 
 ### <a name="changed_hitvelset_z">Z</a>
 
->z = z_flag (int)
+**z = z_flag (int)**
 
 A nonzero flag means to change that z-component of the player's velocity to the gethit velocity.
 
@@ -4283,53 +4194,68 @@ none
 Displays text/sprites/anims synchronized with each other, using [lifebar data](https://github.com/ikemen-engine/Ikemen-GO/wiki/Lifebar-features#new_action). The intended use case is implementation of messages, often found in commercial fighting games.
 
 **Required parameters:**  
-  
-> none  
-  
+
+ none  
+
 **Optional parameters:**  
-  
-> top = *top_flag* (int)  
-> Set to nonzero to move the message on top of the messages queue (by default new messages are appended to the end).  
-  
-> time = *time_set* (int)  
-> Specifies how long in ticks the message should be displayed. Defaults to time assigned by lifebar DEF file.  
-  
-> timemul = *time_mul* (float)  
-> Specifies the desired time multiplier. For instance, *time_mul* of 0.5 halves the time in which the message is displayed.  
-  
-> anim = *anim_no* (int)  
-> Specifies the number of the animation that should be used as a message (declared in lifebar DEF file).  
-  
-> spr = *group_no*, *sprite_no* (int, int)  
-> Values correspond to the identifying pair assigned to sprite in the lifebar sff file.  
-  
-> snd = *group_no*, *sound_no* (int, int)  
-> Values correspond to the identifying pair assigned to sound in the lifebar snd file.  
-  
-> text = *"message"* (string)  
-> Text to be rendered as a message.  
-  
-> font.no = *font_no* (int)  
-> *font_no* specifies the number of the lifebar font to use for text rendering. Defaults to the font assigned by lifebar DEF file.  
-  
-> font.bank = *bank_no* (int)  
-> Color bank of the font to use. Refer to the font for what color banks it has. Defaults to the bank assigned by lifebar DEF file.  
-  
-> font.align = *alignment* (int)  
-> *alignment* is a number representing the text alignment. 1 is left, 0 means center, and -1 is for right-alignment. Defaults to the alignment assigned by lifebar DEF file.  
-  
-> font.color = *r, g, b, a* (int, int, int, int)  
-> Color adjustment values for the font. Defaults to values assigned by lifebar DEF file. Alpha is optional.  
-  
-> palfx.key = LifebarAction can accept all the same key values from [PalFX state controller](http://www.elecbyte.com/mugendocs/sctrls.html#palfx) for message text rendering.  
-  
-> refreshtype = *type* (int)  
-> Determines how to handle duplicate messages:  
-> 0 lets duplicates stack  
-> 1 refreshes timer of an identical message instead of adding a new one  
-> 2 (default) is like 1, except the existing message also reappears from outside the screen  
+
+ top = *top_flag* (int)  
+ Set to nonzero to move the message on top of the messages queue (by default new messages are appended to the end).  
+
+ time = *time_set* (int)  
+ Specifies how long in ticks the message should be displayed. Defaults to time assigned by lifebar DEF file.  
+
+ timemul = *time_mul* (float)  
+ Specifies the desired time multiplier. For instance, *time_mul* of 0.5 halves the time in which the message is displayed.  
+
+ anim = *anim_no* (int)  
+ Specifies the number of the animation that should be used as a message (declared in lifebar DEF file).  
+
+ spr = *group_no*, *sprite_no* (int, int)  
+ Values correspond to the identifying pair assigned to sprite in the lifebar sff file.  
+
+ snd = *group_no*, *sound_no* (int, int)  
+ Values correspond to the identifying pair assigned to sound in the lifebar snd file.  
+
+ text = *"message"* (string)  
+ Text to be rendered as a message.  
+
+ font.no = *font_no* (int)  
+ *font_no* specifies the number of the lifebar font to use for text rendering. Defaults to the font assigned by lifebar DEF file.  
+
+ font.bank = *bank_no* (int)  
+ Color bank of the font to use. Refer to the font for what color banks it has. Defaults to the bank assigned by lifebar DEF file.  
+
+ font.align = *alignment* (int)  
+ *alignment* is a number representing the text alignment. 1 is left, 0 means center, and -1 is for right-alignment. Defaults to the alignment assigned by lifebar DEF file.  
+
+ font.color = *r, g, b, a* (int, int, int, int)  
+ Color adjustment values for the font. Defaults to values assigned by lifebar DEF file. Alpha is optional.  
+
+ palfx.key = LifebarAction can accept all the same key values from [PalFX state controller](http://www.elecbyte.com/mugendocs/sctrls.html#palfx) for message text rendering.  
+
+ refreshtype = *type* (int)  
+ Determines how to handle duplicate messages:  
+ 0 lets duplicates stack  
+ 1 refreshes timer of an identical message instead of adding a new one  
+ 2 (default) is like 1, except the existing message also reappears from outside the screen  
 
 Refer to *data/action.zss* file and default lifebar distributed with engine for a working example.
+
+**Example:**
+```go
+lifebarAction{
+    top: 1;
+    time: 60;
+    timemul: 1.0;
+    text: "Ready";
+    font.no: 0;
+    font.bank: 0;
+    font.align: 0;
+    font.color: 256, 256, 256, 256;
+    refreshtype: 2;
+}
+```
 
 ---
 
@@ -4359,21 +4285,21 @@ none
 Loads the specified data and overrides the data of the execution character. Note that all the data before reading will disappear.
 
 **Required parameters:**  
-  
+
 **savedata = *var_type* (string)**  
 Specifies the data type that should be read. Valid values for var_type are "var", "fvar", and "map".  
-  
+
 **path = "*save_path*" (string)**  
 Specifies the path of the file to be read (relative to the character folder). An error occurs if you make a mistake in the path.  
 
 **Optional parameters:**  
-  
+
 **maps = *map_1*, *map_2*, *map_3*... (string)**  
 A list of maps to load. Defaults to empty.  
-  
+
 **maps.include = *filter* (string)**  
 All maps containing this string in their names will be loaded. Defaults to empty.  
-  
+
 **Example:**
 ```ini
 [State Test]
@@ -4425,12 +4351,17 @@ none
 Adds value to player's map.
 
 **Required parameters:**  
-  
->*map = "*map_name*" (string)*  
->Specifies a name of the map that we add value to.  
-  
->**value = *expr* (int or float)**  
->*expr* is the value to add to the map.
+
+*map = "*map_name*" (string)*  
+Specifies a name of the map that we add value to.  
+
+**value = *expr* (int or float)**  
+*expr* is the value to add to the map.  
+
+**Example:**
+```go
+mapAdd{map: "example"; value: 1}
+```
 
 ---
 
@@ -4441,20 +4372,24 @@ Clears all of the player's maps, except those containing the specified strings.
 Maps that are defined in the character's DEF file will be reset to the value specified there.  
 
 **Required parameters:**  
-  
+
 none  
-  
+
 **Optional parameters:**  
-  
->**exclude = "*exception_string*"** (string)  
->If a map's name contains this string, it won't be cleared.
-  
->**exclude2 = "*exception_string*"** (string)  
->Extra filter parameters. Up to `exclude8`.
+
+**exclude = "*exception_string*"** (string)  
+If a map's name contains this string, it won't be cleared.
+
+**exclude2 = "*exception_string*"** (string)  
+Extra filter parameters. Up to `exclude8`.
 
 **Example:**
 ```
-mapReset{exclude: "level_"; exclude2: "experience_"; exclude3: "score_"}
+mapReset{
+    exclude: "level_";
+    exclude2: "experience_";
+    exclude3: "score_";
+}
 ```
 
 ---
@@ -4465,12 +4400,17 @@ mapReset{exclude: "level_"; exclude2: "experience_"; exclude3: "score_"}
 Sets value to player's map. This state controller can be used to change a number that has already been set via character's DEF file or to set a new map.
 
 **Required parameters:**  
-  
->map = "*map_name*" (string)  
->Specifies a name of the map that we assign value to.  
-  
->value = *expr* (int or float)  
->*expr* is the value to assign to the map.
+
+**map = "*map_name*" (string)**  
+Specifies a name of the map that we assign value to.  
+
+**value = *expr* (int or float)**  
+*expr* is the value to assign to the map.  
+
+**Example:**
+```go
+mapSet{map: "example"; value: 1}
+```
 
 ---
 
@@ -4479,33 +4419,42 @@ Sets value to player's map. This state controller can be used to change a number
 
 Reset the round or match and resume. By default (when no optional parameters are set) has the same effect as F4 debug key (round restart). Optionally allows characters and stage reloading, which also changes the state controller functionality to work like shift+F4 debug key (match restart).
 
-**Required parameters:**  
-  
->none  
-  
-**Optional parameters:**  
-  
->pXdef = "*char_path*" (string)  
->Path of the def file to read when reloading player 1-8 (replace X with player number). *char_path* can be relative to the folder of character that triggered MatchRestart or top ikemen directory.  
-  
->stagedef = "*stage_path*" (string)  
->Path of the stage def file to read when reloading. *stage_path* can be relative to the folder of character that triggered MatchRestart or top ikemen directory.  
-  
->reload = *p1, p2, p3, p4, p5, p6, p7, p8* (int)  
->This parameter specifies whether to reload particular character. Defaults to 0 (round is reset without characters reloading)   
->Note: Reloading files does not work during netplay due to synchronization limitations.
-  
->resetmatch = "*flag*" (int)  
->If set to 1, the match will restart from Round 1 instead of the current round. Unlike standard reloading, this allows restarting the match without reloading assets (reload=0), making it compatible with netplay. Defaults to 0.  
->Note: This parameter will be ignored in Turns mode if the active characters have already switched and reload is not enabled, as the original characters are no longer in memory.
-  
->preservevars = *p1, p2, p3, p4, p5, p6, p7, p8* (int)  
->This parameter specifies whether to preserve variables (var, fvar, map) for a particular character after the restart. Defaults to 0.  
->Note: In the first round, the default common state will have all var and fvar reset by the varRangeSet in StateDef 5900. If you want to carry over variables to the first round, you will need to overwrite the StateDef 5900.
-  
->pXpalette = *pal_no* (int)  
->Specifies the palette number (1-12) to be used for player X (replace X with player number) upon restarting. If not specified, the character retains the currently selected palette.
-  
+**Required parameters:**
+
+none
+
+**Optional parameters:**
+
+**pXdef = "*char_path*" (string)**
+
+Path of the def file to read when reloading player 1-8 (replace X with player number). *char_path* can be relative to the folder of character that triggered MatchRestart or top ikemen directory.
+
+**stagedef = "*stage_path*" (string)**
+
+Path of the stage def file to read when reloading. *stage_path* can be relative to the folder of character that triggered MatchRestart or top ikemen directory.
+
+**reload = *p1, p2, p3, p4, p5, p6, p7, p8* (int)**
+
+This parameter specifies whether to reload particular character. Defaults to 0 (round is reset without characters reloading).
+
+Note: Reloading files does not work during netplay due to synchronization limitations.
+
+**resetmatch = "*flag*" (int)**
+
+If set to 1, the match will restart from Round 1 instead of the current round. Unlike standard reloading, this allows restarting the match without reloading assets (reload=0), making it compatible with netplay. Defaults to 0.
+
+Note: This parameter will be ignored in Turns mode if the active characters have already switched and reload is not enabled, as the original characters are no longer in memory.
+
+**preservevars = *p1, p2, p3, p4, p5, p6, p7, p8* (int)**
+
+This parameter specifies whether to preserve variables (var, fvar, map) for a particular character after the restart. Defaults to 0.
+
+Note: In the first round, the default common state will have all var and fvar reset by the varRangeSet in StateDef 5900. If you want to carry over variables to the first round, you will need to overwrite the StateDef 5900.
+
+**pXpalette = *pal_no* (int)**
+
+Specifies the palette number (1-12) to be used for player X (replace X with player number) upon restarting. If not specified, the character retains the currently selected palette.
+
 **Example:**
 ```ini
 [State Test]
@@ -4525,27 +4474,27 @@ reload = 1, 1
 Modifies the parameters of an existing stage [background controller](http://www.elecbyte.com/mugendocs/bgs.html#background-controllers).
 
 **Required parameters:**  
-  
->id = *sctrlid* (int)  
->Specifies which controllers should be modified (all BGCtrl marked with [sctrlid](https://github.com/ikemen-engine/Ikemen-GO/wiki/Stage-features#bgctrl_sctrlid) will be affected)  
-  
+
+**id = *sctrlid* (int)**  
+Specifies which controllers should be modified (all BGCtrl marked with [sctrlid](https://github.com/ikemen-engine/Ikemen-GO/wiki/Stage-features#bgctrl_sctrlid) will be affected)  
+
 **Optional parameters:**  
-  
->time = *start_time*, *end_time*, *looptime* (int)  
->time values that should modify background controller time parameter.  
-  
->value = *value_1*, *value_2*, *value_3* (int)  
->values that should modify background controller value parameter (used by following BGCtrl types: *Visible*, *Enabled*, *Anim*, *SinX*, *SinY*; only SinX and SinY use more than 1 value).  
-  
->x = *value_x* (float)  
->x value that should modify background controller *x* parameter (used by following BGCtrl types: *VelSet*, *VelAdd*, *PosSet*, *PosAdd*).  
-  
->y = *value_y* (float)  
->y value that should modify background controller *y* parameter (used by following BGCtrl types: *VelSet*, *VelAdd*, *PosSet*, *PosAdd*).  
-  
->Notes:  
->This state controller affects background controllers marked with [sctrlid](https://github.com/ikemen-engine/Ikemen-GO/wiki/Stage-features#bgctrl_sctrlid), which is normally not known by individual characters. For this reason the best way to use this sctrl is through [AttachedChar](https://github.com/ikemen-engine/Ikemen-GO/wiki/Stage-features#info_attachedchar) associated with particular stage.
-  
+
+**time = *start_time*, *end_time*, *looptime* (int)**  
+time values that should modify background controller time parameter.  
+
+**value = *value_1*, *value_2*, *value_3* (int)**  
+values that should modify background controller value parameter (used by following BGCtrl types: *Visible*, *Enabled*, *Anim*, *SinX*, *SinY*; only SinX and SinY use more than 1 value).  
+
+**x = *value_x* (float)**  
+x value that should modify background controller *x* parameter (used by following BGCtrl types: *VelSet*, *VelAdd*, *PosSet*, *PosAdd*).  
+
+**y = *value_y* (float)**  
+y value that should modify background controller *y* parameter (used by following BGCtrl types: *VelSet*, *VelAdd*, *PosSet*, *PosAdd*).  
+
+**Notes:**  
+This state controller affects background controllers marked with [sctrlid](https://github.com/ikemen-engine/Ikemen-GO/wiki/Stage-features#bgctrl_sctrlid), which is normally not known by individual characters. For this reason the best way to use this sctrl is through [AttachedChar](https://github.com/ikemen-engine/Ikemen-GO/wiki/Stage-features#info_attachedchar) associated with particular stage.
+
 **Example:**
 ```ini
 [State Test]
@@ -4557,27 +4506,27 @@ value = 0
 
 ---
 
-<a id="new_modifybgctrl"></a>
+<a id="new_modifybgctrl3d"></a>
 ## ModifyBGCtrl3D (new)
 
 Modifies the parameters of an existing [3D stage background controller](https://github.com/ikemen-engine/Ikemen-GO/wiki/Stage-features-(3d)).
 
 **Required parameters:**  
-  
->id = *sctrlid* (int)  
->Specifies which controllers should be modified (all BGCtrl marked with [sctrlid](https://github.com/ikemen-engine/Ikemen-GO/wiki/Stage-features#bgctrl_sctrlid) will be affected)  
-  
+
+**id = *sctrlid* (int)**  
+Specifies which controllers should be modified (all BGCtrl marked with [sctrlid](https://github.com/ikemen-engine/Ikemen-GO/wiki/Stage-features#bgctrl_sctrlid) will be affected)  
+
 **Optional parameters:**  
-  
->time = *start_time*, *end_time*, *looptime* (int)  
->time values that should modify background controller time parameter.  
-  
->value = *value_1*, *value_2*, *value_3* (int)  
->values that should modify background controller value parameter (used by following BGCtrl types: *Visible*, *Enabled*, *Anim*).  
-  
->Notes:  
->This state controller affects background controllers marked with [sctrlid](https://github.com/ikemen-engine/Ikemen-GO/wiki/Stage-features#bgctrl_sctrlid), which is normally not known by individual characters. For this reason the best way to use this sctrl is through [AttachedChar](https://github.com/ikemen-engine/Ikemen-GO/wiki/Stage-features#info_attachedchar) associated with particular stage.
-  
+
+**time = *start_time*, *end_time*, *looptime* (int)**  
+time values that should modify background controller time parameter.  
+
+**value = *value_1*, *value_2*, *value_3* (int)**  
+values that should modify background controller value parameter (used by following BGCtrl types: *Visible*, *Enabled*, *Anim*).  
+
+**Notes:**  
+This state controller affects background controllers marked with [sctrlid](https://github.com/ikemen-engine/Ikemen-GO/wiki/Stage-features#bgctrl_sctrlid), which is normally not known by individual characters. For this reason the best way to use this sctrl is through [AttachedChar](https://github.com/ikemen-engine/Ikemen-GO/wiki/Stage-features#info_attachedchar) associated with particular stage.
+
 **Example:**
 ```ini
 [State -2, Test]
@@ -4596,28 +4545,40 @@ value = 1
 Modifies currently playing music.
 
 **Required parameters:**  
-  
->none  
-  
+
+none  
+
 **Optional parameters:**  
-  
->volume = *volume_scale* (int)  
->*volume_scale* alters volume for currently playing bgm.  
-  
->loopstart = *start_sample* (int)  
->Loop start position sample number.  
-  
->loopend = *end_sample* (int)  
->Loop end position sample number.  
-  
->position = *sample_point* (int)  
->Sample point to where the music should seek.  
-  
->freqmul = *freqmul* (float)  
->Frequency multiplier of the BGM (control pitch & tempo).  
-  
->loopcount = *loop_count* (int)  
->Changes the number of times this BGM should loop.
+
+**volume = *volume_scale* (int)**  
+*volume_scale* alters volume for currently playing bgm.  
+
+**loopstart = *start_sample* (int)**  
+Loop start position sample number.  
+
+**loopend = *end_sample* (int)**  
+Loop end position sample number.  
+
+**position = *sample_point* (int)**  
+Sample point to where the music should seek.  
+
+**freqmul = *freqmul* (float)**  
+Frequency multiplier of the BGM (control pitch & tempo).  
+
+**loopcount = *loop_count* (int)**  
+Changes the number of times this BGM should loop.  
+
+**Example:**
+```go
+modifyBgm{
+    volume: 80;
+    loopstart: 0;
+    loopend: 100000;
+    position: 0;
+    freqmul: 1.0;
+    loopcount: 0;
+}
+```
 
 ---
 
@@ -4638,21 +4599,17 @@ In general, characters with `ikemenversion` are able to to modify their explods 
 
 Additionally, if a character has `ikemenversion`, modifying an explod timer such as `bindtime` or `removetime` will use the current frame as the reference time. For example, if `removetime` is modified to 10, the explod will be removed 10 frames later, regardless of what the original time was.
 
-
 ### <a name="changed_modifyexplod_anim">anim</a>
 
 Modifies the `anim` parameter of an existing Explod. Requires `ikemenversion`.
-
 
 ### <a name="changed_modifyexplod_animelem">animelem</a>
 
 Modifies the `animelem` parameter of an existing Explod.
 
-
 ### <a name="changed_modifyexplod_animelemtime">animelemtime</a>
 
 Modifies the `animelemtime` parameter of an existing Explod.
-
 
 ### <a name="changed_modifyexplod_ignorehitpause">ignorehitpause</a>
 
@@ -4662,11 +4619,9 @@ Modifies the `ignorehitpause` parameter of an existing Explod. Requires `ikemenv
 
 The index of the explod to be affected. Defaults to -1 (all).  
 
-
 ### <a name="changed_modifyexplod_space">space</a>
 
 Modifies the `space` parameter of an existing Explod. Requires `ikemenversion`.
-
 
 ### <a name="changed_modifyexplod_under">under</a>
 
@@ -4680,13 +4635,13 @@ Modifies the `under` parameter of an existing Explod.
 Using this state controller will update the specified parameters of the player's currently active `HitDef`. Has no effect if no `HitDef` is active.
 
 **Required parameters:**  
-  
->none  
-  
+
+none  
+
 **Optional parameters:**  
-  
->same as HitDef  
-  
+
+same as HitDef  
+
 **Example:**
 ```ini
 [State Test]
@@ -4702,79 +4657,78 @@ damage = 100, 25
 ## ModifyPlayer (new)
 
 Allows changing some player parameters that are otherwise out of reach, or don't justify having their own dedicated state controllers. Some parameters should be used with care.  
-  
+
 Note: This state controller was briefly named `ModifyChar` during development. A previous nightly state controller named `MoveHitSet` was also integrated into it.  
 
 **Required parameters:**  
-  
->none  
-  
+
+none  
+
 **Optional parameters:**  
-  
-  
->ailevel = *ailevel* (int)  
->Sets the character's ailevel.  
-  
->alive = *flag* (bool)  
->Toggles the character's alive flag on or off.  
-  
->attack = *attack_value* (int)  
->Changes the player's attack value.  
-  
->defence = *defence_value* (int)  
->Changes the player's defence value.  
-  
->displayname = *name*(string)  
->Changes the character's displayname.  
-  
->lifebarname = *name* (string)  
->Changes the character's lifebarname.  
-  
->lifemax = *points* (int)  
->Changes the character's maximum life points.  
-  
->powermax = *points* (int)  
->Changes the character's maximum life points.  
-  
->dizzypointsmax = *points* (int)  
->Changes the character's maximum dizzy points.  
-  
->guardpointsmax = *points* (int)  
->Changes the character's maximum guardpoints.  
-  
->teamside = *side* (int)  
->Changes the character's team side.  
-  
->helpervar.ID = *id* (int)  
->Changes a helper's helper ID.  
-  
->helpername = *name* (string)  
->Changes a helper's name.  
-  
->movehit = *time* (int)  
->Sets the player's MoveHit timer to the specified value.  
-  
->moveguarded = *time* (int)  
->Sets the player's MoveGuarded timer to the specified value.  
-  
->movereversed = *time* (int)  
->Sets the player's MoveReversed timer to the specified value.  
-  
->movecountered = *flag* (bool)  
->Toggles the player's MoveCountered flag on or off.  
-  
->hitpausetime = *time* (int)  
->Sets the player's hitpausetime to the specified value.  
-  
->pausemovetime = *time* (int)  
->Sets the player's pausemovetime to the specified value.  
-  
->supermovetime = *time* (int)  
->Sets the player's supermovetime to the specified value.  
-  
->unhittabletime = *time* (int)  
->Sets the player's "unhittable" timer to the specified value.  
-  
+
+**ailevel = *ailevel* (int)**  
+Sets the character's ailevel.  
+
+**alive = *flag* (bool)**  
+Toggles the character's alive flag on or off.  
+
+**attack = *attack_value* (int)**  
+Changes the player's attack value.  
+
+**defence = *defence_value* (int)**  
+Changes the player's defence value.  
+
+**displayname = *name*(string)**  
+Changes the character's displayname.  
+
+**lifebarname = *name* (string)**  
+Changes the character's lifebarname.  
+
+**lifemax = *points* (int)**  
+Changes the character's maximum life points.  
+
+**powermax = *points* (int)**  
+Changes the character's maximum life points.  
+
+**dizzypointsmax = *points* (int)**  
+Changes the character's maximum dizzy points.  
+
+**guardpointsmax = *points* (int)**  
+Changes the character's maximum guardpoints.  
+
+**teamside = *side* (int)**  
+Changes the character's team side.  
+
+**helpervar.ID = *id* (int)**  
+Changes a helper's helper ID.  
+
+**helpername = *name* (string)**  
+Changes a helper's name.  
+
+**movehit = *time* (int)**  
+Sets the player's MoveHit timer to the specified value.  
+
+**moveguarded = *time* (int)**  
+Sets the player's MoveGuarded timer to the specified value.  
+
+**movereversed = *time* (int)**  
+Sets the player's MoveReversed timer to the specified value.  
+
+**movecountered = *flag* (bool)**  
+Toggles the player's MoveCountered flag on or off.  
+
+**hitpausetime = *time* (int)**  
+Sets the player's hitpausetime to the specified value.  
+
+**pausemovetime = *time* (int)**  
+Sets the player's pausemovetime to the specified value.  
+
+**supermovetime = *time* (int)**  
+Sets the player's supermovetime to the specified value.  
+
+**unhittabletime = *time* (int)**  
+Sets the player's "unhittable" timer to the specified value.  
+
 **Example:**
 ```ini
 [State Test]
@@ -4793,16 +4747,16 @@ teamside = 2
 Using this state controller will update the specified parameters for the projectiles with the specified `ID`. Syntax is essentially the same as for `Projectile`.
 
 **Required parameters:**  
-  
->none  
-  
-**Optional parameters:**   
->ID = projectile_ID (int)  
->The ID of the projectiles to modify. Defaults to -1 (all the player's projectiles)  
-  
->index = projectile_index (int)  
->The index of the projectile to modify. Defaults to -1 (all the player's projectiles)  
-  
+
+none  
+
+**Optional parameters:**  
+**ID = projectile_ID (int)**  
+The ID of the projectiles to modify. Defaults to -1 (all the player's projectiles)  
+
+**index = projectile_index (int)**  
+The index of the projectile to modify. Defaults to -1 (all the player's projectiles)  
+
 **Example:**
 ```ini
 [State Test]
@@ -4823,24 +4777,42 @@ teamside = 2
 This state controller allows modifying parameters of a char's Reflection
 
 **Required parameters:**  
-  
->none  
-  
+
+none  
+
 **Optional parameters:**  
-  
->anim = *anim_no* (int)  
->animelem = elem_no (int)  
->animplayerno = *anim_player_no* (int)  
->spriteplayerno = *sprite_player_no* (int)  
->color = *r*, *g*, *b* (int, int, int)  
->intensity = intensity (int)  
->offset = *x*, *y* (float, float)  
->window = *x1*, *y1*, *x2*, *y2* (float, float, float, float)  
->xshear = xshear (float)  
->xscale = xscale (float)  
->yscale = yscale (float)  
->projection = projection (string)   
->focallength = focallength (float)
+
+**anim = *anim_no* (int)**  
+**animelem = elem_no (int)**  
+**animplayerno = *anim_player_no* (int)**  
+**spriteplayerno = *sprite_player_no* (int)**  
+**color = *r*, *g*, *b* (int, int, int)**  
+**intensity = intensity (int)**  
+**offset = *x*, *y* (float, float)**  
+**window = *x1*, *y1*, *x2*, *y2* (float, float, float, float)**  
+**xshear = xshear (float)**  
+**xscale = xscale (float)**  
+**yscale = yscale (float)**  
+**projection = projection (string)**  
+**focallength = focallength (float)**  
+
+**Example:**
+```go
+modifyReflection{
+    anim: 0;
+    animelem: 1;
+    animplayerno: 0;
+    spriteplayerno: 0;
+    color: 128, 160, 255;
+    intensity: 128;
+    offset: 0, 0;
+    window: -100, -100, 100, 100;
+    xshear: 0.1;
+    xscale: 1.0;
+    yscale: 1.0;
+    focallength: 1.0;
+}
+```
 
 ---
 
@@ -4850,13 +4822,13 @@ This state controller allows modifying parameters of a char's Reflection
 Using this state controller will update the specified parameters of the player's currently active `ReversalDef`. Has no effect if no `ReversalDef` is active.
 
 **Required parameters:**  
-  
->none  
-  
+
+none  
+
 **Optional parameters:**  
-  
->same as ReversalDef  
-  
+
+same as ReversalDef  
+
 **Example:**
 ```ini
 [State Test]
@@ -4874,24 +4846,42 @@ fall = 0
 This state controller allows modifying parameters of a char's Shadow
 
 **Required parameters:**  
-  
->none  
-  
+
+none  
+
 **Optional parameters:**  
-  
->anim = *anim_no* (int)  
->animelem = elem_no (int)  
->animplayerno = *anim_player_no* (int)  
->spriteplayerno = *sprite_player_no* (int)  
->color = *r*, *g*, *b* (int, int, int)  
->intensity = intensity (int)  
->offset = *x*, *y* (float, float)  
->window = *x1*, *y1*, *x2*, *y2* (float, float, float, float)  
->xshear = xshear (float)  
->xscale = xscale (float)  
->yscale = yscale (float)  
->projection = projection (string)   
->focallength = focallength (float)
+
+**anim = *anim_no* (int)**  
+**animelem = elem_no (int)**  
+**animplayerno = *anim_player_no* (int)**  
+**spriteplayerno = *sprite_player_no* (int)**  
+**color = *r*, *g*, *b* (int, int, int)**  
+**intensity = intensity (int)**  
+**offset = *x*, *y* (float, float)**  
+**window = *x1*, *y1*, *x2*, *y2* (float, float, float, float)**  
+**xshear = xshear (float)**  
+**xscale = xscale (float)**  
+**yscale = yscale (float)**  
+**projection = projection (string)**  
+**focallength = focallength (float)**  
+
+**Example:**
+```go
+modifyShadow{
+    anim: 0;
+    animelem: 1;
+    animplayerno: 0;
+    spriteplayerno: 0;
+    color: 128, 128, 128;
+    intensity: 128;
+    offset: 0, 0;
+    window: -100, -100, 100, 100;
+    xshear: 0.1;
+    xscale: 1.0;
+    yscale: 1.0;
+    focallength: 1.0;
+}
+```
 
 ---
 
@@ -4901,48 +4891,47 @@ This state controller allows modifying parameters of a char's Shadow
 Modifies the following sound parameters on-the-fly. This cannot modify the `lowpriority` parameter. If you need your sound to be low priority, call PlaySnd with the respective parameter set.
 
 **Required parameters:**  
-  
->none  
-  
+
+none  
+
 **Optional parameters:**  
-  
-  
->channel = *channelNo* (int)  
->The sound channel to modify. Use -1 to modify all sound channels on the entity.  
-  
->volume = *volume* (int)  
->Changes the volume of the specified sound channel.
-  
->volumescale = *scale* (int)  
->Changes the volume scale of the specified sound channel.  
-  
->freqmul = *freqmul* (float)  
->Changes the sound channel's frequency multiplier. 
-  
->pan = *pan* (float)  
->Changes the sound channel's pan.  
-  
->abspan = *abspan* (float)  
->Changes the sound channel's absolute pan.  
-  
->priority = *priority* (int)  
->Changes the sound channel's priority.  
-  
->loopstart = *loop_start_sample* (int)  
->Changes the sound's loop start point.  
-  
->loopend = *loop_end_sample* (int)  
->Changes the sound's loop end point.  
-  
->position = *new_position_sample* (int)  
->Changes the position of the currently playing sound. Behavior is undefined when the channel is unspecified (-1).  
-  
->loop = *new_loop_value* (bool)  
->Changes whether or not this sound should loop forever (nonzero) or not at all (0). This parameter is ignored if `loopcount` is nonzero.  
-  
->loopcount = *new_loop_count* (int)  
->Changes the number of times this sound should loop.  
-  
+
+**channel = *channelNo* (int)**  
+The sound channel to modify. Use -1 to modify all sound channels on the entity.  
+
+**volume = *volume* (int)**  
+Changes the volume of the specified sound channel.
+
+**volumescale = *scale* (int)**  
+Changes the volume scale of the specified sound channel.  
+
+**freqmul = *freqmul* (float)**  
+Changes the sound channel's frequency multiplier.
+
+**pan = *pan* (float)**  
+Changes the sound channel's pan.  
+
+**abspan = *abspan* (float)**  
+Changes the sound channel's absolute pan.  
+
+**priority = *priority* (int)**  
+Changes the sound channel's priority.  
+
+**loopstart = *loop_start_sample* (int)**  
+Changes the sound's loop start point.  
+
+**loopend = *loop_end_sample* (int)**  
+Changes the sound's loop end point.  
+
+**position = *new_position_sample* (int)**  
+Changes the position of the currently playing sound. Behavior is undefined when the channel is unspecified (-1).  
+
+**loop = *new_loop_value* (bool)**  
+Changes whether or not this sound should loop forever (nonzero) or not at all (0). This parameter is ignored if `loopcount` is nonzero.  
+
+**loopcount = *new_loop_count* (int)**  
+Changes the number of times this sound should loop.  
+
 **Example:**
 ```ini
 [State Test]
@@ -4961,78 +4950,77 @@ freqmul = 1 + cos(pi*fightTime/256)
 This state controller allows modifying the stage's BG elements. Refer to stage documentation for more information.  
 
 **Required parameters:**  
-  
-  
->At least one parameter modification  
-  
-**Optional parameters:**   
-  
->ID = stagebg_ID (int)  
->The ID of the BG to modify. Defaults to -1 (all)  
-  
->index = stagebg_index (int)  
->The index of the BG to modify. Defaults to -1 (all)  
-  
->actionno = *anim* (int)  
->Changes the animation for anim type elements.  
-  
->alpha = *source, destination* (int, int)  
->Changes the transparency's alpha parameters. Requires trans parameter.  
-  
->angle = *angle* (int)   
->Changes the angle parameter.   
-  
->Xangle = *Xangle* (int)   
->Changes the Xangle parameter.   
-  
->Yangle = *Yangle* (int)   
->Changes the Yangle parameter.   
-  
->delta.x = *delta* (float)  
->Changes the X delta.  
-  
->delta.y = *delta* (float)  
->Changes the Y delta.  
-  
->layerno = *layer* (int)  
->Changes the layer number.  
-  
->pos.x = *position* (float)  
->Changes the X position in relation to the starting position.  
-  
->pos.y = *position* (float)  
->Changes the Y position in relation to the starting position.  
-  
->spriteno = *group, image* (int, int)  
->Changes the sprite number for normal type elements.  
-  
->start.x = *position* (float)  
->Changes the X starting position.  
-  
->start.y = *position* (float)  
->Changes the Y starting position.  
-  
->scalestart = *scale x, scale y* (float, float)  
->Changes the scalestart parameter.  
-  
->trans = *trans_type* (string)  
->Changes the transparency type.  
-  
->velocity.x = *velocity* (float)  
->Changes the X velocity.  
-  
->velocity.y = *velocity* (float)  
->Changes the Y velocity.  
-  
->xshear = *xshear* (float)  
->Changes the xshear parameter.  
-  
->focallength = *focallength* (float)  
->Changes the focallength parameter.  
-  
->projection = *projection* (string)  
->Changes the projection parameter.  
-  
+
+At least one parameter modification  
+
+**Optional parameters:**  
+
+**ID = stagebg_ID (int)**  
+The ID of the BG to modify. Defaults to -1 (all)  
+
+**index = stagebg_index (int)**  
+The index of the BG to modify. Defaults to -1 (all)  
+
+**actionno = *anim* (int)**  
+Changes the animation for anim type elements.  
+
+**alpha = *source, destination* (int, int)**  
+Changes the transparency's alpha parameters. Requires trans parameter.  
+
+**angle = *angle* (int)**  
+Changes the angle parameter.  
+
+**Xangle = *Xangle* (int)**  
+Changes the Xangle parameter.  
+
+**Yangle = *Yangle* (int)**  
+Changes the Yangle parameter.  
+
+**delta.x = *delta* (float)**  
+Changes the X delta.  
+
+**delta.y = *delta* (float)**  
+Changes the Y delta.  
+
+**layerno = *layer* (int)**  
+Changes the layer number.  
+
+**pos.x = *position* (float)**  
+Changes the X position in relation to the starting position.  
+
+**pos.y = *position* (float)**  
+Changes the Y position in relation to the starting position.  
+
+**spriteno = *group, image* (int, int)**  
+Changes the sprite number for normal type elements.  
+
+**start.x = *position* (float)**  
+Changes the X starting position.  
+
+**start.y = *position* (float)**  
+Changes the Y starting position.  
+
+**scalestart = *scale x, scale y* (float, float)**  
+Changes the scalestart parameter.  
+
+**trans = *trans_type* (string)**  
+Changes the transparency type.  
+
+**velocity.x = *velocity* (float)**  
+Changes the X velocity.  
+
+**velocity.y = *velocity* (float)**  
+Changes the Y velocity.  
+
+**xshear = *xshear* (float)**  
+Changes the xshear parameter.  
+
+**focallength = *focallength* (float)**  
+Changes the focallength parameter.  
+
+**projection = *projection* (string)**  
+Changes the projection parameter.  
+
 **Example:**
 ```ini
 [State Test]
@@ -5051,83 +5039,96 @@ velocity.x = 4
 This SCTRL lets a character modify basic stage parameters or "stage vars", as declared in the stage .def file. Not all parameters are modifable for now, but the SCTRL could be expanded in the future to allow it.
 
 **Required parameters:**  
-  
->none  
-  
+
+none  
+
 **Optional parameters:**  
-  
->camera.ytension.enable = *enable_flag* (bool)  
->camera.boundleft = *bound_left* (int)  
->camera.boundright = *bound_right* (int)  
->camera.boundhigh = *bound_high* (int)  
->camera.boundlow = *bound_low* (int)  
->camera.verticalfollow = *vertical_follow* (float)  
->camera.floortension = *floor_tension* (int)  
->camera.tensionhigh = *tension_high* (int)  
->camera.tensionlow = *tension_low* (int)  
->camera.tension = *tension* (int)  
->camera.startzoom = *start_zoom* (float)  
->camera.zoomout = *zoom_in* (float)  
->camera.zoomin = *zoom_out* (float)  
->camera.zoomindelay = *zoom_in_delay* (float)  
->camera.zoominspeed = *zoom_in_speed* (float)  
->camera.zoomoutspeed = *zoom_out_speed* (float)  
->camera.tensionvel = *tension_vel* (float)  
->camera.cuthigh = *cut_high* (float)  
->camera.cutlow = *cut_low* (float)  
->camera.yscrollspeed = *y_scroll_speed* (float)  
->camera.ytension.enable = *enable_flag* (bool)  
->camera.autocenter = *enable_flag* (bool)  
->playerinfo.leftbound = *left_bound* (float)  
->playerinfo.rightbound = *right_bound* (float)  
->playerinfo.topbound = *top_bound* (float)  
->playerinfo.botbound = *bot_bound* (float)  
->playerinfo.p1startx = *p1startx_pos* (int)  
->playerinfo.p2startx = *p2startx_pos* (int)  
->playerinfo.p1starty = *p1starty_pos* (int)  
->playerinfo.p2starty = *p2starty_pos* (int)  
->playerinfo.p1startz = *p1startz_pos* (int)  
->playerinfo.p2startz = *p2startz_pos* (int)  
->playerinfo.p1facing = *p1_facing* (int)  
->playerinfo.p2facing = *p2_facing* (int)  
->scaling.topscale = *top_scale* (float) (<mugen 1.0)  
->bound.screenleft = *screen_left* (int)  
->bound.screenright = *screen_right* (int)  
->stageinfo.autoturn = *autoturn* (bool)  
->stageinfo.resetbg = *resetbg* (bool)  
->stageinfo.xscale = *xscale* (float)  
->stageinfo.yscale = *yscale* (float)  
->stageinfo.zoffset = *zoffset* (int)  
->stageinfo.zoffsetlink = *zoffset_link* (int)  
->shadow.angle = *angle* (int)  
->shadow.color = *r*, *g*, *b* (int, int, int)
->shadow.fade.range = *end*, *begin* (int, int)  
->shadow.focallength = *focallength* (float)  
->shadow.intensity = *intensity* (int)  
->shadow.offset = *xoff*, *yoff* (float, float)  
->shadow.projection = *projection* (string)  
->shadow.window = *x1*, *y1*, *x2*, *y2* (float, float, float, float)  
->shadow.xangle = *xangle* (int)  
->shadow.xscale = *scale* (float)  
->shadow.xshear = *xshear* (float)  
->shadow.yangle = *yangle* (int)  
->shadow.ydelta = *delta* (float)  
->shadow.yscale = *scale* (float)  
->reflection.angle = *angle* (int)  
->reflection.fade.range = *end*, *begin* (int, int)  
->reflection.focallength = *focallength* (float)  
->reflection.intensity = *intensity* (int)  
->reflection.offset = *xoff*, *yoff* (float, float)  
->reflection.projection = *projection* (string)  
->reflection.window = *x1*, *y1*, *x2*, *y2* (float, float, float, float)  
->reflection.xangle = *xangle* (int)  
->reflection.xscale = *scale* (float)  
->reflection.yangle = *yangle* (int)  
->reflection.ydelta = *delta* (float)  
->reflection.yscale = *scale* (float)  
-  
+
+**camera.ytension.enable = *enable_flag* (bool)**  
+**camera.boundleft = *bound_left* (int)**  
+**camera.boundright = *bound_right* (int)**  
+**camera.boundhigh = *bound_high* (int)**  
+**camera.boundlow = *bound_low* (int)**  
+**camera.verticalfollow = *vertical_follow* (float)**  
+**camera.floortension = *floor_tension* (int)**  
+**camera.tensionhigh = *tension_high* (int)**  
+**camera.tensionlow = *tension_low* (int)**  
+**camera.tension = *tension* (int)**  
+**camera.startzoom = *start_zoom* (float)**  
+**camera.zoomout = *zoom_in* (float)**  
+**camera.zoomin = *zoom_out* (float)**  
+**camera.zoomindelay = *zoom_in_delay* (float)**  
+**camera.zoominspeed = *zoom_in_speed* (float)**  
+**camera.zoomoutspeed = *zoom_out_speed* (float)**  
+**camera.tensionvel = *tension_vel* (float)**  
+**camera.cuthigh = *cut_high* (float)**  
+**camera.cutlow = *cut_low* (float)**  
+**camera.yscrollspeed = *y_scroll_speed* (float)**  
+**camera.ytension.enable = *enable_flag* (bool)**  
+**camera.autocenter = *enable_flag* (bool)**  
+**playerinfo.leftbound = *left_bound* (float)**  
+**playerinfo.rightbound = *right_bound* (float)**  
+**playerinfo.topbound = *top_bound* (float)**  
+**playerinfo.botbound = *bot_bound* (float)**  
+**playerinfo.p1startx = *p1startx_pos* (int)**  
+**playerinfo.p2startx = *p2startx_pos* (int)**  
+**playerinfo.p1starty = *p1starty_pos* (int)**  
+**playerinfo.p2starty = *p2starty_pos* (int)**  
+**playerinfo.p1startz = *p1startz_pos* (int)**  
+**playerinfo.p2startz = *p2startz_pos* (int)**  
+**playerinfo.p1facing = *p1_facing* (int)**  
+**playerinfo.p2facing = *p2_facing* (int)**  
+**scaling.topscale = *top_scale* (float) (<mugen 1.0)**  
+**bound.screenleft = *screen_left* (int)**  
+**bound.screenright = *screen_right* (int)**  
+**stageinfo.autoturn = *autoturn* (bool)**  
+**stageinfo.resetbg = *resetbg* (bool)**  
+**stageinfo.xscale = *xscale* (float)**  
+**stageinfo.yscale = *yscale* (float)**  
+**stageinfo.zoffset = *zoffset* (int)**  
+**stageinfo.zoffsetlink = *zoffset_link* (int)**  
+**shadow.angle = *angle* (int)**  
+**shadow.color = *r*, *g*, *b* (int, int, int)**
+**shadow.fade.range = *end*, *begin* (int, int)**  
+**shadow.focallength = *focallength* (float)**  
+**shadow.intensity = *intensity* (int)**  
+**shadow.offset = *xoff*, *yoff* (float, float)**  
+**shadow.projection = *projection* (string)**  
+**shadow.window = *x1*, *y1*, *x2*, *y2* (float, float, float, float)**  
+**shadow.xangle = *xangle* (int)**  
+**shadow.xscale = *scale* (float)**  
+**shadow.xshear = *xshear* (float)**  
+**shadow.yangle = *yangle* (int)**  
+**shadow.ydelta = *delta* (float)**  
+**shadow.yscale = *scale* (float)**  
+**reflection.angle = *angle* (int)**  
+**reflection.fade.range = *end*, *begin* (int, int)**  
+**reflection.focallength = *focallength* (float)**  
+**reflection.intensity = *intensity* (int)**  
+**reflection.offset = *xoff*, *yoff* (float, float)**  
+**reflection.projection = *projection* (string)**  
+**reflection.window = *x1*, *y1*, *x2*, *y2* (float, float, float, float)**  
+**reflection.xangle = *xangle* (int)**  
+**reflection.xscale = *scale* (float)**  
+**reflection.yangle = *yangle* (int)**  
+**reflection.ydelta = *delta* (float)**  
+**reflection.yscale = *scale* (float)**  
+
 **Details:**  
->camera.ytension.enable is enabled by default when a stage uses tensionhigh and tensionlow
+camera.ytension.enable is enabled by default when a stage uses tensionhigh and tensionlow  
+
+**Example:**
+```go
+modifyStageVar{
+    camera.verticalfollow: 0.2;
+    camera.tension: 50;
+    stageinfo.autoturn: true;
+    stageinfo.xscale: 1.0;
+    stageinfo.yscale: 1.0;
+    shadow.offset: 0, 0;
+    reflection.offset: 0, 0;
+}
+```
 
 ---
 
@@ -5137,16 +5138,16 @@ This SCTRL lets a character modify basic stage parameters or "stage vars", as de
 Using this state controller will update the specified parameters for the texts with the specified ID. Syntax is essentially the same as for Text sctrl.
 
 **Required parameters:**  
-  
->none  
-  
+
+none  
+
 **Optional parameters:**  
-  
->ID = text_id (int)  
->The ID of the texts to modify. Defaults to -1 (all the player's texts)  
->index = text_index (int)  
->The index of the texts to modify. Defaults to -1 (all the player's texts)  
-  
+
+**ID = text_id (int)**  
+The ID of the texts to modify. Defaults to -1 (all the player's texts)  
+**index = text_index (int)**  
+The index of the texts to modify. Defaults to -1 (all the player's texts)  
+
 **Example:**
 ```ini
 [State Test]
@@ -5276,28 +5277,32 @@ none
 
 This state controller allows you to directly modify a player’s collision boxes without changing their animation.
 
-**Required parameters**  
+**Required parameters:**
+
 None.
 
-**Optional parameters**  
+**Optional parameters:**
 
-- **group** = *group* (int)  
+**group = *group* (int)**
+
 The type of collision box to override.  
 Valid values: `All` (nightly build only), `None`, `Clsn1`, `Clsn2`, `Size` and `Dummy` (nightly build only).  
 Using `None` removes all active Clsn overrides.  
-Defaults to `None`.  
+Defaults to `None`.
 
-- **index** = *index* (int)  
+**index = *index* (int)**
+
 The index of the box to modify.  
 Use `-1` to affect all boxes.  
 Using an out-of-bounds index will append a new box.  
-Defaults to `0`.  
+Defaults to `0`.
 
-- **rect** = *x1, y1, x2, y2* (float)  
+**rect = *x1, y1, x2, y2* (float)**
+
 The rectangle, or coordinates for the box.  
 Using `0, 0, 0, 0` removes the box.
 
-**Examples:**
+**Example:**
 
 ```ini
 [State Test]; Force player to have at least one Clsn1 box
@@ -5310,7 +5315,11 @@ rect = 0, -100, 50, -50
 
 ```
 # Remove all Clsn2 boxes from the player
-overrideClsn{group: Clsn2; index = -1; rect = 0, 0, 0, 0}
+overrideClsn{
+    group: Clsn2;
+    index: -1;
+    rect: 0, 0, 0, 0;
+}
 ```
 
 ---
@@ -5376,7 +5385,7 @@ none
 
 ### <a name="changed_palfx_invertblend">invertblend</a>
 
->invertblend = *blend_mode* (int)  
+**invertblend = *blend_mode* (int)**  
 
 Inverts current blend mode if enabled so Sub becomes Add and Add becomes Sub.
 
@@ -5390,25 +5399,25 @@ If character MugenVersion is 1.1 and invertall = 1 and if invertblend param is o
 
 ### <a name="changed_palfx_hue">hue</a>
 
->hue = *value* (int)
+**hue = *value* (int)**
 
 This affects the hue level of the palette. Avaiable range is -256 to 256.
 
 ### <a name="changed_palfx_sinmul">sinmul</a>
 
->sinmul = *ampl_r*, *ampl_g*, *ampl_b*, *period* (int)  
+**sinmul = *ampl_r*, *ampl_g*, *ampl_b*, *period* (int)**  
 
 Similliar to "sinadd" parameter but instead it creates effect related to "mul" parameter.
 
 ### <a name="changed_palfx_sincolor">sincolor</a>
 
->sincolor= *ampl*, *period* (int)  
+**sincolor= *ampl*, *period* (int)**  
 
 Similliar to "sinadd" parameter but instead it creates effect related to "color" parameter.
 
 ### <a name="changed_palfx_sinhue">sinhue</a>
 
->sinhue= *ampl*, *period* (int)  
+**sinhue= *ampl*, *period* (int)**  
 
 Similliar to "sinadd" parameter but instead it creates effect related to "hue" parameter.
 
@@ -5420,12 +5429,20 @@ Similliar to "sinadd" parameter but instead it creates effect related to "hue" p
 If the player is a helper, adds value to parent's map. If the player is not a helper, this controller does nothing. Parent refers to the instance that spawned the helper.
 
 **Required parameters:**  
-  
->map = "*map_name*" (string)  
->Specifies a name of the map that we add value to.  
-  
->value = *expr* (int or float)  
->*expr* is the value to add to the map.
+
+**map = "*map_name*" (string)**  
+Specifies a name of the map that we add value to.  
+
+**value = *expr* (int or float)**  
+*expr* is the value to add to the map.  
+
+**Example:**
+```go
+parentMapAdd{
+    map: "example";
+    value: 1;
+}
+```
 
 ---
 
@@ -5435,12 +5452,20 @@ If the player is a helper, adds value to parent's map. If the player is not a he
 If the player is a helper, sets value to parent's map. If the player is not a helper, this controller does nothing. Parent refers to the instance that spawned the helper.
 
 **Required parameters:**  
-  
->map = "*map_name*" (string)  
->Specifies a name of the map that we assign value to.  
-  
->value = *expr* (int or float)  
->*expr* is the value to assign to the map.
+
+**map = "*map_name*" (string)**  
+Specifies a name of the map that we assign value to.  
+
+**value = *expr* (int or float)**  
+*expr* is the value to assign to the map.  
+
+**Example:**
+```go
+parentMapSet{
+    map: "example";
+    value: 1;
+}
+```
 
 ---
 
@@ -5592,37 +5617,51 @@ none
 <a id="new_playbgm"></a>
 ## PlayBgm (new)
 
-Plays back a music. Supported file formats: *mp3*, *ogg*, *wav*. 
+Plays back a music. Supported file formats: *mp3*, *ogg*, *wav*.
 
 **Required parameters:**  
-  
->none  
-  
+
+none  
+
 **Optional parameters:**  
-  
->bgm = "*bgm_path*" (string)  
->Path of the music file to play. Leave it blank if you want to stop current music. *bgm_path* file lookup starts relative to character's directory, followed by checking path relative to top ikemen directory, finally the file existance is checked in *sound* directory.  
-  
->loop = *loop_flag* (int)  
->Set *loop_flag* to a nonzero value to have the bgm loop over and over, or 0 to disable looping. Defaults to 1.
-  
->volume = *volume_scale* (int)  
->Adjust the volume. 100 is for 100%. Defaults to 100. If *bgm_path* is not specified, *volume_scale* alters volume for currently playing bgm.  
-  
->loopstart = *start_sample* (int)  
->Loop start position sample number.  
-  
->loopend = *end_sample* (int)  
->Loop end position sample number.  
-  
->startposition = *sample_point* (int)  
->Sample point where the music should start playing.  
-  
->freqmul = *freqmul* (float)  
->Frequency multiplier of the BGM (control pitch & tempo).  
-  
->loopcount = *loop_count* (int)  
->Changes the number of times this BGM should loop.
+
+**bgm = "*bgm_path*" (string)**  
+Path of the music file to play. Leave it blank if you want to stop current music. *bgm_path* file lookup starts relative to character's directory, followed by checking path relative to top ikemen directory, finally the file existance is checked in *sound* directory.  
+
+**loop = *loop_flag* (int)**  
+Set *loop_flag* to a nonzero value to have the bgm loop over and over, or 0 to disable looping. Defaults to 1.
+
+**volume = *volume_scale* (int)**  
+Adjust the volume. 100 is for 100%. Defaults to 100. If *bgm_path* is not specified, *volume_scale* alters volume for currently playing bgm.  
+
+**loopstart = *start_sample* (int)**  
+Loop start position sample number.  
+
+**loopend = *end_sample* (int)**  
+Loop end position sample number.  
+
+**startposition = *sample_point* (int)**  
+Sample point where the music should start playing.  
+
+**freqmul = *freqmul* (float)**  
+Frequency multiplier of the BGM (control pitch & tempo).  
+
+**loopcount = *loop_count* (int)**  
+Changes the number of times this BGM should loop.  
+
+**Example:**
+```go
+playBgm{
+    bgm: "";
+    loop: 1;
+    volume: 100;
+    loopstart: 0;
+    loopend: 100000;
+    startposition: 0;
+    freqmul: 1.0;
+    loopcount: 0;
+}
+```
 
 ---
 
@@ -5656,7 +5695,7 @@ none
 `PlayerPush` now accepts a `priority` parameter. A player with a higher priority can't be pushed by a player with a lower priority and will also push them out of a stage corner. Priority is reset to 0 every frame.  
 
 ### <a name="changed_playerpush_affectteam">AffectTeam</a>
->affectteam = *team_type* (string)  
+**affectteam = *team_type* (string)**  
 
 specifies which team's players can be push.
 
@@ -5744,43 +5783,43 @@ Prior to version 1.0 RC8, a volume parameter was used instead of volumescale. Th
 
 ### <a name="changed_playsnd_priority">Priority</a>
 
->priority = *snd_priority* (int)  
+**priority = *snd_priority* (int)**  
 
 Sets the priority of the sound. Does nothing when channel is not specified. A sound with higher priority will not be interrupted by sounds with lower priority. Defaults to 0.
 
 ### <a name="changed_playsnd_loopstart">LoopStart</a>
 
->loopstart = *loop_start_sample* (int)  
+**loopstart = *loop_start_sample* (int)**  
 
 Sets the sample to begin looping from.
 
 ### <a name="changed_playsnd_loopend">LoopEnd</a>
 
->loopend = *loop_end_sample* (int)  
+**loopend = *loop_end_sample* (int)**  
 
 Sets the sample to end looping at.
 
 ### <a name="changed_playsnd_startposition">StartPosition</a>
 
->startposition = *start_sample* (int)  
+**startposition = *start_sample* (int)**  
 
 Sets the sample to begin playing from.
 
 ### <a name="changed_playsnd_loopcount">LoopCount</a>
 
->loopcount = *loop_count*  
+**loopcount =** *loop_count*  
 
 If set, will play the sound *loop_count* number of times before stopping. Nonzero values take precedence over the `loop` parameter.
 
 ### <a name="changed_playsnd_stopongethit">StopOnGetHit</a>
 
->stopongethit = *stop*  (bool)
+**stopongethit = *stop*  (bool)**
 
 This parameter makes the sound be interrupted if the player gets hit. Defaults to 1 if channel is set to 0.
 
 ### <a name="changed_playsnd_stoponchangestate">StopOnChangeState</a>
 
->stoponchangestate = *stop*  (bool)
+**stoponchangestate = *stop*  (bool)**
 
 This parameter makes the sound be interrupted if the player changes states.
 
@@ -5909,19 +5948,20 @@ This controller is only useful for debugging. PrintToConsole prints a specified 
 The syntax is the same as DisplayToClipboard:
 
 **Required parameters:**  
-  
->text = "*format_string*" (string)  
->*format_string* must be encased in double-quotes. It is a printf format string, so if you know about printf, you can skip this description. The format string contains any text you wish to display. You can also use \n to generate a line break, and \t to generate a tab character (tab width is equivalent to 4 characters). To display the value of an arithmetic expression, you can put a %d (for ints) or a %f (for floats) in the format string, then specify the expression in the params list. To display a % character, you must put %% in the format string.  
-  
->Following format specifiers are accepted: %v (any type), %d, %i, %f, %F, %e, %E, %g, or %G. Format specifier syntax such as %0.2f is also supported. Recognized escape sequences are \n, \t, \\, and \".  
-  
+
+**text = "*format_string*" (string)**  
+*format_string* must be encased in double-quotes. It is a printf format string, so if you know about printf, you can skip this description. The format string contains any text you wish to display. You can also use \n to generate a line break, and \t to generate a tab character (tab width is equivalent to 4 characters). To display the value of an arithmetic expression, you can put a %d (for ints) or a %f (for floats) in the format string, then specify the expression in the params list. To display a % character, you must put %% in the format string.  
+
+Following format specifiers are accepted: %v (any type), %d, %i, %f, %F, %e, %E, %g, or %G. Format specifier syntax such as %0.2f is also supported. Recognized escape sequences are \n, \t, \\, and \".  
+
 **Optional parameters:**  
-  
->params = *exp_1, exp_2, (...)*  
->Unlimited amount of numeric arguments can be specified in the format string. These should be listed under the params item, in order. The type of each parameter must match its format specifier. You cannot specify more or less parameters than are called for in the format string.  
-  
->If there is a type mismatch between the format specifier and the parameter actually provided, then the actual value of the parameter will be shown in an appropriate form for that type, using default formatting options.  
-  
+
+**params =** *exp_1, exp_2, (...)*
+
+Unlimited amount of numeric arguments can be specified in the format string. These should be listed under the params item, in order. The type of each parameter must match its format specifier. You cannot specify more or less parameters than are called for in the format string.  
+
+If there is a type mismatch between the format specifier and the parameter actually provided, then the actual value of the parameter will be shown in an appropriate form for that type, using default formatting options.  
+
 **Example:**
 ```ini
 [State Test]
@@ -6157,46 +6197,37 @@ none
 
 In MUGEN, contrary to its documentation, projectiles do not support the ChainID and NochainID parameters. This behavior has been replicated by default in Ikemen GO. However, when a character's `ikemenversion` is not 0, projectiles do take these parameters into account.  
 
-
 ### <a name="changed_projectile_projangle">ProjAngle</a>
 
 Specifies the angle to rotate the Projectile animation.
-
 
 ### <a name="changed_projectile_projxangle">ProjXAngle</a>
 
 Specifies the Xangle of the Projectile animation.
 
-
 ### <a name="changed_projectile_projyangle">ProjYAngle</a>
 
 Specifies the Yangle of the Projectile animation.
-
 
 ### <a name="changed_projectile_projclsnangle">ProjClsnAngle</a>
 
 Defines the angle for the projectile's collision boxes. In degrees.
 
-
 ### <a name="changed_projectile_projclsnscale">ProjClsnScale</a>
 
 Defines the collision box scale for the projectile.
-
 
 ### <a name="changed_projectile_projdepthbound">ProjDepthBound</a>
 
 Like `projedgebound` but for the Z space. Determines how far out of the Z boundaries the projectile can travel before being removed.  
 
-
 ### <a name="changed_projectile_projlayerno">ProjLayerNo</a>
 
 Specify on which layer the projectile should be drawn. Valid values are -1, 0 and 1. Defaults to the same layer as the player.
 
-
 ### <a name="changed_projectile_projfocallenth">ProjFocalLength</a>
 
 Focal Length of the projection. Does nothing when projection is not perspective or perspective2.
-
 
 ### <a name="changed_projectile_projprojection">ProjProjection</a>
 
@@ -6206,7 +6237,6 @@ Affect how the projectile is drawn when xangle or yangle is not zero.
  - perspective: The projectile is drawn using perspective projection. Distortion is affected by the position of the sprite relative to the center of the screen.
  - perspective2: The projectile is drawn using perspective projection. Distortion is affected by the position of the sprite relative to the center of the animation.
 
-
 ### <a name="changed_projectile_projreflection">ProjReflection</a>
 
 If 0, disables reflection on the projectile regardless of its shadow color. If 1, enables reflection on the projectile regardless of its shadow color. Defaults to showing a reflection if the projectile's shadow is not 0, 0, 0.
@@ -6215,37 +6245,36 @@ If 0, disables reflection on the projectile regardless of its shadow color. If 1
 
 This parameter takes four numbers (similar to the format of a Clsn box) which forms a rectangle outside of which the pixels will not be rendered.
 
-
 ### <a name="changed_projectile_projxshear">ProjXshear</a>
 
 Specifies the amount of horizontal shearing to apply to the projectile. Defaults to 0.
 
 ### <a name="changed_projectile_shader">Shader</a>
 
->shader = *"shader_name"* (string)  
+**shader = *"shader_name"* (string)**  
 
 Specifying the name of the currently loaded custom shader will apply that shader to Projectile.
 
 ### <a name="changed_projectile_shadertime">ShaderTime</a>
 
->shadertime = *time* (int)  
+**shadertime = *time* (int)**  
 
 Specifying this parameter will remove the custom shader after it has been displayed for the specified number of ticks. The default value is -1.
 
 ### <a name="changed_projectile_shadersaram.px">ShaderParam.pX</a>
 
->shaderparam.pX = *value* (float)  
+**shaderparam.pX = *value* (float)**  
 
 Specifies the value to send to the custom shader. The value specified here can be used as a variable within the custom shader.
 X is limited to 0 to 15, and a maximum of 16 values ​​can be sent.
 
 ### <a name="changed_projectile_shadertexx.spr">ShaderTexX.spr</a>
 
->shadertexX.spr = *group, image* (int, int)  
+**shadertexX.spr = *group, image* (int, int)**  
 
 ### <a name="changed_projectile_shadertexx.anim">ShaderTexX.anim</a>
 
->shadertexX.anim = *anim_no* (int)  
+**shadertexX.anim = *anim_no* (int)**  
 
 Specifies the texture to send to the custom shader. The sprites specified here can be used as textures within the custom shader.
 You can specify 1 or 2 for X, and send up to two sprites.
@@ -6260,14 +6289,19 @@ Note that since textures are loaded as raw data, images with palettes may not di
 Adds the specified amount to the player's red life, scaled by the player's defense multiplier if necessary.
 
 **Required parameters:**  
-  
->value = *add_amt* (int)  
->*add_amt* is the number to add to the player's red life.  
-  
+
+**value = *add_amt* (int)**  
+*add_amt* is the number to add to the player's red life.  
+
 **Optional parameters:**  
-  
->absolute = *abs_flag* (int)  
->If *abs_flag* is 1, then *add_amt* will not be scaled (i.e. attack and defense multipliers will be ignored). Defaults to 0.
+
+**absolute = *abs_flag* (int)**  
+If *abs_flag* is 1, then *add_amt* will not be scaled (i.e. attack and defense multipliers will be ignored). Defaults to 0.  
+
+**Example:**
+```go
+redLifeAdd{value: 10; absolute: 1}
+```
 
 ---
 
@@ -6277,9 +6311,14 @@ Adds the specified amount to the player's red life, scaled by the player's defen
 Sets the amount of red life that the player has.
 
 **Required parameters:**  
-  
->value = *set_amt* (int)  
->*set_amt* is the new value to set the player's red life to.
+
+**value = *set_amt* (int)**  
+*set_amt* is the new value to set the player's red life to.  
+
+**Example:**
+```go
+redLifeSet{value: 100}
+```
 
 ---
 
@@ -6337,23 +6376,23 @@ dest = 1,3
 Remaps one sprite with another (or does this for multiple sprites at once, based on character's CNS [RemapPreset](https://github.com/ikemen-engine/Ikemen-GO/wiki/Character-features#cns_remappreset) data)
 
 **Required parameters:**  
-  
->none  
-  
+
+none  
+
 **Optional parameters:**  
-  
->reset = *reset_flag* (int)  
->Set to 1 to reset all existing sprite remaps. Defaults to 0.  
-  
->preset = "*preset_name*" (string)  
->Name of the character's CNS `RemapPreset` data.  
-  
->source = *src_spr_grp, src_spr_item* (int, int)  
->See below.  
-  
->dest = *dst_spr_grp, dst_spr_item* (int, int)  
->Any animation that references source sprite will be drawn using the dest sprite instead. Note that the dest sprite group number and item refers to an unmapped sprite numbers.  
-  
+
+**reset = *reset_flag* (int)**  
+Set to 1 to reset all existing sprite remaps. Defaults to 0.  
+
+**preset = "*preset_name*" (string)**  
+Name of the character's CNS `RemapPreset` data.  
+
+**source = *src_spr_grp, src_spr_item* (int, int)**  
+See below.  
+
+**dest = *dst_spr_grp, dst_spr_item* (int, int)**  
+Any animation that references source sprite will be drawn using the dest sprite instead. Note that the dest sprite group number and item refers to an unmapped sprite numbers.  
+
 **Example:**
 ```ini
 [State Test]
@@ -6396,14 +6435,14 @@ The index of the explod to be affected. Defaults to -1 (all).
 Removes all of a player's texts, or just the texts with a specified ID number.
 
 **Required parameters:**  
-  
->none  
-  
+
+none  
+
 **Optional parameters:**  
-  
->ID = remove_id (int)  
->remove_id is the ID number of the texts to remove. If omitted, removes all texts owned by the player.
-  
+
+**ID = remove_id (int)**  
+remove_id is the ID number of the texts to remove. If omitted, removes all texts owned by the player.
+
 **Example:**
 ```ini
 [State Test]
@@ -6442,25 +6481,24 @@ none
 
 ---
 
-<a id="changed_screenbound"></a>
+<a id="changed_reversaldef"></a>
 ## ReversalDef (changed)
 
 ReversalDef can also use the new HitDef parameters. In addition it has the following exclusive parameters.
 
 ### <a name="changed_reversaldef_reversalguardflag">reversal.guardflag</a>
 
->reversal.guardflag = *hit_flags* (string)  
+**reversal.guardflag = *hit_flags* (string)**  
 
 Only hits containing the specified flags in their `guardflag` will be countered.
 
-
 ### <a name="changed_reversaldef_reversalguardflagnot">reversal.guardflag.not</a>
 
->reversal.guardflag.not = *hit_flags* (string)  
+**reversal.guardflag.not = *hit_flags* (string)**  
 
 Hits containing the specified flags in their `guardflag` will not be countered.
 
-Example:  
+**Example:**  
 ```ini
 [State Test]; Counter attacks that can be blocked crouching but not standing (lows)
 type = ReversalDef
@@ -6478,12 +6516,17 @@ reversal.guardflag.not = H
 If the player is a helper, adds value to root's map. If the player is not a helper, this controller does nothing. Root refers to the main player.
 
 **Required parameters:**  
-  
->map = "*map_name*" (string)  
->Specifies a name of the map that we add value to.  
-  
->value = *expr* (int or float)  
->*expr* is the value to add to the map.
+
+**map = "*map_name*" (string)**  
+Specifies a name of the map that we add value to.  
+
+**value = *expr* (int or float)**  
+*expr* is the value to add to the map.  
+
+**Example:**
+```go
+rootMapAdd{map: "example"; value: 1}
+```
 
 ---
 
@@ -6493,12 +6536,17 @@ If the player is a helper, adds value to root's map. If the player is not a help
 If the player is a helper, sets value root's map. If the player is not a helper, this controller does nothing. Root refers to the main player.
 
 **Required parameters:**  
-  
->map = "*map_name*" (string)  
->Specifies a name of the map that we assign value to.  
-  
->value = *expr* (int or float)  
->*expr* is the value to assign to the map.
+
+**map = "*map_name*" (string)**  
+Specifies a name of the map that we assign value to.  
+
+**value = *expr* (int or float)**  
+*expr* is the value to assign to the map.  
+
+**Example:**
+```go
+rootMapSet{map: "example"; value: 1}
+```
 
 ---
 
@@ -6507,23 +6555,28 @@ If the player is a helper, sets value root's map. If the player is not a helper,
 
 If the player is a helper, adds value to root's working variables. Either a float variable or an int variable can be added by this controller. If the player is not a helper, this controller does nothing. Root refers to the main player.
 
->Required parameters (int version):  
->v = *var_no* (int)  
->*var_no* should evaluate to an integer between 0 and 59.  
-  
->value = *int_expr* (int)  
->*int_expr* is the value to add to the int variable indicated by var_no.  
-  
->Required parameters (float version):  
->fv = *var_no* (int)  
->*var_no* should evaluate to an integer between 0 and 39.  
-  
->value = *float_expr* (float)  
->*float_expr* is the value to add to the float variable indicated by var_no.  
-  
->Alternate syntax:  
->var(var_no) = *int_expr* (int version)  
->fvar(var_no) = *float_expr* (float version)
+Required parameters (int version):  
+**v = *var_no* (int)**  
+*var_no* should evaluate to an integer between 0 and 59.  
+
+**value = *int_expr* (int)**  
+*int_expr* is the value to add to the int variable indicated by var_no.  
+
+Required parameters (float version):  
+**fv = *var_no* (int)**  
+*var_no* should evaluate to an integer between 0 and 39.  
+
+**value = *float_expr* (float)**  
+*float_expr* is the value to add to the float variable indicated by var_no.  
+
+**Alternate syntax:**  
+**var(var_no) = *int_expr* (int version)**  
+**fvar(var_no) = *float_expr* (float version)**  
+
+**Example:**
+```go
+rootVarAdd{v: 0; value: 1}
+```
 
 ---
 
@@ -6532,23 +6585,28 @@ If the player is a helper, adds value to root's working variables. Either a floa
 
 If the player is a helper, sets value root's working variables. Either a float variable or an int variable can be set by this controller. If the player is not a helper, this controller does nothing. Root refers to the main player.
 
->Required parameters (int version):  
->v = *var_no* (int)  
->*var_no* should evaluate to an integer between 0 and 59.  
-  
->value = *int_expr* (int)  
->*int_expr* is the value to assign to the int variable indicated by var_no.  
-  
->Required parameters (float version):  
->fv = *var_no* (int)  
->*var_no* should evaluate to an integer between 0 and 39.  
-  
->value = *float_expr* (float)  
->*float_expr* is the value to assign to the float variable indicated by var_no.  
-  
->Alternate syntax:  
->var(var_no) = *int_expr* (int version)  
->fvar(var_no) = *float_expr* (float version)
+Required parameters (int version):  
+**v = *var_no* (int)**  
+*var_no* should evaluate to an integer between 0 and 59.  
+
+**value = *int_expr* (int)**  
+*int_expr* is the value to assign to the int variable indicated by var_no.  
+
+Required parameters (float version):  
+**fv = *var_no* (int)**  
+*var_no* should evaluate to an integer between 0 and 39.  
+
+**value = *float_expr* (float)**  
+*float_expr* is the value to assign to the float variable indicated by var_no.  
+
+**Alternate syntax:**  
+**var(var_no) = *int_expr* (int version)**  
+**fvar(var_no) = *float_expr* (float version)**  
+
+**Example:**
+```go
+rootVarSet{v: 0; value: 1}
+```
 
 ---
 
@@ -6558,9 +6616,14 @@ If the player is a helper, sets value root's working variables. Either a float v
 Add specified amount of ticks into round time.
 
 **Required parameters:**  
-  
->value = *add_ticks* (int)  
->add_ticks specifies the number of ticks that should be added to round time.
+
+**value = *add_ticks* (int)**  
+add_ticks specifies the number of ticks that should be added to round time.  
+
+**Example:**
+```go
+roundTimeAdd{value: 60}
+```
 
 ---
 
@@ -6570,9 +6633,14 @@ Add specified amount of ticks into round time.
 Set round time to specified amount of ticks.
 
 **Required parameters:**  
-  
->value = *set_ticks* (int)  
->set_ticks specifies the number of ticks that should be set as a current round time.
+
+**value = *set_ticks* (int)**  
+set_ticks specifies the number of ticks that should be set as a current round time.  
+
+**Example:**
+```go
+roundTimeSet{value: 60}
+```
 
 ---
 
@@ -6582,21 +6650,21 @@ Set round time to specified amount of ticks.
 Put specified data together and save it as binary. It uses gob, which is a serialized format for Go language, as the storage format. All characters specified by the character or helper who executed the function are stored at that time.
 
 **Required parameters:**  
-  
->savedata = *var_type* (string)  
->Specifies the data type that should be saved. Valid values for var_type are "var", "fvar", and "map".  
-  
->path = "*save_path*" (string)  
->Specifies the save destination file path (relative to the character folder). Can use any extension (.gob is recommended)  
+
+**savedata = *var_type* (string)**  
+Specifies the data type that should be saved. Valid values for var_type are "var", "fvar", and "map".  
+
+**path = "*save_path*" (string)**  
+Specifies the save destination file path (relative to the character folder). Can use any extension (.gob is recommended)  
 
 **Optional parameters:**  
-  
->maps = *map_1*, *map_2*, *map_3*... (string)  
->A list of maps to load. Defaults to empty.  
-  
->maps.include = *filter* (string)  
->All maps containing this string in their names will be saved. Defaults to empty.  
-  
+
+**maps = *map_1*, *map_2*, *map_3*... (string)**  
+A list of maps to load. Defaults to empty.  
+
+**maps.include = *filter* (string)**  
+All maps containing this string in their names will be saved. Defaults to empty.  
+
 **Example:**
 ```ini
 [State Test]
@@ -6614,10 +6682,10 @@ path = "kfm.gob"
 Adds the specified amount of points to P1 current score counter.
 
 **Required parameters:**  
-  
->value = *expr* (float)  
->*expr* is the the number of score points to add to the P1 current score counter.  
-  
+
+**value = *expr* (float)**  
+*expr* is the the number of score points to add to the P1 current score counter.  
+
 **Example:**
 ```ini
 [State Test]
@@ -6677,7 +6745,7 @@ Like ChangeState, except that this changes a player back to a state in his own s
 ### <a name="changed_selfstate_readplayerid">ReadPlayerID</a>
 
 Change to the state of the character with the specified Player ID. If successful, it would take the character with the specified PlayerID to the selected state.  
-  
+
 See also [ChangeState](sctrl#changed_changestate).
 
 ---
@@ -6685,46 +6753,47 @@ See also [ChangeState](sctrl#changed_changestate).
 <a id="new_shaderset"></a>
 ## ShaderSet (new)
 
-Sets the specified custom shader to the character. 
+Sets the specified custom shader to the character.
 
 **Required parameters:**  
-  
->shader = *"shader_name"* (string)  
->Specify the name from the currently loaded custom shader.  
-  
-**Optional parameters:**  
-  
->time = *time* (int)  
->The custom shader is displayed for the specified number of ticks before being removed. The default is 1.  
->Specifying -1 will prevent it from being removed until ShaderSet is applied again.  
-  
->shaderparam.pX = *value* (float)  
->Specifies the value to send to the custom shader. The value specified here can be used as a variable within the custom shader.  
->X is limited to 0 to 15, and a maximum of 16 values ​​can be sent.  
 
-The shaderparam variable is defined within the custom shader, for example  
+**shader = *"shader_name"* (string)**  
+Specify the name from the currently loaded custom shader.  
+
+**Optional parameters:**  
+
+**time = *time* (int)**  
+The custom shader is displayed for the specified number of ticks before being removed. The default is 1.  
+Specifying -1 will prevent it from being removed until ShaderSet is applied again.  
+
+**shaderparam.pX = *value* (float)**  
+Specifies the value to send to the custom shader. The value specified here can be used as a variable within the custom shader.  
+X is limited to 0 to 15, and a maximum of 16 values ​​can be sent.  
+
+The shaderparam variable is defined within the custom shader, for example:  
 
 **OpenGL:**
 ```
 	uniform float p0, p1, p2, p3, p4, p5, p6, p7;
 	uniform float p8, p9, p10, p11, p12, p13, p14, p15;
 ```
+
 **Vulkan:**
 ```
-	layout(push_constant, std430) uniform u {
-		vec4 palUV;
-		float p0, p1, p2, p3, p4, p5, p6, p7;
-		float p8, p9, p10, p11, p12, p13, p14, p15;
-	};
+layout(push_constant, std430) uniform u {
+	vec4 palUV;
+	float p0, p1, p2, p3, p4, p5, p6, p7;
+	float p8, p9, p10, p11, p12, p13, p14, p15;
+};
 ```
-  
->shadertexX.spr = *group, image* (int, int)  
->shadertexX.anim = *anim_no* (int)  
->Specifies the texture to send to the custom shader. The sprites specified here can be used as textures within the custom shader.  
+
+**shadertexX.spr = *group, image* (int, int)**  
+**shadertexX.anim = *anim_no* (int)**  
+Specifies the texture to send to the custom shader. The sprites specified here can be used as textures within the custom shader.  
 You can specify 1 or 2 for X, and send up to two sprites.  
->Each tex can be assigned either a sprite number (spr) or an anim number. It is not possible to assign both sprite and anim numbers to the same tex number simultaneously.  
->Note that since textures are loaded as raw data, images with palettes may not display correctly as is.  
-  
+Each tex can be assigned either a sprite number (spr) or an anim number. It is not possible to assign both sprite and anim numbers to the same tex number simultaneously.  
+Note that since textures are loaded as raw data, images with palettes may not display correctly as is.  
+
 Shadertex textures are defined within custom shaders, for example  
 
 **OpenGL:**
@@ -6732,10 +6801,24 @@ Shadertex textures are defined within custom shaders, for example
 	uniform sampler2D tex1;
 	uniform sampler2D tex2;
 ```
+
 **Vulkan:**
 ```
 	layout(binding = 5) uniform sampler2D tex1;
 	layout(binding = 6) uniform sampler2D tex2;
+```
+
+**Example:**
+```go
+shaderSet{
+    shader: "myShader";
+    time: -1;
+    shaderparam.p0: 1.0;
+    shaderparam.p1: 0.5;
+    shadertex1.spr: 0, 0;
+    shadertex2.anim: 0;
+}
+
 ```
 
 ---
@@ -6746,15 +6829,15 @@ Shadertex textures are defined within custom shaders, for example
 Allows temporarily changing the function of the player's keys. Resets every frame.  
 
 **Required parameters:**  
-  
->input = *key* (string)  
->The key to be changed  
-  
->output = *key* (string)  
->The new function for that key  
-  
->Valid keys are:  
->U, D, L, R, a, b, c, x, y, z, s, d, w, m, none  
+
+**input = *key* (string)**  
+The key to be changed  
+
+**output = *key* (string)**  
+The new function for that key  
+
+Valid keys are:  
+U, D, L, R, a, b, c, x, y, z, s, d, w, m, none  
 
 Setting `input` and `output` both to `none` resets all buttons to normal state immediately.  
 
@@ -6766,8 +6849,9 @@ shiftInput{input: D; output: U}
 shiftInput{input: L; output: R}
 shiftInput{input: R; output: L}
 
-# Disable a button
+# Disable button a
 shiftInput{input: a; output: none}
+
 ```
 
 ---
@@ -6822,12 +6906,12 @@ none
 
 ### <a name="changed_sprpriority_layerno">LayerNo</a>
 
->layerno = *layer_number* (int)
+**layerno = *layer_number* (int)**
 
 Change the layer number on which the player is drawn on. Valid values are -1, 0 and 1. Defaults to 0.  
 [TODO - Link to explanation on layer drawing order]
 
-Example:
+**Example:**
 ```ini
 [State Test]
 type = SprPriority
@@ -6904,9 +6988,9 @@ Mugen allowed stopping all sounds for all players with `channel = -1`, but had n
 Plays the specified storyboard during a match.
 
 **Required parameters:**  
-  
->path = *storyboard_path* (string)  
->Specifies the path to the storyboard file, relative to the Ikemen top-level directory.  
+
+**path = *storyboard_path* (string)**  
+Specifies the path to the storyboard file, relative to the Ikemen top-level directory.  
 
 **Example:**
 ```ini
@@ -6998,23 +7082,23 @@ Determines how much the screen should darken during the pause. Valid values are 
 Makes the P1 and/or the specified partner exit `Standby` state. If no parameters are given it affects the player that called it. (Also affects helpers)
 
 **Required parameters:**  
-  
->none  
-  
+
+none  
+
 **Optional parameters:**  
-  
+
 *All [TagOut](sctrl#new_tagout) parameters work with some extra ones specified bellow*  
->ctrl = "*ctrl_flag*" (int)  
->Sets the P1 control flag.  
-  
->leader = *leader_playerno* (int)  
->Sets the player who is considered a [team leader](triggers#new_teamleader) to the specified [playerno](triggers#new_playerno).  
-  
->partnerctrl = *partnerctrl_flag* (int)  
->Sets the *partner_no* control flag.  
-  
->memberno = *player_memberno* (int)  
->Changes the player's position in the team.  
+**ctrl = "*ctrl_flag*" (int)**  
+Sets the P1 control flag.  
+
+**leader = *leader_playerno* (int)**  
+Sets the player who is considered a [team leader](triggers#new_teamleader) to the specified [playerno](triggers#new_playerno).  
+
+**partnerctrl = *partnerctrl_flag* (int)**  
+Sets the *partner_no* control flag.  
+
+**memberno = *player_memberno* (int)**  
+Changes the player's position in the team.  
 
 **Example:**
 ```ini
@@ -7038,25 +7122,25 @@ The main purpose of the `Standby` flag is to put a player away so it won't inter
 * `Enemy` and `P2` families of triggers will not pick up the player
 
 **Required parameters:**  
-  
->none  
-  
+
+none  
+
 **Optional parameters:**  
-  
->self = *self_flag* (int)  
->Set to 0 to not affect P1. Defaults to 1.  
-  
->partner = *partner_no* (int)  
->Specifies what teammate is afected.  
-  
->stateno = *state_no* (int)  
->The number of the state to change P1 to.  
-  
->partnerstateno = *partnerstate_no* (int)  
->The number of the state to change *partner_no* to.  
-  
->memberno = *player_memberno* (int)  
->Changes the player's position in the team.  
+
+**self = *self_flag* (int)**  
+Set to 0 to not affect P1. Defaults to 1.  
+
+**partner = *partner_no* (int)**  
+Specifies what teammate is afected.  
+
+**stateno = *state_no* (int)**  
+The number of the state to change P1 to.  
+
+**partnerstateno = *partnerstate_no* (int)**  
+The number of the state to change *partner_no* to.  
+
+**memberno = *player_memberno* (int)**  
+Changes the player's position in the team.  
 
 **Example:**
 ```ini
@@ -7075,9 +7159,14 @@ Adds the player with the specified ID to the original player's target list.
 Do not confuse this player ID with a target ID. Target ID can be assigned with `chainID` parameter of [GetHitVarSet](sctrl#new_grthitvarset).  
 
 **Required parameters:**  
-  
->PlayerID = *ID* (int)  
->ID of player to be added.
+
+**PlayerID = *ID* (int)**  
+ID of player to be added.
+
+**Example:**
+```go
+targetAdd{playerID: 60}
+```
 
 ---
 
@@ -7115,10 +7204,9 @@ Defaults to `0, 0` if omitted.
 
 The index of the target to be affected. Defaults to -1 (all).  
 
-
 ### <a name="changed_targebind_pos">Pos (changed)</a>
 
->pos = *x_pos, y_pos, pos_z* (float, float, float)
+**pos = *x_pos, y_pos, pos_z* (float, float, float)**
 
 This parameter now takes a third value, Specifies the offset from the player's z-axis to bind the target to.
 
@@ -7130,14 +7218,19 @@ This parameter now takes a third value, Specifies the offset from the player's z
 Adds the specified amount to all targets' dizzy points.
 
 **Required parameters:**  
-  
->value = *add_amt* (int)  
->*add_amt* is added to each target's dizzy points.  
-  
+
+**value = *add_amt* (int)**  
+*add_amt* is added to each target's dizzy points.  
+
 **Optional parameters:**  
-  
->ID = *target_id* (int)  
->Specifies the desired target ID to affect. Only targets with this target ID will be affected. Defaults to -1 (affects all targets.)
+
+**ID = *target_id* (int)**  
+Specifies the desired target ID to affect. Only targets with this target ID will be affected. Defaults to -1 (affects all targets.)  
+
+**Example:**
+```go
+targetDizzyPointsAdd{value: 10; ID: -1}
+```
 
 ---
 
@@ -7208,14 +7301,19 @@ The index of the target to be affected. Defaults to -1 (all).
 Adds the specified amount to all targets' guard points.
 
 **Required parameters:**  
-  
->value = *add_amt* (int)  
->*add_amt* is added to each target's guard points.  
-  
+
+**value = *add_amt* (int)**  
+*add_amt* is added to each target's guard points.  
+
 **Optional parameters:**  
-  
->ID = *target_id* (int)  
->Specifies the desired target ID to affect. Only targets with this target ID will be affected. Defaults to -1 (affects all targets.)
+
+**ID = *target_id* (int)**  
+Specifies the desired target ID to affect. Only targets with this target ID will be affected. Defaults to -1 (affects all targets.)  
+
+**Example:**
+```go
+targetGuardPointsAdd{value: 10; ID: -1}
+```
 
 ---
 
@@ -7258,7 +7356,6 @@ none
 ### <a name="changed_targetlifeadd_dizzy">Dizzy</a>
 
 If set to 1, enables life to dizzy points conversion support using `Default.LifeToDizzyPointsMul` / `Super.LifeToDizzyPointsMul` const. Defaults to 1.
-
 
 ### <a name="changed_targetlifeadd_index">Index</a>
 
@@ -7304,17 +7401,22 @@ The index of the target to be affected. Defaults to -1 (all).
 Adds the specified amount to all targets' red life, scaled by the targets' defense multipliers if necessary.
 
 **Required parameters:**  
-  
->value = *add_amt* (int)  
->*add_amt* is added to each target's red life.  
-  
+
+**value = *add_amt* (int)**  
+*add_amt* is added to each target's red life.  
+
 **Optional parameters:**  
-  
->ID = *target_id* (int)  
->Specifies the desired target ID to affect. Only targets with this target ID will be affected. Defaults to -1 (affects all targets.)  
-  
->absolute = *abs_flag* (int)  
->If *abs_flag* is 1, then *add_amt* will not be scaled (i.e. attack and defense multipliers will be ignored). Defaults to 0.
+
+**ID = *target_id* (int)**  
+Specifies the desired target ID to affect. Only targets with this target ID will be affected. Defaults to -1 (affects all targets.)  
+
+**absolute = *abs_flag* (int)**  
+If *abs_flag* is 1, then *add_amt* will not be scaled (i.e. attack and defense multipliers will be ignored). Defaults to 0.  
+
+**Example:**
+```go
+targetRedLifeAdd{value: 10; ID: -1; absolute: 1}
+```
 
 ---
 
@@ -7324,14 +7426,19 @@ Adds the specified amount to all targets' red life, scaled by the targets' defen
 Adds the specified amount of points to targets' current score counter.
 
 **Required parameters:**  
-  
->value = *expr* (float)  
->*expr* is the the number of score points to add to the target's current score counter.  
-  
+
+**value = *expr* (float)**  
+*expr* is the the number of score points to add to the target's current score counter.  
+
 **Optional parameters:**  
-  
->ID = *target_id* (int)  
->Specifies the desired target ID to affect. Only targets with this target ID will be affected. Defaults to -1 (affects all targets.)
+
+**ID = *target_id* (int)**  
+Specifies the desired target ID to affect. Only targets with this target ID will be affected. Defaults to -1 (affects all targets.)  
+
+**Example:**
+```go
+targetScoreAdd{value: 100; ID: -1}
+```
 
 ---
 
@@ -7406,12 +7513,11 @@ y = 0.45
 
 ### <a name="changed_targetveladd_index">Index</a>
 
-The index of the target to be affected. Defaults to -1 (all). 
-
+The index of the target to be affected. Defaults to -1 (all).
 
 ### <a name="changed_targetveladd_z">Z</a>
 
->z = *z_value* (float)
+**z = *z_value* (float)**
 
 Specifies the value to add to the target's z-velocity.
 
@@ -7451,12 +7557,11 @@ none
 
 ### <a name="changed_targetvelset_index">Index</a>
 
-The index of the target to be affected. Defaults to -1 (all). 
-
+The index of the target to be affected. Defaults to -1 (all).
 
 ### <a name="changed_targetvelset_z">Z</a>
 
->z = *z_value* (float)
+**z = *z_value* (float)**
 
 Specifies the value to set the target's z-velocity to.
 
@@ -7468,12 +7573,17 @@ Specifies the value to set the target's z-velocity to.
 Adds value to all team members maps.
 
 **Required parameters:**  
-  
->map = "*map_name*" (string)  
->Specifies a name of the map that we add value to.  
-  
->value = *expr* (int or float)  
->*expr* is the value to add to the map.
+
+**map = "*map_name*" (string)**  
+Specifies a name of the map that we add value to.  
+
+**value = *expr* (int or float)**  
+*expr* is the value to add to the map.  
+
+**Example:**
+```go
+teamMapAdd{map: "example"; value: 1}
+```
 
 ---
 
@@ -7483,12 +7593,18 @@ Adds value to all team members maps.
 Sets value to all team members maps.
 
 **Required parameters:**  
-  
->map = "*map_name*" (string)  
->Specifies a name of the map that we assign value to.  
-  
->value = *expr* (int or float)  
->*expr* is the value to assign to the map.
+
+**map = "*map_name*" (string)**  
+Specifies a name of the map that we assign value to.  
+
+**value = *expr* (int or float)**  
+*expr* is the value to assign to the map.  
+
+**Example:**
+```go
+teamMapSet{map: "example"; value: 2}
+
+```
 
 ---
 
@@ -7498,75 +7614,104 @@ Sets value to all team members maps.
 Text controller is used for displaying text on screen.
 
 **Required parameters:**  
-  
->none  
-  
+
+none  
+
 **Optional parameters:**  
-  
->removetime = *rem_time* (int)  
->The text will be removed after having been displayed for *rem_time* number of game ticks. Defaults to 1.  
-  
->layerno = *layer_no* (int)  
->Sets the layer to which the text will be drawn on. 0 is in front of the background, but behind the players. 1 is in front of the players, but behind the foreground. 2 is in front of the foreground. Defaults to 1.  
-  
->localcoord = *coord_x, coord_y* (int, int)    
->Sets custom localcoord. If omitted, lifebar font defaults to the lifebar localcoord, character font and debug font defaults to the screen localcoord.  
-  
->text = *"format_string"* (string)  
->Text to be rendered. Defaults to "%v" (rendering first *params* argument of any type). *format_string* must be encased in double-quotes. It is a *printf* format string. You can use \t to generate a tab character (tab width is equivalent to 4 characters) and \n to break lines. To display the value of an arithmetic expression, you can put a %d (for ints) or a %f (for floats) in the format string, then specify the expression in the params list. To display a % character, you must put %% in the format string. Accepted format specifiers: %v (any type), %d, %i, %f, %F, %e, %E, %g, or %G. Syntax such as %0.2f is also supported.  
-  
->params = *exp_1, exp_2, (...)*  
->Unlimited amount of numeric arguments can be specified in the format string. These should be listed under the params item, in order. The type of each parameter must match its format specifier.
-  
->font = *[F]font_no* (int)  
->*font_no* specifies the number of the font to use for text rendering. The 'F' prefix is optional: if included, then the text is rendred using lifebar (fight.def) fonts. Otherwise font [declared](https://github.com/ikemen-engine/Ikemen-GO/wiki/Character-features#def_files_font) in character's DEF file is used. If specified font doesn't exist than the debug font is used. Defaults to debug font.  
-  
->bank = *bank_no* (int)  
->Color bank of the font to use. Refer to the font for what color banks it has. Defaults to 0.  
-  
->align = *alignment* (int)  
->*alignment* is a number representing the text alignment. 1 is left, 0 means center, and -1 is for right-alignment. Defaults to 1.  
-  
->angle = *angle* (int)  
->Specify the rotation, rotation point is based on the text's alignment. Defaults to 0.  
-  
->pos = *off_x, off_y* (int, int)  
->Specify the offset at which to create the text. Defaults to 0,0.  
-  
->scale = *x_scale, y_scale* (float, float)  
->Specify the scaling factors to apply to the text in the horizontal and vertical directions. Defaults to 1,1.  
-  
->color = *r, g, b, a* (int, int, int, int)  
->Color adjustment values for the font. Defaults to 256,256,256,256 (no color adjustment).  
-  
->id = *id_no* (int)  
->Specifies an ID number for this text. Used to identify particular text in numText trigger and removeText sctrl.  
-  
->textspacing = *x_spacing, y_spacing*` (float, float)  
->Specifies extra spacing between letters (*x_spacing*) and extra spacing between lines when `\n` is used to break lines (*y_spacing*). These values are added on top of the font’s DEF Spacing values.  
-  
->textdelay = *time* (float)  
->Adjusts the text typing time, the longer the time the longer the delay between each letter typed.  
-  
->velocity = *vel_x, vel_y* (float, float)  
->Applies speed to text on the defined axis.  
-  
->accel = *accel_x, accel_y* (float, float)  
->Applies acceleration to text on the defined axis.  
-  
->friction = *friction_x, friction_y* (float, float)  
->Applies friction to text on the defined axis (Friction value example: 0.95).   
-  
->xshear = *xshear* (float)  
->Specifies the amount of horizontal shearing to apply to the text. Defaults to 0.  
-  
->maxdist = *maxdist* (float)  
->Specifies the maximum velocity beyond which additional velocity will no longer be applied. Defaults to 0 (unlimited).  
-  
->palfx.key = the text sctrl can accept all the same key values from [PalFX state controller](http://www.elecbyte.com/mugendocs/sctrls.html#palfx)
-  
->hidewithbars = *bvalue* (bool)  
->Enabling this parameter hides the text automatically when the fight screen is hidden.
+
+**removetime = *rem_time* (int)**  
+The text will be removed after having been displayed for *rem_time* number of game ticks. Defaults to 1.  
+
+**layerno = *layer_no* (int)**  
+Sets the layer to which the text will be drawn on. 0 is in front of the background, but behind the players. 1 is in front of the players, but behind the foreground. 2 is in front of the foreground. Defaults to 1.  
+
+**localcoord = *coord_x, coord_y* (int, int)**  
+Sets custom localcoord. If omitted, lifebar font defaults to the lifebar localcoord, character font and debug font defaults to the screen localcoord.  
+
+**text = *"format_string"* (string)**  
+Text to be rendered. Defaults to "%v" (rendering first *params* argument of any type). *format_string* must be encased in double-quotes. It is a *printf* format string. You can use \t to generate a tab character (tab width is equivalent to 4 characters) and \n to break lines. To display the value of an arithmetic expression, you can put a %d (for ints) or a %f (for floats) in the format string, then specify the expression in the params list. To display a % character, you must put %% in the format string. Accepted format specifiers: %v (any type), %d, %i, %f, %F, %e, %E, %g, or %G. Syntax such as %0.2f is also supported.  
+
+**params =** *exp_1, exp_2, (...)*
+
+Unlimited amount of numeric arguments can be specified in the format string. These should be listed under the params item, in order. The type of each parameter must match its format specifier.
+
+**font = *[F]font_no* (int)**  
+*font_no* specifies the number of the font to use for text rendering. The 'F' prefix is optional: if included, then the text is rendred using lifebar (fight.def) fonts. Otherwise font [declared](https://github.com/ikemen-engine/Ikemen-GO/wiki/Character-features#def_files_font) in character's DEF file is used. If specified font doesn't exist than the debug font is used. Defaults to debug font.  
+
+**bank = *bank_no* (int)**  
+Color bank of the font to use. Refer to the font for what color banks it has. Defaults to 0.  
+
+**align = *alignment* (int)**  
+*alignment* is a number representing the text alignment. 1 is left, 0 means center, and -1 is for right-alignment. Defaults to 1.  
+
+**angle = *angle* (int)**  
+Specify the rotation, rotation point is based on the text's alignment. Defaults to 0.  
+
+**pos = *off_x, off_y* (int, int)**  
+Specify the offset at which to create the text. Defaults to 0,0.  
+
+**scale = *x_scale, y_scale* (float, float)**  
+Specify the scaling factors to apply to the text in the horizontal and vertical directions. Defaults to 1,1.  
+
+**color = *r, g, b, a* (int, int, int, int)**  
+Color adjustment values for the font. Defaults to 256,256,256,256 (no color adjustment).  
+
+**id = *id_no* (int)**  
+Specifies an ID number for this text. Used to identify particular text in numText trigger and removeText sctrl.  
+
+**textspacing = *x_spacing, y_spacing*` (float, float)**  
+Specifies extra spacing between letters (*x_spacing*) and extra spacing between lines when `\n` is used to break lines (*y_spacing*). These values are added on top of the font’s DEF Spacing values.  
+
+**textdelay = *time* (float)**  
+Adjusts the text typing time, the longer the time the longer the delay between each letter typed.  
+
+**velocity = *vel_x, vel_y* (float, float)**  
+Applies speed to text on the defined axis.  
+
+**accel = *accel_x, accel_y* (float, float)**  
+Applies acceleration to text on the defined axis.  
+
+**friction = *friction_x, friction_y* (float, float)**  
+Applies friction to text on the defined axis (Friction value example: 0.95).  
+
+**xshear = *xshear* (float)**  
+Specifies the amount of horizontal shearing to apply to the text. Defaults to 0.  
+
+**maxdist = *maxdist* (float)**  
+Specifies the maximum velocity beyond which additional velocity will no longer be applied. Defaults to 0 (unlimited).  
+
+palfx.key = the text sctrl can accept all the same key values from [PalFX state controller](http://www.elecbyte.com/mugendocs/sctrls.html#palfx)
+
+**hidewithbars = *bvalue* (bool)**  
+Enabling this parameter hides the text automatically when the fight screen is hidden.  
+
+**Example:**
+```go
+text{
+    text: "Value %d";
+    params: 42;
+    removetime: 60;
+    layerno: 1;
+    localcoord: 320, 240;
+    font: 0;
+    bank: 0;
+    align: 1;
+    angle: 0;
+    pos: 10, 20;
+    scale: 1.0, 1.0;
+    color: 256, 256, 256, 256;
+    id: 1;
+    textspacing: 0, 0;
+    textdelay: 0;
+    velocity: 0, 0;
+    accel: 0, 0;
+    friction: 0.95, 0.95;
+    xshear: 0;
+    maxdist: 0;
+    hidewithbars: true;
+}
+
+```
 
 ---
 
@@ -7611,7 +7756,6 @@ alpha = time, 256-time
 Ikemen GO has some expanded transparency options.  
 Note: Applies to all `trans` definitions (e.g. explods, backgrounds, etc).
 
-
 ### <a name="changed_trans_sub">Sub</a>
 
 The `sub` transparency now also supports alpha values.
@@ -7619,7 +7763,6 @@ The `sub` transparency now also supports alpha values.
 ```
 trans{trans: sub; alpha: 192, 64}
 ```
-
 
 ### <a name="changed_trans_subadd">SubAdd</a>
 
@@ -7638,28 +7781,45 @@ trans{trans: subAlpha; alpha: 256, 256}
 
 Changes the geometry or certain properties of the player's collision boxes.  
 
-**Required parameters**  
+**Required parameters:**
+
 None.
 
-**Optional parameters**  
+**Optional parameters:**
 
-- **group** = *group* (int)  (nightly build only)  
+**group = *group* (int)** (nightly build only)
+
 The type of collision box to transform.  
 Valid values: `All`, `None`, `Clsn1`, `Clsn2`, `Size` and `Dummy`.  
 Using `None` removes all active modifiers.  
-Defaults to `None`.  
+Defaults to `None`.
 
-- **index** = *index* (int)  
-[TODO]
+**index = *index* (int)** (nightly build only)
 
-- **scale** = *x_scale, y_scale* (float, float)  
-Scale multiplier to be applid to the boxes.  
-  
-- **angle** = *angle* (float)  
-Changes the angle of the boxes. In degrees.  
-  
-- **pivot** = *pivot_x, pivot_y* (float, float)  
-Determines the angle's rotation center.
+Determines the index of the collision box to transform. Use `-1` for all of them.  
+
+**scale = *x_scale, y_scale* (float, float)**
+
+Scale multiplier to be applid to the boxes.
+
+**angle = *angle* (float)**
+
+Changes the angle of the boxes. In degrees.
+
+**pivot = *pivot_x, pivot_y* (float, float)**
+
+Determines the angle's rotation center.  
+
+**Example:**
+```go
+transformClsn{
+    group: clsn1;
+    scale: 1.1, 1.1;
+    angle: 15;
+    pivot: 0, -50;
+}
+
+```
 
 ---
 
@@ -7668,21 +7828,42 @@ Determines the angle's rotation center.
 
 Apply certain deformations to the char's sprite.  
 
-**Required parameters:**  
-  
->At least one of the optional parameters  
-  
-**Optional parameters:**  
-  
->window = *x1, y1, x2, y2* (float, float, float, float)  
->The window parameter forms a rectangle (similar to clsn) relative to the char, outside of which pixels will not be drawn.  
-  
->xshear = *xshear* (float)  
->Specifies the amount of horizontal shearing to apply to the char. Defaults to 0.  
->projection = *orthographic (default), perspective(distortion relative to the center of the screen), perspective2(distortion relative to the sprite)*   
->Affect how the char sprite is drawn when `xangle` or `yangle` is not zero  
->focallength = *focallength* (float)   
->Focal Length of the projection. Does nothing when projection is not perspective or perspective2
+**Required parameters:**
+
+At least one of the optional parameters.
+
+**Optional parameters:**
+
+**window = *x1, y1, x2, y2* (float, float, float, float)**
+
+The window parameter forms a rectangle (similar to clsn) relative to the char, outside of which pixels will not be drawn.
+
+**xshear = *xshear* (float)**
+
+Specifies the amount of horizontal shearing to apply to the char. Defaults to 0.
+
+**projection = *projection_type* (string)**
+
+Valid values:
+- `orthographic` (default)
+- `perspective` (distortion relative to the center of the screen)
+- `perspective2` (distortion relative to the sprite)
+
+Affects how the char sprite is drawn when `xangle` or `yangle` is not zero.
+
+**focallength = *focallength* (float)**
+
+Focal Length of the projection. Does nothing when projection is not perspective or perspective2.  
+
+**Example:**
+```go
+transformSprite{
+    window: -100, -100, 100, 100;
+    xshear: 0.1;
+    projection: "perspective";
+    focallength: 1.0;
+}
+```
 
 ---
 
@@ -8025,16 +8206,13 @@ none
 
 Zoom was a beta feature in Mugen 1.1. It is a fully functional state controller in Ikemen GO.  
 
-
 ### <a name="changed_zoom_camerabound">CameraBound</a>
 
 If set to 1, the zoom position is restricted to the current camera position. Defaults to 1.
 
-
 ### <a name="changed_zoom_endlag">EndLag</a>
 
 Like the `lag` parameter, but it applies after the Zoom effect ends.
-
 
 ### <a name="changed_zoom_lag">Lag</a>
 
@@ -8042,21 +8220,17 @@ Controls the smoothing effect for camera position and scale transitions during z
 Valid values are between 0 and 1, where 0 snaps the camera instantly and 1 delays the zoom effect indefinitely.  
 Defaults to 0.
 
-
 ### <a name="changed_zoom_pos">Pos</a>
 
 The position on screen to bind the zoom, relative to the center of the screen. A value of Pos X, Pos Y will zoom in on P1.
-
 
 ### <a name="changed_zoom_scale">Scale</a>
 
 The camera zoom factor as a float. Values greater than 1 zoom in, while values between 0 and 1 zoom out. For example, a value of 2 doubles the size of the sprites.
 
-
 ### <a name="changed_zoom_stagebound">StageBound</a>
 
 If set to 1, the zoom position is restricted to the stage boundaries. Defaults to 1.
-
 
 ### <a name="changed_zoom_time">Time</a>
 

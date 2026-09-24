@@ -362,17 +362,14 @@ trigger1 = Random < AILevel * 10
 <a id="new_ailevelf"></a>
 ## AiLevelF (new)
 
-Returns the difficulty level of the player's AI as float value (unlike *AILevel* trigger, which is still floored for compatibility reasons). If AI is enabled on the player, the value ranges from 1 (easiest) to 8 (most difficult). If AI is not enabled on the player, the return value is 0. AI difficulty level with floating point is a result of AI Ramping system (refer to select.def distributed with engine for more information)
+Returns the difficulty level of the player's AI as a float value (unlike the *AILevel* trigger, which is still floored for compatibility). If AI is enabled on the player, the value ranges from 1 (easiest) to 8 (most difficult). If AI is not enabled, the return value is 0. The floating-point AI difficulty comes from the AI Ramping system; see the `select.def` distributed with the engine for more information.
 
-**Format:**  
->AILevelF  
-  
-**Arguments:**  
->none  
-  
-**Return type:**  
->float  
-  
+**Format:** `AiLevelF`
+
+**Arguments:** None
+
+**Return type:** float
+
 **Example:**  
 ```ini
 trigger1 = Random < (500 * (AILevelF ** 2 / 64.0))
@@ -386,13 +383,13 @@ trigger1 = Random < (500 * (AILevelF ** 2 / 64.0))
 Returns the number of (conventional) air jumps the P1 has performed.
 
 **Format:**  
->AirJumpCount  
-  
+AirJumpCount  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->int
+int
 
 ---
 
@@ -426,14 +423,14 @@ trigger1 = Alive = 0
 Returns the value of the player's source/dest alpha applied with Trans sctrl.
 
 **Format:**  
->Alpha argument
-  
+Alpha argument
+
 **Arguments:**  
->source, dest
-  
+source, dest
+
 **Return type:**
->int
-  
+int
+
 **Example:**  
 ```ini
 trigger1 = Alpha source >= 128 && Alpha dest >= 128
@@ -449,14 +446,14 @@ Returns the value of the player's respective analog axis. Values are normalized 
 Note: internally, 256 distinct analog steps exist per axis with the exception of the analog triggers which are halved (128 distinct steps).
 
 **Format:**  
->Axis argument
-  
+Axis argument
+
 **Arguments:**  
->LeftX, LeftY, RightX, RightY, LeftTrigger, RightTrigger
-  
+LeftX, LeftY, RightX, RightY, LeftTrigger, RightTrigger
+
 **Return type:**
->float
-  
+float
+
 **Example:**  
 ```ini
 trigger1 = Analog(LeftX) >= 0.5 && Analog(RightTrigger) > 0.75
@@ -470,14 +467,14 @@ trigger1 = Analog(LeftX) >= 0.5 && Analog(RightTrigger) > 0.75
 Returns the value of the player's angle applied with AngleDraw/AngleSet/AngleAdd/AngleMul sctrl.
 
 **Format:**  
->Angle
-  
+Angle
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**
->float
-  
+float
+
 **Example:**  
 ```ini
 trigger1 = Angle >= 90
@@ -650,13 +647,13 @@ Returns information about the player's current animation frame as defined in the
 Note: This trigger was also called `AnimFrame` at one point during development.  
 
 **Format:**  
->AnimElemVar(param_name)  
-  
+AnimElemVar(param_name)  
+
 **Arguments:**  
->param_name  
->The name of the parameter to check. Valid values are:  
->AlphaDest, AlphaSource, Angle, Group, HFlip, Image, NumClsn1, NumClsn2, Time, VFlip, XOffset, XScale, YOffset, YScale  
-  
+param_name  
+The name of the parameter to check. Valid values are:  
+AlphaDest, AlphaSource, Angle, Group, HFlip, Image, NumClsn1, NumClsn2, Time, VFlip, XOffset, XScale, YOffset, YScale  
+
 **Example:**  
 ```ini
 trigger1 = AnimElemVar(Group) = 200
@@ -699,14 +696,14 @@ trigger1 = !AnimExist(200)
 Returns total length of the P1 current animation.
 
 **Format:**  
->AnimLength  
-  
+AnimLength  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->int  
-  
+int  
+
 **Example:**  
 ```ini
 trigger1 = Time = AnimTime - AnimLength
@@ -719,19 +716,19 @@ trigger1 = Time = GetHitVar(hittime) - AnimLength
 ## AnimLoopCount (nightly build only) (new)
 
 Returns the number of times the current animation has looped. It can increment either by reaching the end on the animation normally, or by returning to a `LoopStart` point.  
-  
+
 **Format:**  
 AnimLoopCount  
-  
+
 **Arguments:**  
 none  
-  
+
 **Return type:**  
 int  
-  
+
 **Error conditions:**  
 none  
-  
+
 **Example:**  
 ```
 trigger1 = AnimLoopCount > 3
@@ -746,14 +743,14 @@ Returns the player number of the owner of the player's current animation.
 Normally returns the same number as the player's player number, but when for instance `ChangeAnim2` is used in a custom state, it will return the number of who owns that animation.  
 
 **Format:**  
->AnimPlayerNo  
-  
+AnimPlayerNo  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->int
-  
+int
+
 **Example:**  
 ```ini
 trigger1 = Player(AnimPlayerNo), SelfAnimExist(1234)
@@ -850,18 +847,18 @@ value = atan(1)
 Takes two arguments, and returns the arc tangent of the two specified arguments.
 
 **Format:**  
->Atan2(exp1,exp2)  
-  
+Atan2(exp1,exp2)  
+
 **Arguments:**  
->exp1  
->Expression 1  
-  
->exp2  
->Expression 2  
-  
+exp1  
+Expression 1  
+
+exp2  
+Expression 2  
+
 **Return type:**  
->float  
-  
+float  
+
 **Example:**  
 ```ini
 fvar(10) = Atan2(enemy,pos y-pos y, enemy,pos x-pos x)
@@ -875,14 +872,14 @@ fvar(10) = Atan2(enemy,pos y-pos y, enemy,pos x-pos x)
 Returns P1 current attack value.
 
 **Format:**  
->Attack  
-  
+Attack  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->int  
-  
+int  
+
 **Example:**  
 ```ini
 trigger1 = Attack = 100
@@ -896,14 +893,14 @@ trigger1 = Attack = 100
 Returns the player's current attackmul value.
 
 **Format:**  
->AttackMul  
-  
+AttackMul  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->float  
-  
+float  
+
 **Example:**  
 ```ini
 trigger1 = AttackMul > 1.0
@@ -1024,16 +1021,16 @@ Allows checking the filename, freqmul, length, loop, loopcount, loopend, loopsta
 **Warning: The results of this trigger are NOT network-safe due to user settings such as `Sound.BGMRAMSwap` causing variability in the asynchronicity of BGM operations. Usage of this trigger in production environments is discouraged.**
 
 **Format:**  
->BGMVar  
-  
+BGMVar  
+
 **Arguments:**  
->param_name  
->The name of the variable to check. Valid values are:  
->filename, freqmul, length, loop, loopcount, loopend, loopstart, position, startposition, volume.  
-  
+param_name  
+The name of the variable to check. Valid values are:  
+filename, freqmul, length, loop, loopcount, loopend, loopstart, position, startposition, volume.  
+
 **Return type:**  
->variable
-  
+variable
+
 **Example:**  
 ```ini
 trigger1 = BGMVar(position) = 32768
@@ -1060,14 +1057,14 @@ Like `BotBoundDist`, except this trigger accounts for the player's bottom `edge`
 BotBoundDist gives the distance between the player's z-axis and the `botbound` limit of the stage.
 
 **Format:**  
->BotBoundDist 
-  
+BotBoundDist
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->float
-  
+float
+
 **Example:**  
 ```ini
 trigger1 = BotBoundDist < 40
@@ -1214,23 +1211,23 @@ value = ceil(-2)
 <a id="new_clamp"></a>
 ## Clamp (Math) (new)
 
-Takes three arguments, returns a value clamped to an inclusive range of two specified arguments.
+Takes three arguments, returns a value clamped to an inclusive range of two specified arguments.  
 **Format:**  
->Clamp(value,min,max)  
-  
+Clamp(value,min,max)  
+
 **Arguments:**  
->value  
->Expression 1  
-  
->min  
->Expression 2  
-  
->max  
->Expression 3  
-  
+value  
+Expression 1  
+
+min  
+Expression 2  
+
+max  
+Expression 3  
+
 **Return type:**  
->float  
-  
+float  
+
 **Example:**  
 ```ini
 fvar(10) = Clamp(fvar(10),10 100)
@@ -1245,21 +1242,21 @@ Returns true if the player's specified collision box type is overlapping another
 This trigger uses Ikemen's internal collision detection, so it will work even with angled and rescaled boxes.  
 
 **Format:**  
->ClsnOverlap(box_type_1, playerID, box_type_2)  
-  
+ClsnOverlap(box_type_1, playerID, box_type_2)  
+
 **Arguments:**  
->box_type_1  
->The player's collision box type. Valid values are Clsn1, Clsn2, Size and Dummy (nightly build only)  
-  
->playerID  
->The ID of the player against which to check the overlap  
-  
->box_type_2  
->The target's collision box type. Valid values are Clsn1, Clsn2, Size and Dummy (nightly build only)  
-  
+box_type_1  
+The player's collision box type. Valid values are Clsn1, Clsn2, Size and Dummy (nightly build only)  
+
+playerID  
+The ID of the player against which to check the overlap  
+
+box_type_2  
+The target's collision box type. Valid values are Clsn1, Clsn2, Size and Dummy (nightly build only)  
+
 **Return type:**  
->boolean int (1 or 0)  
-  
+boolean int (1 or 0)  
+
 **Example:**  
 ```ini
 trigger1 = ClsnOverlap(clsn1, p2,ID, clsn2)
@@ -1270,23 +1267,23 @@ trigger1 = ClsnOverlap(clsn1, p2,ID, clsn2)
 <a id="new_clsnvar"></a>
 ## ClsnVar (new)
 
-Returns the specified CLSN coordinate from the specified CLSN index. Back always returns the back coordinate, and front always returns the front coordinate, even if they are reversed in the .AIR file. All coordinates are in the same coordinate space as .AIR.
+Returns the specified CLSN coordinate from the specified CLSN index. Back always returns the back coordinate, and front always returns the front coordinate, even if they are reversed in the .AIR file. All coordinates are in the same coordinate space as .AIR.  
 **Format:**  
->ClsnVar(value_type,index,elem)  
-  
+ClsnVar(value_type,index,elem)  
+
 **Arguments:**  
->value_type  
->Valid Values are Clsn1, Clsn2, Size and Dummy (nightly build only)  
-  
->index  
->Expression  
-  
->elem  
->Valid values are back, front, top, and bottom  
-  
+value_type  
+Valid Values are Clsn1, Clsn2, Size and Dummy (nightly build only)  
+
+index  
+Expression  
+
+elem  
+Valid values are back, front, top, and bottom  
+
 **Return type:**  
->float  
-  
+float  
+
 **Example:**  
 ```ini
 fvar(0) = ClsnVar(Clsn2, 0, Back)
@@ -1300,14 +1297,14 @@ fvar(0) = ClsnVar(Clsn2, 0, Back)
 Returns the total number of hits done by the player's side in the currently ongoing combo. This value is valid as long as the opposite team combo count stays above 0, otherwise it returns 0 too. Returned value always matches current combo counter tracked by lifebar.
 
 **Format:**  
->ComboCount  
-  
+ComboCount  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->int  
-  
+int  
+
 **Example:**  
 ```ini
 trigger1 = ComboCount > 8
@@ -1392,14 +1389,14 @@ value = Cond(var(3),1,2)
 Returns number of matches won consecutively by this team side. The counter increases for the winning team at the same time MatchOver trigger starts returning 1. Losing a round resets the counter to 0 and prevents increment for this match.
 
 **Format:**  
->ConsecutiveWins  
-  
+ConsecutiveWins  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->int  
-  
+int  
+
 **Example:**  
 ```ini
 trigger1 = ConsecutiveWins > 0
@@ -1537,7 +1534,6 @@ FireballState = 1000
 triggerall = NumHelper(Const(FireballState)) = 0
 ```
 
-
 ### <a name="changed_const_datadizzypoints">data.dizzypoints</a>
 
 Returns the value of the player's [Data] [dizzypoints](https://github.com/ikemen-engine/Ikemen-GO/wiki/Character-features#cns_data_dizzypoints) constant.
@@ -1608,15 +1604,15 @@ Returns the value of the player's [Velocity] [ground.gethit.ko.ymin](https://git
 Converts a value from the 1080p coordinate space to the player's coordinate space. The conversion ratio between coordinate spaces is the ratio of their widths.
 
 **Format:**  
->Const1080p(exprn)  
-  
+Const1080p(exprn)  
+
 **Arguments:**  
->exprn  
->Expression containing the value to convert. (float)  
-  
+exprn  
+Expression containing the value to convert. (float)  
+
 **Return type:**  
->float  
-  
+float  
+
 **Example:**  
 ```ini
 value = Const1080p(12)
@@ -1782,13 +1778,13 @@ trigger1 = Ctrl
 Returns information related to the debug mode.
 
 **Format:**  
->DebugMode(param_name)  
-  
+DebugMode(param_name)  
+
 **Arguments:**  
->param_name  
->The name of the parameter to check. Valid values are:  
->accel, clsndisplay, debugdisplay, lifebarhide, wireframedisplay, roundrestarted
-  
+param_name  
+The name of the parameter to check. Valid values are:  
+accel, clsndisplay, debugdisplay, lifebarhide, wireframedisplay, roundrestarted
+
 **Example:**  
 ```ini
 trigger1 = DebugMode(accel) != 0
@@ -1803,14 +1799,14 @@ trigger1 = DebugMode(clsndisplay)
 Returns 1 if the match will conclude if the player's team wins.
 
 **Format:**  
->DecisiveRound  
-  
+DecisiveRound  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->boolean int (1 or 0)  
-  
+boolean int (1 or 0)  
+
 **Example:**  
 ```ini
 trigger1 = DecisiveRound
@@ -1824,14 +1820,14 @@ trigger1 = DecisiveRound
 Returns the player's current defence value. This value accounts for all defence multipliers.
 
 **Format:**  
->Defence  
-  
+Defence  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->float  
-  
+float  
+
 **Example:**  
 ```ini
 trigger1 = Defence = 100
@@ -1845,14 +1841,14 @@ trigger1 = Defence = 100
 Returns the player's current defencemul value.
 
 **Format:**  
->DefenceMul
-  
+DefenceMul
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->float  
-  
+float  
+
 **Example:**  
 ```ini
 trigger1 = DefenceMul > 1.0
@@ -1866,15 +1862,15 @@ trigger1 = DefenceMul > 1.0
 Converts an argument value from radians to degrees.
 
 **Format:**  
->Deg(exp)  
-  
+Deg(exp)  
+
 **Arguments:**  
->exp  
->Expression  
-  
+exp  
+Expression  
+
 **Return type:**  
->float  
-  
+float  
+
 **Example:**  
 ```ini
 trigger1 = Deg(pi/2) = 90
@@ -1888,18 +1884,18 @@ trigger1 = Deg(pi/2) = 90
 Returns the player's displayed name. Note that the lifebar name is not necessarily the same.
 
 **Format:**  
->DisplayName [oper] "name"  
-  
+DisplayName [oper] "name"  
+
 **Arguments:**  
->[oper]  
->=, != (other operators not valid)  
-  
->"name" (string)  
->Name to compare against. Must be in double quotes.  
-  
+[oper]  
+=, != (other operators not valid)  
+
+"name" (string)  
+Name to compare against. Must be in double quotes.  
+
 **Return type:**  
->boolean int (1 or 0)  
-  
+boolean int (1 or 0)  
+
 **Example:**  
 ```ini
 trigger1 = EnemyNear, DisplayName = "Gopher"
@@ -1913,14 +1909,14 @@ trigger1 = EnemyNear, DisplayName = "Gopher"
 Returns 1 if character is under [dizzy effect](https://github.com/ikemen-engine/Ikemen-GO/wiki/Miscellaneous-Info#dizzy) (assigned by [DizzySet](sctrl#new_dizzyset) sctrl).
 
 **Format:**  
->Dizzy  
-  
+Dizzy  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->boolean int (1 or 0)  
-  
+boolean int (1 or 0)  
+
 **Example:**  
 ```ini
 trigger1 = !Dizzy
@@ -1934,14 +1930,14 @@ trigger1 = !Dizzy
 Returns the amount of [dizzy points](https://github.com/ikemen-engine/Ikemen-GO/wiki/Character-features#dizzypoints) the player has.
 
 **Format:**  
->DizzyPoints  
-  
+DizzyPoints  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->int  
-  
+int  
+
 **Example:**  
 ```ini
 trigger1 = DizzyPoints = 0
@@ -1955,14 +1951,14 @@ trigger1 = DizzyPoints = 0
 Returns the maximum amount of [dizzy points](https://github.com/ikemen-engine/Ikemen-GO/wiki/Character-features#dizzypoints) the player can have. This is normally the same value as LifeMax (adjustable in character's CNS `[Data]` section).
 
 **Format:**  
->DizzyPointsMax  
-  
+DizzyPointsMax  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->int  
-  
+int  
+
 **Example:**  
 ```ini
 trigger1 = DizzyPoints < DizzyPointsMax / 2
@@ -1997,17 +1993,17 @@ trigger1 = DrawGame
 <a id="new_drawpal"></a>
 ## DrawPal (new)
 
-returns the value of the group and index of the palette being used to draw the sprites at the moment, unlike PalNo, which returns the palette selected in the character select screen. 
+returns the value of the group and index of the palette being used to draw the sprites at the moment, unlike PalNo, which returns the palette selected in the character select screen.
 
 **Format:**  
->DrawPal 
-> 
+DrawPal
+
 **Arguments:**  
->group, index  
-  
+group, index  
+
 **Return type:**  
->int  
-  
+int  
+
 **Example:**  
 ```ini
 [State -2, PowerAdd]
@@ -2042,15 +2038,15 @@ none
 Allows checking the (remaining) time, frequency and amplitude of the current EnvShake.
 
 **Format:**  
->EnvShakeVar  
-  
+EnvShakeVar  
+
 **Arguments:**  
->param_name  
->The name of the constant to check. Valid values are: time, freq, ampl  
-  
+param_name  
+The name of the constant to check. Valid values are: time, freq, ampl  
+
 **Return type:**  
->float  
-  
+float  
+
 **Example:**  
 ```ini
 trigger1 = EnvShakeVar(time) = 1
@@ -2094,20 +2090,20 @@ value = exp(4-var(0))
 Returns the specified explod parameter. Use -1 for ID to iterate over all explods.
 
 **Format:**  
->ExplodVar(id, index, param)  
-  
+ExplodVar(id, index, param)  
+
 **Arguments:**  
->id  
->Expression 1  
-  
->index  
->Expression 2  
-  
->param  
->Valid values are accel x, accel y, anim, animelem, animelemtime, angle, angle x, angle y, bindid, bindtime, facing, drawpal.group, drawpal.index, ID, layerno, pausemovetime, pos x, pos y, removetime, scale x, scale y, sprpriority, time, vel x, vel y  
-  
+id  
+Expression 1  
+
+index  
+Expression 2  
+
+param  
+Valid values are accel x, accel y, anim, animelem, animelemtime, angle, angle x, angle y, bindid, bindtime, facing, drawpal.group, drawpal.index, ID, layerno, pausemovetime, pos x, pos y, removetime, scale x, scale y, sprpriority, time, vel x, vel y  
+
 **Return type:**  
->int or float
+int or float
 
 ---
 
@@ -2141,18 +2137,18 @@ Trigger = Facing = -1
 Allows checking if the fight screen is displaying specific screens.  
 
 **Format:**  
->FightScreenState(param)
-  
-**Arguments:**  
->param  
->The parameter to check. See details   
+FightScreenState(param)
 
-Details:
+**Arguments:**  
+param  
+The parameter to check. See details  
+
+**Details:**
 * `fightdisplay`: Returns true if the fight call is being displayed. (bool)
 * `kodisplay`: Returns true if the KO screen is being displayed. (bool)
 * `rounddisplay`: Returns true if the round number screen is being displayed. (bool)
 * `windisplay`: Returns true if the winner announcement screen is being displayed. (bool)
-  
+
 **Example:**  
 ```ini
 trigger1 = FightScreenState(rounddisplay) = 1
@@ -2167,15 +2163,15 @@ trigger2 = FightScreenState(fightdisplay) = 1
 Returns information about the fight screen (commonly referred to as "lifebars").
 
 **Format:**  
->FightScreenVar(param_name)  
-  
+FightScreenVar(param_name)  
+
 **Arguments:**  
->param_name  
->The name of the parameter to check. Valid values are:  
->info.author, info.localcoord.x, info.localcoord.y, info.name, round.ctrl.time, round.over.hittime, round.over.time, round.over.waittime, round.over.wintime, round.slow.time, round.start.waittime, round.callfight.time, time.framespercount  
+param_name  
+The name of the parameter to check. Valid values are:  
+info.author, info.localcoord.x, info.localcoord.y, info.name, round.ctrl.time, round.over.hittime, round.over.time, round.over.waittime, round.over.wintime, round.slow.time, round.start.waittime, round.callfight.time, time.framespercount  
 
 Refer to lifebar documentation and examples for the function of each argument.
-  
+
 **Example:**  
 ```ini
 trigger1 = FightScreenVar(Info.Name) = "Some lifebar"
@@ -2191,14 +2187,14 @@ trigger1 = Time > FightScreenVar(Round.Ctrl.Time)
 Returns the amount of ticks since the start of the actual fight.
 
 **Format:**  
->FightTime  
-  
+FightTime  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->int  
-  
+int  
+
 **Example:**  
 ```ini
 trigger1 = FightTime > 600
@@ -2212,14 +2208,14 @@ trigger1 = FightTime > 600
 Returns 1 if this character has landed the first attack (before any of the opponents or team partners) in the current round. Otherwise returns 0.
 
 **Format:**  
->FirstAttack  
-  
+FirstAttack  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->boolean int (1 or 0)  
-  
+boolean int (1 or 0)  
+
 **Example:**  
 ```ini
 trigger1 = FirstAttack
@@ -2233,15 +2229,15 @@ trigger1 = FirstAttack
 Converts argument evaluating to int type into float type.
 
 **Format:**  
->Float(exp)  
-  
+Float(exp)  
+
 **Arguments:**  
->exp  
->Expression  
-  
+exp  
+Expression  
+
 **Return type:**  
->float  
-  
+float  
+
 **Example:**  
 ```ini
 fvar(10) = Float(Life) / LifeMax
@@ -2426,18 +2422,18 @@ If mugenVersion is specified as 1.0 in character's [[Info]](Character-features/#
 Returns the current game mode.
 
 **Format:**  
->GameMode [oper] "name"  
-  
+GameMode [oper] "name"  
+
 **Arguments:**  
->[oper]  
->=, != (other operators not valid)  
-  
->"name" (string)  
->Name to compare against. Must be in double quotes.  
-  
+[oper]  
+=, != (other operators not valid)  
+
+"name" (string)  
+Name to compare against. Must be in double quotes.  
+
 **Return type:**  
->boolean int (1 or 0)  
-  
+boolean int (1 or 0)  
+
 **Example:**  
 ```ini
 trigger1 = GameMode = "arcade"
@@ -2474,15 +2470,15 @@ Allows checking the various game options as defined in config.ini (TBD)
 Keep in mind that until string support is added to the engine, only numeric values are useful to return.
 
 **Format:**  
->GameOption  
-  
+GameOption  
+
 **Arguments:**  
->param_name  
->The name of the variable to check.
-  
+param_name  
+The name of the variable to check.
+
 **Return type:**  
->variable
-  
+variable
+
 **Example:**  
 ```ini
 trigger1 = GameOption(sound.wavchannels) = 32
@@ -2520,13 +2516,13 @@ trigger1 = (GameTime % 27) = 0
 Allows checking some system variables that generally don't justify having their own dedicated triggers.  
 
 **Format:**  
->GameVar(param)
-  
-**Arguments:**  
->param  
->The parameter to check. See details   
+GameVar(param)
 
-Details:
+**Arguments:**  
+param  
+The parameter to check. See details  
+
+**Details:**
 * `introtime`: Returns the internal timer that controls pre-fight screens. (int)
 * `outrotime`: Returns the internal timer that controls post-fight screens. (int)
 * `pausetime`: Returns the time that the game is under the effect of `Pause`. (int)
@@ -2536,7 +2532,7 @@ Details:
 * `persistlife`: Returns `1` if the life persist flag is active. (int)
 * `persistmusic`: Returns `1` if the music persist flag is active. (int)
 * `hidebars`: Returns `1` if the hidebars flag is active. (int)
-  
+
 **Example:**  
 ```ini
 trigger1 = GameVar(superpausetime) = 0
@@ -2658,16 +2654,13 @@ trigger1 = GetHitVar(yvel) < -5.5
 
 Returns the X, Y or Z component of the last HitDef's `air.velocity` parameter, even if the player was not hit in the air. (float)
 
-
 ### <a name="changed_gethitvar_airguard_velocity_x">airguard.velocity.x (y, z)</a>
 
 Returns the X, Y or Z component of the last HitDef's `airguard.velocity` parameter, even if the player did not guard in the air. (float)
 
-
 ### <a name="changed_gethitvar_animtype">air.animtype, fall.animtype, ground.animtype</a>
 
 Returns the literal value specified in the HitDef.
-
 
 ### <a name="changed_gethitvar_attr">attr</a>
 
@@ -2677,61 +2670,49 @@ Returns the last HitDef `attr` assignment. Requires a comparison to known flags.
 trigger1 = getHitVar(attr) = SCA, HA
 ```
 
-
 ### <a name="changed_gethitvar_dizzypoints">dizzypoints</a>
 
 Returns last HitDef `dizzypoints` value. (int)
-
 
 ### <a name="changed_gethitvar_down_velocity_x">down.velocity.x (y, z)</a>
 
 Returns the X, Y or Z component of the last HitDef's `down.velocity` parameter, even if the player was not hit while down. (float)
 
-
 ### <a name="changed_gethitvar_facing">facing</a>
 
 Returns last HitDef `p2facing` value. (int)
-
 
 ### <a name="changed_gethitvar_fallenvshakemul">fall.envshake.mul</a>
 
 Returns last HitDef `fall.envshake.mul` value. (float)
 
-
 ### <a name="changed_gethitvar_fall_zvel">fall.zvel</a>
 
 Returns z velocity after bouncing off ground (float)
-
 
 ### <a name="changed_gethitvar_frame">frame</a>
 
 Returns true only during the same frame where the player got hit by an attack. (bool)
 
-
 ### <a name="changed_gethitvar_ground_velocity_x">ground.velocity.x (y, z)</a>
 
 Returns the X, Y or Z component of the last HitDef's `ground.velocity` parameter, even if the player was not hit on the ground. (float)
-
 
 ### <a name="changed_gethitvar_guard_velocity_x">guard.velocity.x (y, z)</a>
 
 Returns the X, Y or Z component of the last HitDef's `guard.velocity` parameter, even if the player did not guard on the ground. (float)  
 
-
 ### <a name="changed_gethitvar_guardpoints">guardpoints</a>
 
 Returns last HitDef `guardpoints` value. (int)
-
 
 ### <a name="changed_gethitvar_guardcount">guardcount</a>
 
 Returns how many hits the player has guarded without a chance to fight back. (int)
 
-
 ### <a name="changed_gethitvar_guarddamage">guarddamage</a>
 
 Returns the second value of the last HitDef's `damage` parameter. (int)
-
 
 ### <a name="changed_gethitvar_guardflag">guardflag</a>
 
@@ -2741,16 +2722,13 @@ Returns the `guardflag` parameter of the last HitDef that hit the player. Requir
 trigger1 = getHitVar(guardflag) = L
 ```
 
-
 ### <a name="changed_gethitvar_guardko">guardko</a>
 
 Returns 1 if the player was KO'd by guard damage. (bool)
 
-
 ### <a name="changed_gethitvar_guardpower">guardpower</a>
 
 Returns the second value of the last HitDef's `givepower` parameter. In other words, the power received when guarding. (int)
-
 
 ### <a name="changed_gethitvar_hitflag">hitflag</a>
 
@@ -2760,104 +2738,84 @@ Returns the `hitflag` parameter of the last HitDef that hit the player. Requires
 trigger1 = getHitVar(hitflag) = MA
 ```
 
-
 ### <a name="changed_gethitvar_hitpower">hitpower</a>
 
 Returns the first value of the last HitDef's `givepower` parameter. In other words, the power received when getting hit. (int)
-
 
 ### <a name="changed_gethitvar_hitdamage">hitdamage</a>
 
 Returns the first value of the last HitDef's `damage` parameter. (int)
 
-
 ### <a name="changed_gethitvar_kill">kill</a>
 
 Returns the kill flag of the last hit or LifeAdd the character suffered. (int)
-
 
 ### <a name="changed_gethitvar_playerid">playerid</a>
 
 Returns the ID of the last character that hit the player. (int)  
 Note: Up until Ikemen GO version 0.99, this trigger used `ID` syntax instead of `playerID`. That syntax is still valid, but it's deprecated.  
 
-
 ### <a name="changed_gethitvar_playerno">playerno</a>
 
 Returns the [PlayerNo](triggers#new_playerno) of the last character that hit the player. (int)
-
 
 ### <a name="changed_gethitvar_power">power</a>
 
 Returns how much power the player received from the last hit, regardless of getting hit or guarding. (int)
 
-
 ### <a name="changed_gethitvar_priority">priority</a>
 
 Returns the numerical value of the attack priority of the last HitDef. (int)
-
 
 ### <a name="changed_gethitvar_projid">projid</a>
 
 Returns the `projID` of the last projectile that hit the player. Returns -1 if not hit by a projectile. (int)
 
-
 ### <a name="changed_gethitvar_redlife">redlife</a>
 
 Returns last HitDef `redlife` value. (int)
-
 
 ### <a name="changed_gethitvar_score">score</a>
 
 Returns last HitDef `score` value. (float)
 
-
 ### <a name="changed_gethitvar_sparkx">sparkx</a> (nightly build only)
 
 Returns the x-offset of the spark from the last received hit. (float)
-
 
 ### <a name="changed_gethitvar_sparky">sparky</a> (nightly build only)
 
 Returns the y-offset of the spark from the last received hit. (float)
 
-
 ### <a name="changed_gethitvar_teamside">teamside</a>
 
 Returns the `teamside` of the last HitDef that hit the player. (int)
 
-
 ### <a name="changed_gethitvar_type">type</a>
 
 Returns the value of either groundtype or airtype, depending on the character's StateType upon being hit. Such a trigger was documented in Mugen but did not work.
-
 
 ### <a name="changed_gethitvar_xaccel">xaccel</a>
 
 Returns the X acceleration set by the hit. (float)  
 NOTE: Currently, this parameter will only work if the character does not override the `common1.cns.zss` states that use it.  
 
-
 ### <a name="changed_gethitvar_xveladd">xveladd</a>
 
 This trigger was dummied out in Mugen, always returning 0. In Ikemen, it works as documented.
 
-
 ### <a name="changed_gethitvar_yveladd">yveladd</a>
 
 This trigger was dummied out in Mugen, always returning 0. In Ikemen, it works as documented.
-
 
 ### <a name="changed_gethitvar_zaccel">zaccel</a>
 
 Returns the Z acceleration set by the hit. (float)  
 NOTE: Currently, this parameter will only work if the character does not override the `common1.cns.zss` states that use it.  
 
-
 ### <a name="changed_gethitvar_zvel">zvel</a>
 
 Returns the fixed z-velocity imparted by hit. (float)
-
 
 ### <a name="changed_gethitvar_zoff">zoff</a>
 
@@ -2871,14 +2829,14 @@ Returns the fixed z-velocity imparted by hit. (float)
 TODO: ? Related to undocumented [PlatformAngle](https://github.com/ikemen-engine/Ikemen-GO/wiki/State-controllers-(changed)#changed_projectile_platformangle) projectile parameter.
 
 **Format:**  
->GroundAngle  
-  
+GroundAngle  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->float  
-  
+float  
+
 **Example:**  
 ```ini
 trigger1 = GroundAngle != 0
@@ -2890,15 +2848,15 @@ trigger1 = GroundAngle != 0
 ## GroundLevel (new)
 
 Returns the character's ground level, which is normally 0 but can be changed via [GroundLevelOffset](sctrl#new_groundleveloffset).  
-  
+
 **Format:**  
->GroundLevel
-  
+GroundLevel
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->float
+float
 
 ---
 
@@ -2908,14 +2866,14 @@ Returns the character's ground level, which is normally 0 but can be changed via
 Returns 1 if character is under [guard break](https://github.com/ikemen-engine/Ikemen-GO/wiki/Miscellaneous-Info#guardbreak) (assigned by [GuardBreakSet](sctrl#new_guardbreakset) sctrl).
 
 **Format:**  
->GuardBreak  
-  
+GuardBreak  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->boolean int (1 or 0)  
-  
+boolean int (1 or 0)  
+
 **Example:**  
 ```ini
 trigger1 = !GuardBreak
@@ -2929,14 +2887,14 @@ trigger1 = !GuardBreak
 Returns how many hits of the current attack were guarded. Similar to Hitcount.
 
 **Format:**  
->GuardCount  
-  
+GuardCount  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->int
-  
+int
+
 **Example:**  
 ```ini
 trigger1 = GuardCount >= 2
@@ -2950,14 +2908,14 @@ trigger1 = GuardCount >= 2
 Returns the amount of [guard points](https://github.com/ikemen-engine/Ikemen-GO/wiki/Character-features#guardpoints) the player has.
 
 **Format:**  
->GuardPoints  
-  
+GuardPoints  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->int  
-  
+int  
+
 **Example:**  
 ```ini
 trigger1 = GuardPoints = 0
@@ -2971,14 +2929,14 @@ trigger1 = GuardPoints = 0
 Returns the maximum amount of [guard points](https://github.com/ikemen-engine/Ikemen-GO/wiki/Character-features#guardpoints) the player can have. This is normally the same value as LifeMax (adjustable in character's CNS `[Data]` section).
 
 **Format:**  
->GuardPointsMax  
-  
+GuardPointsMax  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->int  
-  
+int  
+
 **Example:**  
 ```ini
 trigger1 = GuardPoints < GuardPointsMax / 2
@@ -2990,7 +2948,7 @@ trigger1 = GuardPoints < GuardPointsMax / 2
 ## HelperIndexExist(n) (new)
 
 Returns 1 if a player's helper with the specified index number exists, or 0 otherwise.
-  
+
 **Example:**  
 ```ini
 trigger1 = HelperIndexExist(5)
@@ -3005,18 +2963,18 @@ trigger1 = HelperIndex(5),time > 0
 Returns the helper's name (assigned via helper's name parameter, which defaults to "\<parent\>'s helper" if a unique name is not assigned).
 
 **Format:**  
->HelperName [oper] "name"  
-  
+HelperName [oper] "name"  
+
 **Arguments:**  
->[oper]  
->=, != (other operators not valid)  
-  
->"name" (string)  
->Name to compare against. Must be in double quotes.  
-  
+[oper]  
+=, != (other operators not valid)  
+
+"name" (string)  
+Name to compare against. Must be in double quotes.  
+
 **Return type:**  
->boolean int (1 or 0)  
-  
+boolean int (1 or 0)  
+
 **Example:**  
 ```ini
 trigger1 = HelperName = "Fireball"
@@ -3030,16 +2988,16 @@ trigger1 = HelperName = "Fireball"
 Returns a helper's unique properties. If called from a root player, the return is always invalid.  
 
 **Format:**  
->helpervar(param)
-  
-**Arguments:**  
->param  
->The parameter to check. See details  
-  
-**Return type:**  
->Varies. See details  
+helpervar(param)
 
-Details:
+**Arguments:**  
+param  
+The parameter to check. See details  
+
+**Return type:**  
+Varies. See details  
+
+**Details:**
 * `clsnproxy`: Returns clsnproxy `ID` parameter (bool)
 * `helpertype`: Returns the `helpertype` parameter as an int. Returns 1 for `normal`, 2 for `player` and 3 for `projectile` (int)
 * `ID`: Returns the `ID` parameter (int)
@@ -3047,8 +3005,8 @@ Details:
 * `ownclsnscale`: Returns the `ownclsnscale` parameter (bool)
 * `ownpal`: Returns the `ownpal` parameter (bool)
 * `preserve`: Returns the `preserve` parameter (bool)
-  
-**Example:**   
+
+**Example:**  
 ```ini
 trigger1 = Helper(1000), HelperVar(keyctrl)
 ```
@@ -3062,20 +3020,20 @@ Checks if the player can be hit by an attack with the specified attribute.
 See also documentation for the `attr` parameter in `HitDef` as well as `HitDefAttr`.  
 
 **Format:**  
->HitByAttr(flag1, flag2)  
-  
+HitByAttr(flag1, flag2)  
+
 **Arguments:**  
->flag1  
->The state type flag.  
-  
->flag2  
->The attack type flag.  
-  
+flag1  
+The state type flag.  
+
+flag2  
+The attack type flag.  
+
 **Return type:**  
->boolean int (1 or 0)  
+boolean int (1 or 0)  
 
 Note: Because `HitBy` and `NotHitBy` often last only one frame, player processing order can have a great influence in the return of this trigger.  
-  
+
 **Example:**  
 ```ini
 trigger1 = HitByAttr(S, NT); Returns true if the player can be hit by standing throws
@@ -3159,18 +3117,18 @@ Returns information about the player's currently active HitDef or ReversalDef. T
 Note: When the player has no active HitDef or ReversalDef, this trigger will return the default values of each parameter. It is generally advised to check if a HitDef or ReversalDef is active first with `HitDefAttr` or `ReversalDefAttr`.  
 
 **Format:**  
->HitDefVar(param)
-  
-**Arguments:**  
->param  
-  
->The parameter to check. Valid values:  
->See details  
-  
-**Return type:**  
->Varies. See details  
+HitDefVar(param)
 
-Details:
+**Arguments:**  
+param  
+
+The parameter to check. Valid values:  
+See details  
+
+**Return type:**  
+Varies. See details  
+
+**Details:**
 * `guard.dist.depth.bottom`: Returns the guard distance in the z-axis, under the char
 * `guard.dist.depth.top`: Returns the guard distance in the z-axis, above the char
 * `guard.dist.height.bottom`: Returns the guard distance in the y-axis, under the char
@@ -3224,9 +3182,9 @@ Details:
 * `fall.velocity.y`: Returns the Y component of the Hitdef's `fall.velocity` parameter (float)
 * `fall.velocity.z`: Returns the Z component of the Hitdef's `fall.velocity` parameter (float)
 
-Notes:
+**Notes:**
 * `guardflag` and `hitflag` are not simply a direct reading of the Hitdef's parameter. That is to say `HitDefVar(guardflag) = L` returns true whether the Hitdef's guardflag is `L`, `M` or `MA` for example.  
-  
+
 **Example:**  
 ```ini
 trigger1 = HitDefVar(hitdamage) >= 100
@@ -3290,14 +3248,14 @@ trigger1 = HitOver = 1
 Returns 1 during frame in which player has overridden default gethit behavior via HitOverride state controller. Otherwise returns 0.
 
 **Format:**  
->HitOverridden  
-  
+HitOverridden  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->boolean int (1 or 0)  
-  
+boolean int (1 or 0)  
+
 **Example:**  
 ```ini
 trigger1 = HitOverridden
@@ -3458,15 +3416,15 @@ value = ifelse(var(3),1,2)
 Returns one component of the character's Ikemen version as an integer.
 
 **Format:**
->IkemenVersion(param_name)  
+IkemenVersion(param_name)  
 
 **Arguments:**
->param_name  
->The version component to return. Valid values are:  
->Major, Minor, Patch  
+param_name  
+The version component to return. Valid values are:  
+Major, Minor, Patch  
 
 **Return type:**
->int  
+int  
 
 **Example:**
 ```ini
@@ -3481,14 +3439,14 @@ trigger1 = IkemenVersion(major) = 0 && IkemenVersion(minor) = 98 && IkemenVersio
 Returns 1 if the character is in a custom animation, such as when `ChangeAnim2` is used in a custom state.  
 
 **Format:**  
->InCustomAnim  
-  
+InCustomAnim  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->boolean int (1 or 0)  
-  
+boolean int (1 or 0)  
+
 **Example:**  
 ```ini
 trigger1 = InCustomAnim
@@ -3502,14 +3460,14 @@ trigger1 = InCustomAnim
 Returns 1 if the character is in a custom state (sent into another player's state).
 
 **Format:**  
->InCustomState  
-  
+InCustomState  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->boolean int (1 or 0)  
-  
+boolean int (1 or 0)  
+
 **Example:**  
 ```ini
 trigger1 = InCustomState
@@ -3530,14 +3488,14 @@ Returns the player's index as an integer. See [PlayerIndex](redirections#playeri
 Returns 1 during ongoing dialogue initiated by [Dialogue](sctrl#new_dialogue) state controller.
 
 **Format:**  
->InDialogue  
-  
+InDialogue  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->boolean int (1 or 0)  
-  
+boolean int (1 or 0)  
+
 **Example:**  
 ```ini
 trigger1 = InDialogue
@@ -3573,14 +3531,14 @@ Returns number of frames since a given button was pressed or released. A positiv
 This time advances regardless of the player being paused.  
 
 **Format:**  
->InputTime(button)  
-  
+InputTime(button)  
+
 **Arguments:**  
->button  
->The button to check. Valid values are:  
->B, F, D, U, a, b, c, x, y, z, s, d, w, m, L, R  
->These are the four cardinal directional inputs (B, F, D, U); the six attack buttons (a, b, c, x, y, z); start (s); the two new attack/tag buttons (d, w); the select/back/menu button (m); and absolute left/right directional inputs (L, R).  
-  
+button  
+The button to check. Valid values are:  
+B, F, D, U, a, b, c, x, y, z, s, d, w, m, L, R  
+These are the four cardinal directional inputs (B, F, D, U); the six attack buttons (a, b, c, x, y, z); start (s); the two new attack/tag buttons (d, w); the select/back/menu button (m); and absolute left/right directional inputs (L, R).  
+
 **Example:**  
 ```ini
 trigger1 = InputTime(F) > 0; forward is being held
@@ -3603,14 +3561,14 @@ Returns the current intro state number:
 4: Fight called  
 
 **Format:**  
->IntroState  
-  
+IntroState  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->int  
-  
+int  
+
 **Example:**  
 ```ini
 trigger1 = IntroState = 3
@@ -3624,15 +3582,15 @@ trigger1 = IntroState = 3
 Returns 1 if the character has specified AssertSpecial state controller flag asserted. Flags that affect all characters at once don't have to be asserted directly by character to be detectable.
 
 **Format:**  
->IsAsserted(flag_name)  
-  
+IsAsserted(flag_name)  
+
 **Arguments:**  
->flag_name  
->The name of the AssertSpecial state controller flag to check (string).  
-  
+flag_name  
+The name of the AssertSpecial state controller flag to check (string).  
+
 **Return type:**  
->boolean int (1 or 0)  
-  
+boolean int (1 or 0)  
+
 **Example:**  
 ```ini
 trigger1 = IsAsserted(noBG)
@@ -3646,14 +3604,14 @@ trigger1 = IsAsserted(noBG)
 Returns if the helper is a [Clsn Proxy](sctrl#clsnproxy).
 
 **Format:**  
->IsClsnProxy
-  
+IsClsnProxy
+
 **Arguments:**
->none
-  
+none
+
 **Return type:**
->boolean int (1 or 0)
-  
+boolean int (1 or 0)
+
 **Example:**  
 ```ini
 trigger1 = IsClsnProxy
@@ -3697,7 +3655,7 @@ trigger1 = IsHelper(1234)
 The `IsHelper` trigger now also accepts an optional index argument, through the new format `IsHelper(ID, index)`. Defaults to -1 (any index).  
 The old formats still work exactly the same.  
 
-Example:
+**Example:**
 ```ini
 trigger1 = IsHelper(123, 2); Is the third helper with ID 123
 ```
@@ -3732,14 +3690,14 @@ none
 Returns if the player is host in online match.
 
 **Format:**  
->IsHost  
-  
+IsHost  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->boolean int (1 or 0)  
-  
+boolean int (1 or 0)  
+
 **Example:**  
 ```ini
 trigger1 = IsHost
@@ -3753,15 +3711,15 @@ trigger1 = IsHost
 Returns the remaining juggle points between the player and another player with the specified ID. If the specified ID is not yet a target of the first player, the trigger will simply return the maximum juggle points.
 
 **Format:**  
->JugglePoints(exprn)
-  
+JugglePoints(exprn)
+
 **Arguments:**  
->exprn
->An expression evaluating to a player ID number (int).
-  
+exprn
+An expression evaluating to a player ID number (int).
+
 **Return type:**  
->int
-  
+int
+
 **Example:**  
 ```ini
 trigger1 = JugglePoints(EnemyNear, ID) < 10
@@ -3775,14 +3733,14 @@ trigger1 = JugglePoints(EnemyNear, ID) < 10
 Returns the ID number of the last spawned player or helper.
 
 **Format:**  
->LastPlayerID
-  
+LastPlayerID
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->int
-  
+int
+
 **Example:**  
 ```ini
 trigger1 = PlayerID(LastPlayerID), HitDefAttr = SCA, AP
@@ -3796,14 +3754,14 @@ trigger1 = PlayerID(LastPlayerID), HitDefAttr = SCA, AP
 Returns the layer number on which the character is currently being drawn on.
 
 **Format:**  
->LayerNo
-  
+LayerNo
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->int
-  
+int
+
 **Example:**  
 ```ini
 trigger1 = LayerNo = -1
@@ -3841,24 +3799,24 @@ trigger1 = Pos X + CameraPos X < LeftEdge
 <a id="new_lerp"></a>
 ## Lerp (Math) (new)
 
-Linear interpolation. Takes three arguments, and returns a number between two specified arguments at a specific increment. 
+Linear interpolation. Takes three arguments, and returns a number between two specified arguments at a specific increment.
 
 **Format:**  
->Lerp(a,b,amount)  
-  
+Lerp(a,b,amount)  
+
 **Arguments:**  
->a  
->Expression 1  
-  
->b  
->Expression 2  
-  
->amount(Avaiable range 0-1)  
->Expression 3  
-  
+a  
+Expression 1  
+
+b  
+Expression 2  
+
+amount(Avaiable range 0-1)  
+Expression 3  
+
 **Return type:**  
->float  
-  
+float  
+
 **Example:**  
 ```ini
 trigger1 = Lerp(0, 100, 0.5) = 50
@@ -3948,15 +3906,15 @@ value = ln(time)
 Returns the character's `localcoord` as a float. This trigger returns a constant value even when the player is in a custom state.
 
 **Format:**  
->LocalCoord [component]  
-  
+LocalCoord [component]  
+
 **Arguments:**  
->[component]  
->X, Y  
-  
+[component]  
+X, Y  
+
 **Return type:**  
->float  
-  
+float  
+
 **Example:**  
 ```ini
 trigger1 = LocalCoord X < Enemy, LocalCoord Y
@@ -4031,15 +3989,15 @@ trigger1 = !LoseKO
 Use the name of the map you want to recognize in parentheses. For example, a character with the below map will return Map(age) as a value set in character DEF file or via various state controllers that can modify character's map. If nothing is set, 0 is returned.
 
 **Format:**  
->Map  
-  
+Map  
+
 **Arguments:**  
->name  
->Name of the map  
-  
+name  
+Name of the map  
+
 **Return type:**  
->float  
-  
+float  
+
 **Example:**  
 ```ini
 trigger1 = Map(age) >= 18
@@ -4105,18 +4063,18 @@ trigger1 = !matchover
 Takes two arguments, and returns the highest-valued number.
 
 **Format:**  
->Max(exp1,exp2)  
-  
+Max(exp1,exp2)  
+
 **Arguments:**  
->exp1  
->Expression 1  
-  
->exp2  
->Expression 2  
-  
+exp1  
+Expression 1  
+
+exp2  
+Expression 2  
+
 **Return type:**  
->float  
-  
+float  
+
 **Example:**  
 ```ini
 trigger1 = Max(var(3), 10)
@@ -4130,14 +4088,14 @@ trigger1 = Max(var(3), 10)
 Returns character's team member position. Team leader is 1, while partners receive successive numbers. In Tag mode this value is dynamic.  
 
 **Format:**  
->MemberNo  
-  
+MemberNo  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->int  
-  
+int  
+
 **Example:**  
 ```ini
 trigger1 = MemberNo = 1
@@ -4151,18 +4109,18 @@ trigger1 = MemberNo = 1
 Takes two arguments, and returns the lowest-valued number.
 
 **Format:**  
->Min(exp1,exp2)  
-  
+Min(exp1,exp2)  
+
 **Arguments:**  
->exp1  
->Expression 1  
-  
->exp2  
->Expression 2  
-  
+exp1  
+Expression 1  
+
+exp2  
+Expression 2  
+
 **Return type:**  
->float  
-  
+float  
+
 **Example:**  
 ```ini
 trigger1 = Min(var(3), 10)
@@ -4176,15 +4134,15 @@ trigger1 = Min(var(3), 10)
 Allows retrieval of whether the specified post-round sequence is active.  
 
 **Format:**  
->MotifState(parameter)
-  
+MotifState(parameter)
+
 **Arguments:**  
->parameter  
->The name of the motif state to check. Valid values are:  
->challenger, continuescreen, continueyes, continueno, demo, dialogue, menu, victoryscreen, winscreen, hiscore   
-  
+parameter  
+The name of the motif state to check. Valid values are:  
+challenger, continuescreen, continueyes, continueno, demo, dialogue, menu, victoryscreen, winscreen, hiscore  
+
 **Return type:**  
->boolean int (1 or 0)
+boolean int (1 or 0)
 
 ---
 
@@ -4195,15 +4153,15 @@ Allows checking the various screenpack options as defined in system.def (TBD)
 Keep in mind that until string support is added to the engine, only numeric values are useful to return.
 
 **Format:**  
->MotifVar  
-  
+MotifVar  
+
 **Arguments:**  
->param_name  
->The name of the variable to check.
-  
+param_name  
+The name of the variable to check.
+
 **Return type:**  
->variable
-  
+variable
+
 **Example:**  
 ```ini
 trigger1 = MotifVar(info.mugenversion) >= 1
@@ -4253,14 +4211,14 @@ trigger1 = MoveContact = 1
 This trigger is valid only when the player is in an attack state. MoveCountered returns 1 on attack contact, at the exact frame that p1 interrupts p2 attack (true for 1 frame, even if both P1 and P2 countered each other's moves). After contact, MoveCountered's return value will increase by 1 for each game tick that P1 is not paused. It gives 0 otherwise. See Details section of Mugen's `MoveContact` trigger for more information.
 
 **Format:**  
->MoveCountered  
-  
+MoveCountered  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->int  
-  
+int  
+
 **Example:**  
 ```ini
 trigger1 = MoveCountered = 1
@@ -4333,17 +4291,17 @@ Similarly to `GetHitVar`, this trigger allows retrieving information about the l
 This trigger works even if that hit acquired no `target`.  
 
 **Format:**  
->MoveHitVar(parameter)
-  
-**Arguments:**  
->parameter  
->The name of the hit parameter to check. Valid values are:  
->cornerpush.veloff, frame, overridden, playerid, playerno, sparkx, sparky, uniqhit  
-  
-**Return type:**  
->Varies. See details
+MoveHitVar(parameter)
 
-Details:
+**Arguments:**  
+parameter  
+The name of the hit parameter to check. Valid values are:  
+cornerpush.veloff, frame, overridden, playerid, playerno, sparkx, sparky, uniqhit  
+
+**Return type:**  
+Varies. See details
+
+**Details:**
 * `cornerpush.veloff`: Returns the stored velocity offset used for cornerpush. (float)  
 * `frame`: Returns true only during the same frame where the player connected an attack. (bool)  
 * `overridden`: Returns true if the last hit encountered a HitOverride. (bool)  
@@ -4357,7 +4315,7 @@ Details:
 **Notes:**  
 * Unlike `MoveHit`, `MoveHitVar(frame)` updates during a hitpause.
 * `MoveHitVar(sparkx)` and `MoveHitVar(sparky)` offsets are relative to the attacking player's position.
-  
+
 **Example:**  
 ```ini
 [State FX]
@@ -4437,15 +4395,15 @@ Returns one component of the character's Mugen version as an integer.
 Characters with an Ikemen version are treated as Mugen 1.1, regardless of the value specified in the DEF file. WinMugen characters are treated as 0.5.
 
 **Format:**
->MugenVersion(param_name)  
+MugenVersion(param_name)  
 
 **Arguments:**
->param_name  
->The version component to return. Valid values are:  
->Major, Minor  
+param_name  
+The version component to return. Valid values are:  
+Major, Minor  
 
 **Return type:**
->int  
+int  
 
 **Example:**
 ```ini
@@ -4605,7 +4563,7 @@ trigger1 = partner, life < 200
 ## NumPlayer (new)
 
 Returns total number of players (including helpers, attached chars, etc) existing ingame.
-  
+
 **Example:**  
 ```ini
 trigger1 = NumPlayer > 5
@@ -4672,16 +4630,16 @@ trigger1 = NumProjID(1234) = 1
 Returns the number of BG elements in the stage that have the specified ID. If the ID argument is not used, or if ID is -1, it returns the total.  
 
 **Format:**  
->1. NumStageBG  
->2. NumStageBG(ID)  
-  
+1. NumStageBG  
+2. NumStageBG(ID)  
+
 **Arguments:**  
->ID  
->Expression evaluating to an ID number (int)  
-  
+ID  
+Expression evaluating to an ID number (int)  
+
 **Return type:**  
->int  
-  
+int  
+
 **Example:**  
 ```go
 if numStageBG > 0 {
@@ -4735,16 +4693,16 @@ trigger1 = NumExplod(1234) >= 4
 This trigger takes an ID number as an optional argument. If the ID number is omitted, NumText returns the number of texts owned by the player. If the ID number is included, then NumText returns the number of texts with that ID number that are owned by the player. The ID number must be greater than -1. An ID number of -1 or less will give the same behavior as if the ID number is omitted.
 
 **Format:**  
->1.NumText  
->2.NumText(exprn)  
-  
+1.NumText  
+2.NumText(exprn)  
+
 **Arguments:**  
->exprn  
->Expression evaluating to an ID number (int)  
-  
+exprn  
+Expression evaluating to an ID number (int)  
+
 **Return type:**  
->int  
-  
+int  
+
 **Example:**  
 ```ini
 trigger1 = NumText >= 2
@@ -4759,14 +4717,14 @@ trigger1 = NumText(1234) >= 2
 Returns the value of the player's x,y offset applied with OffSet sctrl.
 
 **Format:**  
->OffSet argument
-  
+OffSet argument
+
 **Arguments:**  
->x, y
-  
+x, y
+
 **Return type:**
->float
-  
+float
+
 **Example:**  
 ```ini
 trigger1 = OffSet x > 100 && OffSet y > 50
@@ -4786,14 +4744,14 @@ Returns the current outro state number:
 5: Round over (starting from the last frame of the RoundState sequence and continuing through the entire post-round sequence, individually detactable with [MotifState](https://github.com/ikemen-engine/Ikemen-GO/wiki/Triggers-(new)#motifstate) trigger)  
 
 **Format:**  
->OutroState  
-  
+OutroState  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->int  
-  
+int  
+
 **Example:**  
 ```ini
 trigger1 = OutroState = 3
@@ -4847,7 +4805,7 @@ trigger1 = P2BodyDist X < 30
 
 In Mugen, this trigger merely does the same as `P2Dist Y`. If a character has `ikemenversion`, it will instead return the distance between the size boxes of the two players.
 
-### <a name="changed_p2bodydist_y">Z</a>
+### <a name="changed_p2bodydist_z">Z</a>
 
 P2BodyDist now also accepts a Z argument. When there is overlap between the players' Z width, it returns 0, otherwise returns the distance between their theoretical width boxes.
 
@@ -4948,18 +4906,18 @@ If there is no secondary opponent, then `p4name = "name"` returns 0 no matter wh
 Same as P1Name-P4Name, except that these return the name of other team members, if present. If there is no such opponent, then it returns 0 no matter what name is specified. Similarly, P5Name != "name" will return 1 no matter what name is specified.
 
 **Format:**  
->PXName [oper] "name"  
-  
+PXName [oper] "name"  
+
 **Arguments:**  
->[oper]  
->=, != (other operators not valid)  
-  
->"name" (string)  
->Name to compare against. Must be in double quotes.  
-  
+[oper]  
+=, != (other operators not valid)  
+
+"name" (string)  
+Name to compare against. Must be in double quotes.  
+
 **Return type:**  
->boolean int (1 or 0)  
-  
+boolean int (1 or 0)  
+
 **Example:**  
 ```ini
 trigger1 = P5Name = "Kumquat"
@@ -4984,7 +4942,7 @@ all.time
 all.add.r, all.add.g, all.add.b  
 all.mul.r, all.mul.g, all.mul.b  
 all.color, all.hue, all.invertall, all.invertblend  
-  
+
 **Example:**  
 ```ini
 trigger1 = PalFXVar(add.r) != 0
@@ -5067,7 +5025,7 @@ The `ParentDist` trigger now also accepts a `Z` argument. Returns the distance b
 ## ParentExist (new)
 
 Returns true if the helper's parent is still present in the game.
-  
+
 **Example:**  
 ```
 if parentExist {
@@ -5085,14 +5043,14 @@ Returns the time until the active Pause and/or SuperPause effect expires (whiche
 Normally states are not running during Pause and SuperPause, so this trigger will only work when used in a special statedef -4, which ignores these state controllers.
 
 **Format:**  
->PauseTime  
-  
+PauseTime  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->int  
-  
+int  
+
 **Example:**  
 ```ini
 trigger1 = PauseTime = 0
@@ -5107,18 +5065,18 @@ trigger1 = PauseTime = 0
 Returns the player's physics-type. Refer to the section on StateDef in the CNS documentation for more details on physics.
 
 **Format:**  
->Physics [oper] physics_type  
-  
+Physics [oper] physics_type  
+
 **Arguments:**  
->[oper]  
->=, != (other operators not valid)  
-  
->physics_type (string)  
->S, C, A, N *(stand, crouch, air, none)*  
-  
+[oper]  
+=, != (other operators not valid)  
+
+physics_type (string)  
+S, C, A, N *(stand, crouch, air, none)*  
+
 **Return type:**  
->boolean int (1 or 0)  
-  
+boolean int (1 or 0)  
+
 **Example:**  
 ```ini
 trigger1 = Physics != A
@@ -5176,7 +5134,7 @@ trigger1 = PlayerIDExist(var(4))
 ## PlayerIndexExist(n) (new)
 
 Returns 1 if a player with the specified index number exists, 0 otherwise. See [PlayerIndex](redirections#playerindexn-new).
-  
+
 **Example:**  
 ```ini
 trigger1 = PlayerIndexExist(2)
@@ -5190,14 +5148,14 @@ trigger1 = PlayerIndexExist(2)
 Returns character's player number. Player 1 side uses odd numbers (1, 3, 5, 7), player 2 side even numbers (2, 4, 6, 8). Stage [AttachedChar](https://github.com/ikemen-engine/Ikemen-GO/wiki/Stage-features#info_attachedchar) uses number outside maximum player range (9).
 
 **Format:**  
->PlayerNo  
-  
+PlayerNo  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->int  
-  
+int  
+
 **Example:**  
 ```ini
 trigger1 = PlayerNo < 3
@@ -5211,15 +5169,15 @@ trigger1 = PlayerNo < 3
 Evaluates if the specified player number is currently in use.  
 
 **Format:**  
->PlayerNoExist(player_number)  
-  
+PlayerNoExist(player_number)  
+
 **Arguments:**  
->player_number  
->An expression that evaluates to the player number to check for (int)  
-  
+player_number  
+An expression that evaluates to the player number to check for (int)  
+
 **Return type:**  
->boolean int (1 or 0)  
-  
+boolean int (1 or 0)  
+
 **Example:**  
 ```ini
 trigger1 = PlayerNoExist(3); Returns true if there's a player number 3
@@ -5315,17 +5273,17 @@ trigger1 = power < powermax / 2
 
 Returns the number of the anim that the player was last in.
 
-Example:
+**Example:**
 
 **Format:**  
->PrevAnim  
-  
+PrevAnim  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->int  
-  
+int  
+
 **Example:**  
 ```ini
 trigger1 = PrevAnim = 200
@@ -5338,21 +5296,21 @@ trigger1 = PrevAnim = 200
 
 Returns the MoveType that the player was last in.
 
-Example:
+**Example:**
 
 **Format:**  
->PrevMoveType  
-  
+PrevMoveType  
+
 **Arguments:**  
->[oper]  
->=, != (other operators not valid)  
-  
->move_type (char)  
->move_type to compare against: A, I, H (Attack, Idle and GetHit move-types respectively) 
-  
+[oper]  
+=, != (other operators not valid)  
+
+move_type (char)  
+move_type to compare against: A, I, H (Attack, Idle and GetHit move-types respectively)
+
 **Return type:**  
->boolean int (1 or 0)  
-  
+boolean int (1 or 0)  
+
 **Example:**  
 ```ini
 trigger1 = PrevMoveType = H
@@ -5390,21 +5348,21 @@ trigger1 = PrevStateNo = [200,650]
 
 Returns the StateType that the player was last in.
 
-Example:
+**Example:**
 
 **Format:**  
->PrevStateType  
-  
+PrevStateType  
+
 **Arguments:**  
->[oper]  
->=, != (other operators not valid)  
-  
->state_type (char)  
->state_type to compare against: S, C, A, L (Stand, Crouch, Air and Liedown respectively)
-  
+[oper]  
+=, != (other operators not valid)  
+
+state_type (char)  
+state_type to compare against: S, C, A, L (Stand, Crouch, Air and Liedown respectively)
+
 **Return type:**  
->boolean int (1 or 0)  
-  
+boolean int (1 or 0)  
+
 **Example:**  
 ```ini
 trigger1 = PrevStateType = C
@@ -5453,22 +5411,22 @@ This trigger uses Ikemen's internal collision detection, so it will work even wi
 If you want to specify a projectile with a specific projID, create a loop process that combines the projID with ProjVar.  
 
 **Format:**  
->ProjClsnOverlap(index, playerID, box_type)
-  
+ProjClsnOverlap(index, playerID, box_type)
+
 **Arguments:**  
->index  
->An index number based on all projectiles owned by the player.  
->The index is equivalent to the index when -1 is specified for the ID in ProjVar.  
-  
->playerID  
->The ID of the player against which to check the overlap  
-  
->box_type  
->The target's collision box type. Valid values are Clsn1, Clsn2, Size and Dummy (nightly build only)  
-  
+index  
+An index number based on all projectiles owned by the player.  
+The index is equivalent to the index when -1 is specified for the ID in ProjVar.  
+
+playerID  
+The ID of the player against which to check the overlap  
+
+box_type  
+The target's collision box type. Valid values are Clsn1, Clsn2, Size and Dummy (nightly build only)  
+
 **Return type:**  
->boolean int (1 or 0)  
-  
+boolean int (1 or 0)  
+
 **Example:**  
 ```ini
 trigger1 = ProjClsnOverlap(var(3), p2,ID, clsn2)
@@ -5713,24 +5671,24 @@ trigger1 = ProjHitTime(0) != -1 && ProjHitTime(0) < 15
 Returns the specified projectile parameter. Use -1 for ID to iterate over all projectiles.
 
 **Format:**  
->ProjVar(id, index, param)  
-  
+ProjVar(id, index, param)  
+
 **Arguments:**  
->id  
->Expression 1  
-  
->index  
->Expression 2  
-  
->param  
->Valid values are accel x, accel y, anim, animelem, angle, angle x, angle y, attr, drawpal.group, drawpal.index, guardflag, highbound, hitflag, layerno, lowbound, pausemovetime, pos x, pos y, projcancelanim, projedgebound, projhitanim, projhits, projID, projmisstime, projpriority, projremove, projremovetime, projremanim, projstagebound, remvelocity x, remvelocity y, scale x, scale y, shadow r, shadow g, shadow b, sprpriority, teamside, vel x, vel y, velmul x, velmul y  
-  
+id  
+Expression 1  
+
+index  
+Expression 2  
+
+param  
+Valid values are accel x, accel y, anim, animelem, angle, angle x, angle y, attr, drawpal.group, drawpal.index, guardflag, highbound, hitflag, layerno, lowbound, pausemovetime, pos x, pos y, projcancelanim, projedgebound, projhitanim, projhits, projID, projmisstime, projpriority, projremove, projremovetime, projremanim, projstagebound, remvelocity x, remvelocity y, scale x, scale y, shadow r, shadow g, shadow b, sprpriority, teamside, vel x, vel y, velmul x, velmul y  
+
 **Return type:**  
->int or float  
+int or float  
 
 Note:  
 `attr`, `guardflag` and `hitflag` require a comparison against known flags.  
-  
+
 **Example:**  
 ```ini
 trigger1 = ProjVar(1000, 0, vel Y) > 0
@@ -5746,15 +5704,15 @@ trigger3 = ProjVar(3000, 0, guardflag) = L
 Converts an argument value from degree to radians.
 
 **Format:**  
->Rad(exp)  
-  
+Rad(exp)  
+
 **Arguments:**  
->exp  
->Expression  
-  
+exp  
+Expression  
+
 **Return type:**  
->float  
-  
+float  
+
 **Example:**  
 ```ini
 trigger1 = Rad(Angle) > pi*0.5
@@ -5793,18 +5751,18 @@ trigger1 = Random <= 249
 Generates pseudo-random integer numbers uniformly distributed between the given range (both bounds inclusive).  
 
 **Format:**  
->RandomRange(lower,upper)  
-  
+RandomRange(lower,upper)  
+
 **Arguments:**  
->lower  
->Lower range (inclusive)  
-  
->upper  
->Upper range (inclusive)  
-  
+lower  
+Lower range (inclusive)  
+
+upper  
+Upper range (inclusive)  
+
 **Return type:**  
->int  
-  
+int  
+
 **Example:**  
 ```ini
 type = Explod
@@ -5820,14 +5778,14 @@ pos = RandomRange(-300, 600), 0
 Returns the total damage dealt by the opposite team to this character, in the currently ongoing combo. This value is valid as long as the opposite team combo count stays above 0, otherwise it returns 0 too.
 
 **Format:**  
->ReceivedDamage  
-  
+ReceivedDamage  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->int  
-  
+int  
+
 **Example:**  
 ```ini
 trigger1 = ReceivedDamage > (LifeMax / 10)
@@ -5841,14 +5799,14 @@ trigger1 = ReceivedDamage > (LifeMax / 10)
 Returns the total number of hits done by the opposite team to this character, in the currently ongoing combo. Unlike GetHitVar(hitcount), it takes into account all hits, including those applied by HitAdd. This value is valid as long as the opposite team combo count stays above 0, otherwise it returns 0 too.
 
 **Format:**  
->ReceivedHits  
-  
+ReceivedHits  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->int  
-  
+int  
+
 **Example:**  
 ```ini
 trigger1 = ReceivedHits > 10
@@ -5862,14 +5820,14 @@ trigger1 = ReceivedHits > 10
 Returns the amount of [red life](https://github.com/ikemen-engine/Ikemen-GO/wiki/Miscellaneous-Info#redlife) the player has.
 
 **Format:**  
->RedLife  
-  
+RedLife  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->int  
-  
+int  
+
 **Example:**  
 ```ini
 trigger1 = RedLife = 0
@@ -5885,30 +5843,30 @@ Checks the attribute parameter of the player's currently-active ReversalDef. If 
 Note: ReversalDefAttr != value1, value2 is logically equivalent to !(ReversalDefAttr = value1, value2).
 
 **Format:**  
->	ReversalDefAttr [oper] value1, value2  
-  
+	ReversalDefAttr [oper] value1, value2  
+
 **Arguments:**  
->	[oper]  
->=, !=  
-  
->	value1  
->A string that has at least one of the letters "S", "C" and "A" for standing, crouching and aerial attacks respectively. For example, "SA" is for standing and aerial attacks.  
-  
->	value2  
->A set of 2-character strings, separated by commas. Each 2-character string must be of the form described: The first character is either "N" for "normal", "S" for "special", or "H" for "hyper". The second character must be either "A" for "attack" (a normal hit attack) or "T" for "throw". For example, "NA, ST" is for normal attacks and special throws.  
-  
->Assuming the attribute of the player's ReversalDefAttr is in the form:  
-  
->arg1, arg2  
-  
->then the trigger condition is determined to be true only if arg1 is a subset of value1, AND arg2 is a subset of value2.  
-  
+	[oper]  
+=, !=  
+
+	value1  
+A string that has at least one of the letters "S", "C" and "A" for standing, crouching and aerial attacks respectively. For example, "SA" is for standing and aerial attacks.  
+
+	value2  
+A set of 2-character strings, separated by commas. Each 2-character string must be of the form described: The first character is either "N" for "normal", "S" for "special", or "H" for "hyper". The second character must be either "A" for "attack" (a normal hit attack) or "T" for "throw". For example, "NA, ST" is for normal attacks and special throws.  
+
+Assuming the attribute of the player's ReversalDefAttr is in the form:  
+
+arg1, arg2  
+
+then the trigger condition is determined to be true only if arg1 is a subset of value1, AND arg2 is a subset of value2.  
+
 **Return type:**  
-> boolean int (1 or 0)  
-  
->Error conditions:  
-> none  
-  
+ boolean int (1 or 0)  
+
+**Error conditions:**  
+ none  
+
 **Example:**  
 ```ini
 trigger1 = ReversalDefAttr = A, HA
@@ -5991,28 +5949,29 @@ The `RootDist` trigger now also accepts a `Z` argument. Returns the distance bet
 
 ---
 
-<a id="new_round"></a>
+<a id="new_round_math"></a>
 ## Round (math) (new)
 
 Returns the rounded value of `val` to specified `precision` (number of digits after the decimal point). `precision` can also be negative or zero.
 
 **Format:**  
->Round(val,precision)  
-  
+Round(val,precision)  
+
 **Arguments:**  
->val  
->Expression evaluating to the value to round.  
-  
->precision  
->Expression evaluating to the number of decimal digits to round to. If the precision is positive, the rounding will occur after the decimal point. If the precision is negative, the rounding will occur before the decimal point. If the absolute value of the precision is greater than or equal to the number of digits, the result of the rounding is equal to 0.  
-  
+val  
+Expression evaluating to the value to round.  
+
+precision  
+Expression evaluating to the number of decimal digits to round to. If the precision is positive, the rounding will occur after the decimal point. If the precision is negative, the rounding will occur before the decimal point. If the absolute value of the precision is greater than or equal to the number of digits, the result of the rounding is equal to 0.  
+
 **Return type:**  
->float  
-  
+float  
+
 **Example:**  
 ```ini
 trigger1 = Round(var(3), -2) > 100
 ```
+
 ```ini
 trigger1 = Round(1.0055, 3) ; returns 1.006
 ```
@@ -6112,7 +6071,7 @@ The `RoundState` trigger no longer returns 2 during the "Fight!" screen, before 
 
 ---
 
-<a id="new_round"></a>
+<a id="new_roundswon"></a>
 ## RoundsWon (new)
 
 Returns how many total rounds the teamside has won during the current match. Resets between matches.
@@ -6127,14 +6086,14 @@ Returns how many total rounds the teamside has won during the current match. Res
 Returns the tick count since the start of the round.
 
 **Format:**  
->RoundTime  
-  
+RoundTime  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->int  
-  
+int  
+
 **Example:**  
 ```ini
 trigger1 = RoundTime > 600
@@ -6155,14 +6114,14 @@ At the start of each frame, players are sorted into a list for code processing b
 Returns the value of the player's drawing scale. `Scale X` and `Scale Y` refer to the scale applied by `AngleDraw`. `Scale Z` refers to the rescaling that affects the player when moving in the Z space.  
 
 **Format:**  
->Scale argument
-  
+Scale argument
+
 **Arguments:**  
->x, y, z
-  
+x, y, z
+
 **Return type:**
->float
-  
+float
+
 **Example:**  
 ```ini
 trigger1 = Scale x > 2 && Scale y > 1
@@ -6176,14 +6135,14 @@ trigger1 = Scale x > 2 && Scale y > 1
 Returns the score points gained in this round by all team members.
 
 **Format:**  
->Score  
-  
+Score  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->float  
-  
+float  
+
 **Example:**  
 ```ini
 trigger1 = Score > 10000
@@ -6197,14 +6156,14 @@ trigger1 = Score > 10000
 Returns the total score points value. Takes into account all team members, previous rounds and previous matches since the start of this game mode.
 
 **Format:**  
->ScoreTotal  
-  
+ScoreTotal  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->float  
-  
+float  
+
 **Example:**  
 ```ini
 trigger1 = ScoreTotal > 1000000
@@ -6324,15 +6283,15 @@ If P1 has been given P2's animation data by a hit, SelfAnimExist will not check 
 Checks for the existence of a state only within P1's state numbers, even when P1 is custom stated by a hit. Returns 1 if there is a statedef with the specified number. Otherwise it returns 0. Use the statedef number you want to recognize in parentheses.
 
 **Format:**  
->SelfStatenoExist(exprn)  
-  
+SelfStatenoExist(exprn)  
+
 **Arguments:**  
->exprn  
->An expression evaluating to a state number (int).  
-  
+exprn  
+An expression evaluating to a state number (int).  
+
 **Return type:**  
->boolean int (1 or 0)  
-  
+boolean int (1 or 0)  
+
 **Example:**  
 ```ini
 trigger1 = !SelfStatenoExist(200)
@@ -6360,15 +6319,15 @@ trigger1 = shader != ""
 Returns the sign of a real number. If value < 0 return -1. If value 0 return 0. if value > 0 return 1.
 
 **Format:**  
->Sign(exp)
-  
+Sign(exp)
+
 **Arguments:**  
->exp  
->Expression  
-  
+exp  
+Expression  
+
 **Return type:**  
->int
-  
+int
+
 **Example:**  
 ```ini
 var(0) = var(0)*Sign(vel x)
@@ -6411,18 +6370,18 @@ Returns the specified sound channel parameter. Use -1 for channelNo to find the 
 **Warning: The results of this trigger are NOT network-safe due to the asynchronous nature of sound playback. Usage of this trigger in production environments is discouraged.**
 
 **Format:**  
->SoundVar(channelNo, param)  
-  
+SoundVar(channelNo, param)  
+
 **Arguments:**  
->channelNo  
->Expression  
-  
->param  
->Valid values are group, number, freqmul, isplaying, length, loopcount, loopstart, loopend, pan, position, priority, startposition, volumescale  
-  
+channelNo  
+Expression  
+
+param  
+Valid values are group, number, freqmul, isplaying, length, loopcount, loopstart, loopend, pan, position, priority, startposition, volumescale  
+
 **Return type:**  
->int or float  
-  
+int or float  
+
 **Example:**  
 ```ini
 var(0) = SoundVar(0, IsPlaying)
@@ -6438,14 +6397,14 @@ Returns the player number of the owner of the player's current sprite.
 Normally returns the same number as the player's player number, but when for instance `ChangeAnim2` is used in a custom state, it will return the number of who owns that sprite.  
 
 **Format:**  
->SpritePlayerNo  
-  
+SpritePlayerNo  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->int
-  
+int
+
 **Example:**  
 ```ini
 trigger1 = Player(SpritePlayerNo), SelfAnimExist(1234)
@@ -6459,13 +6418,13 @@ trigger1 = Player(SpritePlayerNo), SelfAnimExist(1234)
 Returns information about the player's current sprite.  
 
 **Format:**  
->SpriteVar(param_name)  
-  
+SpriteVar(param_name)  
+
 **Arguments:**  
->param_name  
->The name of the parameter to check. Valid values are:  
->Group, Height, Image, Width, XOffset, YOffset
-  
+param_name  
+The name of the parameter to check. Valid values are:  
+Group, Height, Image, Width, XOffset, YOffset
+
 **Example:**  
 ```ini
 ; top left corner of sprite
@@ -6482,14 +6441,14 @@ pos = -SpriteVar(xoffset) + SpriteVar(width), -SpriteVar(yoffset) + SpriteVar(he
 Returns the player's/helper's current SprPriority value.
 
 **Format:**  
->SprPriority  
-  
+SprPriority  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->int  
-  
+int  
+
 **Example:**  
 ```ini
 trigger1 = SprPriority > 0
@@ -6503,14 +6462,14 @@ trigger1 = SprPriority > 0
 Returns the distance to the stage edge (corner) behind the player.
 
 **Format:**  
->StageBackEdgeDist  
-  
+StageBackEdgeDist  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->int  
-  
+int  
+
 **Example:**  
 ```ini
 trigger1 = StageBackEdgeDist < 100
@@ -6524,22 +6483,22 @@ trigger1 = StageBackEdgeDist < 100
 Returns information about the stage's BG elements.  
 
 **Format:**  
->stagebgvar(ID, index, param)
-  
-**Arguments:**  
->ID  
->The ID of the element to be checked  
-  
->index  
->The index of the element to be checked  
-  
->param  
->The parameter to check. See details  
-  
-**Return type:**  
->Varies. See details  
+stagebgvar(ID, index, param)
 
-Details:
+**Arguments:**  
+ID  
+The ID of the element to be checked  
+
+index  
+The index of the element to be checked  
+
+param  
+The parameter to check. See details  
+
+**Return type:**  
+Varies. See details  
+
+**Details:**
 * `actionno`: Returns the animation number for `type = anim` elements (int)
 * `animloopcount`: Returns the number of times the animation has looped (int) (nightly build only)
 * `animtime`: Returns time until animation ends (int) (nightly build only)
@@ -6555,7 +6514,7 @@ Details:
 * `tile.y`: Returns the Y tiling flag (bool)
 * `velocity.x`: Returns the X velocity (float)
 * `velocity.y`: Returns the Y velocity (float)
-  
+
 **Example:**  
 ```ini
 trigger1 = StageBGVar(4, 1, actionno) = 40
@@ -6569,15 +6528,15 @@ trigger1 = StageBGVar(4, 1, actionno) = 40
 Returns the value of one of the stage's constants. Stage constant variables can be set under stage's DEF [[Constants]](Stage-features/#constants) section.
 
 **Format:**  
->StageConst(param_name)  
-  
+StageConst(param_name)  
+
 **Arguments:**  
->param_name  
->The name of the constant to check (string).  
-  
+param_name  
+The name of the constant to check (string).  
+
 **Return type:**  
->float  
-  
+float  
+
 **Example:**  
 ```ini
 trigger1 = StageConst(WaterGround) = 1
@@ -6591,14 +6550,14 @@ trigger1 = StageConst(WaterGround) = 1
 Returns the distance to the stage edge (corner) in front of the player.
 
 **Format:**  
->StageFrontEdgeDist  
-  
+StageFrontEdgeDist  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->int  
-  
+int  
+
 **Example:**  
 ```ini
 trigger1 = StageFrontEdgeDist < 100
@@ -6612,14 +6571,14 @@ trigger1 = StageFrontEdgeDist < 100
 Returns the stage's internal time, or the amount of ticks since the last stage reset. The value returned by this trigger corresponds directly to the amount of times stage backgrounds have been updated (taking into account `pausebg`, `resetbg`, etc), allowing one to for instance reliably synchronize [attachedchar](https://github.com/ikemen-engine/Ikemen-GO/wiki/Stage-features#info_attachedchar) actions to what's currently displayed by the stage.
 
 **Format:**  
->StageTime  
-  
+StageTime  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->int  
-  
+int  
+
 **Example:**  
 ```ini
 trigger1 = StageTime > 600
@@ -6675,13 +6634,13 @@ trigger1 = StageVar(info.author) = "Suika"
 
 StageVar now accepts all stage parameters that [ModifyStageVar](sctrl#new_modifystagevar) state controller can change. In addition it accepts the following parameters:
 
->info.ikemenversion.major = *major version component* (int)  
->info.ikemenversion.minor = *minor version component* (int)  
->info.ikemenversion.patch = *patch version component* (int)  
->info.mugenversion.major = *major version component* (int)  
->info.mugenversion.minor = *minor version component* (int)  
->stageinfo.localcoord.x = *width* (int)  
->stageinfo.localcoord.y = *height* (int)
+info.ikemenversion.major = *major version component* (int)  
+info.ikemenversion.minor = *minor version component* (int)  
+info.ikemenversion.patch = *patch version component* (int)  
+info.mugenversion.major = *major version component* (int)  
+info.mugenversion.minor = *minor version component* (int)  
+stageinfo.localcoord.x = *width* (int)  
+stageinfo.localcoord.y = *height* (int)
 
 ---
 
@@ -6691,14 +6650,14 @@ StageVar now accepts all stage parameters that [ModifyStageVar](sctrl#new_modify
 Returns 1 if character is under standby effect (assigned by [TagOut](sctrl#new_tagout) sctrl).
 
 **Format:**  
->Standby  
-  
+Standby  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->boolean int (1 or 0)  
-  
+boolean int (1 or 0)  
+
 **Example:**  
 ```ini
 trigger1 = !Standby
@@ -6856,14 +6815,14 @@ Returns [playerno](triggers#playerno) of the character that is considered a team
 Manually swapping leader changes lifebar elements assignment - leader always uses P1 (or P2, depending on team side) lifebar elements, remaining players positions are moved accordingly, in ascending players order.
 
 **Format:**  
->TeamLeader  
-  
+TeamLeader  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->int  
-  
+int  
+
 **Example:**  
 ```ini
 trigger1 = TeamLeader = PlayerNo
@@ -6944,14 +6903,14 @@ trigger1 = TeamSide = 2
 Returns character's team size (for *turns* mode it returns information that was previously not obtainable, for other team modes the returned value is equivalent to using `NumPartner + 1`)
 
 **Format:**  
->TeamSize  
-  
+TeamSize  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->int  
-  
+int  
+
 **Example:**  
 ```ini
 trigger1 = TeamSize = 4
@@ -7013,14 +6972,14 @@ trigger1 = Time = 2
 Returns the amount of clock ticks since the battle began (0 if time is disabled). Value returned by this trigger corresponds to lifebar timer (only ticks during RoundState = 2)
 
 **Format:**  
->TimeElapsed  
-  
+TimeElapsed  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->int  
-  
+int  
+
 **Example:**  
 ```ini
 trigger1 = TimeElapsed > 600
@@ -7065,14 +7024,14 @@ trigger1 = TimeMod = 4, 3
 Returns the amount of clock ticks until time over (-1 if time is disabled). Value returned by this trigger corresponds to lifebar timer (only ticks during RoundState = 2)
 
 **Format:**  
->TimeRemaining  
-  
+TimeRemaining  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->int  
-  
+int  
+
 **Example:**  
 ```ini
 trigger1 = TimeRemaining > 600
@@ -7086,14 +7045,14 @@ trigger1 = TimeRemaining > 600
 Returns the total number of clock ticks that have elapsed so far. Takes into account previous rounds and matches since the start of this game mode.
 
 **Format:**  
->TimeTotal  
-  
+TimeTotal  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->int  
-  
+int  
+
 **Example:**  
 ```ini
 trigger1 = TimeTotal > 5940
@@ -7114,14 +7073,14 @@ Like `TopBoundDist`, except this trigger accounts for the player's top `edge` pa
 TopBoundDist gives the distance between the player's z-axis and the `topbound` limit of the stage.
 
 **Format:**  
->TopBoundDist 
-  
+TopBoundDist
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->float
-  
+float
+
 **Example:**  
 ```ini
 trigger1 = TopBoundDist < 40
@@ -7279,13 +7238,13 @@ trigger1 = !WinKO
 Returns true if the player (or the player's team, in team mode) has won the round with health below the limit set by ``clutch.threshold`` in fight.def. If the parameter isn't defined, the default is under 10%.
 
 **Format:**  
->WinClutch  
-  
+WinClutch  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->boolean int (1 or 0)
+boolean int (1 or 0)
 
 ---
 
@@ -7295,14 +7254,14 @@ Returns true if the player (or the player's team, in team mode) has won the roun
 Returns true if the player (or the player's team, in team mode) has won the round with the finishing blow being a hyper attack.
 
 **Format:**  
->WinHyper  
-  
+WinHyper  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->boolean int (1 or 0)  
-  
+boolean int (1 or 0)  
+
 **Example:**  
 ```ini
 trigger1 = !WinHyper
@@ -7310,20 +7269,20 @@ trigger1 = !WinHyper
 
 ---
 
-<a id="new_winhyper"></a>
+<a id="new_winspecial"></a>
 ## WinSpecial (new)
 
 Returns true if the player (or the player's team, in team mode) has won the round with the finishing blow being a special attack.
 
 **Format:**  
->WinSpecial  
-  
+WinSpecial  
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->boolean int (1 or 0)  
-  
+boolean int (1 or 0)  
+
 **Example:**  
 ```ini
 trigger1 = !WinSpecial
@@ -7337,14 +7296,14 @@ trigger1 = !WinSpecial
 Returns the value of the player's Xangle applied with AngleDraw/AngleSet/AngleAdd/AngleMul sctrl.
 
 **Format:**  
->XAngle
-  
+XAngle
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**
->float
-  
+float
+
 **Example:**  
 ```ini
 trigger1 = XAngle >= 90
@@ -7358,14 +7317,14 @@ trigger1 = XAngle >= 90
 Returns the value of the player's xshear applied with TransformSprite sctrl.
 
 **Format:**  
->xshear 
-  
+xshear
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**  
->float
-  
+float
+
 **Example:**  
 ```ini
 trigger1 = xshear > 40
@@ -7379,14 +7338,14 @@ trigger1 = xshear > 40
 Returns the value of the player's yangle applied with AngleDraw/AngleSet/AngleAdd/AngleMul sctrl.
 
 **Format:**  
->YAngle
-  
+YAngle
+
 **Arguments:**  
->none  
-  
+none  
+
 **Return type:**
->float
-  
+float
+
 **Example:**  
 ```ini
 trigger1 = YAngle >= 90
@@ -7400,16 +7359,16 @@ trigger1 = YAngle >= 90
 Allows checking the scale, pos x, pos y, lag, and remaining time of the currently Zoom sctrl.
 
 **Format:**  
->ZoomVar(param_name)
-  
+ZoomVar(param_name)
+
 **Arguments:**  
->param_name  
->The name of the variable to check. Valid values are:  
->scale, pos.x, pos.y, lag, time  
-  
+param_name  
+The name of the variable to check. Valid values are:  
+scale, pos.x, pos.y, lag, time  
+
 **Return type:**  
->int or float
-  
+int or float
+
 **Example:**  
 ```ini
 trigger1 = ZoomVar(scale) < 0.9
