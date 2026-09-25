@@ -4551,22 +4551,22 @@ none
 **Optional parameters:**  
 
 **volume = *volume_scale* (int)**  
-*volume_scale* alters volume for currently playing bgm.  
+*volume_scale* alters volume for currently playing BGM.  
 
 **loopstart = *start_sample* (int)**  
-Loop start position sample number.  
+Changes the loop start position sample number.  
 
 **loopend = *end_sample* (int)**  
-Loop end position sample number.  
+Changes the loop end position sample number.  
 
 **position = *sample_point* (int)**  
 Sample point to where the music should seek.  
 
 **freqmul = *freqmul* (float)**  
-Frequency multiplier of the BGM (control pitch & tempo).  
+Frequency multiplier of the BGM (controls pitch & tempo). A value of 0 pauses the BGM.  
 
 **loopcount = *loop_count* (int)**  
-Changes the number of times this BGM should loop.  
+Changes the number of times this BGM should loop. A negative value makes it loop indefinitely.  
 
 **Example:**
 ```go
@@ -5617,7 +5617,9 @@ none
 <a id="new_playbgm"></a>
 ## PlayBgm (new)
 
-Plays back a music. Supported file formats: *mp3*, *ogg*, *wav*.
+Plays back music. Supported file formats: *mp3*, *ogg*, *wav*, *flac*, *mid*, *midi*, *xm*, *mod*, *it*, *s3m*.
+
+Music can be specified directly with the *bgm* parameter or loaded from existing game music definitions with the *source* parameter.
 
 **Required parameters:**  
 
@@ -5625,14 +5627,25 @@ none
 
 **Optional parameters:**  
 
+**source = "*music_source*" (string)**  
+Loads the BGM and its associated parameters from an existing music definition. Valid music sources are:
+* `match`: music assigned to the current match. This is the final music list after stage, character, stage selection and launch parameters have been merged according to their priorities. This is normally the appropriate source when restoring the match's stage music after temporarily playing another BGM.
+* `stagedef`: music declared in the current stage DEF file.
+* `charparams`: music assigned through the character's select.def parameters.
+* `stageparams`: music assigned through the stage's select.def parameters.
+* `launchparams`: music assigned through launch parameters.
+* `motif`: music declared by the current motif / screenpack.
+
+A music prefix can optionally be appended to the source after a dot, for example `match.round1` or `motif.title`. The prefix selects the corresponding music entry from that source. If omitted, the default music entry is used. Values loaded from *source*, such as volume, looping, loop points, start position, frequency multiplier and loop count, can be overridden by specifying the corresponding PlayBgm parameters.  
+
 **bgm = "*bgm_path*" (string)**  
-Path of the music file to play. Leave it blank if you want to stop current music. *bgm_path* file lookup starts relative to character's directory, followed by checking path relative to top ikemen directory, finally the file existance is checked in *sound* directory.  
+Path of the music file to play. Leave it blank if you want to stop current music. *bgm_path* file lookup checks paths relative to the character's directory, current stage directory, top Ikemen directory and *data* directory, with *sound* directory lookup also supported.  
 
 **loop = *loop_flag* (int)**  
-Set *loop_flag* to a nonzero value to have the bgm loop over and over, or 0 to disable looping. Defaults to 1.
+Set *loop_flag* to a nonzero value to have the BGM loop over and over, or 0 to disable looping. Defaults to 1.  
 
 **volume = *volume_scale* (int)**  
-Adjust the volume. 100 is for 100%. Defaults to 100. If *bgm_path* is not specified, *volume_scale* alters volume for currently playing bgm.  
+Adjust the volume. 100 is for 100%. Defaults to 100. If no new BGM is successfully selected, *volume_scale* alters volume for currently playing BGM.  
 
 **loopstart = *start_sample* (int)**  
 Loop start position sample number.  
@@ -5644,22 +5657,49 @@ Loop end position sample number.
 Sample point where the music should start playing.  
 
 **freqmul = *freqmul* (float)**  
-Frequency multiplier of the BGM (control pitch & tempo).  
+Frequency multiplier of the BGM (controls pitch & tempo). Defaults to 1.0.  
 
 **loopcount = *loop_count* (int)**  
-Changes the number of times this BGM should loop.  
+Changes the number of times this BGM should loop. A negative value makes it loop indefinitely. Defaults to -1.  
 
-**Example:**
+**Examples:**
+
+Restore the music assigned to the current match:
+
 ```go
 playBgm{
-    bgm: "";
+    source: "match";
+}
+```
+
+Play music declared directly in the current stage DEF:
+
+```go
+playBgm{
+    source: "stagedef";
+}
+```
+
+Play a music file directly:
+
+```go
+playBgm{
+    bgm: "sound/music.ogg";
     loop: 1;
     volume: 100;
     loopstart: 0;
     loopend: 100000;
     startposition: 0;
     freqmul: 1.0;
-    loopcount: 0;
+    loopcount: -1;
+}
+```
+
+Stop currently playing music:
+
+```go
+playBgm{
+    bgm: "";
 }
 ```
 
