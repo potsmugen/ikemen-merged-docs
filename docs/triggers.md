@@ -2100,7 +2100,7 @@ index
 Expression 2  
 
 param  
-Valid values are accel x, accel y, anim, animelem, animelemtime, angle, angle x, angle y, bindid, bindtime, facing, drawpal.group, drawpal.index, ID, layerno, pausemovetime, pos x, pos y, removetime, scale x, scale y, sprpriority, time, vel x, vel y  
+Valid values are accel x, accel y, anim, animelem, animelemtime, animloopcount (nightly build only), angle, angle x, angle y, bindid, bindtime, facing, drawpal.group, drawpal.index, ID, layerno, pausemovetime, pos x, pos y, removetime, scale x, scale y, sprpriority, time, vel x, vel y  
 
 **Return type:**  
 int or float
@@ -6500,6 +6500,8 @@ Varies. See details
 
 **Details:**
 * `actionno`: Returns the animation number for `type = anim` elements (int)
+* `animelem`: Returns the current animation element (int) (nightly build only)
+* `animelemtime`: Returns the current animation element time (int) (nightly build only)
 * `animloopcount`: Returns the number of times the animation has looped (int) (nightly build only)
 * `animtime`: Returns time until animation ends (int) (nightly build only)
 * `delta.x`: Returns the X delta (float)
