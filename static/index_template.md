@@ -1,6 +1,6 @@
 # Ikemen GO Merged Documentation
 
-This project merges the Ikemen GO wiki with the M.U.G.E.N 1.1 documentation. Ikemen GO supports all M.U.G.E.N features and adds more; all pages here describe Ikemen GO behavior. The M.U.G.E.N documentation is included to show which features are inherited and which Ikemen GO changed or added.
+The documentation in this page is obtained by automatically merging the Ikemen GO wiki with the M.U.G.E.N 1.1 documentation. It is intended for Ikemen GO users.
 
 ## Pages
 
@@ -9,17 +9,19 @@ This project merges the Ikemen GO wiki with the M.U.G.E.N 1.1 documentation. Ike
 - [Redirections](redirections)
 
 ## About the tags
-These tags describe each feature's origin or status relative to M.U.G.E.N 1.1; all describe Ikemen GO behavior:  
-- `old`: Inherited from M.U.G.E.N 1.1 and supported in Ikemen GO.
-- `changed`: Based on a M.U.G.E.N feature that Ikemen GO modified or expanded.
-- `new`: Added by Ikemen GO; it is not part of M.U.G.E.N 1.1.
+
+Most features are listed with one of the following tags:  
+- `old`: Features that already existed in M.U.G.E.N and are still supported in Ikemen GO.
+- `changed`: M.U.G.E.N features that were modified or expanded in Ikemen GO.
+- `new`: Ikemen GO features that did not exist in M.U.G.E.N.
 
 ## Notes
-In `old` sections, "deprecated" notices refer to M.U.G.E.N 1.1 standards. They do not mean the feature is unsupported by Ikemen GO: Ikemen GO maintains compatibility with M.U.G.E.N features. The notice may indicate that a better alternative is available.
+
+In the `old` sections, the "deprecated" notices refer to M.U.G.E.N 1.1 standards. Ikemen GO maintains backward compatibility, so these features will always continue to work. However, their deprecation might mean there are better alternatives available.
 
 ## Sources
 
-M.U.G.E.N 1.1 source documentation:  
+M.U.G.E.N 1.1 documentation:  
 <https://www.elecbyte.com/mugendocs-11b1/mugen.html>  
 Copyright (c) 1999-2013 Elecbyte. All rights reserved.  
   
