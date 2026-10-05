@@ -223,15 +223,20 @@ In all cases, if setting a parameter with an expression, you should be careful t
 
 Both new and old state controllers can now take advantage of some global new features.
 
+
 ## <a name="changed_all_fightfx">fightfx actions</a>
 
 All the remaining CNS parameters used to assign character actions that didn't support the `F` prefix (*[Statedef]*, *ChangeState*, *SelfState*, *ChangeAnim*, *ChangeAnim2*, *Projectile*) have access to loading animations from `fightfx.air`. The implementation is the same as in the *Explod* anim parameter.  
+
+Nightly build only:  
+In addition, prefixes can now take string expressions. For instance `anim = ifelse(random < 500, "F", ""), 40` is now accepted.  
 
 **Example:**
 ```ini
 [Statedef 1000]
 anim = F 300
 ```
+
 
 ## <a name="changed_all_redirectid">RedirectID</a>
 
@@ -366,6 +371,15 @@ none
 
 <a id="changed_afterimage"></a>
 ## AfterImage (changed)
+
+### <a name="changed_afterimage_framegap">framegap</a>
+
+Not a direct parameter adjustment, but if the character has `ikemenVersion` it receives some bug fixes that make afterimages work as expected.
+
+For instance, for parameter values of `framegap = 5` and `length = 20`:
+- A Mugen character will show afterimages for the 0th, 4th, 9th and 14th recorded frames.
+- An Ikemen character will show afterimages for the 5th, 10th, 15th and 20th recorded frames.
+
 
 ### <a name="changed_afterimage_invertblend">palinvertblend </a>
 
@@ -3175,6 +3189,34 @@ slot = 0
 time = 1
 ```
 
+
+### <a name="changed_hitby_clsn_group">clsn.group</a> (nightly build only)
+
+**clsn.group = *box_type* (int)**  
+
+Determines the type of Clsn box that is affected. Valid values are `All`, `None`, `Clsn1`, `Clsn2`, `Size` and `Dummy`.  
+Defaults to `All`.
+
+
+### <a name="changed_hitby_clsn_indexp">clsn.index</a> (nightly build only)
+
+**clsn.index = *box_index* (int)**  
+
+Determines the index of the Clsn box that is affected.  
+Defaults to `-1` (all boxes).
+
+```
+# Third Clsn2 is invulnerable to projectiles
+hitBy{
+    slot: 0;
+    attr: SCA, AA, AT;
+    clsn.group: clsn2;
+    clsn.index: 2;
+    time: 10;
+}
+```
+
+
 ### <a name="changed_hitby_stack">Stack</a>
 
 **stack = *value* (bool)**  
@@ -3933,7 +3975,7 @@ In Mugen, the default value for this parameter was not intuitive and often becam
 
 **p2clsncheck= *clsn_type* (string)**  
 
-This parameter makes a hit be checked against a specific type of collision box. Valid parameters are `None`, `Clsn1`, `Clsn2`, `Size` and `Dummy` (nightly build only).  
+This parameter makes a hit be checked against a specific type of collision box. Valid values are `None`, `Clsn1`, `Clsn2`, `Size` and `Dummy` (nightly build only).  
 Traditionally, fighting games check throws with the `Size` box.  
 
 ### <a name="changed_hitdef_p2clsnrequire">p2clsnrequire</a>
@@ -4440,7 +4482,7 @@ Sets value to player's map. This state controller can be used to change a number
 **map = "*map_name*" (string)**  
 Specifies a name of the map that we assign value to.  
 
-**value = *expr* (int or float)**  
+**value = *expr* (int or float) (or string in nightly build)**  
 *expr* is the value to assign to the map.  
 
 **Example:**
@@ -5551,7 +5593,7 @@ If the player is a helper, sets value to parent's map. If the player is not a he
 **map = "*map_name*" (string)**  
 Specifies a name of the map that we assign value to.  
 
-**value = *expr* (int or float)**  
+**value = *expr* (int or float) (or string in nightly build)**  
 *expr* is the value to assign to the map.  
 
 **Example:**
@@ -6699,7 +6741,7 @@ If the player is a helper, sets value root's map. If the player is not a helper,
 **map = "*map_name*" (string)**  
 Specifies a name of the map that we assign value to.  
 
-**value = *expr* (int or float)**  
+**value = *expr* (int or float) (or string in nightly build)**  
 *expr* is the value to assign to the map.  
 
 **Example:**
@@ -7861,7 +7903,7 @@ Sets value to all team members maps.
 **map = "*map_name*" (string)**  
 Specifies a name of the map that we assign value to.  
 
-**value = *expr* (int or float)**  
+**value = *expr* (int or float) (or string in nightly build)**  
 *expr* is the value to assign to the map.  
 
 **Example:**

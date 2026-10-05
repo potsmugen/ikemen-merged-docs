@@ -4113,17 +4113,20 @@ trigger1 = !LoseKO
 <a id="new_map"></a>
 ## Map (new)
 
-Use the name of the map you want to recognize in parentheses. For example, a character with the below map will return Map(age) as a value set in character DEF file or via various state controllers that can modify character's map. If nothing is set, 0 is returned.
+Returns the value of a player's map with the specified name. Returns 0 if that map was not set yet.  
+  
+Note: In the nightly build, maps are now auto-typed instead of locked to float type. They become the same type of whatever they were assigned.  
 
 **Format:**  
-Map  
+Map(name)  
 
 **Arguments:**  
 name  
 Name of the map  
 
 **Return type:**  
-float  
+float (stable build)  
+int, float or string (nightly build)  
 
 **Example:**  
 ```ini
