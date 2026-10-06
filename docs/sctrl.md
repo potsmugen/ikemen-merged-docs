@@ -2514,17 +2514,24 @@ If 0, disables reflection on the explod regardless of its shadow color. If 1, en
 
 If set to 1, the Explod will be removed if the character changes state. Defaults to 0.
 
+
 ### <a name="changed_explod_shader">Shader</a>
 
 **shader = *"shader_name"* (string)**  
 
 Specifying the name of the currently loaded custom shader will apply that shader to Explod.
 
+Note: In the nightly build the syntax changed to `shader.name`.
+
+
 ### <a name="changed_explod_shadertime">ShaderTime</a>
 
 **shadertime = *time* (int)**  
 
 Specifying this parameter will remove the custom shader after it has been displayed for the specified number of ticks. The default value is -1.
+
+Note: In the nightly build the syntax changed to `shader.time`.
+
 
 ### <a name="changed_explod_shadersaram.px">ShaderParam.pX</a>
 
@@ -2533,9 +2540,15 @@ Specifying this parameter will remove the custom shader after it has been displa
 Specifies the value to send to the custom shader. The value specified here can be used as a variable within the custom shader.
 X is limited to 0 to 15, and a maximum of 16 values ​​can be sent.
 
+Note: In the nightly build the syntax changed to `shader.paramX`.
+
+
 ### <a name="changed_explod_shadertexx.spr">ShaderTexX.spr</a>
 
 **shadertexX.spr = *group, image* (int, int)**  
+
+Note: In the nightly build the syntax changed to `shader.texX.spr`.
+
 
 ### <a name="changed_explod_shadertexx.anim">ShaderTexX.anim</a>
 
@@ -2545,6 +2558,16 @@ Specifies the texture to send to the custom shader. The sprites specified here c
 You can specify 1 or 2 for X, and send up to two sprites.
 Each tex can be assigned either a sprite number (spr) or an anim number. It is not possible to assign both sprite and anim numbers to the same tex number simultaneously.
 Note that since textures are loaded as raw data, images with palettes may not display correctly as is.
+
+Note: In the nightly build the syntax changed to `shader.texX.anim`.
+
+
+### <a name="changed_explod_shader_playerno">shader.playerno</a> (nightly build only)
+
+**shader.playerno = *player_number* (int)**  
+
+Specifies the player number who owns the shader to be used. Defaults to own player number.
+
 
 ### <a name="changed_explod_spriteplayerno_2">SpritePlayerNo</a>
 
@@ -6426,11 +6449,15 @@ This parameter takes four numbers (similar to the format of a Clsn box) which fo
 
 Specifies the amount of horizontal shearing to apply to the projectile. Defaults to 0.
 
+
 ### <a name="changed_projectile_shader">Shader</a>
 
 **shader = *"shader_name"* (string)**  
 
 Specifying the name of the currently loaded custom shader will apply that shader to Projectile.
+
+Note: In the nightly build the syntax changed to `shader.name`.
+
 
 ### <a name="changed_projectile_shadertime">ShaderTime</a>
 
@@ -6438,16 +6465,25 @@ Specifying the name of the currently loaded custom shader will apply that shader
 
 Specifying this parameter will remove the custom shader after it has been displayed for the specified number of ticks. The default value is -1.
 
-### <a name="changed_projectile_shadersaram.px">ShaderParam.pX</a>
+Note: In the nightly build the syntax changed to `shader.time`.
+
+
+### <a name="changed_projectile_shader_paramx">ShaderParam.pX</a>
 
 **shaderparam.pX = *value* (float)**  
 
 Specifies the value to send to the custom shader. The value specified here can be used as a variable within the custom shader.
 X is limited to 0 to 15, and a maximum of 16 values ​​can be sent.
 
+Note: In the nightly build the syntax changed to `shader.paramX`.
+
+
 ### <a name="changed_projectile_shadertexx.spr">ShaderTexX.spr</a>
 
 **shadertexX.spr = *group, image* (int, int)**  
+
+Note: In the nightly build the syntax changed to `shader.texX.spr`.
+
 
 ### <a name="changed_projectile_shadertexx.anim">ShaderTexX.anim</a>
 
@@ -6457,6 +6493,15 @@ Specifies the texture to send to the custom shader. The sprites specified here c
 You can specify 1 or 2 for X, and send up to two sprites.
 Each tex can be assigned either a sprite number (spr) or an anim number. It is not possible to assign both sprite and anim numbers to the same tex number simultaneously.
 Note that since textures are loaded as raw data, images with palettes may not display correctly as is.
+
+Note: In the nightly build the syntax changed to `shader.texX.anim`.
+
+
+### <a name="changed_projectile_shader_playerno">shader.playerno</a> (nightly build only)
+
+**shader.playerno = *player_number* (int)**  
+
+Specifies the player number who owns the shader to be used. Defaults to own player number.
 
 ---
 
@@ -6987,6 +7032,9 @@ Sets the specified custom shader to the character.
 **shader = *"shader_name"* (string)**  
 Specify the name from the currently loaded custom shader.  
 
+Note: In the nightly build the syntax was changed to `name`.
+
+
 **Optional parameters:**  
 
 **time = *time* (int)**  
@@ -7014,6 +7062,22 @@ layout(push_constant, std430) uniform u {
 };
 ```
 
+Note: In the nightly build the syntax was changed to `paramX`. Additionally, shader language uses an array instead:
+
+**OpenGL:**
+```
+	uniform float param[16];
+```
+
+**Vulkan:**
+```
+layout(push_constant, std430) uniform u {
+	vec4 palUV;
+	float param[16];
+};
+```
+
+
 **shadertexX.spr = *group, image* (int, int)**  
 **shadertexX.anim = *anim_no* (int)**  
 Specifies the texture to send to the custom shader. The sprites specified here can be used as textures within the custom shader.  
@@ -7022,6 +7086,8 @@ Each tex can be assigned either a sprite number (spr) or an anim number. It is n
 Note that since textures are loaded as raw data, images with palettes may not display correctly as is.  
 
 Shadertex textures are defined within custom shaders, for example  
+
+Note: In the nightly build the syntax was changed to `texX.spr` and `texX.anim`.
 
 **OpenGL:**
 ```
@@ -7045,8 +7111,26 @@ shaderSet{
     shadertex1.spr: 0, 0;
     shadertex2.anim: 0;
 }
-
 ```
+
+**Nightly build:**
+```go
+shaderSet{
+    name: "myShader";
+    time: -1;
+    param0: 1.0;
+    param1: 0.5;
+    tex1.spr: 0, 0;
+    tex2.anim: 0;
+}
+```
+
+
+### <a name="new_shader_playerno">playerno</a> (nightly build only)
+
+**playerno = *player_number* (int)**  
+
+Specifies the player number who owns the shader to be used. Defaults to own player number.
 
 ---
 
