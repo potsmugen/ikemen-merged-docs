@@ -1376,7 +1376,18 @@ trigger1 = Command = "fireball motion"
 <a id="changed_command"></a>
 ## Command (changed)
 
-If a character has `ikemenversion`, when the `Command` trigger is redirected to another player, the engine will first check if the other player is performing its own command with the same name. If not, it'll check if it's performing the command from our own command list. Otherwise it will work like Mugen.
+### <a name="changed_command_ikemenversion">ikemenversion</a>
+
+If a character has `ikemenversion`, when the `Command` trigger is redirected to another player, the engine will first check if the other player is performing its own command with the same name. If not, it'll check if it's performing the command from our own command list. Otherwise it will work like Mugen.  
+
+
+### <a name="changed_command_strings">String expressions</a> (nightly build only)
+
+The trigger can now use any string expression, not only string literals.
+
+```go
+if command = ifElse(random < 500, "a", "b") || command = map(some_command) {...}
+```
 
 ---
 
@@ -1550,11 +1561,11 @@ trigger1 = Const(velocity.walk.fwd.x) > 4
 <a id="changed_const"></a>
 ## Const (changed)
 
-The Const trigger can now also read Ikemen GO's [new constants](https://github.com/ikemen-engine/Ikemen-GO/wiki/Character-features#cns_constants).
+The `Const` trigger can now also read Ikemen GO's [new constants](https://github.com/ikemen-engine/Ikemen-GO/wiki/Character-features#cns_constants).
 
 ### <a name="changed_const_constants">Const(constants)</a>
 
-Returns the value of one of the player's constants from the [[Constants]](Character-features/#cns_constants) section.
+Returns the value of one of the player's custom constants from the [[Constants]](Character-features/#cns_constants) section.
 
 ```ini
 [Constants]

@@ -3097,6 +3097,16 @@ A helper's maps can be set immediately upon its creation via `map.<mapname>` syn
 helper{...; map.speed: 8; map.angle: 45}
 ```
 
+
+### <a name="changed_helper_name">Name</a> (nightly build only)
+
+A helper's name can now use any string expression.
+
+```
+helper{name: map(helper_name)}
+```
+
+
 ### <a name="changed_helper_ownclsnscale">OwnClsnScale</a>
 
 A helper with this parameter will have its collision box scale be based on its own `size.xscale` and `size.yscale` constants rather than its root's.
