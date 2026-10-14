@@ -395,6 +395,33 @@ For PalFx it accepts 4 values:
 
 If character MugenVersion is 1.1 and invertall = 1 and if invertblend param is omitted, it inverts blend by default. For all other MugenVersion invertblend is 0 if omitted.
 
+### <a name="new_afterimage_shader">Shader.name</a> (nightly build only)
+
+**shader.name = *"shader_name"* (string)**  
+
+Specifying the name of the currently loaded custom shader will apply that shader to the Afterimage.
+
+### <a name="changed_afterimage_shader_param">shader.paramX</a> (nightly build only)
+
+**shader.paramX = *value* (float)**  
+
+Specifies the value to send to the custom shader. The value specified here can be used as a variable within the custom shader.
+X is limited to 0 to 15, and a maximum of 16 values ​​can be sent.
+
+### <a name="changed_afterimage_texx.spr">TexX.spr</a> (nightly build only)
+
+**shadertexX.spr = *group, image* (int, int)**  
+
+### <a name="changed_afterimage_texx.anim">TexX.anim</a> (nightly build only)
+
+**shadertexX.anim = *anim_no* (int)**  
+
+### <a name="changed_afterimage_shader_playerno">shader.playerno</a> (nightly build only)
+
+**shader.playerno = *player_number* (int)**  
+
+Specifies the player number who owns the shader to be used. Defaults to own player number.
+
 ---
 
 ## AfterImageTime (old)
@@ -2567,6 +2594,27 @@ Note: In the nightly build the syntax changed to `shader.texX.anim`.
 **shader.playerno = *player_number* (int)**  
 
 Specifies the player number who owns the shader to be used. Defaults to own player number.
+
+
+### <a name="changed_explod_shader_shadow">shader.shadow</a> (nightly build only)
+
+**shader.shadow = *shadow_flag* (boolean)**  
+
+Specifies if the explod shadow is affected by the shader. Defaults to 1.
+
+
+### <a name="changed_explod_shader_reflection">shader.reflection</a> (nightly build only)
+
+**shader.reflection = *reflection_flag* (boolean)**  
+
+Specifies if the explod reflection is affected by the shader. Defaults to 1.
+
+
+### <a name="changed_explod_shader_afterimage">shader.afterimage</a> (nightly build only)
+
+**shader.afterimage = *afterimage_flag* (boolean)**  
+
+Specifies if the explod afterimage is affected by the shader. Defaults to 1.
 
 
 ### <a name="changed_explod_spriteplayerno_2">SpritePlayerNo</a>
@@ -4906,6 +4954,11 @@ none
 **yscale = yscale (float)**  
 **projection = projection (string)**  
 **focallength = focallength (float)**  
+**shader.name = "shader_name" (string)** (nightly build only)  
+**shader.paramX = value (float)** (nightly build only)  
+**shader.texX = group, image (int)** (nightly build only)  
+**shader.animX = anim_no (int)** (nightly build only)  
+**shader.playerno = player_number (int)** (nightly build only)  
 
 **Example:**
 ```go
@@ -4975,6 +5028,11 @@ none
 **yscale = yscale (float)**  
 **projection = projection (string)**  
 **focallength = focallength (float)**  
+**shader.name = "shader_name" (string)** (nightly build only)  
+**shader.paramX = value (float)** (nightly build only)  
+**shader.texX = group, image (int)** (nightly build only)  
+**shader.animX = anim_no (int)** (nightly build only)  
+**shader.playerno = player_number (int)** (nightly build only)  
 
 **Example:**
 ```go
@@ -5220,6 +5278,12 @@ none
 **shadow.yangle = *yangle* (int)**  
 **shadow.ydelta = *delta* (float)**  
 **shadow.yscale = *scale* (float)**  
+**shadow.shader.name = *shader_name* (string)** (nightly build only)  
+**shadow.shader.paramX = *value* (float)** (nightly build only)  
+**shadow.shader.tex1 = *group, image* (int, int)** (nightly build only)  
+**shadow.shader.anim1 = *anim_no* (int)** (nightly build only)  
+**shadow.shader.tex2 = *group, image* (int, int)** (nightly build only)  
+**shadow.shader.anim2 = *anim_no* (int)** (nightly build only)  
 **reflection.angle = *angle* (int)**  
 **reflection.fade.range = *end*, *begin* (int, int)**  
 **reflection.focallength = *focallength* (float)**  
@@ -5232,6 +5296,12 @@ none
 **reflection.yangle = *yangle* (int)**  
 **reflection.ydelta = *delta* (float)**  
 **reflection.yscale = *scale* (float)**  
+**reflection.shader.name = *shader_name* (string)** (nightly build only)  
+**reflection.shader.paramX = *value* (float)** (nightly build only)  
+**reflection.shader.tex1 = *group, image* (int, int)** (nightly build only)  
+**reflection.shader.anim1 = *anim_no* (int)** (nightly build only)  
+**reflection.shader.tex2 = *group, image* (int, int)** (nightly build only)  
+**reflection.shader.anim2 = *anim_no* (int)** (nightly build only)  
 
 **Details:**  
 camera.ytension.enable is enabled by default when a stage uses tensionhigh and tensionlow  
@@ -6513,6 +6583,27 @@ Note: In the nightly build the syntax changed to `shader.texX.anim`.
 
 Specifies the player number who owns the shader to be used. Defaults to own player number.
 
+
+### <a name="changed_projectile_shader_shadow">shader.shadow</a> (nightly build only)
+
+**shader.shadow = *shadow_flag* (boolean)**  
+
+Specifies if the projectile shadow is affected by the shader. Defaults to 1.
+
+
+### <a name="changed_projectile_shader_reflection">shader.reflection</a> (nightly build only)
+
+**shader.reflection = *reflection_flag* (boolean)**  
+
+Specifies if the projectile reflection is affected by the shader. Defaults to 1.
+
+
+### <a name="changed_projectile_shader_afterimage">shader.afterimage</a> (nightly build only)
+
+**shader.afterimage = *afterimage_flag* (boolean)**  
+
+Specifies if the projectile afterimage is affected by the shader. Defaults to 1.
+
 ---
 
 <a id="new_redlifeadd"></a>
@@ -7141,6 +7232,22 @@ shaderSet{
 **playerno = *player_number* (int)**  
 
 Specifies the player number who owns the shader to be used. Defaults to own player number.
+
+### <a name="new_shader_shadow">shadow</a> (nightly build only)
+
+**shadow = *shadow_flag* (boolean)**  
+
+Specifies if the shader also affects char shadow. Defaults to 1.
+
+### <a name="new_shader_reflection">reflection</a> (nightly build only)
+**reflection = *reflection_flag* (boolean)**  
+
+Specifies if the shader also affects char reflection. Defaults to 1.  
+
+### <a name="new_shader_afterimage">afteriamge</a> (nightly build only)
+**afterimage = *afterimage_flag* (boolean)**  
+
+Specifies if the shader also affects char afterimage. Defaults to 1.
 
 ---
 

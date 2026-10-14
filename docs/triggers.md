@@ -2149,7 +2149,7 @@ index
 Expression 2  
 
 param  
-Valid values are accel x, accel y, anim, animelem, animelemtime, animloopcount (nightly build only), angle, angle x, angle y, bindid, bindtime, facing, drawpal.group, drawpal.index, ID, layerno, pausemovetime, pos x, pos y, removetime, scale x, scale y, sprpriority, time, vel x, vel y  
+Valid values are accel x, accel y, anim, animelem, animelemtime, animloopcount (nightly build only), angle, angle x, angle y, bindid, bindtime, facing, drawpal.group, drawpal.index, ID, layerno, pausemovetime, pos x, pos y, removetime, scale x, scale y, shader, sprpriority, time, vel x, vel y  
 
 **Return type:**  
 int or float
@@ -5937,7 +5937,7 @@ index
 Expression 2  
 
 param  
-Valid values are accel x, accel y, anim, animelem, angle, angle x, angle y, attr, drawpal.group, drawpal.index, guardflag, highbound, hitflag, layerno, lowbound, pausemovetime, pos x, pos y, projcancelanim, projedgebound, projhitanim, projhits, projID, projmisstime, projpriority, projremove, projremovetime, projremanim, projstagebound, remvelocity x, remvelocity y, scale x, scale y, shadow r, shadow g, shadow b, sprpriority, teamside, vel x, vel y, velmul x, velmul y  
+Valid values are accel x, accel y, anim, animelem, angle, angle x, angle y, attr, drawpal.group, drawpal.index, guardflag, highbound, hitflag, layerno, lowbound, pausemovetime, pos x, pos y, projcancelanim, projedgebound, projhitanim, projhits, projID, projmisstime, projpriority, projremove, projremovetime, projremanim, projstagebound, remvelocity x, remvelocity y, scale x, scale y, shader, shadow r, shadow g, shadow b, sprpriority, teamside, vel x, vel y, velmul x, velmul y  
 
 **Return type:**  
 int or float  
