@@ -395,7 +395,7 @@ For PalFx it accepts 4 values:
 
 If character MugenVersion is 1.1 and invertall = 1 and if invertblend param is omitted, it inverts blend by default. For all other MugenVersion invertblend is 0 if omitted.
 
-### <a name="new_afterimage_shader">Shader.name</a> (nightly build only)
+### <a name="new_afterimage_shader">shader.name</a> (nightly build only)
 
 **shader.name = *"shader_name"* (string)**  
 
@@ -408,13 +408,13 @@ Specifying the name of the currently loaded custom shader will apply that shader
 Specifies the value to send to the custom shader. The value specified here can be used as a variable within the custom shader.
 X is limited to 0 to 15, and a maximum of 16 values ​​can be sent.
 
-### <a name="changed_afterimage_texx.spr">TexX.spr</a> (nightly build only)
+### <a name="changed_afterimage_texx.spr">shader.texX.spr</a> (nightly build only)
 
-**shadertexX.spr = *group, image* (int, int)**  
+**shader.texX.spr = *group, image* (int, int)**  
 
-### <a name="changed_afterimage_texx.anim">TexX.anim</a> (nightly build only)
+### <a name="changed_afterimage_texx.anim">shader.texX.anim</a> (nightly build only)
 
-**shadertexX.anim = *anim_no* (int)**  
+**shader.texX.anim = *anim_no* (int)**  
 
 ### <a name="changed_afterimage_shader_playerno">shader.playerno</a> (nightly build only)
 
@@ -3836,15 +3836,18 @@ none
 
 ### <a name="changed_hitdef_air_cornerpush_velmul">air.cornerpush.velmul (changed)</a> (nightly build only)
 
+
 See `ground.cornerpush.velmul`.
 
 ### <a name="changed_hitdef_airguard_cornerpush_velmul">airguard.cornerpush.velmul (changed)</a> (nightly build only)
 
 See `ground.cornerpush.velmul`.
 
+
 ### <a name="changed_hitdef_airjuggle">air.juggle (changed)</a>
 
 In Mugen, the `air.juggle` parameter is only used by the `Projectile` state controller. Characters with `ikemenversion` can now use this parameter in a `Hitdef` to update their juggle points. This allows a move with multiple hits to have different juggle properties in every hit, for instance.  
+
 
 ### <a name="changed_hitdef_air_velocity">air.velocity (changed)</a>
 
@@ -3852,17 +3855,29 @@ This parameter now takes a third value, It specifies the z velocity.
 
 **air.velocity = *x_vel, y_vel, z_vel* (float, float, float)**
 
+
 ### <a name="changed_hitdef_airguard_velocity">airguard.velocity (changed)</a>
 
 This parameter now takes a third value, It specifies the z velocity.
 
 **airguard.velocity = *x_vel, y_vel, z_vel* (float, float, float)**
 
+
 ### <a name="changed_hitdef_attackdepth">attack.depth</a>
 
 **attack.depth = *z_dist_front, z_dist_back* (int, int)**
 
 Specifies the range of the attack in the Z plane. An attack with more depth reaches further into or out of the Z plane. Defaults to the character's `attack.depth` size constant.  
+
+
+### <a name="changed_hitdef_attr">attr</a> (nightly build only)
+
+This parameter now accepts string expressions. The result is read like a regular `attr` value.  
+This also applies to the `attr` parameters of other state controllers.  
+
+Example:  
+`attr = ifelse(random < 500, "S, NA", "A, SP")`
+
 
 ### <a name="changed_hitdef_dizzypoints">dizzypoints</a>
 
@@ -3947,6 +3962,12 @@ If the character has `ikemenversion`, this value now defaults to `ground.hittime
 
 Specifies the amount of guard points to give P2 if this HitDef is guarded. If omitted, it defaults to hit_damage (from "damage" parameter) multiplied by the value of `Default.LifeToGuardPointsMul` / `Super.LifeToGuardPointsMul` specified in data/common.const, scaled by the targets' defense multipliers if necessary.
 
+
+### <a name="changed_hitdef_guardflag">guardflag</a>
+
+See `hitflag`.
+
+
 ### <a name="changed_hitdef_ground_velocity">ground.velocity (changed)</a>
 
 This parameter now takes a third value, It specifies the z velocity.
@@ -4010,6 +4031,16 @@ Overrides the opponent's Movement.Crouch.Friction constants while they are in th
 **guardsound.channel = *channel_no* (int)**
 
 Specifies which of the player's sound channels the guardsound should play on. If omitted, channel_no defaults to -1, meaning the sound will play on any free channel.
+
+
+### <a name="changed_hitdef_hitflag">hitflag</a> (nightly build only)
+
+This parameter now accepts string expressions. The result is read like a regular `hitflag` value.  
+This also applies to the `hitflag`/`guardflag` parameters of other state controllers.  
+
+Example:  
+`hitflag = ifelse(random < 500, "M", "A")`
+
 
 ### <a name="changed_hitdef_hitsoundchannel">hitsound.channel</a>
 
@@ -5192,6 +5223,18 @@ Changes the focallength parameter.
 
 **projection = *projection* (string)**  
 Changes the projection parameter.  
+
+**shader.name = *shader* (string)** (nightly build only)  
+Changes the shader.name parameter.  
+
+**shader.paramX = *value* (float)** (nightly build only)  
+Changes the shader.paramX parameters.  
+
+**shader.texX.spr = *group, image* (int)** (nightly build only)  
+Changes the shader.tex.sprX parameter.  
+
+**shader.texX.anim = *anim_no* (int)** (nightly build only)  
+Changes the shader.texX.anim parameter.  
 
 **Example:**
 ```ini
