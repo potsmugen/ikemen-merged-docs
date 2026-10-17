@@ -2045,7 +2045,7 @@ trigger1 = DrawGame
 returns the value of the group and index of the palette being used to draw the sprites at the moment, unlike PalNo, which returns the palette selected in the character select screen.
 
 **Format:**  
-DrawPal
+DrawPal(argument)
 
 **Arguments:**  
 group, index  

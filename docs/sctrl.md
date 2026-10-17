@@ -4682,6 +4682,18 @@ x value that should modify background controller *x* parameter (used by followin
 **y = *value_y* (float)**  
 y value that should modify background controller *y* parameter (used by following BGCtrl types: *VelSet*, *VelAdd*, *PosSet*, *PosAdd*).  
 
+**shader.name = *shader_name* (string)** (nightly build only)  
+shader name that should modify background controller *shader.name* parameter (used by following BGCtrl type: *ShaderSet*)  
+
+**shader.paramX = *value* (float)** (nightly build only)  
+shader params that should modify background controller *shader.paramX* parameter (used by following BGCtrl type: *ShaderSet*)  
+
+**shader.texX.spr = *group, image* (int)** (nightly build only)  
+group and image that should modify background controller *shader.texN.spr* parameter (used by following BGCtrl type: *ShaderSet*)  
+
+shader.texX.anim = anim_no (int) (nightly build only)  
+anim no that should modify background controller *shader.texN.anim* parameter (used by following BGCtrl type: *ShaderSet*)  
+
 **Notes:**  
 This state controller affects background controllers marked with [sctrlid](https://github.com/ikemen-engine/Ikemen-GO/wiki/Stage-features#bgctrl_sctrlid), which is normally not known by individual characters. For this reason the best way to use this sctrl is through [AttachedChar](https://github.com/ikemen-engine/Ikemen-GO/wiki/Stage-features#info_attachedchar) associated with particular stage.
 
@@ -4987,8 +4999,8 @@ none
 **focallength = focallength (float)**  
 **shader.name = "shader_name" (string)** (nightly build only)  
 **shader.paramX = value (float)** (nightly build only)  
-**shader.texX = group, image (int)** (nightly build only)  
-**shader.animX = anim_no (int)** (nightly build only)  
+**shader.texX.spr = group, image (int)** (nightly build only)  
+**shader.texX.anim = anim_no (int)** (nightly build only)  
 **shader.playerno = player_number (int)** (nightly build only)  
 
 **Example:**
@@ -5061,8 +5073,8 @@ none
 **focallength = focallength (float)**  
 **shader.name = "shader_name" (string)** (nightly build only)  
 **shader.paramX = value (float)** (nightly build only)  
-**shader.texX = group, image (int)** (nightly build only)  
-**shader.animX = anim_no (int)** (nightly build only)  
+**shader.texX.spr = group, image (int)** (nightly build only)  
+**shader.texX.anim = anim_no (int)** (nightly build only)  
 **shader.playerno = player_number (int)** (nightly build only)  
 
 **Example:**
