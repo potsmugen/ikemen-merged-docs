@@ -20,6 +20,7 @@
 - [AnimLength (new)](#animlength-new)
 - [AnimLoopCount (nightly build only) (new)](#animloopcount-nightly-build-only-new)
 - [AnimPlayerNo (new)](#animplayerno-new)
+- [AnimPrefix (nightly build only) (new)](#animprefix-nightly-build-only-new)
 - [AnimTime (old)](#animtime-old)
 - [Asin (math) (old)](#asin-math-old)
 - [Atan (math) (old)](#atan-math-old)
@@ -765,6 +766,32 @@ int
 **Example:**  
 ```ini
 trigger1 = Player(AnimPlayerNo), SelfAnimExist(1234)
+```
+
+---
+
+<a id="new_animprefix"></a>
+## AnimPrefix (nightly build only) (new)
+
+Returns the prefix used to retrieve the current animation, e.g. `F` for lifebar common FX.  
+Returns `S` if no common FX is being used.  
+
+**Format:**  
+AnimPrefix  
+
+**Arguments:**  
+none  
+
+**Return type:**  
+string  
+
+**Error conditions:**  
+none  
+
+**Example:**  
+```
+# Any common FX animation
+if animPrefix != "S" {
 ```
 
 ---
@@ -2149,7 +2176,7 @@ index
 Expression 2  
 
 param  
-Valid values are accel x, accel y, anim, animelem, animelemtime, animloopcount (nightly build only), angle, angle x, angle y, bindid, bindtime, facing, drawpal.group, drawpal.index, ID, layerno, pausemovetime, pos x, pos y, removetime, scale x, scale y, shader, sprpriority, time, vel x, vel y  
+Valid values are accel x, accel y, angle, angle x, angle y, anim, animelem, animelemtime, animloopcount (nightly build only), animprefix (nightly build only), bindid, bindtime, facing, drawpal.group, drawpal.index, ID, layerno, pausemovetime, pos x, pos y, removetime, scale x, scale y, shader, sprpriority, time, vel x, vel y  
 
 **Return type:**  
 int or float
@@ -4142,6 +4169,7 @@ int, float or string (nightly build)
 **Example:**  
 ```ini
 trigger1 = Map(age) >= 18
+trigger1 = Map(ifelse(random < 500, "foo", "bar")) := "word"; nightly build only
 ```
 
 ---
@@ -5937,7 +5965,7 @@ index
 Expression 2  
 
 param  
-Valid values are accel x, accel y, anim, animelem, angle, angle x, angle y, attr, drawpal.group, drawpal.index, guardflag, highbound, hitflag, layerno, lowbound, pausemovetime, pos x, pos y, projcancelanim, projedgebound, projhitanim, projhits, projID, projmisstime, projpriority, projremove, projremovetime, projremanim, projstagebound, remvelocity x, remvelocity y, scale x, scale y, shader, shadow r, shadow g, shadow b, sprpriority, teamside, vel x, vel y, velmul x, velmul y  
+Valid values are accel x, accel y, angle, angle x, angle y, anim, animelem, animprefix (nightly build only), attr, drawpal.group, drawpal.index, guardflag, highbound, hitflag, layerno, lowbound, pausemovetime, pos x, pos y, projcancelanim, projedgebound, projhitanim, projhits, projID, projmisstime, projpriority, projremove, projremovetime, projremanim, projstagebound, remvelocity x, remvelocity y, scale x, scale y, shader, shadow r, shadow g, shadow b, sprpriority, teamside, vel x, vel y, velmul x, velmul y  
 
 **Return type:**  
 int or float  

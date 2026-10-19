@@ -162,6 +162,7 @@
 - [SprPriority (old)](#sprpriority-old)
 - [SprPriority (changed)](#sprpriority-changed)
 - [StateTypeSet (old)](#statetypeset-old)
+- [StateTypeSet (nightly build only) (changed)](#statetypeset-nightly-build-only-changed)
 - [StopSnd (old)](#stopsnd-old)
 - [StopSnd (changed)](#stopsnd-changed)
 - [Storyboard (new)](#storyboard-new)
@@ -7433,6 +7434,30 @@ Defaults to no change.
 **Example:**  
   
 none
+
+---
+
+<a id="changed_statetypeset"></a>
+## StateTypeSet (nightly build only) (changed)
+
+### <a name="changed_statetypeset_movetype">MoveType</a>
+
+Type `U` can now also be used. Same functionality as in StateDef: keeps `moveType` unchanged.  
+This change is mostly for the sake of source code consistency.
+
+
+### <a name="changed_statetypeset_statetype">StateType</a>
+
+Type `U` can now also be used. Same functionality as in StateDef: keeps `stateType` unchanged.  
+This change is mostly for the sake of source code consistency.
+
+
+### <a name="changed_statetypeset_strings">String expressions</a>
+
+All parameters now accept string expressions.  
+
+Example:  
+`statetype = ifelse(random < 500, "S", "C")`
 
 ---
 
