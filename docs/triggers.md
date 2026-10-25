@@ -4157,10 +4157,15 @@ Note: In the nightly build, maps are now auto-typed instead of locked to float t
 
 **Format:**  
 Map(name)  
+Map(name, index) (nightly build only)  
 
 **Arguments:**  
 name  
 Name of the map  
+
+index (int) (optional) (nightly build only)  
+Index of the map entry. This lets a single map name act as an array.  
+Index `0` is the same as having no index, so `Map(foo, 0)` is the same as `Map(foo)`.  
 
 **Return type:**  
 float (stable build)  
@@ -4170,6 +4175,7 @@ int, float or string (nightly build)
 ```ini
 trigger1 = Map(age) >= 18
 trigger1 = Map(ifelse(random < 500, "foo", "bar")) := "word"; nightly build only
+trigger1 = Map(inventory, 2) = 5; nightly build only
 ```
 
 ---

@@ -4539,7 +4539,7 @@ none
 <a id="new_mapadd"></a>
 ## MapAdd (new)
 
-Adds value to player's map.
+Adds a value to a player's map.
 
 **Required parameters:**  
 
@@ -4548,6 +4548,12 @@ Specifies a name of the map that we add value to.
 
 **value = *expr* (int or float)**  
 *expr* is the value to add to the map.  
+
+**Optional parameters:**  
+
+**index = *index* (int)** (nightly build only)  
+The index of the map entry to assign. This lets a single map name act as an array.  
+Index `0` is the same as having no index.   
 
 **Example:**
 ```go
@@ -4598,9 +4604,20 @@ Specifies a name of the map that we assign value to.
 **value = *expr* (int or float) (or string in nightly build)**  
 *expr* is the value to assign to the map.  
 
+**Optional parameters:**  
+
+**index = *index* (int)** (nightly build only)  
+The index of the map entry to assign. This lets a single map name act as an array.  
+Index `0` is the same as having no index.   
+
 **Example:**
 ```go
 mapSet{map: "example"; value: 1}
+
+# Reset first 10 indexes (nightly build only)
+for i = 0; 9; 1:
+    mapSet{map: "indexed_map"; index: $i; value: 0}
+}
 ```
 
 ---
@@ -7158,7 +7175,11 @@ none
 
 ### <a name="changed_screenbound_stagebound">StageBound</a>
 
-Lets a character bypass leftbound and rightbound from stage.
+Lets a character bypass leftbound and rightbound from stage.  
+
+**Note:**
+This parameter is deprecated in the nightly build. Its behavior was integrated with the `value` parameter.  
+Using the parameter is a no-op, but removing it is encouraged for ZSS code.
 
 ---
 
